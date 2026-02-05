@@ -1,6 +1,6 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet, RouterLink } from '@angular/router';
-import { Menu } from "./menu/menu.ts";
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { Menu } from "./menu/menu";
 
 @Component({
   selector: 'app-root',
