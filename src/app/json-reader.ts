@@ -9,7 +9,11 @@ export class JsonReader {
   private readonly baseUrl = 'assets/';
   constructor(private readonly http: HttpClient){}
 
-  getData(url: string): Observable<any> {
-    return this.http.get<any>(this.baseUrl + url)
+  getData(filename: string): Observable<any> {
+    return this.http.get<any>(`assets/${filename}`)
+  }
+
+  getIndex(filename: string) {
+    return this.http.get<Record<string, string>>(`assets/${filename}`)
   }
 }

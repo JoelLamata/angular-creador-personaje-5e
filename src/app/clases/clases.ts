@@ -1,32 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { AccordionModule } from 'primeng/accordion';
 import { JsonReader } from '../json-reader';
+import { PRIMENG_IMPORTS } from '../primeng.imports';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-clases',
-  imports: [AccordionModule],
+  imports: [PRIMENG_IMPORTS],
   templateUrl: './clases.html',
   styleUrl: './clases.css',
   standalone: true,
 })
 export class Clases implements OnInit {
-  tabs: any[] = [];
-  data: any;
-  url: string = 'class/class-barbarian.json';
-  public constructor(private readonly jsonReader: JsonReader) {}
+  classNames: string[] = [];
+  index: string = 'class/index.json'
+  public constructor(private readonly router: Router, private readonly jsonReader: JsonReader) {}
 
   ngOnInit(): void {
-    this.jsonReader.getData(this.url).subscribe(resp => {
-      this.data = resp;
-      //console.log(this.data);
-      this.tabs = [
-        {
-          value: "0",
-          title: this.data.class[0].name,
-          content: "content"
-        }
-      ]
+    this.jsonReader.getData(this.index).subscribe(resp => {
+      this.classNames = Object.keys(resp);
+      this.classNames = this.classNames.filter((word) => word !== "sidekick" && word !== "mystic")
     });
+  }
 
+  goTo(card: string) {
+    this.router.navigate(['/clases', card])
   }
 }
