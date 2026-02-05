@@ -16,10 +16,8 @@ export class Clases implements OnInit {
   public constructor(private readonly router: Router, private readonly jsonReader: JsonReader) {}
 
   ngOnInit(): void {
-    this.jsonReader.getData(this.index).subscribe(resp => {
-      this.classNames = Object.keys(resp);
-      this.classNames = this.classNames.filter((word) => word !== "sidekick" && word !== "mystic")
-    });
+    this.classNames = Object.keys(this.jsonReader.getData(this.index));
+    this.classNames = this.classNames.filter((word) => word !== "sidekick" && word !== "mystic")
   }
 
   goTo(card: string) {

@@ -1,18 +1,27 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { lastValueFrom, Observable, of, shareReplay, switchMap, take, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class JsonReader {
-  constructor(private readonly http: HttpClient){}
+  constructor(private readonly http: HttpClient) {}
+  private data: Record<string, any> = {};
 
-  getData(filename: string): Observable<any> {
-    return this.http.get<any>(`/assets/${filename}`)
+  async getData(filename: string): Promise<any> {
+    if (this.data[filename]) {
+      return this.data[filename];
+    }
+
+    const result = this.http.get(`/assets/${filename}`).pipe(take(1));
+
+    this.data[filename] = result;
+    return await lastValueFrom(result);
   }
 
-  getIndex(filename: string) {
-    return this.http.get<Record<string, string>>(`/assets/${filename}`)
+  async getPageData(path: string, page: string): Promise<any> {
+    const index = await this.getData(path + 'index.json');
+    return this.getData(path + index[page]);
   }
 }

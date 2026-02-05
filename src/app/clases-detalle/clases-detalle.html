@@ -1,1 +1,24 @@
-<h1>{{ page }}</h1>
+@if (data | async; as d) {
+  @for (class of d.class; track class.name) {
+    <h1>{{ class.name }}</h1>
+    <p>{{ class.source }}</p>
+  }
+
+  <h1>Subclases</h1>
+  @for (subclass of d.subclass; track subclass.name) {
+    <h1>{{ subclass.name }}</h1>
+    <p>{{ subclass.source }}</p>
+  }
+
+  <h1>Class Feature</h1>
+  @for (classFeature of d.classFeature; track classFeature.name) {
+    <h1>{{ classFeature.name }}</h1>
+    <p>{{ classFeature.source }}</p>
+  }
+
+  <h1>Subclass Feature</h1>
+  @for (subclassFeature of d.subclassFeature; track subclassFeature.name) {
+    <h1>{{ subclassFeature.name }}</h1>
+    <p>{{ subclassFeature.source }}</p>
+  }
+}
