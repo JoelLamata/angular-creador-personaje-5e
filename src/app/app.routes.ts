@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import { Clases } from './clases/clases';
-import { Hechizos } from './hechizos/hechizos';
-import { Especies } from './especies/especies';
-import { Trasfondos } from './trasfondos/trasfondos';
+import { Clases } from './clases/clases.ts';
+import { Hechizos } from './hechizos/hechizos.ts';
+import { Especies } from './especies/especies.ts';
+import { Trasfondos } from './trasfondos/trasfondos.ts';
 
 export const routes: Routes = [
   { path: 'clases', component: Clases },
