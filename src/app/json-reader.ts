@@ -6,14 +6,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class JsonReader {
-  private readonly baseUrl = 'assets/';
   constructor(private readonly http: HttpClient){}
 
   getData(filename: string): Observable<any> {
-    return this.http.get<any>(`assets/${filename}`)
+    return this.http.get<any>(`/assets/${filename}`)
   }
 
   getIndex(filename: string) {
-    return this.http.get<Record<string, string>>(`assets/${filename}`)
+    return this.http.get<Record<string, string>>(`/assets/${filename}`)
   }
 }
