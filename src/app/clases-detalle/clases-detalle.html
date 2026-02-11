@@ -1,24 +1,41 @@
-@if (data | async; as d) {
-  @for (class of d.class; track class.name) {
-    <h1>{{ class.name }}</h1>
-    <p>{{ class.source }}</p>
-  }
+<p-button
+  label="Atrás"
+  icon="pi pi-arrow-left"
+  styleClass="p-button-secondary"
+  (onClick)="goBack()">
+</p-button>
 
-  <h1>Subclases</h1>
-  @for (subclass of d.subclass; track subclass.name) {
-    <h1>{{ subclass.name }}</h1>
-    <p>{{ subclass.source }}</p>
-  }
+<p-inputNumber
+  [(ngModel)]="selectedLevel"
+  [min]="1"
+  [showButtons]="true"
+  (onInput)="applyFilters()"
+  placeholder="Nivel">
+</p-inputNumber>
 
-  <h1>Class Feature</h1>
-  @for (classFeature of d.classFeature; track classFeature.name) {
-    <h1>{{ classFeature.name }}</h1>
-    <p>{{ classFeature.source }}</p>
-  }
 
-  <h1>Subclass Feature</h1>
-  @for (subclassFeature of d.subclassFeature; track subclassFeature.name) {
-    <h1>{{ subclassFeature.name }}</h1>
-    <p>{{ subclassFeature.source }}</p>
-  }
+<!-- @for (class of clases; track class.name + '-' + class.source) {
+  <h1>{{ class.name }}</h1>
+  <p>{{ class.source }}</p>
+} -->
+
+<!-- <h1>Subclases</h1>
+@for (subclass of subclases; track subclass.name + '-' + subclass.classSource) {
+  <h1>{{ subclass.name }}</h1>
+  <p>{{ subclass.source }}</p>
+} -->
+
+
+<h1>Class Feature</h1>
+@for (classFeature of filteredClassFeatures; track classFeature.name + '-' + classFeature.source) {
+  <h1>{{ classFeature.name }}</h1>
+  <p>{{ classFeature.source }}</p>
+  <p>Level: {{ classFeature.level }}</p>
 }
+
+<!-- <h1>Subclass Feature</h1>
+@for (subclassFeature of subclassFeatures; track subclassFeature.name + '-' + subclassFeature.source) {
+  <h1>{{ subclassFeature.name }}</h1>
+  <p>{{ subclassFeature.source }}</p>
+} -->
+
