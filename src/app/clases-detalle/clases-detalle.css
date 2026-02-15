@@ -1,0 +1,15 @@
+.feature-header {
+  display: flex;
+  align-items: baseline; /* Alinea bien texto grande y pequeño */
+  gap: 0.5rem;
+}
+
+.feature-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.feature-level {
+  font-size: 0.9rem;
+  color: #6c757d; /* gris */
+}

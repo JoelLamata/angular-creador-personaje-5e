@@ -4,10 +4,12 @@ import { JsonReader } from '../json-reader';
 import { Router } from '@angular/router';
 import { PRIMENG_IMPORTS } from '../primeng.imports';
 import { ALLOWED_SOURCES } from '../sourcesConfigService';
+import { InputText } from "primeng/inputtext";
+
 
 @Component({
   selector: 'app-clases-detalle',
-  imports: [PRIMENG_IMPORTS],
+  imports: [PRIMENG_IMPORTS, InputText],
   templateUrl: './clases-detalle.html',
   styleUrl: './clases-detalle.css',
 })
@@ -20,6 +22,7 @@ export class ClasesDetalle implements OnInit {
   classFeatures: any[] = [];
   filteredClassFeatures: any[] = [];
   subclassFeatures: any[] = [];
+  searchText: string = '';
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -63,7 +66,11 @@ export class ClasesDetalle implements OnInit {
           ? true
           : c.level <= this.selectedLevel;
 
-      return sourceAllowed && levelAllowed;
+      const search = this.searchText.toLowerCase().trim();
+
+      const isSearched = search != null ? c.name.toLowerCase().startsWith(search) : true;
+
+      return sourceAllowed && levelAllowed && isSearched;
     });
   }
 

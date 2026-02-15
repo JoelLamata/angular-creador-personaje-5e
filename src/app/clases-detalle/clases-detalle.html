@@ -2,7 +2,8 @@
   label="Atrás"
   icon="pi pi-arrow-left"
   styleClass="p-button-secondary"
-  (onClick)="goBack()">
+  (onClick)="goBack()"
+>
 </p-button>
 
 <p-inputNumber
@@ -10,32 +11,41 @@
   [min]="1"
   [showButtons]="true"
   (onInput)="applyFilters()"
-  placeholder="Nivel">
+  placeholder="Nivel"
+>
 </p-inputNumber>
 
-
-<!-- @for (class of clases; track class.name + '-' + class.source) {
-  <h1>{{ class.name }}</h1>
-  <p>{{ class.source }}</p>
-} -->
-
-<!-- <h1>Subclases</h1>
-@for (subclass of subclases; track subclass.name + '-' + subclass.classSource) {
-  <h1>{{ subclass.name }}</h1>
-  <p>{{ subclass.source }}</p>
-} -->
-
+<input
+  type="text"
+  pInputText
+  [(ngModel)]="searchText"
+  (input)="applyFilters()"
+  placeholder="Search class feature..."
+/>
 
 <h1>Class Feature</h1>
-@for (classFeature of filteredClassFeatures; track classFeature.name + '-' + classFeature.source) {
-  <h1>{{ classFeature.name }}</h1>
-  <p>{{ classFeature.source }}</p>
-  <p>Level: {{ classFeature.level }}</p>
-}
-
-<!-- <h1>Subclass Feature</h1>
-@for (subclassFeature of subclassFeatures; track subclassFeature.name + '-' + subclassFeature.source) {
-  <h1>{{ subclassFeature.name }}</h1>
-  <p>{{ subclassFeature.source }}</p>
-} -->
-
+<p-accordion [value]="['0']" [multiple]="true">
+  @for (classFeature of filteredClassFeatures; track $index) {
+    <p-accordion-panel [value]="$index">
+      <p-accordion-header>
+        <div class="feature-header">
+          <span class="feature-name">
+            {{ classFeature.name }}
+          </span>
+          <span class="feature-level"> Level {{ classFeature.level }} </span>
+        </div>
+      </p-accordion-header>
+      <p-accordion-content>
+        @for (entry of classFeature.entries; track $index) {
+          @if (entry && typeof entry === 'object') {
+            @for (e of entry.items; track $index) {
+              <p>{{ e }}</p>
+            }
+          } @else {
+            <p>{{ entry }}</p>
+          }
+        }
+      </p-accordion-content>
+    </p-accordion-panel>
+  }
+</p-accordion>

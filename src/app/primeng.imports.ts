@@ -4,6 +4,7 @@ import { TableModule } from 'primeng/table';
 import { CardModule } from 'primeng/card';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { FormsModule } from '@angular/forms';
+import { InputText } from 'primeng/inputtext';
 
 export const PRIMENG_IMPORTS = [
   AccordionModule,
@@ -11,6 +12,7 @@ export const PRIMENG_IMPORTS = [
   TableModule,
   CardModule,
   InputNumberModule,
-  FormsModule
+  FormsModule,
+  InputText
 ];
 // Si se vuelve muy grande dividirlo en trozos
