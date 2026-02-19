@@ -1,0 +1,16 @@
+@if (loading) {
+  <p>Cargando personaje...</p>
+} @else if (character) {
+  <p-card>
+    <div class="character-name">
+      <p-avatar [image]="character.decorations?.avatarUrl" class="character-avatar" size="xlarge"></p-avatar>
+      <div class="name">{{ character.name }}</div>
+      <div class="description">
+        {{ character.race.baseRaceName }}
+        <!-- hacer un for? -->
+        {{ character.classes[0].definition.name }}
+        {{ character.classes[0].level }}
+      </div>
+    </div>
+  </p-card>
+}
