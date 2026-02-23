@@ -47,4 +47,30 @@
       </div>
     </div>
   </p-card>
+  <p-card>
+    <!-- TODO skills / salvacion -->
+  </p-card>
+  <p-card>
+    <div class="spells">
+      <p>Spells</p>
+      <p-accordion [value]="['0']" [multiple]="true">
+        @for(spell of characterSpells; track $index){
+          <p-accordion-panel [value]="$index">
+            <p-accordion-header>
+              <div class="spell-header">
+                <span class="spell-name">
+                  {{ spell.name }}
+                </span>
+              </div>
+            </p-accordion-header>
+            <p-accordion-content>
+              @for (entry of spell.entries; track $index) {
+                <p>{{ entry }}</p>
+              }
+            </p-accordion-content>
+          </p-accordion-panel>
+        }
+      </p-accordion>
+    </div>
+  </p-card>
 }

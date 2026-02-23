@@ -12,7 +12,6 @@ interface stats {
   wisdom: number;
   charisma: number;
 }
-
 @Component({
   selector: 'app-personaje',
   imports: [PRIMENG_IMPORTS],
@@ -21,6 +20,7 @@ interface stats {
 })
 export class Personaje implements OnInit {
   loading = true;
+  spells: Map<string, any> = new Map();
 
   characterName: string = "rym";
   character: any;
@@ -32,19 +32,22 @@ export class Personaje implements OnInit {
     wisdom: 0,
     charisma: 0
   };
+  characterSpells: any;
 
   constructor(
-    private readonly route: ActivatedRoute,
-    private readonly router: Router,
     private readonly jsonReader: JsonReader
   ) {}
 
   async ngOnInit() {
     try {
       const result = await this.jsonReader.getData('characters/' + this.characterName + '.json');
-      //console.log(result)
       this.character = result.data;
       this.loadStats()
+      const spellsResult = await this.jsonReader.getData('spells/spells-phb.json')  // TODO all spells
+      for (const spell of spellsResult.spell) {
+        this.spells.set(spell.name, spell);
+      }
+      this.loadSpells();
     } catch(error) {
       console.log(error)
     } finally {
@@ -87,7 +90,22 @@ export class Personaje implements OnInit {
   }
 
   computeModifier(stat: number) {
-    console.log(stat)
     return Math.trunc((stat - 10) / 2)
+  }
+
+  loadSpells() {
+    this.characterSpells = [];
+    for (const s of this.character.spells.feat) {
+      const spell = this.spells.get(s.definition.name);
+      if (spell) {
+        this.characterSpells.push(spell);
+      }
+    }
+    for (const s of this.character.classSpells[0].spells) { // CUIDAO CON EL [0]
+      const spell = this.spells.get(s.definition.name);
+      if (spell) {
+        this.characterSpells.push(spell);
+      }
+    }
   }
 }
