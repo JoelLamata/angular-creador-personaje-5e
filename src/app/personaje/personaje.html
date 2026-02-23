@@ -13,4 +13,38 @@
       </div>
     </div>
   </p-card>
+  <p-card>
+    <div class="stats">
+      <div class="strength">
+        Strength
+        {{ characterStats.strength }}
+        +{{ computeModifier(characterStats.strength) }}
+      </div>
+      <div class="dexterity">
+        Dexterity
+        {{ characterStats.dexterity }}
+        +{{ computeModifier(characterStats.dexterity) }}
+      </div>
+      <div class="constitution">
+        Constitution
+        {{ characterStats.constitution }}
+        +{{ computeModifier(characterStats.constitution) }}
+      </div>
+      <div class="intelligence">
+        Intelligence
+        {{ characterStats.intelligence }}
+        +{{ computeModifier(characterStats.intelligence) }}
+      </div>
+      <div class="wisdom">
+        Wisdom
+        {{ characterStats.wisdom }}
+        +{{ computeModifier(characterStats.wisdom) }}
+      </div>
+      <div class="charisma">
+        Charisma
+        {{ characterStats.charisma }}
+        +{{ computeModifier(characterStats.charisma) }}
+      </div>
+    </div>
+  </p-card>
 }
