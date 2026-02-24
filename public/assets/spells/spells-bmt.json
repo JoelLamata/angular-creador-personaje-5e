@@ -1,161 +1,161 @@
 {
-	"spell": [
-		{
-			"name": "Antagonize",
-			"source": "BMT",
-			"page": 50,
-			"level": 3,
-			"school": "E",
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "feet",
-					"amount": 30
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": "a playing card depicting a rogue"
-			},
-			"duration": [
-				{
-					"type": "instant"
-				}
-			],
-			"entries": [
-				"You whisper magical words that antagonize one creature of your choice within range. The target must make a Wisdom saving throw. On a failed save, the target takes {@damage 4d4} psychic damage and must immediately use its reaction to make a melee attack against another creature of your choice that you can see. If the target can't make this attack (for example, because there is no one within its reach or because its reaction is unavailable), the target instead has disadvantage on the next attack roll it makes before the start of your next turn. On a successful save, the target takes half as much damage only."
-			],
-			"entriesHigherLevel": [
-				{
-					"type": "entries",
-					"name": "At Higher Levels",
-					"entries": [
-						"When you cast this spell using a spell slot of 4th level or higher, the damage increases by {@damage 1d4} for each slot level above 3rd."
-					]
-				}
-			],
-			"damageInflict": [
-				"psychic"
-			],
-			"savingThrow": [
-				"wisdom"
-			],
-			"miscTags": [
-				"SGT"
-			]
-		},
-		{
-			"name": "Spirit of Death",
-			"source": "BMT",
-			"page": 50,
-			"level": 4,
-			"school": "N",
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "feet",
-					"amount": 60
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": {
-					"text": "a gilded playing card worth at least 400 gp and depicting an avatar of death",
-					"cost": 40000
-				}
-			},
-			"duration": [
-				{
-					"type": "timed",
-					"duration": {
-						"type": "hour",
-						"amount": 1
-					},
-					"concentration": true
-				}
-			],
-			"entries": [
-				"You call forth a spirit that embodies death. The spirit manifests in an unoccupied space you can see within range and uses the {@creature reaper spirit|BMT} stat block. The spirit disappears when it is reduced to 0 hit points or when the spell ends.",
-				"The spirit is an ally to you and your companions. In combat, the spirit shares your initiative count and takes its turn immediately after yours. It obeys your verbal commands (no action required by you). If you don't issue the spirit any commands, it takes the {@action Dodge} action and uses its movement to avoid danger."
-			],
-			"entriesHigherLevel": [
-				{
-					"type": "entries",
-					"name": "At Higher Levels",
-					"entries": [
-						"When you cast this spell using a spell slot of 5th level or higher, use the higher level wherever the spell's level appears in the reaper spirit stat block."
-					]
-				}
-			],
-			"miscTags": [
-				"SGT",
-				"SMN"
-			]
-		},
-		{
-			"name": "Spray of Cards",
-			"source": "BMT",
-			"page": 50,
-			"level": 2,
-			"school": "C",
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"range": {
-				"type": "cone",
-				"distance": {
-					"type": "feet",
-					"amount": 15
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": "a deck of cards"
-			},
-			"duration": [
-				{
-					"type": "instant"
-				}
-			],
-			"entries": [
-				"You spray a 15-foot cone of spectral cards. Each creature in that area must make a Dexterity saving throw. On a failed save, a creature takes {@damage 2d10} force damage and has the {@condition blinded} condition until the end of its next turn. On a successful save, a creature takes half as much damage only."
-			],
-			"entriesHigherLevel": [
-				{
-					"type": "entries",
-					"name": "At Higher Levels",
-					"entries": [
-						"When you cast this spell using a spell slot of 3rd level or higher, the damage increases by {@damage 1d10} for each slot level above 2nd."
-					]
-				}
-			],
-			"damageInflict": [
-				"force"
-			],
-			"conditionInflict": [
-				"blinded"
-			],
-			"savingThrow": [
-				"dexterity"
-			]
-		}
-	]
+    "spell": [
+        {
+            "name": "Antagonize",
+            "source": "BMT",
+            "page": 50,
+            "level": 3,
+            "school": "E",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "feet",
+                    "amount": 30
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": "a playing card depicting a rogue"
+            },
+            "duration": [
+                {
+                    "type": "instant"
+                }
+            ],
+            "entries": [
+                "Susurras palabras mágicas que antagonizan a una criatura de tu elección dentro del alcance. El objetivo debe realizar una tirada de salvación de Sabiduría. Si falla la tirada, el objetivo recibe {@damage 4d4} de daño psíquico y debe usar inmediatamente su reacción para realizar un ataque cuerpo a cuerpo contra otra criatura de tu elección que puedas ver. Si el objetivo no puede realizar este ataque (por ejemplo, porque no hay nadie a su alcance o porque su reacción no está disponible), el objetivo tiene desventaja en la siguiente tirada de ataque que realice antes del comienzo de tu siguiente turno. Si la tirada tiene éxito, el objetivo solo recibe la mitad del daño."
+            ],
+            "entriesHigherLevel": [
+                {
+                    "type": "entries",
+                    "name": "At Higher Levels",
+                    "entries": [
+                        "Cuando lanzas este hechizo utilizando un espacio de hechizo de nivel 4 o superior, el daño aumenta en {@damage 1d4} por cada nivel de espacio superior al 3."
+                    ]
+                }
+            ],
+            "damageInflict": [
+                "psychic"
+            ],
+            "savingThrow": [
+                "wisdom"
+            ],
+            "miscTags": [
+                "SGT"
+            ]
+        },
+        {
+            "name": "Spirit of Death",
+            "source": "BMT",
+            "page": 50,
+            "level": 4,
+            "school": "N",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "feet",
+                    "amount": 60
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": {
+                    "text": "a gilded playing card worth at least 400 gp and depicting an avatar of death",
+                    "cost": 40000
+                }
+            },
+            "duration": [
+                {
+                    "type": "timed",
+                    "duration": {
+                        "type": "hour",
+                        "amount": 1
+                    },
+                    "concentration": true
+                }
+            ],
+            "entries": [
+                "Invoca a un espíritu que encarna la muerte. El espíritu se manifiesta en un espacio desocupado que puedas ver dentro del alcance y utiliza el bloque de estadísticas {@creature reaper spirit|BMT}. El espíritu desaparece cuando se reduce a 0 puntos de golpe o cuando termina el hechizo.",
+                "El espíritu es un aliado para ti y tus compañeros. En combate, el espíritu comparte tu iniciativa y actúa inmediatamente después de ti. Obedece tus órdenes verbales (sin necesidad de que realices ninguna acción). Si no le das ninguna orden, el espíritu realiza la acción {@action Dodge} y utiliza su movimiento para evitar el peligro."
+            ],
+            "entriesHigherLevel": [
+                {
+                    "type": "entries",
+                    "name": "At Higher Levels",
+                    "entries": [
+                        "Cuando lances este hechizo utilizando una ranura de hechizo de nivel 5 o superior, utiliza el nivel más alto siempre que aparezca el nivel del hechizo en el bloque de estadísticas del espíritu segador."
+                    ]
+                }
+            ],
+            "miscTags": [
+                "SGT",
+                "SMN"
+            ]
+        },
+        {
+            "name": "Spray of Cards",
+            "source": "BMT",
+            "page": 50,
+            "level": 2,
+            "school": "C",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "range": {
+                "type": "cone",
+                "distance": {
+                    "type": "feet",
+                    "amount": 15
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": "a deck of cards"
+            },
+            "duration": [
+                {
+                    "type": "instant"
+                }
+            ],
+            "entries": [
+                "Rociás un cono de 4,5 metros de cartas espectrales. Cada criatura en esa zona debe realizar una tirada de salvación de Destreza. Si falla la tirada, la criatura recibe {@damage 2d10} puntos de daño de fuerza y queda en estado {@condition blinded} hasta el final de su siguiente turno. Si supera la tirada, la criatura solo recibe la mitad del daño."
+            ],
+            "entriesHigherLevel": [
+                {
+                    "type": "entries",
+                    "name": "At Higher Levels",
+                    "entries": [
+                        "Cuando lanzas este hechizo utilizando un espacio de hechizo de nivel 3 o superior, el daño aumenta en {@damage 1d10} por cada nivel de espacio superior al 2."
+                    ]
+                }
+            ],
+            "damageInflict": [
+                "force"
+            ],
+            "conditionInflict": [
+                "blinded"
+            ],
+            "savingThrow": [
+                "dexterity"
+            ]
+        }
+    ]
 }

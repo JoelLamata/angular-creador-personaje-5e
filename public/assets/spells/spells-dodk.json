@@ -1,738 +1,738 @@
 {
-	"spell": [
-		{
-			"name": "Conjure the Deep Haze",
-			"source": "DoDk",
-			"page": 226,
-			"level": 5,
-			"school": "C",
-			"subschools": [
-				"contaminated"
-			],
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "feet",
-					"amount": 120
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": {
-					"text": "a delerium fragment worth 100 gp, which the spell consumes",
-					"cost": 10000,
-					"consume": true
-				}
-			},
-			"duration": [
-				{
-					"type": "timed",
-					"duration": {
-						"type": "minute",
-						"amount": 10
-					},
-					"concentration": true
-				}
-			],
-			"entries": [
-				"When you cast this spell, you gain one {@adventure level of contamination|DoDk|12}.",
-				"You create a 20-foot-radius sphere of the Deep Haze on a point you choose within range. The fog spreads around corners. It lasts for the duration or until strong wind disperses the fog, ending the spell. Its area is heavily obscured.",
-				"When a creature enters the spell's area for the first time on a turn or starts its turn there, that creature must succeed on a Constitution saving throw. On a failed saving throw, it suffers ({@damage 8d6}) necrotic damage and gains one {@adventure level of contamination|DoDk|12}. On a successful save, the creature takes half as much damage and does not gain any {@adventure contamination levels|DoDk|12}. Creatures are affected even if they hold their breath or don't need to breathe."
-			],
-			"savingThrow": [
-				"constitution"
-			],
-			"miscTags": [
-				"OBS"
-			]
-		},
-		{
-			"name": "Contaminated Power",
-			"source": "DoDk",
-			"page": 226,
-			"level": 8,
-			"school": "T",
-			"subschools": [
-				"contaminated"
-			],
-			"time": [
-				{
-					"number": 1,
-					"unit": "bonus"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "self"
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": {
-					"text": "a delerium shard worth 500 gp, which the spell consumes",
-					"cost": 50000,
-					"consume": true
-				}
-			},
-			"duration": [
-				{
-					"type": "timed",
-					"duration": {
-						"type": "minute",
-						"amount": 1
-					}
-				}
-			],
-			"entries": [
-				"When you cast this spell, you gain one {@adventure level of contamination|DoDk|12}. You draw unrestrained arcane magic from the delerium shard you hold in your hand. Until the spell ends, you gain the following benefits:",
-				{
-					"type": "list",
-					"items": [
-						"When you cast a spell that deals acid, fire, cold, lightning, or poison damage, you can change the damage type to force, necrotic, psychic, or radiant damage.",
-						"Once per turn when you deal damage with a spell, you can deal an extra {@damage 1d12} necrotic damage for each {@adventure contamination level|DoDk|12} you have gained to one target of that spell.",
-						"When you cast a spell that forces a creature to make a saving throw to resist its effects, you can choose to gain one {@adventure level of contamination|DoDk|12}. If you do, one target of the spell has disadvantage on its first saving throw made against that spell."
-					]
-				},
-				"This spell can't be dispelled by {@spell dispel magic}."
-			],
-			"damageInflict": [
-				"necrotic"
-			],
-			"hasFluff": true
-		},
-		{
-			"name": "Contamination Immunity",
-			"source": "DoDk",
-			"page": 226,
-			"level": 7,
-			"school": "A",
-			"time": [
-				{
-					"number": 1,
-					"unit": "minute"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "touch"
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": {
-					"text": "An eldritch lily mixed into 250 gp worth of specially-prepared purified fluids, which the spell consumes",
-					"cost": 25000,
-					"consume": true
-				}
-			},
-			"duration": [
-				{
-					"type": "timed",
-					"duration": {
-						"type": "hour",
-						"amount": 24
-					}
-				}
-			],
-			"entries": [
-				"Until the spell ends, one willing creature you touch is immune to necrotic damage and cannot gain {@adventure contamination levels|DoDk|12}. The affected creature may rest normally within the Haze.",
-				"This spell ends immediately if the creature casts a contaminated spell."
-			],
-			"hasFluff": true
-		},
-		{
-			"name": "Delerium Blast",
-			"source": "DoDk",
-			"page": 227,
-			"level": 4,
-			"school": "V",
-			"subschools": [
-				"contaminated"
-			],
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "feet",
-					"amount": 150
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": {
-					"text": "a delerium fragment worth 100 gp, which the spell consumes",
-					"cost": 10000,
-					"consume": true
-				}
-			},
-			"duration": [
-				{
-					"type": "instant"
-				}
-			],
-			"entries": [
-				"When you cast this spell, you gain one {@adventure level of contamination|DoDk|12}.",
-				"You ignite arcane energies stored inside a delerium fragment held in your hand, and hurl it towards a space you can see within range. It explodes in a 20-foot-radius sphere of erratic psychic energy that overwhelms the minds and senses of those within. Each creature in the sphere must succeed on an Intelligence saving throw. On a failed save, a creature takes ({@damage 10d6}) psychic damage and becomes {@condition incapacitated} until the end of their next turn. On a successful save, a target takes half as much damage and suffers none of the spell's other effects."
-			],
-			"entriesHigherLevel": [
-				{
-					"type": "entries",
-					"name": "At Higher Levels",
-					"entries": [
-						"When you cast this spell using a spell slot of 5th level or higher, the damage increases by {@damage 2d6} for each slot level above 4th."
-					]
-				}
-			],
-			"conditionInflict": [
-				"incapacitated"
-			],
-			"savingThrow": [
-				"intelligence"
-			],
-			"miscTags": [
-				"SGT"
-			]
-		},
-		{
-			"name": "Delerium Orb",
-			"source": "DoDk",
-			"page": 227,
-			"level": 1,
-			"school": "V",
-			"subschools": [
-				"contaminated"
-			],
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "feet",
-					"amount": 120
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": {
-					"text": "a delerium fragment worth 100 gp, which the spell consumes",
-					"cost": 10000,
-					"consume": true
-				}
-			},
-			"duration": [
-				{
-					"type": "instant"
-				}
-			],
-			"entries": [
-				"When you cast this spell, you gain one {@adventure level of contamination|DoDk|12}. You draw chaotic magical power from the delerium fragment held in your hand, and blast a creature you can see within range with paradoxical power. Choose one ability score, then choose cold, fire, lightning, necrotic, psychic, or radiant damage. The target must succeed on a saving throw using the chosen ability score; it takes {@damage 6d6} damage of the chosen type on a failed saving throw, or half as much on a successful one."
-			],
-			"entriesHigherLevel": [
-				{
-					"type": "entries",
-					"name": "At Higher Levels",
-					"entries": [
-						"When you cast this spell using a spell slot of 2nd level or higher, the damage increases by {@damage 2d6} for each slot level above 1st."
-					]
-				}
-			],
-			"miscTags": [
-				"SGT"
-			]
-		},
-		{
-			"name": "Forced Evolution",
-			"source": "DoDk",
-			"page": 227,
-			"level": 4,
-			"school": "T",
-			"time": [
-				{
-					"number": 8,
-					"unit": "hour"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "touch"
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": {
-					"text": "An alchemical cocktail made from rare components and delerium dust worth 250 gold, which the target consumes as part of the spell",
-					"consume": true
-				}
-			},
-			"duration": [
-				{
-					"type": "instant"
-				}
-			],
-			"entries": [
-				"By means of this spell, you transform a mutation gained from {@adventure contamination|DoDk|12}. One of the target's existing mutations is removed and is replaced by a different one. This mutation may be chosen by the Game Master or determined randomly (see Appendix C of Dungeons of Drakkenheim)."
-			]
-		},
-		{
-			"name": "Neutralizing Field",
-			"source": "DoDk",
-			"page": 228,
-			"level": 5,
-			"school": "A",
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"range": {
-				"type": "sphere",
-				"distance": {
-					"type": "feet",
-					"amount": 10
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": {
-					"text": "A delerium crystal or holy relic worth 1,000 gp",
-					"cost": 100000
-				}
-			},
-			"duration": [
-				{
-					"type": "timed",
-					"duration": {
-						"type": "hour",
-						"amount": 1
-					},
-					"concentration": true
-				}
-			],
-			"entries": [
-				"You negate contaminated magical energies in a 10-foot radius sphere. Until the spell ends, the sphere moves with you, centred on you. Creatures in the sphere (including you) can't gain {@adventure contamination levels|DoDk|12} and have immunity to necrotic damage. Contaminated spells can't be cast by creatures in the area."
-			],
-			"hasFluff": true
-		},
-		{
-			"name": "Octarine Spray",
-			"source": "DoDk",
-			"page": 228,
-			"level": 7,
-			"school": "V",
-			"subschools": [
-				"contaminated"
-			],
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"range": {
-				"type": "cone",
-				"distance": {
-					"type": "feet",
-					"amount": 60
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": {
-					"text": "a delerium fragment worth 100 gp, which the spell consumes",
-					"cost": 10000,
-					"consume": true
-				}
-			},
-			"duration": [
-				{
-					"type": "instant"
-				}
-			],
-			"entries": [
-				"When you cast this spell, you gain one {@adventure level of contamination|DoDk|12}. Octarine rays of light flash from your hand. Each ray is a different colour and has a different power and purpose, see the table below. Each creature in a 60-foot cone must succeed on a Constitution saving throw. For each target, roll a {@dice d8} to determine which colour ray affects it.",
-				{
-					"type": "table",
-					"colStyles": [
-						"col-2 text-center",
-						"col-10"
-					],
-					"colLabels": [
-						"d8",
-						"Octarine Spray Effect"
-					],
-					"rows": [
-						[
-							"1",
-							"The target takes {@damage 20d6} psychic damage on a failed save, or half as much damage on a success."
-						],
-						[
-							"2",
-							"The target takes {@damage 20d6} necrotic damage on a failed save, or half as much damage on a success."
-						],
-						[
-							"3",
-							"The target takes {@damage 20d6} force damage on a failed save, or half as much damage on a success."
-						],
-						[
-							"4",
-							"The target takes {@damage 20d6} radiant damage on a failed save, or half as much damage on a success."
-						],
-						[
-							"5",
-							"The target takes {@damage 20d6} thunder damage on a failed save, or half as much damage on a success."
-						],
-						[
-							"6",
-							"At the start of each of its turns, the affected target uses all its movement to move directly towards the closest creature it can see. Then, the affected target uses its action to make a melee attack against a randomly determined creature within its reach. If there is no creature within its reach, the affected target does nothing this turn. At the end of each of its turns, the affected target can make a Wisdom saving throw. If it succeeds, this effect ends for that target."
-						],
-						[
-							"7",
-							"At the start of each of its turns, the affected target gains one {@adventure level of contamination|DoDk|12}. At the end of each of its turns, an affected target can make a Constitution saving throw. If it succeeds, this effect ends for that target, but any {@adventure contamination levels|DoDk|12} gained remain."
-						],
-						[
-							"8",
-							"{@b Special.} The target is struck by an additional ray. Roll again twice. There's no limit to how many additional rays can strike a single creature in this manner."
-						]
-					]
-				}
-			],
-			"damageInflict": [
-				"force",
-				"necrotic",
-				"psychic",
-				"radiant",
-				"thunder"
-			],
-			"savingThrow": [
-				"constitution",
-				"wisdom"
-			],
-			"miscTags": [
-				"RO"
-			]
-		},
-		{
-			"name": "Purge Contamination",
-			"source": "DoDk",
-			"page": 228,
-			"level": 3,
-			"school": "A",
-			"time": [
-				{
-					"number": 1,
-					"unit": "hour"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "touch"
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": {
-					"text": "100 gp of alchemical fluids or holy water, which the spell consumes",
-					"cost": 10000,
-					"consume": true
-				}
-			},
-			"duration": [
-				{
-					"type": "instant"
-				}
-			],
-			"entries": [
-				"You apply alchemical fluids or holy water to a contaminated humanoid creature while reciting an exacting magical chant that expels eldritch contaminants from the target's body. When you finish casting the spell, all {@adventure contamination levels|DoDk|12} and mutations are removed from the creature. It then gains one level of {@condition exhaustion} for each {@adventure contamination level|DoDk|12} removed with this spell."
-			],
-			"conditionInflict": [
-				"exhaustion"
-			]
-		},
-		{
-			"name": "Ray of Contamination",
-			"source": "DoDk",
-			"page": 229,
-			"level": 6,
-			"school": "N",
-			"subschools": [
-				"contaminated"
-			],
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "feet",
-					"amount": 60
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": {
-					"text": "a delerium fragment worth 100 gp, which the spell consumes",
-					"cost": 10000,
-					"consume": true
-				}
-			},
-			"duration": [
-				{
-					"type": "instant"
-				}
-			],
-			"entries": [
-				"When you cast this spell, you gain one {@adventure level of contamination|DoDk|12}. An octarine ray springs from your pointing finger to a creature that you can see within range. The target must succeed on a Constitution saving throw. On a failed save, a creature takes {@damage 16d6} necrotic damage and gains {@dice 1d4} {@adventure levels of contamination|DoDk|12}. On a successful save, a target takes half as much damage and does not gain any {@adventure contamination levels|DoDk|12}."
-			],
-			"entriesHigherLevel": [
-				{
-					"type": "entries",
-					"name": "At Higher Levels",
-					"entries": [
-						"When you cast this spell using a spell slot of 7th level or higher, you can target one additional creature for each slot level above 6th. The creatures must be within 30 feet of each other when you target them."
-					]
-				}
-			],
-			"damageInflict": [
-				"necrotic"
-			],
-			"savingThrow": [
-				"constitution"
-			],
-			"miscTags": [
-				"SCT",
-				"SGT"
-			]
-		},
-		{
-			"name": "Ride the Rifts",
-			"source": "DoDk",
-			"page": 228,
-			"level": 3,
-			"school": "C",
-			"subschools": [
-				"contaminated"
-			],
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"range": {
-				"type": "line",
-				"distance": {
-					"type": "feet",
-					"amount": 60
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": {
-					"text": "a delerium fragment worth 100 gp, which the spell consumes",
-					"cost": 10000,
-					"consume": true
-				}
-			},
-			"duration": [
-				{
-					"type": "instant"
-				}
-			],
-			"entries": [
-				"When you cast this spell, you gain one {@adventure level of contamination|DoDk|12}. A stroke of eldritch lightning forming a line 60 feet long and 5 feet wide blasts out from you in a direction you choose. Each creature in the line must succeed on a Dexterity saving throw. A creature takes {@damage 10d6} lightning damage on a failed save, or half as much damage on a successful one. You then teleport to an unoccupied space you can see within the line's area."
-			],
-			"entriesHigherLevel": [
-				{
-					"type": "entries",
-					"name": "At Higher Levels",
-					"entries": [
-						"When you cast this spell using a spell slot of 4th level or higher, the damage increases by {@damage 2d6} for each slot level above 3rd."
-					]
-				}
-			],
-			"damageInflict": [
-				"lightning"
-			],
-			"savingThrow": [
-				"dexterity"
-			],
-			"miscTags": [
-				"SGT"
-			]
-		},
-		{
-			"name": "Sacrament of the Falling Fire",
-			"source": "DoDk",
-			"page": 229,
-			"level": 9,
-			"school": "A",
-			"time": [
-				{
-					"number": 1,
-					"unit": "hour"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "feet",
-					"amount": 30
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": {
-					"text": "a delerium fragment worth 100 gp for each participating creature, which the spell consumes",
-					"cost": 10000,
-					"consume": true
-				}
-			},
-			"duration": [
-				{
-					"type": "instant"
-				}
-			],
-			"entries": [
-				"This spell may only be cast in an area covered by the Deep Haze.",
-				"You perform a holy ceremony involving up to 12 faithful and willing humanoid creatures that ends when each participating creature drives a delerium shard into their chest. Those creatures become sanctified (see the Followers of the Falling Fire dossier in chapter 3 of Dungeons of Drakkenheim).",
-				"When you finish casting this spell, a hostile {@creature shadow} appears and attacks each participant, as a manifestation of that character's inner darkness. The GM may determine that a character who carries great anger, fear, or hate in their heart causes a {@creature wraith} to manifest instead."
-			]
-		},
-		{
-			"name": "Siphon Contamination",
-			"source": "DoDk",
-			"page": 229,
-			"level": 6,
-			"school": "T",
-			"time": [
-				{
-					"number": 1,
-					"unit": "hour"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "touch"
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": {
-					"text": "500 gp worth of specially-prepared alchemical fluids and a delerium geode worth 5,000 gp, all of which are consumed by the spell",
-					"cost": 50000,
-					"consume": true
-				}
-			},
-			"duration": [
-				{
-					"type": "instant"
-				}
-			],
-			"entries": [
-				"This demanding spell transfers {@adventure contamination|DoDk|12} from one creature to another. When you cast this spell, you must first touch either a willing humanoid creature with one or more {@adventure levels of contamination|DoDk|12}, or a former humanoid creature whose current form is the result of a monstrous transformation. You then touch a different willing humanoid creature.",
-				"If both creatures touched were willing humanoid creatures, you remove all {@adventure contamination levels|DoDk|12} and mutations from the first creature, then the second creature you touch gains a number of {@adventure contamination levels|DoDk|12} equal to the number of levels removed from the first creature.",
-				"If the first creature you touch is a former humanoid who suffered a monstrous {@adventure contamination|DoDk|12}, and the second creature is a willing humanoid creature with a character level or challenge rating equal to or higher than the challenge rating of the transformed creature, you restore the fully contaminated creature to its original form, then the humanoid creature immediately undergoes a monstrous transformation as if it had gained six {@adventure contamination levels|DoDk|12}.",
-				"The second creature touched cannot prevent or negate these {@adventure contamination levels|DoDk|12} or an ensuing transformation in any way, or else the spell fails with no effect."
-			],
-			"hasFluff": true
-		},
-		{
-			"name": "Warp Bolt",
-			"source": "DoDk",
-			"page": 229,
-			"level": 2,
-			"school": "V",
-			"subschools": [
-				"contaminated"
-			],
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "feet",
-					"amount": 60
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": {
-					"text": "a delerium fragment worth 100 gp, which the spell consumes",
-					"cost": 10000,
-					"consume": true
-				}
-			},
-			"duration": [
-				{
-					"type": "timed",
-					"duration": {
-						"type": "minute",
-						"amount": 1
-					},
-					"concentration": true
-				}
-			],
-			"entries": [
-				"When you cast this spell, you gain one {@adventure level of contamination|DoDk|12}. An arcing bolt of octarine lightning strikes a creature within range. If the target has one or more {@adventure contamination levels|DoDk|12}, it is hit automatically. Otherwise, make a ranged spell attack against that creature. On a hit, the target takes {@damage 6d6} necrotic damage and gains one {@adventure level of contamination|DoDk|12}.",
-				"You can create a new bolt of lightning as your action on any turn until the spell ends."
-			],
-			"entriesHigherLevel": [
-				{
-					"type": "entries",
-					"name": "At Higher Levels",
-					"entries": [
-						"When you cast this spell using a spell slot of 3rd level or higher, you can target 1 additional creature for each spell level above 2nd."
-					]
-				}
-			],
-			"damageInflict": [
-				"necrotic"
-			],
-			"spellAttack": [
-				"R"
-			]
-		}
-	]
+    "spell": [
+        {
+            "name": "Conjure the Deep Haze",
+            "source": "DoDk",
+            "page": 226,
+            "level": 5,
+            "school": "C",
+            "subschools": [
+                "contaminated"
+            ],
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "feet",
+                    "amount": 120
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": {
+                    "text": "a delerium fragment worth 100 gp, which the spell consumes",
+                    "cost": 10000,
+                    "consume": true
+                }
+            },
+            "duration": [
+                {
+                    "type": "timed",
+                    "duration": {
+                        "type": "minute",
+                        "amount": 10
+                    },
+                    "concentration": true
+                }
+            ],
+            "entries": [
+                "Cuando lanzas este hechizo, ganas un {@nivel de aventura de contaminación|DoDk|12}.",
+                "Creas una esfera de 6 metros de radio de Niebla Profunda en un punto que elijas dentro del alcance. La niebla se extiende por las esquinas. Dura todo el tiempo que dure el hechizo o hasta que un viento fuerte la disperse, poniendo fin al hechizo. Su área queda muy oscurecida.",
+                "Cuando una criatura entra por primera vez en el área del hechizo en un turno o comienza su turno allí, debe superar una tirada de salvación de Constitución. Si falla la tirada de salvación, sufre ({@damage 8d6}) de daño necrótico y gana un {@adventure level of contamination|DoDk|12}. Si supera la tirada, la criatura recibe la mitad del daño y no gana ningún {@nivel de contaminación de aventura|DoDk|12}. Las criaturas se ven afectadas incluso si contienen la respiración o no necesitan respirar."
+            ],
+            "savingThrow": [
+                "constitution"
+            ],
+            "miscTags": [
+                "OBS"
+            ]
+        },
+        {
+            "name": "Contaminated Power",
+            "source": "DoDk",
+            "page": 226,
+            "level": 8,
+            "school": "T",
+            "subschools": [
+                "contaminated"
+            ],
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "bonus"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "self"
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": {
+                    "text": "a delerium shard worth 500 gp, which the spell consumes",
+                    "cost": 50000,
+                    "consume": true
+                }
+            },
+            "duration": [
+                {
+                    "type": "timed",
+                    "duration": {
+                        "type": "minute",
+                        "amount": 1
+                    }
+                }
+            ],
+            "entries": [
+                "Cuando lanzas este hechizo, ganas un {@nivel de aventura de contaminación|DoDk|12}. Extraes magia arcana sin restricciones del fragmento de delirio que sostienes en tu mano. Hasta que el hechizo termine, obtienes los siguientes beneficios:",
+                {
+                    "type": "list",
+                    "items": [
+                        "Cuando lances un hechizo que inflija daño ácido, de fuego, de frío, de rayo o venenoso, puedes cambiar el tipo de daño a daño de fuerza, necrótico, psíquico o radiante.",
+                        "Una vez por turno, cuando infliges daño con un hechizo, puedes infligir {@daño 1d12} de daño necrótico adicional por cada {@nivel de contaminación de la aventura|DoDk|12} que hayas ganado a un objetivo de ese hechizo.",
+                        "Cuando lances un hechizo que obligue a una criatura a realizar una tirada de salvación para resistir sus efectos, puedes elegir ganar un {@nivel de aventura de contaminación|DoDk|12}. Si lo haces, uno de los objetivos del hechizo tendrá desventaja en su primera tirada de salvación contra ese hechizo."
+                    ]
+                },
+                "Este hechizo no puede ser disipado por {@spell dispel magic}."
+            ],
+            "damageInflict": [
+                "necrotic"
+            ],
+            "hasFluff": true
+        },
+        {
+            "name": "Contamination Immunity",
+            "source": "DoDk",
+            "page": 226,
+            "level": 7,
+            "school": "A",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "minute"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "touch"
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": {
+                    "text": "An eldritch lily mixed into 250 gp worth of specially-prepared purified fluids, which the spell consumes",
+                    "cost": 25000,
+                    "consume": true
+                }
+            },
+            "duration": [
+                {
+                    "type": "timed",
+                    "duration": {
+                        "type": "hour",
+                        "amount": 24
+                    }
+                }
+            ],
+            "entries": [
+                "Hasta que termine el hechizo, una criatura dispuesta que toques es inmune al daño necrótico y no puede ganar {@niveles de contaminación de aventura|DoDk|12}. La criatura afectada puede descansar normalmente dentro de la Niebla.",
+                "Este hechizo finaliza inmediatamente si la criatura lanza un hechizo contaminado."
+            ],
+            "hasFluff": true
+        },
+        {
+            "name": "Delerium Blast",
+            "source": "DoDk",
+            "page": 227,
+            "level": 4,
+            "school": "V",
+            "subschools": [
+                "contaminated"
+            ],
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "feet",
+                    "amount": 150
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": {
+                    "text": "a delerium fragment worth 100 gp, which the spell consumes",
+                    "cost": 10000,
+                    "consume": true
+                }
+            },
+            "duration": [
+                {
+                    "type": "instant"
+                }
+            ],
+            "entries": [
+                "Cuando lanzas este hechizo, ganas un {@nivel de aventura de contaminación|DoDk|12}.",
+                "Encendes las energías arcanas almacenadas dentro de un fragmento de delirio que sostienes en tu mano y lo lanzas hacia un espacio que puedes ver dentro del alcance. Explota en una esfera de 20 pies de radio de energía psíquica errática que abruma las mentes y los sentidos de quienes se encuentran dentro. Cada criatura en la esfera debe tener éxito en una tirada de salvación de Inteligencia. Si falla la tirada, la criatura recibe ({@damage 10d6}) de daño psíquico y queda {@condition incapacitated} hasta el final de su siguiente turno. Si supera la tirada, el objetivo recibe la mitad del daño y no sufre ninguno de los otros efectos del hechizo."
+            ],
+            "entriesHigherLevel": [
+                {
+                    "type": "entries",
+                    "name": "At Higher Levels",
+                    "entries": [
+                        "Cuando lanzas este hechizo utilizando un espacio de hechizo de nivel 5 o superior, el daño aumenta en {@damage 2d6} por cada nivel de espacio superior al 4."
+                    ]
+                }
+            ],
+            "conditionInflict": [
+                "incapacitated"
+            ],
+            "savingThrow": [
+                "intelligence"
+            ],
+            "miscTags": [
+                "SGT"
+            ]
+        },
+        {
+            "name": "Delerium Orb",
+            "source": "DoDk",
+            "page": 227,
+            "level": 1,
+            "school": "V",
+            "subschools": [
+                "contaminated"
+            ],
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "feet",
+                    "amount": 120
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": {
+                    "text": "a delerium fragment worth 100 gp, which the spell consumes",
+                    "cost": 10000,
+                    "consume": true
+                }
+            },
+            "duration": [
+                {
+                    "type": "instant"
+                }
+            ],
+            "entries": [
+                "Cuando lanzas este hechizo, ganas un {@nivel de aventura de contaminación|DoDk|12}. Extraes poder mágico caótico del fragmento de delirio que sostienes en tu mano y lanzas un ataque con poder paradójico contra una criatura que puedas ver dentro del alcance. Elige una puntuación de habilidad y, a continuación, elige daño por frío, fuego, rayo, necrótico, psíquico o radiante. El objetivo debe superar una tirada de salvación utilizando la puntuación de habilidad elegida; si falla la tirada de salvación, recibe {@daño 6d6} del tipo elegido, o la mitad si la supera."
+            ],
+            "entriesHigherLevel": [
+                {
+                    "type": "entries",
+                    "name": "At Higher Levels",
+                    "entries": [
+                        "Cuando lanzas este hechizo utilizando un espacio de hechizo de nivel 2 o superior, el daño aumenta en {@damage 2d6} por cada nivel de espacio superior al 1."
+                    ]
+                }
+            ],
+            "miscTags": [
+                "SGT"
+            ]
+        },
+        {
+            "name": "Forced Evolution",
+            "source": "DoDk",
+            "page": 227,
+            "level": 4,
+            "school": "T",
+            "time": [
+                {
+                    "number": 8,
+                    "unit": "hour"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "touch"
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": {
+                    "text": "An alchemical cocktail made from rare components and delerium dust worth 250 gold, which the target consumes as part of the spell",
+                    "consume": true
+                }
+            },
+            "duration": [
+                {
+                    "type": "instant"
+                }
+            ],
+            "entries": [
+                "Mediante este hechizo, transformas una mutación obtenida de {@adventure contamination|DoDk|12}. Una de las mutaciones existentes del objetivo se elimina y se sustituye por otra diferente. Esta mutación puede ser elegida por el director de juego o determinada al azar (véase el apéndice C de Dungeons of Drakkenheim)."
+            ]
+        },
+        {
+            "name": "Neutralizing Field",
+            "source": "DoDk",
+            "page": 228,
+            "level": 5,
+            "school": "A",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "range": {
+                "type": "sphere",
+                "distance": {
+                    "type": "feet",
+                    "amount": 10
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": {
+                    "text": "A delerium crystal or holy relic worth 1,000 gp",
+                    "cost": 100000
+                }
+            },
+            "duration": [
+                {
+                    "type": "timed",
+                    "duration": {
+                        "type": "hour",
+                        "amount": 1
+                    },
+                    "concentration": true
+                }
+            ],
+            "entries": [
+                "Niegas las energías mágicas contaminadas en una esfera de 3 metros de radio. Hasta que termine el hechizo, la esfera se mueve contigo, centrada en ti. Las criaturas dentro de la esfera (incluido tú) no pueden ganar {@niveles de contaminación de la aventura|DoDk|12} y son inmunes al daño necrótico. Las criaturas dentro del área no pueden lanzar hechizos contaminados."
+            ],
+            "hasFluff": true
+        },
+        {
+            "name": "Octarine Spray",
+            "source": "DoDk",
+            "page": 228,
+            "level": 7,
+            "school": "V",
+            "subschools": [
+                "contaminated"
+            ],
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "range": {
+                "type": "cone",
+                "distance": {
+                    "type": "feet",
+                    "amount": 60
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": {
+                    "text": "a delerium fragment worth 100 gp, which the spell consumes",
+                    "cost": 10000,
+                    "consume": true
+                }
+            },
+            "duration": [
+                {
+                    "type": "instant"
+                }
+            ],
+            "entries": [
+                "Cuando lanzas este hechizo, ganas un {@nivel de aventura de contaminación|DoDk|12}. Rayos de luz octarinos brotan de tu mano. Cada rayo es de un color diferente y tiene un poder y un propósito distintos, como se muestra en la tabla siguiente. Todas las criaturas en un cono de 60 pies deben superar una tirada de salvación de Constitución. Para cada objetivo, tira un {@dado d8} para determinar qué color de rayo le afecta.",
+                {
+                    "type": "table",
+                    "colStyles": [
+                        "col-2 text-center",
+                        "col-10"
+                    ],
+                    "colLabels": [
+                        "d8",
+                        "Octarine Spray Effect"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "The target takes {@damage 20d6} psychic damage on a failed save, or half as much damage on a success."
+                        ],
+                        [
+                            "2",
+                            "The target takes {@damage 20d6} necrotic damage on a failed save, or half as much damage on a success."
+                        ],
+                        [
+                            "3",
+                            "The target takes {@damage 20d6} force damage on a failed save, or half as much damage on a success."
+                        ],
+                        [
+                            "4",
+                            "The target takes {@damage 20d6} radiant damage on a failed save, or half as much damage on a success."
+                        ],
+                        [
+                            "5",
+                            "The target takes {@damage 20d6} thunder damage on a failed save, or half as much damage on a success."
+                        ],
+                        [
+                            "6",
+                            "At the start of each of its turns, the affected target uses all its movement to move directly towards the closest creature it can see. Then, the affected target uses its action to make a melee attack against a randomly determined creature within its reach. If there is no creature within its reach, the affected target does nothing this turn. At the end of each of its turns, the affected target can make a Wisdom saving throw. If it succeeds, this effect ends for that target."
+                        ],
+                        [
+                            "7",
+                            "At the start of each of its turns, the affected target gains one {@adventure level of contamination|DoDk|12}. At the end of each of its turns, an affected target can make a Constitution saving throw. If it succeeds, this effect ends for that target, but any {@adventure contamination levels|DoDk|12} gained remain."
+                        ],
+                        [
+                            "8",
+                            "{@b Special.} The target is struck by an additional ray. Roll again twice. There's no limit to how many additional rays can strike a single creature in this manner."
+                        ]
+                    ]
+                }
+            ],
+            "damageInflict": [
+                "force",
+                "necrotic",
+                "psychic",
+                "radiant",
+                "thunder"
+            ],
+            "savingThrow": [
+                "constitution",
+                "wisdom"
+            ],
+            "miscTags": [
+                "RO"
+            ]
+        },
+        {
+            "name": "Purge Contamination",
+            "source": "DoDk",
+            "page": 228,
+            "level": 3,
+            "school": "A",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "hour"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "touch"
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": {
+                    "text": "100 gp of alchemical fluids or holy water, which the spell consumes",
+                    "cost": 10000,
+                    "consume": true
+                }
+            },
+            "duration": [
+                {
+                    "type": "instant"
+                }
+            ],
+            "entries": [
+                "Aplicas fluidos alquímicos o agua bendita a una criatura humanoide contaminada mientras recitas un canto mágico exacto que expulsa los contaminantes sobrenaturales del cuerpo del objetivo. Cuando terminas de lanzar el hechizo, se eliminan todos los {@niveles de contaminación de aventura|DoDk|12} y mutaciones de la criatura. A continuación, gana un nivel de {@agotamiento por condición} por cada {@nivel de contaminación de aventura|DoDk|12} eliminado con este hechizo."
+            ],
+            "conditionInflict": [
+                "exhaustion"
+            ]
+        },
+        {
+            "name": "Ray of Contamination",
+            "source": "DoDk",
+            "page": 229,
+            "level": 6,
+            "school": "N",
+            "subschools": [
+                "contaminated"
+            ],
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "feet",
+                    "amount": 60
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": {
+                    "text": "a delerium fragment worth 100 gp, which the spell consumes",
+                    "cost": 10000,
+                    "consume": true
+                }
+            },
+            "duration": [
+                {
+                    "type": "instant"
+                }
+            ],
+            "entries": [
+                "Cuando lanzas este hechizo, ganas un {@nivel de aventura de contaminación|DoDk|12}. Un rayo octarino brota de tu dedo índice y se dirige hacia una criatura que puedas ver dentro del alcance. El objetivo debe superar una tirada de salvación de Constitución. Si falla la tirada, la criatura recibe {@daño 16d6} de daño necrótico y gana {@dados 1d4} {@niveles de contaminación de aventura|DoDk|12}. Si supera la tirada, el objetivo recibe la mitad del daño y no gana ningún {@nivel de contaminación de aventura|DoDk|12}."
+            ],
+            "entriesHigherLevel": [
+                {
+                    "type": "entries",
+                    "name": "At Higher Levels",
+                    "entries": [
+                        "Cuando lanzas este hechizo utilizando un espacio de hechizo de nivel 7 o superior, puedes elegir como objetivo una criatura adicional por cada nivel de espacio superior al 6. Las criaturas deben estar a menos de 30 pies entre sí cuando las elijas como objetivo."
+                    ]
+                }
+            ],
+            "damageInflict": [
+                "necrotic"
+            ],
+            "savingThrow": [
+                "constitution"
+            ],
+            "miscTags": [
+                "SCT",
+                "SGT"
+            ]
+        },
+        {
+            "name": "Ride the Rifts",
+            "source": "DoDk",
+            "page": 228,
+            "level": 3,
+            "school": "C",
+            "subschools": [
+                "contaminated"
+            ],
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "range": {
+                "type": "line",
+                "distance": {
+                    "type": "feet",
+                    "amount": 60
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": {
+                    "text": "a delerium fragment worth 100 gp, which the spell consumes",
+                    "cost": 10000,
+                    "consume": true
+                }
+            },
+            "duration": [
+                {
+                    "type": "instant"
+                }
+            ],
+            "entries": [
+                "Cuando lanzas este hechizo, ganas un {@nivel de aventura de contaminación|DoDk|12}. Un rayo sobrenatural que forma una línea de 18 metros de largo y 1,5 metros de ancho sale disparado desde ti en la dirección que elijas. Todas las criaturas que se encuentren en la línea deben superar una tirada de salvación de Destreza. Las criaturas que fallen la tirada reciben {@daño 10d6} de daño por rayo, o la mitad de daño si la superan. A continuación, te teletransportas a un espacio desocupado que puedas ver dentro del área de la línea."
+            ],
+            "entriesHigherLevel": [
+                {
+                    "type": "entries",
+                    "name": "At Higher Levels",
+                    "entries": [
+                        "Cuando lanzas este hechizo utilizando una ranura de hechizo de nivel 4 o superior, el daño aumenta en {@damage 2d6} por cada nivel de ranura superior al 3."
+                    ]
+                }
+            ],
+            "damageInflict": [
+                "lightning"
+            ],
+            "savingThrow": [
+                "dexterity"
+            ],
+            "miscTags": [
+                "SGT"
+            ]
+        },
+        {
+            "name": "Sacrament of the Falling Fire",
+            "source": "DoDk",
+            "page": 229,
+            "level": 9,
+            "school": "A",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "hour"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "feet",
+                    "amount": 30
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": {
+                    "text": "a delerium fragment worth 100 gp for each participating creature, which the spell consumes",
+                    "cost": 10000,
+                    "consume": true
+                }
+            },
+            "duration": [
+                {
+                    "type": "instant"
+                }
+            ],
+            "entries": [
+                "Este hechizo solo puede lanzarse en un área cubierta por la Niebla Profunda.",
+                "Realizas una ceremonia sagrada en la que participan hasta 12 criaturas humanoides fieles y dispuestas, que finaliza cuando cada criatura participante se clava un fragmento de delirio en el pecho. Esas criaturas quedan santificadas (véase el dossier «Seguidores del Fuego Caído» en el capítulo 3 de Dungeons of Drakkenheim).",
+                "Cuando terminas de lanzar este hechizo, aparece una {@criatura sombra} hostil y ataca a cada participante, como una manifestación de la oscuridad interior de ese personaje. El DJ puede determinar que un personaje que lleva una gran ira, miedo u odio en su corazón provoque que se manifieste una {@criatura espectro} en su lugar."
+            ]
+        },
+        {
+            "name": "Siphon Contamination",
+            "source": "DoDk",
+            "page": 229,
+            "level": 6,
+            "school": "T",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "hour"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "touch"
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": {
+                    "text": "500 gp worth of specially-prepared alchemical fluids and a delerium geode worth 5,000 gp, all of which are consumed by the spell",
+                    "cost": 50000,
+                    "consume": true
+                }
+            },
+            "duration": [
+                {
+                    "type": "instant"
+                }
+            ],
+            "entries": [
+                "Este exigente hechizo transfiere {@contaminación de aventura|DoDk|12} de una criatura a otra. Cuando lances este hechizo, primero debes tocar a una criatura humanoide dispuesta con uno o más {@niveles de contaminación de aventura|DoDk|12}, o a una antigua criatura humanoide cuya forma actual sea el resultado de una transformación monstruosa. A continuación, toca a otra criatura humanoide dispuesta.",
+                "Si ambas criaturas tocadas eran criaturas humanoides dispuestas, eliminas todos los {@niveles de contaminación de aventura|DoDk|12} y mutaciones de la primera criatura, y luego la segunda criatura que tocas gana un número de {@niveles de contaminación de aventura|DoDk|12} igual al número de niveles eliminados de la primera criatura.",
+                "Si la primera criatura que tocas es un antiguo humanoide que sufrió una monstruosa {@contaminación de aventura|DoDk|12}, y la segunda criatura es una criatura humanoide dispuesta con un nivel de personaje o índice de desafío igual o superior al índice de desafío de la criatura transformada, restauras la criatura totalmente contaminada a su forma original, y entonces la criatura humanoide sufre inmediatamente una transformación monstruosa como si hubiera ganado seis {@niveles de contaminación de aventura|DoDk|12}.",
+                "La segunda criatura tocada no puede impedir ni anular estos {@niveles de contaminación de la aventura|DoDk|12} ni la transformación resultante de ninguna manera, o de lo contrario el hechizo fracasará sin efecto alguno."
+            ],
+            "hasFluff": true
+        },
+        {
+            "name": "Warp Bolt",
+            "source": "DoDk",
+            "page": 229,
+            "level": 2,
+            "school": "V",
+            "subschools": [
+                "contaminated"
+            ],
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "feet",
+                    "amount": 60
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": {
+                    "text": "a delerium fragment worth 100 gp, which the spell consumes",
+                    "cost": 10000,
+                    "consume": true
+                }
+            },
+            "duration": [
+                {
+                    "type": "timed",
+                    "duration": {
+                        "type": "minute",
+                        "amount": 1
+                    },
+                    "concentration": true
+                }
+            ],
+            "entries": [
+                "Cuando lanzas este hechizo, ganas un {@nivel de contaminación de aventura|DoDk|12}. Un rayo octarino en forma de arco alcanza a una criatura dentro del alcance. Si el objetivo tiene uno o más {@niveles de contaminación de aventura|DoDk|12}, es alcanzado automáticamente. De lo contrario, realiza un ataque con hechizo a distancia contra esa criatura. Si aciertas, el objetivo recibe {@daño 6d6} de daño necrótico y gana un {@nivel de contaminación de aventura|DoDk|12}.",
+                "Puedes crear un nuevo rayo como acción en cualquier turno hasta que termine el hechizo."
+            ],
+            "entriesHigherLevel": [
+                {
+                    "type": "entries",
+                    "name": "At Higher Levels",
+                    "entries": [
+                        "Cuando lances este hechizo utilizando un espacio de hechizo de nivel 3 o superior, puedes elegir como objetivo a 1 criatura adicional por cada nivel de hechizo superior al 2."
+                    ]
+                }
+            ],
+            "damageInflict": [
+                "necrotic"
+            ],
+            "spellAttack": [
+                "R"
+            ]
+        }
+    ]
 }

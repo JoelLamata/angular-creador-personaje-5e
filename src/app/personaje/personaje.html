@@ -65,7 +65,7 @@
             </p-accordion-header>
             <p-accordion-content>
               @for (entry of spell.entries; track $index) {
-                <p>{{ entry }}</p>
+                <p [innerHTML]="processEntry(entry)"></p>
               }
             </p-accordion-content>
           </p-accordion-panel>

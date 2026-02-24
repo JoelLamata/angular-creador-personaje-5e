@@ -1,174 +1,174 @@
 {
-	"spell": [
-		{
-			"name": "Flock of Familiars",
-			"source": "LLK",
-			"page": 57,
-			"level": 2,
-			"school": "C",
-			"time": [
-				{
-					"number": 1,
-					"unit": "minute"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "touch"
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true
-			},
-			"duration": [
-				{
-					"type": "timed",
-					"duration": {
-						"type": "hour",
-						"amount": 1
-					},
-					"concentration": true
-				}
-			],
-			"entries": [
-				"You temporarily summon three familiars\u2014spirits that take animal forms of your choice. Each familiar uses the same rules and options for a familiar conjured by the {@spell find familiar} spell. All the familiars conjured by this spell must be the same type of creature (celestials, fey, or fiends; your choice). If you already have a familiar conjured by the {@spell find familiar} spell or similar means, then one fewer familiars are conjured by this spell.",
-				"Familiars summoned by this spell can telepathically communicate with you and share their visual or auditory senses while they are within 1 mile of you.",
-				"When you cast a spell with a range of touch, one of the familiars conjured by this spell can deliver the spell, as normal. However, you can cast a touch spell through only one familiar per turn."
-			],
-			"entriesHigherLevel": [
-				{
-					"type": "entries",
-					"name": "At Higher Levels",
-					"entries": [
-						"When you cast this spell using a spell slot of 3rd level or higher, you conjure an additional familiar for each slot level above 2nd."
-					]
-				}
-			],
-			"miscTags": [
-				"SMN"
-			]
-		},
-		{
-			"name": "Galder's Speedy Courier",
-			"source": "LLK",
-			"page": 57,
-			"level": 4,
-			"school": "C",
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "feet",
-					"amount": 10
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": {
-					"text": "25 gold pieces, or mineral goods of equivalent value, which the spell consumes",
-					"cost": 2500,
-					"consume": true
-				}
-			},
-			"duration": [
-				{
-					"type": "timed",
-					"duration": {
-						"type": "minute",
-						"amount": 10
-					}
-				}
-			],
-			"entries": [
-				"You summon a Small air elemental to a spot within range. The air elemental is formless, nearly transparent, immune to all damage, and cannot interact with other creatures or objects. It carries an open, empty chest whose interior dimensions are 3 feet on each side. While the spell lasts, you can deposit as many items inside the chest as will fit. You can then name a living creature you have met and seen at least once before, or any creature for which you possess a body part, lock of hair, clipping from a nail, or similar portion of the creature's body.",
-				"As soon as the lid of the chest is closed, the elemental and the chest disappear, then reappear adjacent to the target creature. If the target creature is on another plane, or if it is proofed against magical detection or location, the contents of the chest reappear on the ground at your feet.",
-				"The target creature is made aware of the chest's contents before it chooses whether or not to open it, and knows how much of the spell's duration remains in which it can retrieve them. No other creature can open the chest and retrieve its contents. When the spell expires or when all the contents of the chest have been removed, the elemental and the chest disappear. The elemental also disappears if the target creature orders it to return the items to you. When the elemental disappears, any items not taken from the chest reappear on the ground at your feet."
-			],
-			"entriesHigherLevel": [
-				{
-					"type": "entries",
-					"name": "At Higher Levels",
-					"entries": [
-						"When you cast this spell using an 8th-level spell slot, you can send the chest to a creature on a different plane of existence from you."
-					]
-				}
-			],
-			"miscTags": [
-				"SMN"
-			]
-		},
-		{
-			"name": "Galder's Tower",
-			"source": "LLK",
-			"page": 57,
-			"level": 3,
-			"school": "C",
-			"time": [
-				{
-					"number": 10,
-					"unit": "minute"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "feet",
-					"amount": 30
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": "a fragment of stone, wood, or other building material"
-			},
-			"duration": [
-				{
-					"type": "timed",
-					"duration": {
-						"type": "hour",
-						"amount": 24
-					}
-				}
-			],
-			"entries": [
-				"You conjure a two-story tower made of stone, wood, or similar suitably sturdy materials. The tower can be round or square in shape. Each level of the tower is 10 feet tall and has an area of up to 100 square feet. Access between levels consists of a simple ladder and hatch. Each level takes one of the following forms, chosen by you when you cast the spell:",
-				{
-					"type": "list",
-					"items": [
-						"A bedroom with a bed, chairs, chest, and magical fireplace",
-						"A study with desks, books, bookshelves, parchments, ink, and ink pens",
-						"A dining space with a table, chairs, magical fireplace, containers, and cooking utensils",
-						"A lounge with couches, armchairs, side tables and footstools",
-						"A washroom with toilets, washtubs, a magical brazier, and sauna benches",
-						"An observatory with a telescope and maps of the night sky",
-						"An unfurnished, empty room"
-					]
-				},
-				"The interior of the tower is warm and dry, regardless of conditions outside. Any equipment or furnishings conjured with the tower dissipate into smoke if removed from it. At the end of the spell's duration, all creatures and objects within the tower that were not created by the spell appear safely outside on the ground, and all traces of the tower and its furnishings disappear.",
-				"You can cast this spell again while it is active to maintain the tower's existence for another 24 hours. You can create a permanent tower by casting this spell in the same location and with the same configuration every day for one year."
-			],
-			"entriesHigherLevel": [
-				{
-					"type": "entries",
-					"name": "At Higher Levels",
-					"entries": [
-						"When you cast this spell using a spell slot of 4th level or higher, the tower can have one additional story for each slot level beyond 3rd."
-					]
-				}
-			],
-			"miscTags": [
-				"OBJ",
-				"PIR",
-				"PRM"
-			]
-		}
-	]
+    "spell": [
+        {
+            "name": "Flock of Familiars",
+            "source": "LLK",
+            "page": 57,
+            "level": 2,
+            "school": "C",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "minute"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "touch"
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true
+            },
+            "duration": [
+                {
+                    "type": "timed",
+                    "duration": {
+                        "type": "hour",
+                        "amount": 1
+                    },
+                    "concentration": true
+                }
+            ],
+            "entries": [
+                "Convoca temporalmente a tres familiares, espíritus que adoptan la forma animal que elijas. Cada familiar sigue las mismas reglas y opciones que un familiar conjurado por el hechizo {@spell find familiar}. Todos los familiares conjurados por este hechizo deben ser del mismo tipo de criatura (celestiales, feéricos o demonios; tú eliges). Si ya tienes un familiar conjurado por el hechizo {@spell find familiar} o por medios similares, entonces este hechizo conjura un familiar menos.",
+                "Los familiares invocados por este hechizo pueden comunicarse telepáticamente contigo y compartir sus sentidos visuales y auditivos mientras se encuentren a menos de 1 milla de distancia de ti.",
+                "Cuando lanzas un hechizo con un alcance de toque, uno de los familiares conjurados por este hechizo puede lanzar el hechizo, como es habitual. Sin embargo, solo puedes lanzar un hechizo de toque a través de un familiar por turno."
+            ],
+            "entriesHigherLevel": [
+                {
+                    "type": "entries",
+                    "name": "At Higher Levels",
+                    "entries": [
+                        "Cuando lanzas este hechizo utilizando un espacio de hechizo de nivel 3 o superior, conjuras un familiar adicional por cada nivel de espacio superior al 2."
+                    ]
+                }
+            ],
+            "miscTags": [
+                "SMN"
+            ]
+        },
+        {
+            "name": "Galder's Speedy Courier",
+            "source": "LLK",
+            "page": 57,
+            "level": 4,
+            "school": "C",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "feet",
+                    "amount": 10
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": {
+                    "text": "25 gold pieces, or mineral goods of equivalent value, which the spell consumes",
+                    "cost": 2500,
+                    "consume": true
+                }
+            },
+            "duration": [
+                {
+                    "type": "timed",
+                    "duration": {
+                        "type": "minute",
+                        "amount": 10
+                    }
+                }
+            ],
+            "entries": [
+                "Convoca a un pequeño elemental de aire a un lugar dentro del alcance. El elemental de aire no tiene forma, es casi transparente, inmune a todo daño y no puede interactuar con otras criaturas u objetos. Lleva un cofre abierto y vacío cuyas dimensiones interiores son de 3 pies por cada lado. Mientras dure el hechizo, puedes depositar tantos objetos dentro del cofre como quepan. A continuación, puedes nombrar a una criatura viva que hayas conocido y visto al menos una vez, o cualquier criatura de la que poseas una parte del cuerpo, un mechón de pelo, un trozo de uña o una parte similar del cuerpo de la criatura.",
+                "En cuanto se cierra la tapa del cofre, el elemental y el cofre desaparecen, para reaparecer junto a la criatura objetivo. Si la criatura objetivo se encuentra en otro plano, o si es inmune a la detección o localización mágica, el contenido del cofre reaparece en el suelo, a tus pies.",
+                "La criatura objetivo conoce el contenido del cofre antes de decidir si abrirlo o no, y sabe cuánto tiempo le queda al hechizo para poder recuperarlo. Ninguna otra criatura puede abrir el cofre y recuperar su contenido. Cuando el hechizo expira o cuando se ha retirado todo el contenido del cofre, el elemental y el cofre desaparecen. El elemental también desaparece si la criatura objetivo le ordena que te devuelva los objetos. Cuando el elemental desaparece, cualquier objeto que no se haya sacado del cofre reaparece en el suelo a tus pies."
+            ],
+            "entriesHigherLevel": [
+                {
+                    "type": "entries",
+                    "name": "At Higher Levels",
+                    "entries": [
+                        "Cuando lanzas este hechizo utilizando un espacio de hechizo de nivel 8, puedes enviar el cofre a una criatura que se encuentre en un plano de existencia diferente al tuyo."
+                    ]
+                }
+            ],
+            "miscTags": [
+                "SMN"
+            ]
+        },
+        {
+            "name": "Galder's Tower",
+            "source": "LLK",
+            "page": 57,
+            "level": 3,
+            "school": "C",
+            "time": [
+                {
+                    "number": 10,
+                    "unit": "minute"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "feet",
+                    "amount": 30
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": "a fragment of stone, wood, or other building material"
+            },
+            "duration": [
+                {
+                    "type": "timed",
+                    "duration": {
+                        "type": "hour",
+                        "amount": 24
+                    }
+                }
+            ],
+            "entries": [
+                "Conjuras una torre de dos pisos hecha de piedra, madera o materiales similares adecuadamente resistentes. La torre puede ser redonda o cuadrada. Cada nivel de la torre mide 3 metros de altura y tiene una superficie de hasta 9 metros cuadrados. El acceso entre los niveles consiste en una simple escalera y una trampilla. Cada nivel adopta una de las siguientes formas, que tú eliges al lanzar el hechizo:",
+                {
+                    "type": "list",
+                    "items": [
+                        "Un dormitorio con una cama, sillas, un baúl y una chimenea mágica.",
+                        "Un estudio con escritorios, libros, estanterías, pergaminos, tinta y plumas.",
+                        "Un comedor con mesa, sillas, chimenea mágica, recipientes y utensilios de cocina.",
+                        "Un salón con sofás, sillones, mesitas auxiliares y reposapiés.",
+                        "Un cuarto de baño con inodoros, lavabos, un brasero mágico y bancos de sauna.",
+                        "Un observatorio con un telescopio y mapas del cielo nocturno.",
+                        "Una habitación vacía y sin amueblar."
+                    ]
+                },
+                "El interior de la torre es cálido y seco, independientemente de las condiciones exteriores. Cualquier equipo o mobiliario conjurado con la torre se disipa en humo si se retira de ella. Al final de la duración del hechizo, todas las criaturas y objetos dentro de la torre que no fueron creados por el hechizo aparecen a salvo en el suelo exterior, y todos los rastros de la torre y su mobiliario desaparecen.",
+                "Puedes volver a lanzar este hechizo mientras está activo para mantener la torre durante otras 24 horas. Puedes crear una torre permanente lanzando este hechizo en el mismo lugar y con la misma configuración cada día durante un año."
+            ],
+            "entriesHigherLevel": [
+                {
+                    "type": "entries",
+                    "name": "At Higher Levels",
+                    "entries": [
+                        "Cuando lanzas este hechizo utilizando un espacio de hechizo de nivel 4 o superior, la torre puede tener un piso adicional por cada nivel de espacio superior al 3."
+                    ]
+                }
+            ],
+            "miscTags": [
+                "OBJ",
+                "PIR",
+                "PRM"
+            ]
+        }
+    ]
 }

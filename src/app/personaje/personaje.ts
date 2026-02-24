@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PRIMENG_IMPORTS } from '../primeng.imports';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 import { JsonReader } from '../json-reader';
 
@@ -35,7 +36,8 @@ export class Personaje implements OnInit {
   characterSpells: any;
 
   constructor(
-    private readonly jsonReader: JsonReader
+    private readonly jsonReader: JsonReader,
+    private readonly sanitizer: DomSanitizer
   ) {}
 
   async ngOnInit() {
@@ -107,5 +109,10 @@ export class Personaje implements OnInit {
         this.characterSpells.push(spell);
       }
     }
+  }
+
+  processEntry(entry: string): SafeHtml {
+    const processed = entry.replace(/\{@([^ ]+) ([^}]+)\}/g, '<strong>$2</strong>');
+    return this.sanitizer.bypassSecurityTrustHtml(processed);
   }
 }

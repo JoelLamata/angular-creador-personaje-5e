@@ -1,229 +1,229 @@
 {
-	"spell": [
-		{
-			"name": "Borrowed Knowledge",
-			"source": "SCC",
-			"page": 37,
-			"level": 2,
-			"school": "D",
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "self"
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": {
-					"text": "a book worth at least 25 gp",
-					"cost": 2500
-				}
-			},
-			"duration": [
-				{
-					"type": "timed",
-					"duration": {
-						"type": "hour",
-						"amount": 1
-					}
-				}
-			],
-			"entries": [
-				"You draw on knowledge from spirits of the past. Choose one skill in which you lack proficiency. For the spell's duration, you have proficiency in the chosen skill. The spell ends early if you cast it again."
-			]
-		},
-		{
-			"name": "Kinetic Jaunt",
-			"source": "SCC",
-			"page": 37,
-			"level": 2,
-			"school": "T",
-			"time": [
-				{
-					"number": 1,
-					"unit": "bonus"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "self"
-				}
-			},
-			"components": {
-				"s": true
-			},
-			"duration": [
-				{
-					"type": "timed",
-					"duration": {
-						"type": "minute",
-						"amount": 1
-					},
-					"concentration": true
-				}
-			],
-			"entries": [
-				"You magically empower your movement with dance-like steps, giving yourself the following benefits for the duration.",
-				{
-					"type": "list",
-					"items": [
-						"Your walking speed increases by 10 feet.",
-						"You don't provoke opportunity attacks.",
-						"You can move through the space of another creature, and it doesn't count as {@quickref difficult terrain||3}. If you end your turn in another creature's space, you are shunted to the last unoccupied space you occupied, and you take {@damage 1d8} force damage."
-					]
-				}
-			],
-			"damageInflict": [
-				"force"
-			]
-		},
-		{
-			"name": "Silvery Barbs",
-			"source": "SCC",
-			"page": 38,
-			"level": 1,
-			"school": "E",
-			"time": [
-				{
-					"number": 1,
-					"unit": "reaction",
-					"condition": "which you take when a creature you can see within 60 feet of yourself succeeds on an attack roll, an ability check, or a saving throw"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "feet",
-					"amount": 60
-				}
-			},
-			"components": {
-				"v": true
-			},
-			"duration": [
-				{
-					"type": "instant"
-				}
-			],
-			"entries": [
-				"You magically distract the triggering creature and turn its momentary uncertainty into encouragement for another creature. The triggering creature must reroll the {@dice d20} and use the lower roll.",
-				"You can then choose a different creature you can see within range (you can choose yourself). The chosen creature has advantage on the next attack roll, ability check, or saving throw it makes within 1 minute. A creature can be empowered by only one use of this spell at a time."
-			],
-			"miscTags": [
-				"ADV",
-				"SGT"
-			],
-			"areaTags": [
-				"ST"
-			]
-		},
-		{
-			"name": "Vortex Warp",
-			"source": "SCC",
-			"page": 38,
-			"level": 2,
-			"school": "C",
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "feet",
-					"amount": 90
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true
-			},
-			"duration": [
-				{
-					"type": "instant"
-				}
-			],
-			"entries": [
-				"You magically twist space around another creature you can see within range. The target must succeed on a Constitution saving throw (the target can choose to fail), or the target is teleported to an unoccupied space of your choice that you can see within range. The chosen space must be on a surface or in a liquid that can support the target without the target having to squeeze."
-			],
-			"entriesHigherLevel": [
-				{
-					"type": "entries",
-					"name": "At Higher Levels",
-					"entries": [
-						"When you cast this spell using a spell slot of 3rd level or higher, the range of the spell increases by 30 feet for each slot level above 2nd."
-					]
-				}
-			],
-			"savingThrow": [
-				"constitution"
-			],
-			"miscTags": [
-				"SGT",
-				"TP"
-			]
-		},
-		{
-			"name": "Wither and Bloom",
-			"source": "SCC",
-			"page": 38,
-			"level": 2,
-			"school": "N",
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "feet",
-					"amount": 60
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": "a withered vine twisted into a loop"
-			},
-			"duration": [
-				{
-					"type": "instant"
-				}
-			],
-			"entries": [
-				"You invoke both death and life upon a 10-foot-radius sphere centered on a point within range. Each creature of your choice in that area must make a Constitution saving throw, taking {@damage 2d6} necrotic damage on a failed save, or half as much damage on a successful one. Nonmagical vegetation in that area withers.",
-				"In addition, one creature of your choice in that area can spend and roll one of its unspent Hit Dice and regain a number of hit points equal to the roll plus your spellcasting ability modifier."
-			],
-			"entriesHigherLevel": [
-				{
-					"type": "entries",
-					"name": "At Higher Levels",
-					"entries": [
-						"When you cast this spell using a spell slot of 3rd level or higher, the damage increases by {@scaledamage 2d6|2-9|1d6} for each slot above the 2nd, and the number of Hit Dice that can be spent and added to the healing roll increases by one for each slot above 2nd."
-					]
-				}
-			],
-			"damageInflict": [
-				"necrotic"
-			],
-			"savingThrow": [
-				"constitution"
-			],
-			"miscTags": [
-				"HL"
-			]
-		}
-	]
+    "spell": [
+        {
+            "name": "Borrowed Knowledge",
+            "source": "SCC",
+            "page": 37,
+            "level": 2,
+            "school": "D",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "self"
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": {
+                    "text": "a book worth at least 25 gp",
+                    "cost": 2500
+                }
+            },
+            "duration": [
+                {
+                    "type": "timed",
+                    "duration": {
+                        "type": "hour",
+                        "amount": 1
+                    }
+                }
+            ],
+            "entries": [
+                "Recurres al conocimiento de los espíritus del pasado. Elige una habilidad en la que no seas competente. Mientras dure el hechizo, serás competente en la habilidad elegida. El hechizo termina antes de tiempo si lo vuelves a lanzar."
+            ]
+        },
+        {
+            "name": "Kinetic Jaunt",
+            "source": "SCC",
+            "page": 37,
+            "level": 2,
+            "school": "T",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "bonus"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "self"
+                }
+            },
+            "components": {
+                "s": true
+            },
+            "duration": [
+                {
+                    "type": "timed",
+                    "duration": {
+                        "type": "minute",
+                        "amount": 1
+                    },
+                    "concentration": true
+                }
+            ],
+            "entries": [
+                "Potencias mágicamente tu movimiento con pasos similares a los de la danza, lo que te proporciona los siguientes beneficios mientras dure el efecto.",
+                {
+                    "type": "list",
+                    "items": [
+                        "Tu velocidad al caminar aumenta en 3 metros.",
+                        "No provocas ataques de oportunidad.",
+                        "Puedes moverte a través del espacio de otra criatura, y no cuenta como {@quickref difficult terrain||3}. Si terminas tu turno en el espacio de otra criatura, eres desplazado al último espacio desocupado que ocupaste y recibes {@damage 1d8} de daño de fuerza."
+                    ]
+                }
+            ],
+            "damageInflict": [
+                "force"
+            ]
+        },
+        {
+            "name": "Silvery Barbs",
+            "source": "SCC",
+            "page": 38,
+            "level": 1,
+            "school": "E",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "reaction",
+                    "condition": "which you take when a creature you can see within 60 feet of yourself succeeds on an attack roll, an ability check, or a saving throw"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "feet",
+                    "amount": 60
+                }
+            },
+            "components": {
+                "v": true
+            },
+            "duration": [
+                {
+                    "type": "instant"
+                }
+            ],
+            "entries": [
+                "Distraes mágicamente a la criatura desencadenante y conviertes su incertidumbre momentánea en ánimo para otra criatura. La criatura desencadenante debe volver a tirar el {@dice d20} y usar la tirada más baja.",
+                "A continuación, puedes elegir otra criatura que se encuentre dentro del alcance (puedes elegirte a ti mismo). La criatura elegida tiene ventaja en la siguiente tirada de ataque, prueba de habilidad o tirada de salvación que realice en el plazo de 1 minuto. Una criatura solo puede recibir el poder de este hechizo una vez por turno."
+            ],
+            "miscTags": [
+                "ADV",
+                "SGT"
+            ],
+            "areaTags": [
+                "ST"
+            ]
+        },
+        {
+            "name": "Vortex Warp",
+            "source": "SCC",
+            "page": 38,
+            "level": 2,
+            "school": "C",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "feet",
+                    "amount": 90
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true
+            },
+            "duration": [
+                {
+                    "type": "instant"
+                }
+            ],
+            "entries": [
+                "Giras mágicamente el espacio alrededor de otra criatura que puedas ver dentro del alcance. El objetivo debe superar una tirada de salvación de Constitución (el objetivo puede elegir fallar), o será teletransportado a un espacio desocupado de tu elección que puedas ver dentro del alcance. El espacio elegido debe estar en una superficie o en un líquido que pueda soportar al objetivo sin que este tenga que apretujarse."
+            ],
+            "entriesHigherLevel": [
+                {
+                    "type": "entries",
+                    "name": "At Higher Levels",
+                    "entries": [
+                        "Cuando lanzas este hechizo utilizando una ranura de hechizo de nivel 3 o superior, el alcance del hechizo aumenta en 30 pies por cada nivel de ranura superior al 2."
+                    ]
+                }
+            ],
+            "savingThrow": [
+                "constitution"
+            ],
+            "miscTags": [
+                "SGT",
+                "TP"
+            ]
+        },
+        {
+            "name": "Wither and Bloom",
+            "source": "SCC",
+            "page": 38,
+            "level": 2,
+            "school": "N",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "feet",
+                    "amount": 60
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": "a withered vine twisted into a loop"
+            },
+            "duration": [
+                {
+                    "type": "instant"
+                }
+            ],
+            "entries": [
+                "Invocas tanto la muerte como la vida en una esfera de 3 metros de radio centrada en un punto dentro del alcance. Cada criatura que elijas en esa zona debe realizar una tirada de salvación de Constitución, recibiendo {@damage 2d6} puntos de daño necrótico si falla la tirada, o la mitad de daño si la supera. La vegetación no mágica de esa zona se marchita.",
+                "Además, una criatura de tu elección en esa zona puede gastar y tirar uno de sus dados de golpe sin gastar y recuperar un número de puntos de golpe igual a la tirada más tu modificador de capacidad de lanzamiento de conjuros."
+            ],
+            "entriesHigherLevel": [
+                {
+                    "type": "entries",
+                    "name": "At Higher Levels",
+                    "entries": [
+                        "Cuando lanzas este hechizo utilizando un espacio de hechizo de nivel 3 o superior, el daño aumenta en {@scaledamage 2d6|2-9|1d6} por cada espacio por encima del 2, y el número de dados de golpe que se pueden gastar y añadir a la tirada de curación aumenta en uno por cada espacio por encima del 2."
+                    ]
+                }
+            ],
+            "damageInflict": [
+                "necrotic"
+            ],
+            "savingThrow": [
+                "constitution"
+            ],
+            "miscTags": [
+                "HL"
+            ]
+        }
+    ]
 }
