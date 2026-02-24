@@ -109,10 +109,19 @@ export class Personaje implements OnInit {
         this.characterSpells.push(spell);
       }
     }
+    // Sort por level
+    this.characterSpells.sort((a: any, b: any) => a.level - b.level);
   }
 
   processEntry(entry: string): SafeHtml {
     const processed = entry.replace(/\{@([^ ]+) ([^}]+)\}/g, '<strong>$2</strong>');
     return this.sanitizer.bypassSecurityTrustHtml(processed);
+  }
+
+  processSpellLevel(level: number): string {
+    if (level == 0) {
+      return 'Cantrip'
+    }
+    return 'Level ' + level.toString()
   }
 }

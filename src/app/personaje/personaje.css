@@ -51,3 +51,20 @@
 
   align-items: center;
 }
+
+/* Accordion */
+.spell-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.spell-name {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.spell-level {
+  font-size: 0.9rem;
+  color: #6c757d;
+}

@@ -47,12 +47,12 @@
       </div>
     </div>
   </p-card>
-  <p-card>
-    <!-- TODO skills / salvacion -->
-  </p-card>
+  <!-- <p-card>
+    TODO skills / salvacion
+  </p-card> -->
   <p-card>
     <div class="spells">
-      <p>Spells</p>
+      <p><strong>Spells</strong></p>
       <p-accordion [value]="['0']" [multiple]="true">
         @for(spell of characterSpells; track $index){
           <p-accordion-panel [value]="$index">
@@ -61,6 +61,7 @@
                 <span class="spell-name">
                   {{ spell.name }}
                 </span>
+                <span class="spell-level" [innerHTML]="processSpellLevel(spell.level)"></span>
               </div>
             </p-accordion-header>
             <p-accordion-content>
