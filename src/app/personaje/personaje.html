@@ -47,9 +47,21 @@
       </div>
     </div>
   </p-card>
-  <!-- <p-card>
-    TODO skills / salvacion
-  </p-card> -->
+  <p-card>
+    <p><strong>Actions</strong></p>
+    @for(action of characterActions; track $index){
+      <p><strong>{{action.name}}</strong></p>
+      @for(entry of action.entries; track $index){
+        <p [innerHTML]="processEntry(entry)"></p>
+      }
+    }
+    <p><strong>Bonus actions</strong></p>
+
+    <p><strong>Reactions</strong></p>
+
+    <p><strong>Other</strong></p>
+
+  </p-card>
   <p-card>
     <div class="spells">
       <p><strong>Spells</strong></p>

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PRIMENG_IMPORTS } from '../primeng.imports';
-import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-
+import { ALLOWED_SOURCES } from '../sourcesConfigService';
 import { JsonReader } from '../json-reader';
 
 interface stats {
@@ -20,8 +19,10 @@ interface stats {
   styleUrl: './personaje.css',
 })
 export class Personaje implements OnInit {
+  ALLOWED_SOURCES = ALLOWED_SOURCES;
   loading = true;
   spells: Map<string, any> = new Map();
+  classInfo: any;
 
   characterName: string = "rym";
   character: any;
@@ -34,6 +35,9 @@ export class Personaje implements OnInit {
     charisma: 0
   };
   characterSpells: any;
+  characterClases: any;
+  characterClasesData: any;
+  characterActions: any;
 
   constructor(
     private readonly jsonReader: JsonReader,
@@ -45,11 +49,15 @@ export class Personaje implements OnInit {
       const result = await this.jsonReader.getData('characters/' + this.characterName + '.json');
       this.character = result.data;
       this.loadStats()
-      const spellsResult = await this.jsonReader.getData('spells/spells-phb.json')  // TODO all spells
+      // TODO all spells
+      const spellsResult = await this.jsonReader.getData('spells/spells-phb.json')
       for (const spell of spellsResult.spell) {
         this.spells.set(spell.name, spell);
       }
       this.loadSpells();
+      // Necesito la info de su clase (class-bard.json)
+      await this.loadClassData();
+      this.loadActions();
     } catch(error) {
       console.log(error)
     } finally {
@@ -103,14 +111,63 @@ export class Personaje implements OnInit {
         this.characterSpells.push(spell);
       }
     }
-    for (const s of this.character.classSpells[0].spells) { // CUIDAO CON EL [0]
-      const spell = this.spells.get(s.definition.name);
-      if (spell) {
-        this.characterSpells.push(spell);
+    for (const c of this.character.classSpells) {
+      for (const s of c.spells) {
+        const spell = this.spells.get(s.definition.name);
+        if (spell) {
+          this.characterSpells.push(spell);
+        }
       }
     }
+
     // Sort por level
     this.characterSpells.sort((a: any, b: any) => a.level - b.level);
+  }
+
+  async loadClassData() {
+    this.characterClases = [];
+    this.characterClasesData = [];
+    for (const c of this.character.classes) {
+      this.characterClases.push(c.definition.name)
+      const result = await this.jsonReader.getPageData('class/', c.definition.name);
+      this.characterClasesData.push(result)
+    }
+  }
+
+  loadActions() {
+    this.characterActions = [];
+    let currentAction = null;
+    const actions = this.character.actions;
+    for (const a of actions.race) {
+      currentAction = this.findActionOnClass(a.name)
+      if (currentAction != null) {
+        this.characterActions.push(currentAction)
+      }
+    }
+    for (const a of actions.class) {
+      currentAction = this.findActionOnClass(a.name)
+      if (currentAction != null) {
+        this.characterActions.push(currentAction)
+      }
+    }
+    for (const a of actions.feat) {
+      currentAction = this.findActionOnClass(a.name)
+      if (currentAction != null) {
+        this.characterActions.push(currentAction)
+      }
+    }
+    console.log(this.characterActions)
+  }
+
+  findActionOnClass(actionName: string) {
+    for(let clases of this.characterClasesData) {
+      for(let classFeature of clases.classFeature) {
+        if (classFeature.name == actionName && ALLOWED_SOURCES.includes(classFeature.source)) {
+          return classFeature
+        }
+      }
+    }
+    return null
   }
 
   processEntry(entry: string): SafeHtml {

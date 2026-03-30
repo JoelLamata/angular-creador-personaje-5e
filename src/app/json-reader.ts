@@ -22,6 +22,6 @@ export class JsonReader {
 
   async getPageData(path: string, page: string): Promise<any> {
     const index = await this.getData(path + 'index.json');
-    return this.getData(path + index[page]);
+    return this.getData(path + index[page.toLowerCase()]);
   }
 }
