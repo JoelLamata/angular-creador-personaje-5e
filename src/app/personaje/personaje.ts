@@ -1,9 +1,10 @@
 import { Component, OnInit, ChangeDetectorRef, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PRIMENG_IMPORTS } from '../primeng.imports';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ALLOWED_SOURCES } from '../sourcesConfigService';
 import { JsonReader } from '../json-reader';
+import { EntryProcessorService } from '../services/entry-processor.service';
 
 interface stats {
   strength: number;
@@ -25,6 +26,7 @@ export class Personaje implements OnInit {
   spells: Map<string, any> = new Map();
   classInfo: any;
   private cdr = inject(ChangeDetectorRef);
+  protected entryProcessor = inject(EntryProcessorService);
 
   characterName: string = "";
   character: any;
@@ -186,17 +188,5 @@ export class Personaje implements OnInit {
       }
     }
     return null
-  }
-
-  processEntry(entry: string): SafeHtml {
-    const processed = entry.replace(/\{@([^ ]+) ([^}]+)\}/g, '<strong>$2</strong>');
-    return this.sanitizer.bypassSecurityTrustHtml(processed);
-  }
-
-  processSpellLevel(level: number): string {
-    if (level == 0) {
-      return 'Cantrip'
-    }
-    return 'Level ' + level.toString()
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, inject } from '@angular/core';
 import { JsonReader } from '../json-reader';
 import { PRIMENG_IMPORTS } from '../primeng.imports';
 import { Router } from '@angular/router';
@@ -13,11 +13,14 @@ import { Router } from '@angular/router';
 export class Clases implements OnInit {
   classNames: string[] = [];
   index: string = 'class/index.json'
+  private cdr = inject(ChangeDetectorRef);
   public constructor(private readonly router: Router, private readonly jsonReader: JsonReader) {}
 
-  ngOnInit(): void {
-    this.classNames = Object.keys(this.jsonReader.getData(this.index));
+  async ngOnInit(): Promise<void> {
+    const data = await this.jsonReader.getData(this.index);
+    this.classNames = Object.keys(data);
     this.classNames = this.classNames.filter((word) => word !== "sidekick" && word !== "mystic")
+    this.cdr.detectChanges();
   }
 
   goTo(card: string) {

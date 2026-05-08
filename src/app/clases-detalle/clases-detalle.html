@@ -32,17 +32,17 @@
           <span class="feature-name">
             {{ classFeature.name }}
           </span>
-          <span class="feature-level"> Level {{ classFeature.level }} </span>
+          <span class="feature-level"> Level {{ classFeature.level }}, {{ classFeature.source }} </span>
         </div>
       </p-accordion-header>
       <p-accordion-content>
         @for (entry of classFeature.entries; track $index) {
           @if (entry && typeof entry === 'object') {
             @for (e of entry.items; track $index) {
-              <p>{{ e }}</p>
+              <p [innerHTML]="entryProcessor.processEntry(e)"></p>
             }
           } @else {
-            <p>{{ entry }}</p>
+            <p [innerHTML]="entryProcessor.processEntry(entry)"></p>
           }
         }
       </p-accordion-content>

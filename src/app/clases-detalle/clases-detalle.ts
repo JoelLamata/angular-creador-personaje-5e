@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { JsonReader } from '../json-reader';
 import { Router } from '@angular/router';
 import { PRIMENG_IMPORTS } from '../primeng.imports';
 import { ALLOWED_SOURCES } from '../sourcesConfigService';
 import { InputText } from "primeng/inputtext";
+import { EntryProcessorService } from '../services/entry-processor.service';
 
 
 @Component({
@@ -14,6 +15,9 @@ import { InputText } from "primeng/inputtext";
   styleUrl: './clases-detalle.css',
 })
 export class ClasesDetalle implements OnInit {
+  private cdr = inject(ChangeDetectorRef);
+  protected entryProcessor = inject(EntryProcessorService);
+
   ALLOWED_SOURCES = ALLOWED_SOURCES;
   selectedLevel: number | null = null;
   page!: string;
@@ -52,6 +56,7 @@ export class ClasesDetalle implements OnInit {
     );
 
     this.applyFilters();
+    this.cdr.detectChanges();
   }
 
   applyFilters(): void {

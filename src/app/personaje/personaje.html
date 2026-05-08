@@ -54,16 +54,16 @@
       @for(entry of action.entries; track $index){
         @if (entry.type == 'list') {
           @for(item of entry.items; track $index){
-            <p [innerHTML]="processEntry(item)"></p>
+            <p [innerHTML]="entryProcessor.processEntry(item)"></p>
           }
         }
         @else if (entry.name) {
           <p>{{ entry.name }}</p>
           @for(childEntry of entry.entries; track $index){
-            <p [innerHTML]="processEntry(childEntry)"></p>
+            <p [innerHTML]="entryProcessor.processEntry(childEntry)"></p>
           }
         } @else {
-          <p [innerHTML]="processEntry(entry)"></p>
+          <p [innerHTML]="entryProcessor.processEntry(entry)"></p>
         }
       }
     }
@@ -85,22 +85,22 @@
                 <span class="spell-name">
                   {{ spell.name }}
                 </span>
-                <span class="spell-level" [innerHTML]="processSpellLevel(spell.level)"></span>
+                <span class="spell-level" [innerHTML]="entryProcessor.processSpellLevel(spell.level)"></span>
               </div>
             </p-accordion-header>
             <p-accordion-content>
               @for (entry of spell.entries; track $index) {
                 @if (entry.type == 'list') {
                   @for(item of entry.items; track $index) {
-                    <p [innerHTML]="processEntry(item)"></p>
+                    <p [innerHTML]="entryProcessor.processEntry(item)"></p>
                   }
                 } @else if (entry.name) {
                   <p>{{ entry.name }}</p>
                   @for(childEntry of entry.entries; track $index) {
-                    <p [innerHTML]="processEntry(childEntry)"></p>
+                    <p [innerHTML]="entryProcessor.processEntry(childEntry)"></p>
                   }
                 } @else {
-                  <p [innerHTML]="processEntry(entry)"></p>
+                  <p [innerHTML]="entryProcessor.processEntry(entry)"></p>
                 }
               }
             </p-accordion-content>
