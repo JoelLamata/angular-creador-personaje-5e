@@ -1,0 +1,12 @@
+<div class="seleccion-personaje">
+  <h1>Selecciona un Personaje</h1>
+  <div class="botones-container">
+    <button
+      *ngFor="let personaje of personajes"
+      (click)="seleccionarPersonaje(personaje)"
+      class="personaje-btn"
+    >
+      {{ personaje }}
+    </button>
+  </div>
+</div>
