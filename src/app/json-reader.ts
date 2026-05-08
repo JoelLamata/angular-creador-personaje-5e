@@ -13,7 +13,7 @@ export class JsonReader {
       return this.cache.get(filename);
     }
 
-    const response = await fetch(`/assets/${filename}`);
+    const response = await fetch(`./assets/${filename}`);
     const data = await response.json();
     this.cache.set(filename, data);
     return data;

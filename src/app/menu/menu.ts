@@ -1,39 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuModule } from 'primeng/menu';
-import { MenuItem, MessageService } from 'primeng/api';
-import { ButtonModule } from 'primeng/button';
+import { MegaMenuModule } from 'primeng/megamenu';
+import { MegaMenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-menu',
-  imports: [MenuModule, ButtonModule],
+  imports: [MegaMenuModule],
   templateUrl: './menu.html',
-  providers: [MessageService]
 })
 export class Menu implements OnInit {
-  items: MenuItem[] | undefined;
+  items: MegaMenuItem[] | undefined;
 
   ngOnInit(): void {
     this.items = [
       {
-        label: 'Navigate',
-        items: [
-          {
-            label: 'Clases',
-            routerLink: '/clases'
-          },
-          {
-            label: 'Hechizos',
-            routerLink: '/hechizos'
-          },
-          {
-            label: 'Especies',
-            routerLink: '/especies'
-          },
-          {
-            label: 'Trasfondos',
-            routerLink: '/trasfondos'
-          },
-        ]
+        label: 'Personajes',
+        routerLink: ['/']
+      },
+      {
+        label: 'Clases',
+        routerLink: ['/clases']
+      },
+      {
+        label: 'Hechizos',
+        routerLink: ['/hechizos']
+      },
+      {
+        label: 'Especies',
+        routerLink: ['/especies']
+      },
+      {
+        label: 'Trasfondos',
+        routerLink: ['/trasfondos']
       }
     ]
   }
