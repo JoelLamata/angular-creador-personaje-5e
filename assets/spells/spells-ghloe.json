@@ -1,300 +1,300 @@
 {
-	"spell": [
-		{
-			"name": "Arboreal Curse",
-			"source": "GHLoE",
-			"level": 7,
-			"school": "T",
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "feet",
-					"amount": 60
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": "a cup of sap"
-			},
-			"duration": [
-				{
-					"type": "timed",
-					"duration": {
-						"type": "minute",
-						"amount": 1
-					},
-					"concentration": true
-				}
-			],
-			"entries": [
-				"You attempt to turn one creature that you can see within range into wood. If the target's body is made of flesh, the creature must make a Constitution saving throw. On a failed save, it is {@condition restrained} as its flesh begins to harden into bark. On a successful save, the creature isn't affected.",
-				"A creature {@condition restrained} by this spell must make another Constitution saving throw at the end of each of its turns. If it successfully saves against this spell three times, the spell ends. If it fails its Constitution saving throw three times, it is turned into a tree and subjected to the {@condition petrified} condition for the duration. The successes and failures don't need to be consecutive; keep track of both until the target collects three of a kind.",
-				"If the transformed creature is burned, chopped down, or otherwise destroyed while {@condition petrified}, the creature is slain.",
-				"A creature remains transformed unless the effect is reversed within one year with {@spell greater restoration}, {@spell wish}, or similar magical effects. If the creature spends one year and a day as a tree, the transformation becomes permanent, and nothing can return the creature to its original form."
-			],
-			"conditionInflict": [
-				"petrified",
-				"restrained"
-			],
-			"savingThrow": [
-				"constitution"
-			],
-			"miscTags": [
-				"PRM",
-				"SGT"
-			]
-		},
-		{
-			"name": "Consume Mind",
-			"source": "GHLoE",
-			"level": 4,
-			"school": "N",
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "self"
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": "a 1-ounce fresh or magically preserved portion of another creature's brain"
-			},
-			"duration": [
-				{
-					"type": "timed",
-					"duration": {
-						"type": "hour",
-						"amount": 1
-					}
-				}
-			],
-			"entries": [
-				"You consume the brain of another creature's corpse, gaining its memories and knowledge. The corpse must have a brain and can't be undead. The spell fails if the corpse has been dead (and not preserved) for more than three days.",
-				"Until the spell ends, you can attempt to recall any important fact known to the creature\u2014family history, recent events, building layouts, passwords, details of the creature's death, and similar information. To recall a piece of information, you must make an ability check using your spellcasting modifier. The DC is equal to the corpse's Intelligence score.",
-				"Once the caster rolls to determine whether they recall a fact, they cannot attempt to recall it again."
-			]
-		},
-		{
-			"name": "Heartseeker",
-			"source": "GHLoE",
-			"level": 6,
-			"school": "V",
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "feet",
-					"amount": 300
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": {
-					"text": "a ruby worth at least 100 gp",
-					"cost": 10000
-				}
-			},
-			"duration": [
-				{
-					"type": "timed",
-					"duration": {
-						"type": "minute",
-						"amount": 1
-					},
-					"concentration": true
-				}
-			],
-			"entries": [
-				"As part of casting this spell you must expend six hit dice or the spell automatically fails. When you do, blood flows from your body then crystallizes into a barbed arrow, which launches at a creature of your choice within range. Make a ranged spell attack against the chosen creature. On a hit, roll the hit dice expended to cast this spell, and the creature takes piercing damage equal to the result.",
-				"Once lodged in the creature, the bloody arrow begins to burrow toward its heart, rendering it vulnerable to further attacks. At the start of the creature's next turn, it must make a Constitution saving throw. On a failure, attacks against the creature score critical hits on a 19 or 20 on the attack roll.",
-				"At the start of each of the creature's turns after that, it must repeat the Constitution saving throw or the critical hit range on attacks against the creature increases by 1 again. If the creature succeeds on three of these saving throws (these successes do not need to be consecutive) this spell ends. The increased critical hit range ends when the spell does."
-			],
-			"spellAttack": [
-				"R"
-			],
-			"savingThrow": [
-				"constitution"
-			]
-		},
-		{
-			"name": "Hunter Sense",
-			"source": "GHLoE",
-			"level": 0,
-			"school": "D",
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "touch"
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true
-			},
-			"duration": [
-				{
-					"type": "timed",
-					"duration": {
-						"type": "minute",
-						"amount": 1
-					},
-					"concentration": true
-				}
-			],
-			"entries": [
-				"You touch one willing creature. While this spell is active, the target's senses are heightened. If the target rolls a 9 or below on the die when making a Wisdom ({@skill Perception}) check, they instead act as if they rolled a 10."
-			]
-		},
-		{
-			"name": "Magic Mirror",
-			"source": "GHLoE",
-			"level": 5,
-			"school": "A",
-			"time": [
-				{
-					"number": 1,
-					"unit": "reaction",
-					"condition": "which you take when you are targeted by a spell"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "self"
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": "a polished silver marble"
-			},
-			"duration": [
-				{
-					"type": "instant"
-				}
-			],
-			"entries": [
-				"A momentary bubble of iridescent energy shimmers in the air between you and the caster of the triggering spell. The spell is redirected to a creature of your choice that you can see within 60 feet. If the spell is 5th level or lower, you are no longer a target of the spell and the chosen creature is instead. If the spell is 6th level or higher, make an ability check using your spellcasting ability. The DC equals 10 + the spell's level. On a successful check, you are no longer a target of the spell and the chosen creature is instead. On a failed check, you remain the target of the triggering spell."
-			],
-			"miscTags": [
-				"SGT"
-			]
-		},
-		{
-			"name": "Suffocate",
-			"source": "GHLoE",
-			"level": 3,
-			"school": "C",
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "feet",
-					"amount": 60
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": "a leather glove"
-			},
-			"duration": [
-				{
-					"type": "timed",
-					"duration": {
-						"type": "minute",
-						"amount": 1
-					},
-					"concentration": true
-				}
-			],
-			"entries": [
-				"You create a pair of grasping hands made from {@condition invisible} forces. Make a spell attack against one creature that you can see within range. On a hit, the creature is {@condition restrained} as the hands crush their throat or bodily equivalent.",
-				"If the creature requires air to breathe, it begins to suffocate. A suffocating creature can survive for a number of rounds equal to 1 + its Constitution modifier (minimum of 1 round). At the start of its next turn after those rounds are over, it becomes {@condition unconscious}, and it can't regain hit points until it can breathe again.",
-				"A conscious creature {@condition restrained} by the hands can use its action to make a Strength or Dexterity check (its choice) against your spell save DC. On a success, the spell ends on the target."
-			],
-			"conditionInflict": [
-				"invisible",
-				"restrained",
-				"unconscious"
-			],
-			"miscTags": [
-				"SGT"
-			]
-		},
-		{
-			"name": "Wrack",
-			"source": "GHLoE",
-			"level": 2,
-			"school": "N",
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "feet",
-					"amount": 30
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": "a frayed piece of cord"
-			},
-			"duration": [
-				{
-					"type": "timed",
-					"duration": {
-						"type": "minute",
-						"amount": 1
-					},
-					"concentration": true
-				}
-			],
-			"entries": [
-				"Choose a creature that you can see within range. The target must succeed on a Constitution saving throw or be afflicted with excruciating muscle spasms for the duration. A creature affected in this way has its speed halved and rolls attacks with disadvantage. At the end of each of its turns, the target can make another Constitution saving throw. On a success, the spell ends on the target."
-			],
-			"savingThrow": [
-				"constitution"
-			],
-			"miscTags": [
-				"SGT"
-			]
-		}
-	]
+    "spell": [
+        {
+            "name": "Arboreal Curse",
+            "source": "GHLoE",
+            "level": 7,
+            "school": "T",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "feet",
+                    "amount": 60
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": "a cup of sap"
+            },
+            "duration": [
+                {
+                    "type": "timed",
+                    "duration": {
+                        "type": "minute",
+                        "amount": 1
+                    },
+                    "concentration": true
+                }
+            ],
+            "entries": [
+                "Intentas convertir en madera a una criatura que puedas ver dentro del alcance. Si el cuerpo del objetivo es de carne, la criatura debe realizar una tirada de salvación de Constitución. Si falla la tirada, queda {@condition inmovilizada} mientras su carne comienza a endurecerse y convertirse en corteza. Si supera la tirada, la criatura no sufre ningún efecto.",
+                "Una criatura {@condition restrained} por este hechizo debe realizar otra tirada de salvación de Constitución al final de cada uno de sus turnos. Si supera tres veces esta tirada contra el hechizo, este finaliza. Si falla tres veces la tirada de salvación de Constitución, se convierte en un árbol y queda sometida a la condición {@condition petrified} durante la duración del hechizo. Los éxitos y fracasos no tienen por qué ser consecutivos; lleva la cuenta de ambos hasta que el objetivo acumule tres del mismo tipo.",
+                "Si la criatura transformada es quemada, cortada o destruida de cualquier otra forma mientras se encuentra {@condition petrified}, la criatura muere.",
+                "Una criatura permanece transformada a menos que el efecto se revierta en el plazo de un año con {@spell greater restoration}, {@spell wish} o efectos mágicos similares. Si la criatura pasa un año y un día convertida en árbol, la transformación se vuelve permanente y nada puede devolverla a su forma original."
+            ],
+            "conditionInflict": [
+                "petrified",
+                "restrained"
+            ],
+            "savingThrow": [
+                "constitution"
+            ],
+            "miscTags": [
+                "PRM",
+                "SGT"
+            ]
+        },
+        {
+            "name": "Consume Mind",
+            "source": "GHLoE",
+            "level": 4,
+            "school": "N",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "self"
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": "a 1-ounce fresh or magically preserved portion of another creature's brain"
+            },
+            "duration": [
+                {
+                    "type": "timed",
+                    "duration": {
+                        "type": "hour",
+                        "amount": 1
+                    }
+                }
+            ],
+            "entries": [
+                "Consumes el cerebro del cadáver de otra criatura, obteniendo sus recuerdos y conocimientos. El cadáver debe tener cerebro y no puede ser un muerto viviente. El hechizo falla si el cadáver lleva muerto (y sin conservar) más de tres días.",
+                "Hasta que termine el hechizo, puedes intentar recordar cualquier dato importante conocido por la criatura: historia familiar, acontecimientos recientes, distribución de edificios, contraseñas, detalles de la muerte de la criatura e información similar. Para recordar un dato, debes realizar una prueba de habilidad utilizando tu modificador de lanzamiento de conjuros. La CD es igual a la puntuación de Inteligencia del cadáver.",
+                "Una vez que el lanzador tira los dados para determinar si recuerda un hecho, no puede intentar recordarlo de nuevo."
+            ]
+        },
+        {
+            "name": "Heartseeker",
+            "source": "GHLoE",
+            "level": 6,
+            "school": "V",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "feet",
+                    "amount": 300
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": {
+                    "text": "a ruby worth at least 100 gp",
+                    "cost": 10000
+                }
+            },
+            "duration": [
+                {
+                    "type": "timed",
+                    "duration": {
+                        "type": "minute",
+                        "amount": 1
+                    },
+                    "concentration": true
+                }
+            ],
+            "entries": [
+                "Como parte del lanzamiento de este hechizo, debes gastar seis dados de golpe o el hechizo fallará automáticamente. Cuando lo hagas, la sangre fluirá de tu cuerpo y se cristalizará en una flecha con púas, que se lanzará contra una criatura de tu elección que se encuentre dentro del alcance. Realiza un ataque con hechizo a distancia contra la criatura elegida. Si aciertas, tira los dados de golpe gastados para lanzar este hechizo y la criatura recibirá un daño perforante igual al resultado.",
+                "Una vez clavada en la criatura, la flecha ensangrentada comienza a perforar su corazón, dejándola vulnerable a nuevos ataques. Al comienzo del siguiente turno de la criatura, esta debe realizar una tirada de salvación de Constitución. Si falla, los ataques contra la criatura obtienen golpes críticos con una tirada de 19 o 20 en la tirada de ataque.",
+                "Al comienzo de cada uno de los turnos posteriores de la criatura, esta debe repetir la tirada de salvación de Constitución o el rango de golpe crítico en los ataques contra la criatura aumentará en 1 de nuevo. Si la criatura tiene éxito en tres de estas tiradas de salvación (no es necesario que sean consecutivas), este hechizo finaliza. El aumento del rango de golpe crítico finaliza cuando lo hace el hechizo."
+            ],
+            "spellAttack": [
+                "R"
+            ],
+            "savingThrow": [
+                "constitution"
+            ]
+        },
+        {
+            "name": "Hunter Sense",
+            "source": "GHLoE",
+            "level": 0,
+            "school": "D",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "touch"
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true
+            },
+            "duration": [
+                {
+                    "type": "timed",
+                    "duration": {
+                        "type": "minute",
+                        "amount": 1
+                    },
+                    "concentration": true
+                }
+            ],
+            "entries": [
+                "Tocas a una criatura dispuesta. Mientras este hechizo esté activo, los sentidos del objetivo se agudizan. Si el objetivo obtiene un 9 o menos en la tirada de dado al realizar una prueba de Sabiduría ({@habilidad Percepción}), actuará como si hubiera obtenido un 10."
+            ]
+        },
+        {
+            "name": "Magic Mirror",
+            "source": "GHLoE",
+            "level": 5,
+            "school": "A",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "reaction",
+                    "condition": "which you take when you are targeted by a spell"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "self"
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": "a polished silver marble"
+            },
+            "duration": [
+                {
+                    "type": "instant"
+                }
+            ],
+            "entries": [
+                "Una burbuja momentánea de energía iridiscente brilla en el aire entre tú y el lanzador del hechizo desencadenante. El hechizo se redirige a una criatura de tu elección que puedas ver dentro de un radio de 60 pies. Si el hechizo es de nivel 5 o inferior, ya no eres el objetivo del hechizo y, en su lugar, lo es la criatura elegida. Si el hechizo es de nivel 6 o superior, realiza una prueba de habilidad utilizando tu habilidad de lanzamiento de hechizos. La CD es igual a 10 + el nivel del hechizo. Si la tirada tiene éxito, ya no eres el objetivo del hechizo y, en su lugar, lo es la criatura elegida. Si la tirada falla, sigues siendo el objetivo del hechizo desencadenante."
+            ],
+            "miscTags": [
+                "SGT"
+            ]
+        },
+        {
+            "name": "Suffocate",
+            "source": "GHLoE",
+            "level": 3,
+            "school": "C",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "feet",
+                    "amount": 60
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": "a leather glove"
+            },
+            "duration": [
+                {
+                    "type": "timed",
+                    "duration": {
+                        "type": "minute",
+                        "amount": 1
+                    },
+                    "concentration": true
+                }
+            ],
+            "entries": [
+                "Creas un par de manos que agarran hechas de fuerzas {@condition invisible}. Realiza un ataque mágico contra una criatura que puedas ver dentro del alcance. Si aciertas, la criatura queda {@condition restrained} mientras las manos le aplastan la garganta o su equivalente corporal.",
+                "Si la criatura necesita aire para respirar, comienza a asfixiarse. Una criatura que se está asfixiando puede sobrevivir durante un número de asaltos igual a 1 + su modificador de Constitución (mínimo 1 asalto). Al comienzo de su siguiente turno, una vez transcurridos esos asaltos, queda {@condition unconscious} y no puede recuperar puntos de golpe hasta que pueda volver a respirar.",
+                "Una criatura consciente {@condición restringida} por las manos puede usar su acción para realizar una prueba de Fuerza o Destreza (a su elección) contra la CD de tu hechizo. Si tiene éxito, el hechizo termina en el objetivo."
+            ],
+            "conditionInflict": [
+                "invisible",
+                "restrained",
+                "unconscious"
+            ],
+            "miscTags": [
+                "SGT"
+            ]
+        },
+        {
+            "name": "Wrack",
+            "source": "GHLoE",
+            "level": 2,
+            "school": "N",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "feet",
+                    "amount": 30
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": "a frayed piece of cord"
+            },
+            "duration": [
+                {
+                    "type": "timed",
+                    "duration": {
+                        "type": "minute",
+                        "amount": 1
+                    },
+                    "concentration": true
+                }
+            ],
+            "entries": [
+                "Elige una criatura que puedas ver dentro del alcance. El objetivo debe superar una tirada de salvación de Constitución o sufrir espasmos musculares insoportables durante la duración del hechizo. Una criatura afectada de esta manera ve reducida su velocidad a la mitad y realiza sus ataques con desventaja. Al final de cada uno de sus turnos, el objetivo puede realizar otra tirada de salvación de Constitución. Si la supera, el hechizo termina sobre el objetivo."
+            ],
+            "savingThrow": [
+                "constitution"
+            ],
+            "miscTags": [
+                "SGT"
+            ]
+        }
+    ]
 }

@@ -1,1089 +1,1089 @@
 {
-	"action": [
-		{
-			"name": "Activate an Item",
-			"source": "DMG",
-			"page": 141,
-			"srd": true,
-			"basicRules": true,
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"Activating some magic items requires a user to do something in particular, such as holding the item and uttering a command word, reading the item if it is a scroll, or drinking it if it is a potion. The description of each item category or individual item details how an item is activated. Certain items use one or more of the following rules related to their activation.",
-				"If an item requires an action to activate, that action isn't a function of the {@action Use an Object} action, so a feature such as the rogue's {@subclassFeature Fast Hands|Rogue||Thief||3} can't be used to activate the item.",
-				{
-					"type": "entries",
-					"name": "Command Word",
-					"entries": [
-						"A command word is a word or phrase that must be spoken audibly for the item to operate. A magic item that requires the user to speak a command word can't be activated in the area of any effect that prevents sound, such as the area created by the silence spell."
-					]
-				},
-				{
-					"type": "entries",
-					"name": "Consumables",
-					"entries": [
-						"Some items are used up when they are activated. A potion or elixir must be swallowed, or an oil applied to the body. The writing vanishes from a scroll when it is read. Once used, a consumable item loses its magic and no longer functions."
-					]
-				},
-				{
-					"type": "entries",
-					"name": "Spells",
-					"entries": [
-						"Some magic items allow the user to cast a spell from the item, often by expending charges from it. The spell is cast at the lowest possible spell and caster level, doesn't expend any of the user's spell slots, and requires no components unless the item's description says otherwise. The spell uses its normal casting time, range, and duration, and the user of the item must concentrate if the spell requires {@status concentration}. Certain items make exceptions to these rules, changing the casting time, duration, or other parts of a spell.",
-						"Many items, such as potions, bypass the casting of the spell and confer the spell's effects. Such an item still uses the spell's duration unless the item's description says otherwise.",
-						"A magic item, such as certain staffs, may require you to use your own spellcasting ability when you cast a spell from the item. If you have more than one spellcasting ability, you choose which one to use with the item. If you don't have a spellcasting ability\u2014perhaps you're a rogue with the Use Magic Device feature\u2014your spellcasting ability modifier is +0 for the item, and your proficiency bonus does apply."
-					]
-				},
-				{
-					"type": "entries",
-					"name": "Charges",
-					"entries": [
-						"Some magic items have charges that you expend to activate its properties. The number of charges an item has remaining is revealed when an identify spell is cast on the item, or when a creature attunes to the item. Additionally, when an item regains charges, the creature attuned to that item learns how many charges it regained."
-					]
-				}
-			]
-		},
-		{
-			"name": "Attack",
-			"source": "PHB",
-			"page": 192,
-			"srd": true,
-			"basicRules": true,
-			"reprintedAs": [
-				"Attack|XPHB"
-			],
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"The most common action to take in combat is the Attack action, whether you are swinging a sword, firing an arrow from a bow, or brawling with your fists.",
-				"With this action, you make one melee or ranged attack. See the \"{@book Making an Attack|phb|9|making an attack}\" section for the rules that govern attacks.",
-				"Certain features, such as the Extra Attack feature of the fighter, allow you to make more than one attack with this action."
-			],
-			"seeAlsoAction": [
-				"Disarm|DMG",
-				"Grapple",
-				"Mark|DMG",
-				"Shove",
-				"Shove Aside|DMG",
-				"Two-Weapon Fighting"
-			]
-		},
-		{
-			"name": "Attack",
-			"source": "XPHB",
-			"page": 361,
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"When you take the Attack action, you can make one attack roll with a weapon or an {@variantrule Unarmed Strike|XPHB}.",
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "Equipping and Unequipping Weapons",
-							"entries": [
-								"You can either equip or unequip one weapon when you make an attack as part of this action. You do so either before or after the attack. If you equip a weapon before an attack, you don't need to use it for that attack. Equipping a weapon includes drawing it from a sheath or picking it up. Unequipping a weapon includes sheathing, stowing, or dropping it."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Moving Between Attacks",
-							"entries": [
-								"If you move on your turn and have a feature, such as Extra Attack, that gives you more than one attack as part of the Attack action, you can use some or all of that movement to move between those attacks."
-							]
-						}
-					]
-				}
-			],
-			"seeAlsoAction": [
-				"Two-Weapon Fighting|XPHB"
-			]
-		},
-		{
-			"name": "Cast a Spell",
-			"source": "PHB",
-			"page": 192,
-			"srd": true,
-			"basicRules": true,
-			"reprintedAs": [
-				"Magic|XPHB"
-			],
-			"time": [
-				"Varies"
-			],
-			"entries": [
-				"Spellcasters such as wizards and clerics, as well as many monsters, have access to spells and can use them to great effect in combat. Each spell has a casting time, which specifies whether the caster must use an action, a reaction, minutes, or even hours to cast the spell. Casting a spell is, therefore, not necessarily an action. Most spells do have a casting time of 1 action, so a spellcaster often uses his or her action in combat to cast such a spell. See {@book chapter 10|phb|10|casting a spell} for the rules on spellcasting."
-			]
-		},
-		{
-			"name": "Climb onto a Bigger Creature",
-			"source": "DMG",
-			"page": 271,
-			"fromVariant": "Action Options",
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"If one creature wants to jump onto another creature, it can do so by {@action grapple||grappling}. A small or Medium creature has little chance of making a successful grapple against a Huge or Gargantuan creature, however, unless magic has granted the grappler supernatural might.",
-				"As an alternative, a suitably large opponent can be treated as terrain for the purpose of jumping onto its back or clinging to a limb. After making any ability checks necessary to get into position and onto the larger creature, the smaller creature uses its action to make a Strength ({@skill Athletics}) or Dexterity ({@skill Acrobatics}) check contested by the target's Dexterity ({@skill Acrobatics}) check. If it wins the contest, the smaller creature successfully moves into the target creature's space, the smaller creature moves with the target and has advantage on attack rolls against it.",
-				"The smaller creature can move around within the larger creature's space, treating the space as {@quickref difficult terrain||3}. The larger creature's ability to attack the smaller creature depends on the smaller creature's location, and is left to your discretion. The larger creature can dislodge the smaller creature as an action\u2014knocking it off, scraping it against a wall, or grabbing and throwing it\u2014by making a Strength ({@skill Athletics}) check contested by the smaller creature's Strength ({@skill Athletics}) or Dexterity ({@skill Acrobatics}) check. The smaller creature chooses which ability to use."
-			]
-		},
-		{
-			"name": "Dash",
-			"source": "PHB",
-			"page": 192,
-			"srd": true,
-			"basicRules": true,
-			"reprintedAs": [
-				"Dash|XPHB"
-			],
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"When you take the Dash action, you gain extra movement for the current turn. The increase equals your speed, after applying any modifiers. With a speed of 30 feet, for example, you can move up to 60 feet on your turn if you dash.",
-				"Any increase or decrease to your speed changes this additional movement by the same amount. If your speed of 30 feet is reduced to 15 feet, for instance, you can move up to 30 feet this turn if you dash."
-			]
-		},
-		{
-			"name": "Dash",
-			"source": "XPHB",
-			"page": 365,
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"When you take the Dash action, you gain extra movement for the current turn. The increase equals your {@variantrule Speed|XPHB} after applying any modifiers. With a {@variantrule Speed|XPHB} of 30 feet, for example, you can move up to 60 feet on your turn if you Dash. If your {@variantrule Speed|XPHB} of 30 feet is reduced to 15 feet, you can move up to 30 feet this turn if you Dash.",
-				"If you have a special speed, such as a {@variantrule Fly Speed|XPHB} or {@variantrule Swim Speed|XPHB}, you can use that speed instead of your {@variantrule Speed|XPHB} when you take this action. You choose which speed to use each time you take it."
-			]
-		},
-		{
-			"name": "Disarm",
-			"source": "DMG",
-			"page": 271,
-			"fromVariant": "Action Options",
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"A creature can use a weapon attack to knock a weapon or another item from a target's grasp. The attacker makes an attack roll contested by the target's Strength ({@skill Athletics}) check or Dexterity ({@skill Acrobatics}) check. If the attacker wins the contest, the attack causes no damage or other ill effect, but the defender drops the item.",
-				"The attacker has disadvantage on its attack roll if the target is holding the item with two or more hands. The target has advantage on its ability check if it is larger than the attacking creature, or disadvantage if it is smaller."
-			],
-			"seeAlsoAction": [
-				"Attack"
-			]
-		},
-		{
-			"name": "Disengage",
-			"source": "PHB",
-			"page": 192,
-			"srd": true,
-			"basicRules": true,
-			"reprintedAs": [
-				"Disengage|XPHB"
-			],
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"If you take the Disengage action, your movement doesn't provoke opportunity attacks for the rest of the turn."
-			]
-		},
-		{
-			"name": "Disengage",
-			"source": "XPHB",
-			"page": 366,
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"If you take the Disengage action, your movement doesn't provoke {@action Opportunity Attack|XPHB|Opportunity Attacks} for the rest of the current turn."
-			]
-		},
-		{
-			"name": "Dodge",
-			"source": "PHB",
-			"page": 192,
-			"srd": true,
-			"basicRules": true,
-			"reprintedAs": [
-				"Dodge|XPHB"
-			],
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"When you take the Dodge action, you focus entirely on avoiding attacks. Until the start of your next turn, any attack roll made against you has disadvantage if you can see the attacker, and you make Dexterity saving throws with advantage. You lose this benefit if you are incapacitated (as explained in the appendix) or if your speed drops to 0."
-			]
-		},
-		{
-			"name": "Dodge",
-			"source": "XPHB",
-			"page": 366,
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"lf you take the Dodge action, you gain the following benefits: until the start of your next turn, any attack roll made against you has {@variantrule Disadvantage|XPHB} if you can see the attacker, and you make Dexterity {@variantrule Saving Throw|XPHB|saving throws} with {@variantrule Advantage|XPHB}.",
-				"You lose these benefits if you have the {@condition Incapacitated|XPHB} condition or if your {@variantrule Speed|XPHB} is 0."
-			]
-		},
-		{
-			"name": "Don or Doff a Shield",
-			"source": "PHB",
-			"page": 146,
-			"srd": true,
-			"basicRules": true,
-			"reprintedAs": [
-				"Don or Doff a Shield|XPHB"
-			],
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"The time it takes to don or doff armor {@table Getting Into and Out of Armor; Donning and Doffing Armor|phb|depends on the armor's category}. A {@item shield|phb} can be donned or doffed as an action."
-			]
-		},
-		{
-			"name": "Don or Doff a Shield",
-			"source": "XPHB",
-			"page": 219,
-			"freeRules2024": true,
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"A {@item Shield|XPHB} can be donned or doffed as an action."
-			]
-		},
-		{
-			"name": "End Concentration",
-			"source": "PHB",
-			"page": 203,
-			"srd": true,
-			"basicRules": true,
-			"reprintedAs": [
-				"End Concentration|XPHB"
-			],
-			"time": [
-				"Free"
-			],
-			"entries": [
-				"If a spell must be maintained with {@status concentration}, that fact appears in its Duration entry, and the spell specifies how long you can concentrate on it. You can end {@status concentration} at any time (no action required)."
-			]
-		},
-		{
-			"name": "End Concentration",
-			"source": "XPHB",
-			"page": 363,
-			"freeRules2024": true,
-			"time": [
-				"Free"
-			],
-			"entries": [
-				"Some spells and other effects require Concentration to remain active, as specified in their descriptions. You can end Concentration at any time (no action required)."
-			]
-		},
-		{
-			"name": "Escape a Grapple",
-			"source": "PHB",
-			"page": 195,
-			"srd": true,
-			"basicRules": true,
-			"reprintedAs": [
-				"Escape a Grapple|XPHB"
-			],
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"A {@condition grappled} creature can use its action to escape. To do so, it must succeed on a Strength ({@skill Athletics}) or Dexterity ({@skill Acrobatics}) check contested by your Strength ({@skill Athletics}) check."
-			],
-			"seeAlsoAction": [
-				"Grapple"
-			]
-		},
-		{
-			"name": "Escape a Grapple",
-			"source": "XPHB",
-			"page": 367,
-			"freeRules2024": true,
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"A Grappled creature can use its action to make a Strength ({@skill Athletics|XPHB}) or Dexterity ({@skill Acrobatics|XPHB}) check against the grapple's escape DC, ending the {@variantrule Condition|XPHB|condition} on itself on a success. The {@variantrule Condition|XPHB|condition} also ends if the grappler has the {@condition Incapacitated|XPHB} condition or if the distance between the Grappled target and the grappler exceeds the grapple's range."
-			]
-		},
-		{
-			"name": "Grapple",
-			"source": "PHB",
-			"page": 195,
-			"srd": true,
-			"basicRules": true,
-			"reprintedAs": [
-				{
-					"uid": "Unarmed Strike|XPHB",
-					"tag": "variantrule"
-				}
-			],
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"When you want to grab a creature or wrestle with it, you can use the {@action Attack} action to make a special melee attack, a grapple. If you're able to make multiple attacks with the {@action Attack} action, this attack replaces one of them. The target of your grapple must be no more than one size larger than you, and it must be within your reach.",
-				"Using at least one free hand, you try to seize the target by making a grapple check, a Strength ({@skill Athletics}) check contested by the target's Strength ({@skill Athletics}) or Dexterity ({@skill Acrobatics}) check (the target chooses the ability to use). You succeed automatically if the target is {@condition incapacitated}. If you succeed, you subject the target to the {@condition grappled} condition (see the appendix). The condition specifies the things that end it, and you can release the target whenever you like (no action required).",
-				{
-					"type": "entries",
-					"name": "Moving a Grappled Target",
-					"entries": [
-						"When you move, you can drag or carry the {@condition grappled} creature with you, but your speed is halved, unless the creature is two or more sizes smaller than you."
-					]
-				}
-			],
-			"seeAlsoAction": [
-				"Escape a Grapple"
-			]
-		},
-		{
-			"name": "Healing Surge",
-			"source": "DMG",
-			"page": 266,
-			"fromVariant": "Healing",
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"As an action, a character can use a healing surge and spend up to half his or her Hit Dice. For each Hit Die spent in this way, the player rolls the die and adds the character's Constitution modifier. The character regains hit points equal to the total. The player can decide to spend an additional Hit Die after each roll.",
-				"A character who uses a healing surge can't do so again until he or she finishes a short or long rest. Under this optional rule, a character regains all spent Hit Dice at the end of a long rest. With a short rest, a character regains Hit Dice equal to his or her level divided by four (minimum of one dice)."
-			]
-		},
-		{
-			"name": "Help",
-			"source": "PHB",
-			"page": 192,
-			"srd": true,
-			"basicRules": true,
-			"reprintedAs": [
-				"Help|XPHB"
-			],
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"You can lend your aid to another creature in the completion of a task. When you take the Help action, the creature you aid gains advantage on the next ability check it makes to perform the task you are helping with, provided that it makes the check before the start of your next turn.",
-				"Alternatively, you can aid a friendly creature in attacking a creature within 5 feet of you. You feint, distract the target, or in some other way team up to make your ally's attack more effective. If your ally attacks the target before your next turn, the first attack roll is made with advantage."
-			]
-		},
-		{
-			"name": "Help",
-			"source": "XPHB",
-			"page": 368,
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"When you take the Help action, you do one of the following.",
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "Assist an Ability Check",
-							"entries": [
-								"Choose one of your skill or tool proficiencies and one ally who is near enough for you to assist verbally or physically when they make an ability check. That ally has {@variantrule Advantage|XPHB} on the next ability check they make with the chosen skill or tool. This benefit expires if the ally doesn't use it before the start of your next turn. The DM has final say on whether your assistance is possible."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Assist an Attack Roll",
-							"entries": [
-								"You momentarily distract an enemy within 5 feet of you, giving {@variantrule Advantage|XPHB} to the next attack roll by one of your allies against that enemy. This benefit expires at the start of your next turn."
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "Hide",
-			"source": "PHB",
-			"page": 192,
-			"srd": true,
-			"basicRules": true,
-			"reprintedAs": [
-				"Hide|XPHB"
-			],
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"When you take the Hide action, you make a Dexterity ({@skill Stealth}) check in an attempt to hide, following the rules in {@book chapter 7 |phb|7|hiding} for hiding. If you succeed, you gain certain benefits, as described in the \"{@book Unseen Attackers and Targets|PHB|9|unseen attackers and targets}\" section in the Player's Handbook."
-			]
-		},
-		{
-			"name": "Hide",
-			"source": "XPHB",
-			"page": 368,
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"With the Hide action, you try to conceal yourself. To do so, you must succeed on a {@dc 15} Dexterity ({@skill Stealth|XPHB}) check while you're {@variantrule Heavily Obscured|XPHB} or behind {@variantrule Cover|XPHB|Three-Quarters Cover or Total Cover}, and you must be out of any enemy's line of sight; if you can see a creature, you can discern whether it can see you.",
-				"On a successful check, you have the {@condition Invisible|XPHB} condition. Make note of your check's total, which is the DC for a creature to find you with a Wisdom ({@skill Perception|XPHB}) check.",
-				"The condition ends on you immediately after any of the following occurs: you make a sound louder than a whisper, an enemy finds you, you make an attack roll, or you cast a spell with a Verbal component."
-			]
-		},
-		{
-			"name": "Identify a Spell",
-			"source": "XGE",
-			"page": 85,
-			"fromVariant": "Spellcasting|XGE",
-			"time": [
-				{
-					"number": 1,
-					"unit": "reaction"
-				},
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"Sometimes a character wants to identify a spell that someone else is casting or that was already cast. To do so, a character can use their reaction to identify a spell as it's being cast, or they can use an action on their turn to identify a spell by its effect after it is cast.",
-				"If the character perceived the casting, the spell's effect, or both, the character can make an Intelligence ({@skill Arcana}) check with the reaction or action. The DC equals 15 + the spell's level. If the spell is cast as a class spell and the character is a member of that class, the check is made with advantage. For example, if the spellcaster casts a spell as a cleric, another cleric has advantage on the check to identify the spell. Some spells aren't associated with any class when they're cast, such as when a monster uses its Innate Spellcasting trait.",
-				"This Intelligence ({@skill Arcana}) check represents the fact that identifying a spell requires a quick mind and familiarity with the theory and practice of casting. This is true even for a character whose spellcasting ability is Wisdom or Charisma. Being able to cast spells doesn't by itself make you adept at deducing exactly what others are doing when they cast their spells."
-			]
-		},
-		{
-			"name": "Improvising an Action",
-			"source": "PHB",
-			"page": 193,
-			"basicRules": true,
-			"reprintedAs": [
-				"Improvising an Action|XPHB"
-			],
-			"time": [
-				"Varies"
-			],
-			"entries": [
-				"Your character can do things not covered by the actions in this chapter, such as breaking down doors, intimidating enemies, sensing weaknesses in magical defenses, or calling for a parley with a foe. The only limits to the actions you can attempt are your imagination and your character's ability scores. See the descriptions of the ability scores in {@book chapter 7|phb|7|Ability Scores and Modifiers} for inspiration as you improvise.",
-				"When you describe an action not detailed elsewhere in the rules, the DM tells you whether that action is possible and what kind of roll you need to make, if any, to determine success or failure."
-			]
-		},
-		{
-			"name": "Improvising an Action",
-			"source": "XPHB",
-			"page": 15,
-			"freeRules2024": true,
-			"time": [
-				"Varies"
-			],
-			"entries": [
-				"Player characters and monsters can also do things not covered by other actions. Many class features and other abilities provide additional action options, and you can improvise other actions. When you describe an action not detailed elsewhere in the rules, the Dungeon Master tells you whether that action is possible and what kind of {@variantrule D20 Test|XPHB} you need to make, if any."
-			]
-		},
-		{
-			"name": "Influence",
-			"source": "XPHB",
-			"page": 369,
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"With the Influence action, you urge a monster to do something. Describe or roleplay how you're communicating with the monster. Are you trying to deceive, intimidate, amuse, or gently persuade? The DM then determines whether the monster feels willing, unwilling, or hesitant due to your interaction; this determination establishes whether an ability check is necessary, as explained below.",
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "Willing",
-							"entries": [
-								"If your urging aligns with the monster's desires, no ability check is necessary; the monster fulfills your request in a way it prefers."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Unwilling",
-							"entries": [
-								"If your urging is repugnant to the monster or counter to its alignment, no ability check is necessary; it doesn't comply."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Hesitant",
-							"entries": [
-								"If you urge the monster to do something that it is hesitant to do, you must make an ability check, which is affected by the monster's attitude: Indifferent, Friendly, or Hostile, each of which is defined in this glossary. The Influence Checks table suggests which ability check to make based on how you're interacting with the monster. The GM chooses the check, which has a default DC equal to 15 or the monster's Intelligence score, whichever is higher. On a successful check, the monster does as urged. On a failed check, you must wait 24 hours (or a duration set by the DM) before urging it in the same way again."
-							]
-						},
-						{
-							"type": "table",
-							"caption": "Influence Checks",
-							"colLabels": [
-								"Ability Check",
-								"Interaction"
-							],
-							"colStyles": [
-								"col-4",
-								"col-8"
-							],
-							"rows": [
-								[
-									"Charisma ({@skill Deception|XPHB})",
-									"Deceiving a monster that understands you"
-								],
-								[
-									"Charisma ({@skill Intimidation|XPHB})",
-									"Intimidating a monster"
-								],
-								[
-									"Charisma ({@skill Performance|XPHB})",
-									"Amusing a monster"
-								],
-								[
-									"Charisma ({@skill Persuasion|XPHB})",
-									"Persuading a monster that understands you"
-								],
-								[
-									"Wisdom ({@skill Animal Handling|XPHB})",
-									"Gently coaxing a Beast or Monstrosity"
-								]
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "Magic",
-			"source": "XPHB",
-			"page": 371,
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"When you take the Magic action, you cast a spell that has a casting time of an action or use a feature or magic item that requires a Magic action to be activated.",
-				"If you cast a spell that has a casting time of 1 minute or longer, you must take the Magic action on each turn of that casting, and you must maintain {@status Concentration|XPHB} while you do so. If your {@status Concentration|XPHB} is broken, the spell fails, but you don't expend a spell slot."
-			]
-		},
-		{
-			"name": "Mark",
-			"source": "DMG",
-			"page": 271,
-			"fromVariant": "Action Options",
-			"entries": [
-				"This option makes it easier for melee combatants to harry each other with opportunity attacks.",
-				"When a creature makes a melee attack, it can also mark its target. Until the end of the attacker's next turn, any opportunity attack it makes against the marked target has advantage. The opportunity attack doesn't expend the attacker's reaction, but the attacker can't make the attack if anything, such as the {@condition incapacitated} condition or the {@spell shocking grasp} spell, is preventing it from taking reactions. The attacker is limited to one opportunity attack per turn."
-			],
-			"seeAlsoAction": [
-				"Attack"
-			]
-		},
-		{
-			"name": "Opportunity Attack",
-			"source": "PHB",
-			"page": 195,
-			"srd": true,
-			"basicRules": true,
-			"reprintedAs": [
-				"Opportunity Attack|XPHB"
-			],
-			"time": [
-				{
-					"number": 1,
-					"unit": "reaction"
-				}
-			],
-			"entries": [
-				"In a fight, everyone is constantly watching for enemies to drop their guard. You can rarely move heedlessly past your foes without putting yourself in danger; doing so provokes an opportunity attack.",
-				"You can make an opportunity attack when a hostile creature that you can see moves out of your reach. To make the opportunity attack, you use your reaction to make one melee attack against the provoking creature. The attack interrupts the provoking creature's movement, occurring right before the creature leaves your reach.",
-				"You can avoid provoking an opportunity attack by taking the {@action Disengage} action. You also don't provoke an opportunity attack when you teleport or when someone or something moves you without using your movement, action, or reaction. For example, you don't provoke an opportunity attack if an explosion hurls you out of a foe's reach or if gravity causes you to fall past an enemy."
-			]
-		},
-		{
-			"name": "Opportunity Attack",
-			"source": "XPHB",
-			"page": 371,
-			"time": [
-				{
-					"number": 1,
-					"unit": "reaction"
-				}
-			],
-			"entries": [
-				"You can make an Opportunity Attack when a creature that you can see leaves your reach using its action, its {@variantrule Bonus Action|XPHB}, its {@variantrule Reaction|XPHB}, or one of its speeds. To make the Opportunity Attack, take a {@variantrule Reaction|XPHB} to make one melee attack with a weapon or an {@variantrule Unarmed Strike|XPHB} against the provoking creature. The attack occurs right before the creature leaves your reach."
-			]
-		},
-		{
-			"name": "Other Activity",
-			"source": "PHB",
-			"page": 190,
-			"srd": true,
-			"basicRules": true,
-			"time": [
-				"Varies"
-			],
-			"entries": [
-				"Your turn can include a variety of flourishes that require neither your action nor your move.",
-				"You can communicate however you are able, through brief utterances and gestures, as you take your turn.",
-				"You can also interact with one object or feature of the environment for free, during either your move or your action. For example, you could open a door during your move as you stride toward a foe, or you could draw your weapon as part of the same action you use to attack.",
-				"If you want to interact with a second object, you need to use your action. Some magic items and other special objects always require an action to use, as stated in their descriptions.",
-				"The DM might require you to use an action for any of these activities when it needs special care or when it presents an unusual obstacle. For instance, the DM could reasonably expect you to use an action to open a stuck door or turn a crank to lower a drawbridge.",
-				{
-					"type": "inset",
-					"name": "Interacting with Objects Around You",
-					"entries": [
-						"Here are a few examples of the sorts of thing you can do in tandem with your movement and action:",
-						{
-							"type": "list",
-							"items": [
-								"draw or sheathe a sword",
-								"open or close a door",
-								"withdraw a potion from your backpack",
-								"pick up a dropped axe",
-								"take a bauble from a table",
-								"remove a ring from your finger",
-								"stuff some food into your mouth",
-								"plant a banner in the ground",
-								"fish a few coins from your belt pouch",
-								"drink all the ale in a flagon",
-								"throw a lever or a switch",
-								"pull a torch from a sconce",
-								"take a book from a shelf you can reach",
-								"extinguish a small flame",
-								"don a mask",
-								"pull the hood of your cloak up and over your head",
-								"put your ear to a door",
-								"kick a small stone",
-								"turn a key in a lock",
-								"tap the floor with a 10-foot pole",
-								"hand an item to another character"
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "Overrun",
-			"source": "DMG",
-			"page": 272,
-			"fromVariant": "Action Options",
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				},
-				{
-					"number": 1,
-					"unit": "bonus"
-				}
-			],
-			"entries": [
-				"When a creature tries to move through a hostile creature's space, the mover can try to force its way through by overrunning the hostile creature. As an action or a bonus action, the mover makes a Strength ({@skill Athletics}) check contested by the hostile creature's Strength ({@skill Athletics}) check. The creature attempting the overrun has advantage on this check if it is larger than the hostile creature, or disadvantage if it is smaller. If the mover wins the contest, it can move through the hostile creature's space once this turn."
-			],
-			"seeAlsoAction": [
-				"Tumble|DMG"
-			]
-		},
-		{
-			"name": "Ready",
-			"source": "PHB",
-			"page": 193,
-			"srd": true,
-			"basicRules": true,
-			"reprintedAs": [
-				"Ready|XPHB"
-			],
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"Sometimes you want to get the jump on a foe or wait for a particular circumstance before you act. To do so, you can take the Ready action on your turn, which lets you act using your reaction before the start of your next turn.",
-				"First, you decide what perceivable circumstance will trigger your reaction. Then, you choose the action you will take in response to that trigger, or you choose to move up to your speed in response to it. Examples include \"If the cultist steps on the trapdoor, I'll pull the lever that opens it,\" and \"If the goblin steps next to me, I move away.\"",
-				"When the trigger occurs, you can either take your reaction right after the trigger finishes or ignore the trigger. Remember that you can take only one reaction per round.",
-				"When you ready a spell, you cast it as normal but hold its energy, which you release with your reaction when the trigger occurs. To be readied, a spell must have a casting time of 1 action, and holding onto the spell's magic requires {@status concentration} (explained in {@book chapter 10|phb|10|concentration}). If your {@status concentration} is broken, the spell dissipates without taking effect. For example, if you are {@status concentration||concentrating} on the web spell and ready magic missile, your web spell ends, and if you take damage before you release magic missile with your reaction, your {@status concentration} might be broken.",
-				"You have until the start of your next turn to use a readied action."
-			]
-		},
-		{
-			"name": "Ready",
-			"source": "XPHB",
-			"page": 372,
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"You take the Ready action to wait for a particular circumstance before you act. To do so, you take this action on your turn, which lets you act by taking a {@variantrule Reaction|XPHB} before the start of your next turn.",
-				"First, you decide what perceivable circumstance will trigger your {@variantrule Reaction|XPHB}. Then, you choose the action you will take in response to that trigger, or you choose to move up to your {@variantrule Speed|XPHB} in response to it. Examples include \"If the cultist steps on the trapdoor, I'll pull the lever that opens it,\" and \"If the zombie steps next to me, I move away.\"",
-				"When the trigger occurs, you can either take your {@variantrule Reaction|XPHB} right after the trigger finishes or ignore the trigger.",
-				"When you Ready a spell, you cast it as normal (expending any resources used to cast it) but hold its energy, which you release with your {@variantrule Reaction|XPHB} when the trigger occurs. To be readied, a spell must have a casting time of an action, and holding on to the spell's magic requires {@status Concentration|XPHB}, which you can maintain up to the start of your next turn. If your {@status Concentration|XPHB} is broken, the spell dissipates without taking effect."
-			]
-		},
-		{
-			"name": "Search",
-			"source": "PHB",
-			"page": 193,
-			"srd": true,
-			"basicRules": true,
-			"reprintedAs": [
-				"Search|XPHB"
-			],
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"When you take the Search action, you devote your attention to finding something. Depending on the nature of your search, the DM might have you make a Wisdom ({@skill Perception}) check or an Intelligence ({@skill Investigation}) check."
-			]
-		},
-		{
-			"name": "Search",
-			"source": "XPHB",
-			"page": 373,
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"When you take the Search action, you make a Wisdom check to discern something that isn't obvious. The Search table suggests which skills are applicable when you take this action, depending on what you're trying to detect.",
-				{
-					"type": "table",
-					"caption": "Search",
-					"colLabels": [
-						"Skill",
-						"Thing to Detect"
-					],
-					"colStyles": [
-						"col-4",
-						"col-8"
-					],
-					"rows": [
-						[
-							"{@skill Insight|XPHB}",
-							"Creature's state of mind"
-						],
-						[
-							"{@skill Medicine|XPHB}",
-							"Creature's ailment or cause of death"
-						],
-						[
-							"{@skill Perception|XPHB}",
-							"Concealed creature or object"
-						],
-						[
-							"{@skill Survival|XPHB}",
-							"Tracks or food"
-						]
-					]
-				}
-			]
-		},
-		{
-			"name": "Shove",
-			"source": "PHB",
-			"page": 195,
-			"srd": true,
-			"basicRules": true,
-			"reprintedAs": [
-				{
-					"uid": "Unarmed Strike|XPHB",
-					"tag": "variantrule"
-				}
-			],
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"Using the {@action Attack} action, you can make a special melee attack to shove a creature, either to knock it {@condition prone} or push it away from you. If you're able to make multiple attacks with the {@action Attack} action, this attack replaces one of them.",
-				"The target of your shove must be no more than one size larger than you, and it must be within your reach. You make a Strength ({@skill Athletics}) check contested by the target's Strength ({@skill Athletics}) or Dexterity ({@skill Acrobatics}) check (the target chooses the ability to use). You succeed automatically if the target is {@condition incapacitated}. If you succeed, you either knock the target {@condition prone} or push it 5 feet away from you."
-			],
-			"seeAlsoAction": [
-				"Attack",
-				"Shove Aside|DMG"
-			]
-		},
-		{
-			"name": "Shove Aside",
-			"source": "DMG",
-			"page": 272,
-			"fromVariant": "Action Options",
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"With this option, a creature uses the special {@action shove} attack from the {@book Player's Handbook|PHB|9|Shoving a Creature} to force a target to the side, rather than away. The attacker has disadvantage on its Strength ({@skill Athletics}) check when it does so. If that check is successful, the attacker moves the target 5 feet to a different space within its reach."
-			]
-		},
-		{
-			"name": "Stabilize a Creature",
-			"source": "PHB",
-			"page": 197,
-			"srd": true,
-			"basicRules": true,
-			"reprintedAs": [
-				"Help|XPHB"
-			],
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"You can use your action to administer first aid to an {@condition unconscious} creature and attempt to stabilize it, which requires a successful {@dc 10} Wisdom ({@skill Medicine}) check.",
-				"A stable creature doesn't make death saving throws, even though it has 0 hit points, but it does remain {@condition unconscious}. The creature stops being stable, and must start making death saving throws again, if it takes any damage. A stable creature that isn't healed regains 1 hit point after {@dice 1d4} hours."
-			]
-		},
-		{
-			"name": "Study",
-			"source": "XPHB",
-			"page": 375,
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"When you take the Study action, you make an Intelligence check to study your memory, a book, a clue, or another source of knowledge and call to mind an important piece of information about it.",
-				"The Areas of Knowledge table suggests which skills are applicable to various areas of knowledge.",
-				{
-					"type": "table",
-					"caption": "Areas of Knowledge",
-					"colLabels": [
-						"Skill",
-						"Areas"
-					],
-					"colStyles": [
-						"col-3",
-						"col-9"
-					],
-					"rows": [
-						[
-							"{@skill Arcana|XPHB}",
-							"Spells, magic items, eldritch symbols, magical traditions, planes of existence, and certain creatures (Aberrations, Constructs, Elementals, Fey, and Monstrosities)"
-						],
-						[
-							"{@skill History|XPHB}",
-							"Historic events and people, ancient civilizations, wars, and certain creatures (Giants and Humanoids)"
-						],
-						[
-							"{@skill Investigation|XPHB}",
-							"Traps, ciphers, riddles, and gadgetry"
-						],
-						[
-							"{@skill Nature|XPHB}",
-							"Terrain, flora, weather, and certain creatures (Beasts, Dragons, Oozes, and Plants)"
-						],
-						[
-							"{@skill Religion|XPHB}",
-							"Deities, religious hierarchies and rites, holy symbols, cults, and certain creatures (Celestials, Fiends, and Undead)"
-						]
-					]
-				}
-			]
-		},
-		{
-			"name": "Tumble",
-			"source": "DMG",
-			"page": 272,
-			"fromVariant": "Action Options",
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				},
-				{
-					"number": 1,
-					"unit": "bonus"
-				}
-			],
-			"entries": [
-				"A creature can try to tumble through a hostile creature's space, ducking and weaving past the opponent. As an action or a bonus action, the tumbler makes a Dexterity ({@skill Acrobatics}) check contested by the hostile creature's Dexterity ({@skill Acrobatics}) check. If the tumbler wins the contest, it can move through the hostile creature's space once this turn."
-			],
-			"seeAlsoAction": [
-				"Overrun|DMG"
-			]
-		},
-		{
-			"name": "Two-Weapon Fighting",
-			"source": "PHB",
-			"page": 195,
-			"srd": true,
-			"basicRules": true,
-			"reprintedAs": [
-				"Two-Weapon Fighting|XPHB"
-			],
-			"time": [
-				{
-					"number": 1,
-					"unit": "bonus"
-				}
-			],
-			"entries": [
-				"When you take the {@action Attack} action and attack with a light melee weapon that you're holding in one hand, you can use a bonus action to attack with a different light melee weapon that you're holding in the other hand. You don't add your ability modifier to the damage of the bonus attack, unless that modifier is negative.",
-				"If either weapon has the thrown property, you can throw the weapon, instead of making a melee attack with it."
-			],
-			"seeAlsoAction": [
-				"Attack"
-			]
-		},
-		{
-			"name": "Two-Weapon Fighting",
-			"source": "XPHB",
-			"page": 213,
-			"freeRules2024": true,
-			"time": [
-				{
-					"number": 1,
-					"unit": "bonus"
-				}
-			],
-			"entries": [
-				"When you take the {@action Attack|XPHB} action on your turn and attack with a Light weapon, you can make one extra attack as a {@variantrule Bonus Action|XPHB} later on the same turn. That extra attack must be made with a different Light weapon, and you don't add your ability modifier to the extra attack's damage unless that modifier is negative. For example, you can attack with a {@item Shortsword|XPHB} in one hand and a {@item Dagger|XPHB} in the other using the {@action Attack|XPHB} action and a {@variantrule Bonus Action|XPHB}, but you don't add your Strength or Dexterity modifier to the damage roll of the {@variantrule Bonus Action|XPHB} unless that modifier is negative."
-			],
-			"seeAlsoAction": [
-				"Attack|XPHB"
-			]
-		},
-		{
-			"name": "Use an Object",
-			"source": "PHB",
-			"page": 193,
-			"srd": true,
-			"basicRules": true,
-			"reprintedAs": [
-				"Utilize|XPHB"
-			],
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"You normally interact with an object while doing something else, such as when you draw a sword as part of an attack. When an object requires your action for its use, you take the Use an Object action. This action is also useful when you want to interact with more than one object on your turn."
-			]
-		},
-		{
-			"name": "Utilize",
-			"source": "XPHB",
-			"page": 377,
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"You normally interact with an object while doing something else, such as when you draw a sword as part of the {@action Attack|XPHB} action. When an object requires an action for its use, you take the Utilize action."
-			]
-		},
-		{
-			"name": "Waking Someone",
-			"source": "XGE",
-			"page": 77,
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"entries": [
-				"A creature that is naturally sleeping, as opposed to being in a magically or chemically induced sleep, wakes up if it takes any damage or if someone else uses an action to shake or slap the creature awake. A sudden loud noise\u2014such as yelling, thunder, or a ringing bell\u2014also awakens someone that is sleeping naturally.",
-				"Whispers don't disturb sleep, unless a sleeper's passive Wisdom ({@skill Perception}) score is 20 or higher and the whispers are within 10 feet of the sleeper. Speech at a normal volume awakens a sleeper if the environment is otherwise silent (no wind, birdsong, crickets, street sounds, or the like) and the sleeper has a passive Wisdom ({@skill Perception}) score of 15 or higher."
-			]
-		}
-	]
+    "action": [
+        {
+            "name": "Activate an Item",
+            "source": "DMG",
+            "page": 141,
+            "srd": true,
+            "basicRules": true,
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Para activar algunos objetos mágicos, el usuario debe realizar una acción concreta, como sostener el objeto y pronunciar una palabra de comando, leer el objeto si se trata de un pergamino, o beberlo si se trata de una poción. La descripción de cada categoría de objetos o de cada objeto concreto detalla cómo se activa. Algunos objetos siguen una o varias de las siguientes reglas relacionadas con su activación.",
+                "Si un objeto requiere una acción para activarse, dicha acción no es una variante de la acción {@action Use an Object}, por lo que una característica como {@subclassFeature Fast Hands|Rogue||Thief||3} del pícaro no puede utilizarse para activar el objeto.",
+                {
+                    "type": "entries",
+                    "name": "Command Word",
+                    "entries": [
+                        "Una palabra de comando es una palabra o frase que debe pronunciarse en voz alta para que el objeto funcione. Un objeto mágico que requiera que el usuario pronuncie una palabra de comando no puede activarse en el área de ningún efecto que impida el sonido, como la creada por el hechizo «silencio»."
+                    ]
+                },
+                {
+                    "type": "entries",
+                    "name": "Consumables",
+                    "entries": [
+                        "Algunos objetos se agotan al activarlos. Las pociones o los elixires deben beberse, y los aceites deben aplicarse sobre el cuerpo. El texto de un pergamino desaparece al leerlo. Una vez utilizado, un objeto consumible pierde su magia y deja de funcionar."
+                    ]
+                },
+                {
+                    "type": "entries",
+                    "name": "Spells",
+                    "entries": [
+                        "Algunos objetos mágicos permiten al usuario lanzar un hechizo a través del objeto, a menudo gastando cargas del mismo. El hechizo se lanza con el nivel de hechizo y de lanzador más bajo posible, no gasta ninguna de las ranuras de hechizo del usuario y no requiere componentes, a menos que la descripción del objeto indique lo contrario. El hechizo utiliza su tiempo de lanzamiento, alcance y duración normales, y el usuario del objeto debe concentrarse si el hechizo requiere {@status concentration}. Ciertos objetos son excepciones a estas reglas, modificando el tiempo de lanzamiento, la duración u otras partes del hechizo.",
+                        "Muchos objetos, como las pociones, evitan la necesidad de lanzar el hechizo y confieren sus efectos. Estos objetos siguen teniendo la misma duración que el hechizo, a menos que la descripción del objeto indique lo contrario.",
+                        "Un objeto mágico, como ciertos bastones, puede requerir que utilices tu propia capacidad de lanzamiento de conjuros cuando lances un conjuro desde dicho objeto. Si tienes más de una capacidad de lanzamiento de conjuros, eliges cuál utilizar con el objeto. Si no tienes capacidad de lanzamiento de conjuros —por ejemplo, si eres un pícaro con la característica «Uso de objetos mágicos»—, tu modificador de capacidad de lanzamiento de conjuros es +0 para ese objeto, y sí se aplica tu bonificación de competencia."
+                    ]
+                },
+                {
+                    "type": "entries",
+                    "name": "Charges",
+                    "entries": [
+                        "Algunos objetos mágicos tienen cargas que se gastan para activar sus propiedades. El número de cargas que le quedan a un objeto se revela cuando se lanza un hechizo de identificación sobre él o cuando una criatura se sintoniza con él. Además, cuando un objeto recupera cargas, la criatura sintonizada con él sabe cuántas cargas ha recuperado."
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Attack",
+            "source": "PHB",
+            "page": 192,
+            "srd": true,
+            "basicRules": true,
+            "reprintedAs": [
+                "Attack|XPHB"
+            ],
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "La acción más habitual en combate es la acción de ataque, ya sea blandiendo una espada, disparando una flecha con un arco o peleando a puñetazos.",
+                "Con esta acción, realizas un ataque cuerpo a cuerpo o a distancia. Consulta la sección «{@book Making an Attack|phb|9|making an attack}» para conocer las reglas que rigen los ataques.",
+                "Ciertas habilidades, como la habilidad «Ataque adicional» del luchador, te permiten realizar más de un ataque con esta acción."
+            ],
+            "seeAlsoAction": [
+                "Disarm|DMG",
+                "Grapple",
+                "Mark|DMG",
+                "Shove",
+                "Shove Aside|DMG",
+                "Two-Weapon Fighting"
+            ]
+        },
+        {
+            "name": "Attack",
+            "source": "XPHB",
+            "page": 361,
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Cuando realices la acción «Atacar», puedes hacer una tirada de ataque con un arma o con un {@variantrule Unarmed Strike|XPHB}.",
+                {
+                    "type": "entries",
+                    "entries": [
+                        {
+                            "type": "entries",
+                            "name": "Equipping and Unequipping Weapons",
+                            "entries": [
+                                "Puedes equiparte o desequiparte de un arma cuando realices un ataque como parte de esta acción. Puedes hacerlo antes o después del ataque. Si te equipas de un arma antes de un ataque, no es necesario que la utilices en ese ataque. Equiparse de un arma implica desenfundarla o recogerla. Desequiparse de un arma implica enfundarla, guardarla o soltarla."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Moving Between Attacks",
+                            "entries": [
+                                "Si te mueves en tu turno y tienes una habilidad, como «Ataque adicional», que te permite realizar más de un ataque como parte de la acción de ataque, puedes utilizar parte o la totalidad de ese movimiento para desplazarte entre esos ataques."
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "seeAlsoAction": [
+                "Two-Weapon Fighting|XPHB"
+            ]
+        },
+        {
+            "name": "Cast a Spell",
+            "source": "PHB",
+            "page": 192,
+            "srd": true,
+            "basicRules": true,
+            "reprintedAs": [
+                "Magic|XPHB"
+            ],
+            "time": [
+                "Varies"
+            ],
+            "entries": [
+                "Los lanzadores de conjuros, como los magos y los clérigos, así como muchos monstruos, tienen acceso a conjuros y pueden utilizarlos con gran eficacia en combate. Cada conjuro tiene un tiempo de lanzamiento, que especifica si el lanzador debe emplear una acción, una reacción, minutos o incluso horas para lanzarlo. Por lo tanto, lanzar un conjuro no es necesariamente una acción. La mayoría de los hechizos tienen un tiempo de lanzamiento de 1 acción, por lo que un lanzador de hechizos suele usar su acción en combate para lanzar dicho hechizo. Consulta {@book chapter 10|phb|10|casting a spell} para conocer las reglas sobre el lanzamiento de hechizos."
+            ]
+        },
+        {
+            "name": "Climb onto a Bigger Creature",
+            "source": "DMG",
+            "page": 271,
+            "fromVariant": "Action Options",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Si una criatura quiere abalanzarse sobre otra, puede hacerlo mediante la acción {@action grapple||grappling}. Sin embargo, una criatura pequeña o mediana tiene pocas posibilidades de realizar con éxito un agarre contra una criatura enorme o gigantesca, a menos que la magia le haya otorgado una fuerza sobrenatural.",
+                "Como alternativa, un adversario lo suficientemente grande puede considerarse terreno a efectos de saltar sobre su espalda o agarrarse a una de sus extremidades. Tras realizar las tiradas de habilidad necesarias para colocarse en posición y subirse a la criatura más grande, la criatura más pequeña utiliza su acción para realizar una tirada de Fuerza ({@skill Athletics}) o Destreza ({@skill Acrobatics}) contra la tirada de Destreza ({@skill Acrobatics}) del objetivo. Si gana la contienda, la criatura más pequeña se desplaza con éxito al espacio de la criatura objetivo, se mueve con ella y tiene ventaja en las tiradas de ataque contra ella.",
+                "La criatura más pequeña puede moverse dentro del espacio de la criatura más grande, considerando dicho espacio como {@quickref difficult terrain||3}. La capacidad de la criatura más grande para atacar a la más pequeña depende de la ubicación de esta última, y queda a tu criterio. La criatura más grande puede desalojar a la criatura más pequeña como una acción —empujándola, rozándola contra una pared o agarrándola y lanzándola— realizando una tirada de Fuerza ({@skill Athletics}) contra una tirada de Fuerza ({@skill Athletics}) o Destreza ({@skill Acrobatics}) de la criatura más pequeña. La criatura más pequeña elige qué habilidad utilizar."
+            ]
+        },
+        {
+            "name": "Dash",
+            "source": "PHB",
+            "page": 192,
+            "srd": true,
+            "basicRules": true,
+            "reprintedAs": [
+                "Dash|XPHB"
+            ],
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Cuando realizas la acción «Esprintar», obtienes movimiento adicional durante el turno actual. El aumento es igual a tu velocidad, tras aplicar cualquier modificador. Por ejemplo, con una velocidad de 9 metros, puedes moverte hasta 18 metros en tu turno si esprintas.",
+                "Cualquier aumento o disminución de tu velocidad modifica este movimiento adicional en la misma cantidad. Si tu velocidad de 9 metros se reduce a 4,5 metros, por ejemplo, puedes moverte hasta 9 metros este turno si realizas una carrera."
+            ]
+        },
+        {
+            "name": "Dash",
+            "source": "XPHB",
+            "page": 365,
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Cuando realizas la acción «Esprintar», obtienes movimiento adicional durante el turno actual. El aumento es igual a tu {@variantrule Speed|XPHB} tras aplicar cualquier modificador. Con una {@variantrule Speed|XPHB} de 30 pies, por ejemplo, puedes moverte hasta 60 pies en tu turno si esprintas. Si tu {@variantrule Speed|XPHB} de 30 pies se reduce a 15 pies, puedes moverte hasta 30 pies este turno si realizas una carrera.",
+                "Si tienes una velocidad especial, como la {@variantrule Fly Speed|XPHB} o la {@variantrule Swim Speed|XPHB}, puedes usar esa velocidad en lugar de tu {@variantrule Speed|XPHB} cuando realices esta acción. Tú eliges qué velocidad usar cada vez que la realices."
+            ]
+        },
+        {
+            "name": "Disarm",
+            "source": "DMG",
+            "page": 271,
+            "fromVariant": "Action Options",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Una criatura puede realizar un ataque con arma para arrebatarle un arma u otro objeto a un objetivo. El atacante realiza una tirada de ataque contra una tirada de Fuerza ({@skill Athletics}) o Destreza ({@skill Acrobatics}) del objetivo. Si el atacante gana la contienda, el ataque no causa daño ni ningún otro efecto negativo, pero el defensor deja caer el objeto.",
+                "El atacante tiene desventaja en su tirada de ataque si el objetivo sujeta el objeto con dos o más manos. El objetivo tiene ventaja en su tirada de habilidad si es más grande que la criatura atacante, o desventaja si es más pequeño."
+            ],
+            "seeAlsoAction": [
+                "Attack"
+            ]
+        },
+        {
+            "name": "Disengage",
+            "source": "PHB",
+            "page": 192,
+            "srd": true,
+            "basicRules": true,
+            "reprintedAs": [
+                "Disengage|XPHB"
+            ],
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Si realizas la acción «Desengancharse», tu movimiento no provocará ataques de oportunidad durante el resto del turno."
+            ]
+        },
+        {
+            "name": "Disengage",
+            "source": "XPHB",
+            "page": 366,
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Si realizas la acción «Desengancharse», tu movimiento no provocará {@action Opportunity Attack|XPHB|Opportunity Attacks} durante el resto del turno actual."
+            ]
+        },
+        {
+            "name": "Dodge",
+            "source": "PHB",
+            "page": 192,
+            "srd": true,
+            "basicRules": true,
+            "reprintedAs": [
+                "Dodge|XPHB"
+            ],
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Cuando realizas la acción «Esquivar», te concentras por completo en esquivar los ataques. Hasta el comienzo de tu siguiente turno, cualquier tirada de ataque realizada contra ti tiene desventaja si puedes ver al atacante, y realizas tiradas de salvación de Destreza con ventaja. Pierdes esta ventaja si quedas incapacitado (tal y como se explica en el apéndice) o si tu velocidad se reduce a 0."
+            ]
+        },
+        {
+            "name": "Dodge",
+            "source": "XPHB",
+            "page": 366,
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Si realizas la acción «Esquivar», obtienes las siguientes ventajas: hasta el comienzo de tu siguiente turno, cualquier tirada de ataque realizada contra ti tiene {@variantrule Disadvantage|XPHB} si puedes ver al atacante, y realizas tiradas de salvación de Destreza {@variantrule Saving Throw|XPHB|saving throws} con {@variantrule Advantage|XPHB}.",
+                "Perderás estas ventajas si tienes la condición {@condition Incapacitated|XPHB} o si tu {@variantrule Speed|XPHB} es 0."
+            ]
+        },
+        {
+            "name": "Don or Doff a Shield",
+            "source": "PHB",
+            "page": 146,
+            "srd": true,
+            "basicRules": true,
+            "reprintedAs": [
+                "Don or Doff a Shield|XPHB"
+            ],
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "El tiempo que se tarda en ponerse o quitarse la armadura {@table Getting Into and Out of Armor; Donning and Doffing Armor|phb|depends on the armor's category}. Un {@item shield|phb} se puede poner o quitar como una acción."
+            ]
+        },
+        {
+            "name": "Don or Doff a Shield",
+            "source": "XPHB",
+            "page": 219,
+            "freeRules2024": true,
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Un {@item Shield|XPHB} se puede poner o quitar en una acción."
+            ]
+        },
+        {
+            "name": "End Concentration",
+            "source": "PHB",
+            "page": 203,
+            "srd": true,
+            "basicRules": true,
+            "reprintedAs": [
+                "End Concentration|XPHB"
+            ],
+            "time": [
+                "Free"
+            ],
+            "entries": [
+                "Si un hechizo requiere {@status concentration}, esto se indica en la entrada «Duración», y el hechizo especifica cuánto tiempo puedes mantener la concentración. Puedes interrumpir la {@status concentration} en cualquier momento (sin necesidad de realizar ninguna acción)."
+            ]
+        },
+        {
+            "name": "End Concentration",
+            "source": "XPHB",
+            "page": 363,
+            "freeRules2024": true,
+            "time": [
+                "Free"
+            ],
+            "entries": [
+                "Algunos hechizos y otros efectos requieren Concentración para mantenerse activos, tal y como se indica en sus descripciones. Puedes poner fin a la Concentración en cualquier momento (sin necesidad de realizar ninguna acción)."
+            ]
+        },
+        {
+            "name": "Escape a Grapple",
+            "source": "PHB",
+            "page": 195,
+            "srd": true,
+            "basicRules": true,
+            "reprintedAs": [
+                "Escape a Grapple|XPHB"
+            ],
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Una criatura {@condition grappled} puede usar su acción para escapar. Para ello, debe superar una tirada de Fuerza ({@skill Athletics}) o Destreza ({@skill Acrobatics}) contra tu tirada de Fuerza ({@skill Athletics})."
+            ],
+            "seeAlsoAction": [
+                "Grapple"
+            ]
+        },
+        {
+            "name": "Escape a Grapple",
+            "source": "XPHB",
+            "page": 367,
+            "freeRules2024": true,
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Una criatura sujetada en un agarre puede usar su acción para realizar una tirada de Fuerza ({@skill Athletics|XPHB}) o Destreza ({@skill Acrobatics|XPHB}) contra la CD de escape del agarre, poniendo fin a la {@variantrule Condition|XPHB|condition} que sufre si tiene éxito. La {@variantrule Condition|XPHB|condition} también termina si el luchador tiene la {@condition Incapacitated|XPHB} condición o si la distancia entre el objetivo agarrado y el luchador supera el alcance del agarre."
+            ]
+        },
+        {
+            "name": "Grapple",
+            "source": "PHB",
+            "page": 195,
+            "srd": true,
+            "basicRules": true,
+            "reprintedAs": [
+                {
+                    "uid": "Unarmed Strike|XPHB",
+                    "tag": "variantrule"
+                }
+            ],
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Cuando quieras agarrar a una criatura o forcejear con ella, puedes usar la acción {@action Attack} para realizar un ataque cuerpo a cuerpo especial: un agarre. Si puedes realizar varios ataques con la acción {@action Attack}, este ataque sustituye a uno de ellos. El objetivo de tu agarre no debe ser más de un tamaño mayor que tú y debe estar a tu alcance.",
+                "Utilizando al menos una mano libre, intentas agarrar al objetivo realizando una tirada de agarre, una tirada de Fuerza ({@skill Athletics}) contra la tirada de Fuerza ({@skill Athletics}) o Destreza ({@skill Acrobatics}) del objetivo (el objetivo elige la característica que desea utilizar). Tú tienes éxito automáticamente si el objetivo está {@condition incapacitated}. Si tienes éxito, sometes al objetivo a la condición {@condition grappled} (consulta el apéndice). La condición especifica las cosas que la terminan, y puedes soltar al objetivo cuando quieras (no se requiere acción).",
+                {
+                    "type": "entries",
+                    "name": "Moving a Grappled Target",
+                    "entries": [
+                        "Cuando te desplaces, puedes arrastrar o llevar contigo a la criatura {@condition grappled}, pero tu velocidad se reduce a la mitad, a menos que la criatura sea dos o más tamaños más pequeña que tú."
+                    ]
+                }
+            ],
+            "seeAlsoAction": [
+                "Escape a Grapple"
+            ]
+        },
+        {
+            "name": "Healing Surge",
+            "source": "DMG",
+            "page": 266,
+            "fromVariant": "Healing",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Como acción, un personaje puede usar una oleada de curación y gastar hasta la mitad de sus dados de vida. Por cada dado de vida gastado de esta forma, el jugador tira el dado y suma el modificador de Constitución del personaje. El personaje recupera puntos de vida equivalentes al total. El jugador puede decidir gastar un dado de vida adicional después de cada tirada.",
+                "Un personaje que utilice un impulso curativo no podrá volver a hacerlo hasta que haya completado un descanso corto o largo. Según esta regla opcional, un personaje recupera todos los dados de vida gastados al final de un descanso largo. Con un descanso corto, un personaje recupera un número de dados de vida igual a su nivel dividido entre cuatro (con un mínimo de un dado)."
+            ]
+        },
+        {
+            "name": "Help",
+            "source": "PHB",
+            "page": 192,
+            "srd": true,
+            "basicRules": true,
+            "reprintedAs": [
+                "Help|XPHB"
+            ],
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Puedes ayudar a otra criatura a completar una tarea. Cuando realizas la acción «Ayudar», la criatura a la que ayudas obtiene ventaja en la siguiente tirada de habilidad que realice para llevar a cabo la tarea en la que la estás ayudando, siempre que realice dicha tirada antes de que comience tu siguiente turno.",
+                "Como alternativa, puedes ayudar a una criatura amiga a atacar a una criatura que se encuentre a menos de 1,5 metros de ti. Realizas una finta, distraes al objetivo o colaboras de alguna otra forma para que el ataque de tu aliado sea más eficaz. Si tu aliado ataca al objetivo antes de tu siguiente turno, la primera tirada de ataque se realiza con ventaja."
+            ]
+        },
+        {
+            "name": "Help",
+            "source": "XPHB",
+            "page": 368,
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Al seleccionar la opción «Ayuda», puedes realizar una de las siguientes acciones.",
+                {
+                    "type": "entries",
+                    "entries": [
+                        {
+                            "type": "entries",
+                            "name": "Assist an Ability Check",
+                            "entries": [
+                                "Elige una de tus habilidades o tu dominio de una herramienta, y a un aliado que se encuentre lo suficientemente cerca como para que puedas ayudarle verbal o físicamente cuando realice una tirada de habilidad. Ese aliado tendrá {@variantrule Advantage|XPHB} en la siguiente tirada de habilidad que realice con la habilidad o herramienta elegida. Esta ventaja caduca si el aliado no la utiliza antes de que comience tu siguiente turno. El DJ tiene la última palabra sobre si tu ayuda es posible."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Assist an Attack Roll",
+                            "entries": [
+                                "Distrai momentáneamente a un enemigo que se encuentre a menos de 1,5 metros de ti, lo que otorga {@variantrule Advantage|XPHB} a la próxima tirada de ataque que realice uno de tus aliados contra ese enemigo. Esta ventaja expira al comienzo de tu siguiente turno."
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Hide",
+            "source": "PHB",
+            "page": 192,
+            "srd": true,
+            "basicRules": true,
+            "reprintedAs": [
+                "Hide|XPHB"
+            ],
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Cuando realizas la acción «Esconderse», debes realizar una tirada de Destreza ({@skill Stealth}) para intentar esconderte, siguiendo las reglas de {@book chapter 7 |phb|7|hiding} para ocultarte. Si tienes éxito, obtienes ciertas ventajas, tal y como se describe en la sección «{@book Unseen Attackers and Targets|PHB|9|unseen attackers and targets}» del Manual del Jugador."
+            ]
+        },
+        {
+            "name": "Hide",
+            "source": "XPHB",
+            "page": 368,
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Con la acción «Ocultarse», intentas pasar desapercibido. Para ello, debes superar una prueba de {@dc 15} Destreza ({@skill Stealth|XPHB}) mientras estás {@variantrule Heavily Obscured|XPHB} o detrás de {@variantrule Cover|XPHB|Three-Quarters Cover or Total Cover}, y debes estar fuera del campo de visión de cualquier enemigo; si puedes ver a una criatura, puedes discernir si ella puede verte a ti.",
+                "Si la tirada tiene éxito, se cumple la condición {@condition Invisible|XPHB}. Anota el resultado total de tu tirada, que es la CD que debe superar una criatura para encontrarte mediante una tirada de Sabiduría ({@skill Perception|XPHB}).",
+                "La condición se disipa inmediatamente en cuanto se produzca cualquiera de las siguientes situaciones: emites un sonido más fuerte que un susurro, un enemigo te descubre, realizas una tirada de ataque o lanzas un hechizo con un componente verbal."
+            ]
+        },
+        {
+            "name": "Identify a Spell",
+            "source": "XGE",
+            "page": 85,
+            "fromVariant": "Spellcasting|XGE",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "reaction"
+                },
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "A veces, un personaje quiere identificar un hechizo que otra persona está lanzando o que ya se ha lanzado. Para ello, el personaje puede usar su reacción para identificar el hechizo mientras se está lanzando, o puede usar una acción en su turno para identificarlo por su efecto una vez lanzado.",
+                "Si el personaje ha percibido el lanzamiento del hechizo, el efecto del hechizo o ambos, puede realizar una tirada de Inteligencia ({@skill Arcana}) como reacción o acción. La CD es igual a 15 + el nivel del hechizo. Si el hechizo se lanza como un hechizo de clase y el personaje pertenece a esa clase, la tirada se realiza con ventaja. Por ejemplo, si el lanzador de hechizos lanza un hechizo como clérigo, otro clérigo tiene ventaja en la tirada para identificar el hechizo. Algunos hechizos no están asociados a ninguna clase cuando se lanzan, como cuando un monstruo utiliza su rasgo de Lanzamiento de hechizos innato.",
+                "Esta tirada de Inteligencia ({@skill Arcana}) refleja el hecho de que identificar un hechizo requiere una mente ágil y estar familiarizado con la teoría y la práctica del lanzamiento de hechizos. Esto es así incluso para un personaje cuya capacidad para lanzar hechizos sea Sabiduría o Carisma. El hecho de ser capaz de lanzar hechizos no implica, por sí solo, que seas experto en deducir exactamente lo que hacen los demás cuando lanzan los suyos."
+            ]
+        },
+        {
+            "name": "Improvising an Action",
+            "source": "PHB",
+            "page": 193,
+            "basicRules": true,
+            "reprintedAs": [
+                "Improvising an Action|XPHB"
+            ],
+            "time": [
+                "Varies"
+            ],
+            "entries": [
+                "Tu personaje puede hacer cosas que no se recogen en las acciones de este capítulo, como derribar puertas, intimidar a los enemigos, detectar puntos débiles en las defensas mágicas o solicitar una tregua con un adversario. Los únicos límites a las acciones que puedes intentar son tu imaginación y las puntuaciones de las características de tu personaje. Consulta las descripciones de las puntuaciones de las características en {@book chapter 7|phb|7|Ability Scores and Modifiers} para inspirarte a la hora de improvisar.",
+                "Cuando describas una acción que no se detalle en ninguna otra parte de las reglas, el DJ te indicará si esa acción es posible y qué tipo de tirada debes realizar, si procede, para determinar si tiene éxito o fracasa."
+            ]
+        },
+        {
+            "name": "Improvising an Action",
+            "source": "XPHB",
+            "page": 15,
+            "freeRules2024": true,
+            "time": [
+                "Varies"
+            ],
+            "entries": [
+                "Los personajes de los jugadores y los monstruos también pueden realizar acciones que no están contempladas en otras reglas. Muchas características de clase y otras habilidades ofrecen opciones de acción adicionales, y puedes improvisar otras acciones. Cuando describas una acción que no se detalle en ninguna otra parte de las reglas, el Dungeon Master te indicará si esa acción es posible y qué tipo de {@variantrule D20 Test|XPHB} debes realizar, si procede."
+            ]
+        },
+        {
+            "name": "Influence",
+            "source": "XPHB",
+            "page": 369,
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Con la acción «Influir», incitas a un monstruo a hacer algo. Describe o interpreta cómo te comunicas con el monstruo. ¿Intentas engañarlo, intimidarlo, divertirlo o persuadirlo con delicadeza? A continuación, el DJ determina si el monstruo se muestra dispuesto, reacio o indeciso debido a tu interacción; esta decisión determina si es necesaria una tirada de habilidad, tal y como se explica a continuación.",
+                {
+                    "type": "entries",
+                    "entries": [
+                        {
+                            "type": "entries",
+                            "name": "Willing",
+                            "entries": [
+                                "Si tu petición coincide con los deseos del monstruo, no es necesario realizar ninguna tirada de habilidad; el monstruo cumplirá tu petición de la forma que prefiera."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Unwilling",
+                            "entries": [
+                                "Si tu petición resulta repugnante para el monstruo o va en contra de su alineamiento, no es necesario realizar ninguna tirada de habilidad; el monstruo no la acatará."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Hesitant",
+                            "entries": [
+                                "Si instas al monstruo a hacer algo que este se muestra reacio a hacer, debes realizar una tirada de habilidad, que se ve afectada por la actitud del monstruo: indiferente, amistosa u hostil, tal y como se definen en este glosario. La tabla de tiradas de influencia indica qué tirada de habilidad debes realizar en función de cómo interactúes con el monstruo. El DJ elige la tirada, que tiene una CD predeterminada igual a 15 o a la puntuación de Inteligencia del monstruo, la que sea mayor. Si la tirada tiene éxito, el monstruo hace lo que se le ha instado. Si falla, debes esperar 24 horas (o un tiempo establecido por el DJ) antes de instarlo de la misma manera de nuevo."
+                            ]
+                        },
+                        {
+                            "type": "table",
+                            "caption": "Influence Checks",
+                            "colLabels": [
+                                "Ability Check",
+                                "Interaction"
+                            ],
+                            "colStyles": [
+                                "col-4",
+                                "col-8"
+                            ],
+                            "rows": [
+                                [
+                                    "Charisma ({@skill Deception|XPHB})",
+                                    "Deceiving a monster that understands you"
+                                ],
+                                [
+                                    "Charisma ({@skill Intimidation|XPHB})",
+                                    "Intimidating a monster"
+                                ],
+                                [
+                                    "Charisma ({@skill Performance|XPHB})",
+                                    "Amusing a monster"
+                                ],
+                                [
+                                    "Charisma ({@skill Persuasion|XPHB})",
+                                    "Persuading a monster that understands you"
+                                ],
+                                [
+                                    "Wisdom ({@skill Animal Handling|XPHB})",
+                                    "Gently coaxing a Beast or Monstrosity"
+                                ]
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Magic",
+            "source": "XPHB",
+            "page": 371,
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "When you take the Magic action, you cast a spell that has a casting time of an action or use a feature or magic item that requires a Magic action to be activated.",
+                "Si lanzas un hechizo cuyo tiempo de lanzamiento sea de 1 minuto o más, debes realizar la acción «Magia» en cada turno de ese lanzamiento y mantener la {@status Concentration|XPHB} mientras lo haces. Si se rompe tu {@status Concentration|XPHB}, el hechizo falla, pero no gastas un espacio de hechizo."
+            ]
+        },
+        {
+            "name": "Mark",
+            "source": "DMG",
+            "page": 271,
+            "fromVariant": "Action Options",
+            "entries": [
+                "Esta opción facilita que los combatientes cuerpo a cuerpo se ataquen mutuamente con ataques de oportunidad.",
+                "Cuando una criatura realiza un ataque cuerpo a cuerpo, también puede marcar a su objetivo. Hasta el final del siguiente turno del atacante, cualquier ataque de oportunidad que realice contra el objetivo marcado tiene ventaja. El ataque de oportunidad no consume la reacción del atacante, pero este no puede realizar el ataque si algo, como la condición {@condition incapacitated} o el hechizo {@spell shocking grasp}, le impide realizar reacciones. El atacante está limitado a un ataque de oportunidad por turno.\r\n\r\nTraducción realizada con la versión gratuita del traductor DeepL.com"
+            ],
+            "seeAlsoAction": [
+                "Attack"
+            ]
+        },
+        {
+            "name": "Opportunity Attack",
+            "source": "PHB",
+            "page": 195,
+            "srd": true,
+            "basicRules": true,
+            "reprintedAs": [
+                "Opportunity Attack|XPHB"
+            ],
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "reaction"
+                }
+            ],
+            "entries": [
+                "En un combate, todos están constantemente atentos a que los enemigos bajen la guardia. Rara vez puedes pasar junto a tus enemigos sin cuidado sin ponerte en peligro; hacerlo provoca un ataque de oportunidad.",
+                "Puedes realizar un ataque de oportunidad cuando una criatura hostil a la que puedas ver se aleja de tu alcance. Para realizar el ataque de oportunidad, utilizas tu reacción para realizar un ataque cuerpo a cuerpo contra la criatura que lo ha provocado. El ataque interrumpe el movimiento de la criatura que lo ha provocado, y tiene lugar justo antes de que la criatura salga de tu alcance.",
+                "Puedes evitar provocar un ataque de oportunidad realizando la acción {@action Disengage}. Tampoco provocas un ataque de oportunidad cuando te teletransportas o cuando alguien o algo te mueve sin utilizar tu movimiento, acción o reacción. Por ejemplo, no provocas un ataque de oportunidad si una explosión te lanza fuera del alcance de un enemigo o si la gravedad hace que caigas más allá de un enemigo."
+            ]
+        },
+        {
+            "name": "Opportunity Attack",
+            "source": "XPHB",
+            "page": 371,
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "reaction"
+                }
+            ],
+            "entries": [
+                "Puedes realizar un ataque de oportunidad cuando una criatura a la que puedas ver salga de tu alcance utilizando su acción, su {@variantrule Bonus Action|XPHB}, su {@variantrule Reaction|XPHB} o una de sus velocidades. Para realizar el ataque de oportunidad, realiza una {@variantrule Reaction|XPHB} para realizar un ataque cuerpo a cuerpo con un arma o un {@variantrule Unarmed Strike|XPHB} contra la criatura que lo ha provocado. El ataque se produce justo antes de que la criatura salga de tu alcance."
+            ]
+        },
+        {
+            "name": "Other Activity",
+            "source": "PHB",
+            "page": 190,
+            "srd": true,
+            "basicRules": true,
+            "time": [
+                "Varies"
+            ],
+            "entries": [
+                "Tu turno puede incluir diversos detalles que no requieren ni que actúes ni que te muevas.",
+                "Puedes comunicarte como puedas, mediante frases breves y gestos, cuando te toque el turno.",
+                "También puedes interactuar con un objeto o elemento del entorno de forma gratuita, ya sea durante tu movimiento o durante tu acción. Por ejemplo, podrías abrir una puerta mientras te acercas a un enemigo, o desenfundar tu arma como parte de la misma acción que utilizas para atacar.",
+                "Si quieres interactuar con un segundo objeto, debes emplear una acción. Algunos objetos mágicos y otros objetos especiales siempre requieren una acción para ser utilizados, tal y como se indica en sus descripciones.",
+                "El DJ puede pedirte que utilices una acción para cualquiera de estas actividades cuando requieran un cuidado especial o cuando supongan un obstáculo inusual. Por ejemplo, el DJ podría esperar razonablemente que utilizaras una acción para abrir una puerta atascada o girar una manivela para bajar un puente levadizo.",
+                {
+                    "type": "inset",
+                    "name": "Interacting with Objects Around You",
+                    "entries": [
+                        "A continuación te ofrecemos algunos ejemplos de cosas que puedes hacer al mismo tiempo que te mueves y actúas:",
+                        {
+                            "type": "list",
+                            "items": [
+                                "desenvainar o enfundar una espada",
+                                "abrir o cerrar una puerta",
+                                "sacar una poción de tu mochila",
+                                "recoger un hacha que se ha caído",
+                                "coger una bola de Navidad de una mesa",
+                                "quitarse un anillo del dedo",
+                                "meterse comida en la boca",
+                                "plantar una pancarta en el suelo",
+                                "sacar unas monedas de la bolsa que llevas en el cinturón",
+                                "beberse toda la cerveza de una jarra",
+                                "accionar una palanca o un interruptor",
+                                "sacar una antorcha de un candelabro",
+                                "coge un libro de una estantería a la que puedas llegar",
+                                "apagar una llama pequeña",
+                                "ponerse una mascarilla",
+                                "súbete la capucha de la capa hasta cubrirte la cabeza",
+                                "poner la oreja en la puerta",
+                                "dar una patada a una piedrecita",
+                                "girar la llave en la cerradura",
+                                "dar golpecitos en el suelo con un palo de tres metros",
+                                "entregarle un objeto a otro personaje"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Overrun",
+            "source": "DMG",
+            "page": 272,
+            "fromVariant": "Action Options",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                },
+                {
+                    "number": 1,
+                    "unit": "bonus"
+                }
+            ],
+            "entries": [
+                "Cuando una criatura intenta atravesar el espacio de una criatura hostil, la criatura que se desplaza puede intentar abrirse paso arrollando a la criatura hostil. Como acción o acción adicional, la criatura que se desplaza realiza una tirada de Fuerza ({@skill Athletics}) contra la tirada de Fuerza ({@skill Athletics}) de la criatura hostil. La criatura que intenta la arrollada tiene ventaja en esta tirada si es más grande que la criatura hostil, o desventaja si es más pequeña. Si la criatura que se mueve gana la contienda, puede atravesar el espacio de la criatura hostil una vez durante este turno."
+            ],
+            "seeAlsoAction": [
+                "Tumble|DMG"
+            ]
+        },
+        {
+            "name": "Ready",
+            "source": "PHB",
+            "page": 193,
+            "srd": true,
+            "basicRules": true,
+            "reprintedAs": [
+                "Ready|XPHB"
+            ],
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "A veces querrás adelantarte a un enemigo o esperar a que se dé una circunstancia concreta antes de actuar. Para ello, puedes realizar la acción «Preparado» en tu turno, lo que te permite actuar utilizando tu reacción antes de que comience tu siguiente turno.",
+                "En primer lugar, debes decidir qué circunstancia perceptible desencadenará tu reacción. A continuación, eliges la acción que llevarás a cabo en respuesta a ese desencadenante, o decides moverte a tu velocidad en respuesta a él. Algunos ejemplos son: «Si el sectario pisa la trampilla, tiraré de la palanca que la abre» y «Si el duende se acerca a mí, me alejo».",
+                "Cuando se produzca el desencadenante, puedes elegir entre realizar tu reacción justo después de que este haya terminado o ignorarlo. Recuerda que solo puedes realizar una reacción por ronda.",
+                "Cuando preparas un hechizo, lo lanzas como de costumbre, pero retienes su energía, que liberas con una reacción cuando se produce el desencadenante. Para poder prepararse, un hechizo debe tener un tiempo de lanzamiento de 1 acción, y retener la magia del hechizo requiere {@status concentration} (explicado en {@book chapter 10|phb|10|concentration}). Si se rompe tu {@status concentration}, el hechizo se disipa sin surtir efecto. Por ejemplo, si te estás {@status concentration||concentrating} en el hechizo «red» y preparas «misil mágico», tu hechizo «red» termina, y si recibes daño antes de lanzar «misil mágico» con tu reacción, tu {@status concentration} podría romperse.",
+                "Tienes hasta el comienzo de tu siguiente turno para realizar una acción preparada."
+            ]
+        },
+        {
+            "name": "Ready",
+            "source": "XPHB",
+            "page": 372,
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Realizas la acción «Preparado» para esperar a que se dé una circunstancia concreta antes de actuar. Para ello, realizas esta acción en tu turno, lo que te permite actuar mediante una {@variantrule Reaction|XPHB} antes de que comience tu siguiente turno.",
+                "En primer lugar, decides qué circunstancia perceptible activará tu {@variantrule Reaction|XPHB}. A continuación, eliges la acción que realizarás en respuesta a ese desencadenante, o decides moverte hasta tu {@variantrule Speed|XPHB} en respuesta a él. Algunos ejemplos son: «Si el cultista pisa la trampilla, tiraré de la palanca que la abre» y «Si el zombi se acerca a mí, me alejaré».",
+                "Cuando se active el desencadenante, puedes elegir entre realizar tu {@variantrule Reaction|XPHB} inmediatamente después de que finalice el desencadenante o ignorarlo.",
+                "Cuando preparas un hechizo, lo lanzas como de costumbre (gastando los recursos necesarios para ello), pero retienes su energía, que liberas mediante tu {@variantrule Reaction|XPHB} cuando se produce el desencadenante. Para poder prepararse, un hechizo debe tener un tiempo de lanzamiento de una acción, y retener la magia del hechizo requiere {@status Concentration|XPHB}, que puedes mantener hasta el comienzo de tu siguiente turno. Si tu {@status Concentration|XPHB} se rompe, el hechizo se disipa sin surtir efecto."
+            ]
+        },
+        {
+            "name": "Search",
+            "source": "PHB",
+            "page": 193,
+            "srd": true,
+            "basicRules": true,
+            "reprintedAs": [
+                "Search|XPHB"
+            ],
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Cuando realizas la acción «Buscar», centras tu atención en encontrar algo. Dependiendo de la naturaleza de tu búsqueda, el DJ puede pedirte que realices una tirada de Sabiduría ({@skill Perception}) o una tirada de Inteligencia ({@skill Investigation})."
+            ]
+        },
+        {
+            "name": "Search",
+            "source": "XPHB",
+            "page": 373,
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Cuando realizas la acción «Buscar», debes realizar una tirada de Sabiduría para descubrir algo que no es evidente. La tabla de «Buscar» indica qué habilidades son aplicables al realizar esta acción, dependiendo de lo que estés tratando de detectar.",
+                {
+                    "type": "table",
+                    "caption": "Search",
+                    "colLabels": [
+                        "Skill",
+                        "Thing to Detect"
+                    ],
+                    "colStyles": [
+                        "col-4",
+                        "col-8"
+                    ],
+                    "rows": [
+                        [
+                            "{@skill Insight|XPHB}",
+                            "Creature's state of mind"
+                        ],
+                        [
+                            "{@skill Medicine|XPHB}",
+                            "Creature's ailment or cause of death"
+                        ],
+                        [
+                            "{@skill Perception|XPHB}",
+                            "Concealed creature or object"
+                        ],
+                        [
+                            "{@skill Survival|XPHB}",
+                            "Tracks or food"
+                        ]
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Shove",
+            "source": "PHB",
+            "page": 195,
+            "srd": true,
+            "basicRules": true,
+            "reprintedAs": [
+                {
+                    "uid": "Unarmed Strike|XPHB",
+                    "tag": "variantrule"
+                }
+            ],
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Con la acción {@action Attack}, puedes realizar un ataque cuerpo a cuerpo especial para empujar a una criatura, ya sea para dejarla {@condition prone} o para alejarla de ti. Si puedes realizar varios ataques con la acción {@action Attack}, este ataque sustituye a uno de ellos.",
+                "El objetivo de tu empujón no debe ser más de un tamaño mayor que tú, y debe estar a tu alcance. Realizas una tirada de Fuerza ({@skill Athletics}) contra la tirada de Fuerza ({@skill Athletics}) o Destreza ({@skill Acrobatics}) del objetivo (el objetivo elige la característica que desea usar). Tienes éxito automáticamente si el objetivo está {@condition incapacitated}. Si tienes éxito, o bien derribas al objetivo {@condition prone} o lo empujas 1,5 metros lejos de ti."
+            ],
+            "seeAlsoAction": [
+                "Attack",
+                "Shove Aside|DMG"
+            ]
+        },
+        {
+            "name": "Shove Aside",
+            "source": "DMG",
+            "page": 272,
+            "fromVariant": "Action Options",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Con esta opción, una criatura utiliza el ataque especial {@action shove} descrito en el {@book Player's Handbook|PHB|9|Shoving a Creature} para obligar al objetivo a desplazarse hacia un lado, en lugar de alejarse. El atacante tiene desventaja en su tirada de Fuerza ({@skill Athletics}) cuando lo hace. Si la tirada tiene éxito, el atacante desplaza al objetivo 1,5 metros a un espacio diferente dentro de su alcance."
+            ]
+        },
+        {
+            "name": "Stabilize a Creature",
+            "source": "PHB",
+            "page": 197,
+            "srd": true,
+            "basicRules": true,
+            "reprintedAs": [
+                "Help|XPHB"
+            ],
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Puedes usar tu acción para prestar primeros auxilios a una criatura {@condition unconscious} e intentar estabilizarla, lo que requiere una tirada de Sabiduría ({@dc 10}) con una CD de 10.",
+                "Una criatura estable no realiza tiradas de salvación contra la muerte, aunque tenga 0 puntos de vida, pero permanece {@condition unconscious}. La criatura deja de estar estable y debe volver a realizar tiradas de salvación contra la muerte si recibe algún daño. Una criatura estable que no haya sido curada recupera 1 punto de vida tras {@dice 1d4} horas."
+            ]
+        },
+        {
+            "name": "Study",
+            "source": "XPHB",
+            "page": 375,
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Cuando realizas la acción «Estudiar», haces una tirada de Inteligencia para examinar tus recuerdos, un libro, una pista u otra fuente de conocimiento, y recuperas un dato importante al respecto.",
+                "La tabla de áreas de conocimiento indica qué competencias son aplicables a las distintas áreas de conocimiento.",
+                {
+                    "type": "table",
+                    "caption": "Areas of Knowledge",
+                    "colLabels": [
+                        "Skill",
+                        "Areas"
+                    ],
+                    "colStyles": [
+                        "col-3",
+                        "col-9"
+                    ],
+                    "rows": [
+                        [
+                            "{@skill Arcana|XPHB}",
+                            "Spells, magic items, eldritch symbols, magical traditions, planes of existence, and certain creatures (Aberrations, Constructs, Elementals, Fey, and Monstrosities)"
+                        ],
+                        [
+                            "{@skill History|XPHB}",
+                            "Historic events and people, ancient civilizations, wars, and certain creatures (Giants and Humanoids)"
+                        ],
+                        [
+                            "{@skill Investigation|XPHB}",
+                            "Traps, ciphers, riddles, and gadgetry"
+                        ],
+                        [
+                            "{@skill Nature|XPHB}",
+                            "Terrain, flora, weather, and certain creatures (Beasts, Dragons, Oozes, and Plants)"
+                        ],
+                        [
+                            "{@skill Religion|XPHB}",
+                            "Deities, religious hierarchies and rites, holy symbols, cults, and certain creatures (Celestials, Fiends, and Undead)"
+                        ]
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Tumble",
+            "source": "DMG",
+            "page": 272,
+            "fromVariant": "Action Options",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                },
+                {
+                    "number": 1,
+                    "unit": "bonus"
+                }
+            ],
+            "entries": [
+                "Una criatura puede intentar rodar por el espacio de una criatura hostil, esquivándola y zigzagueando a su alrededor. Como acción o acción adicional, la criatura que rueda realiza una tirada de Destreza ({@skill Acrobatics}) contra la tirada de Destreza ({@skill Acrobatics}) de la criatura hostil. Si la criatura que rueda gana la contienda, puede moverse por el espacio de la criatura hostil una vez durante este turno."
+            ],
+            "seeAlsoAction": [
+                "Overrun|DMG"
+            ]
+        },
+        {
+            "name": "Two-Weapon Fighting",
+            "source": "PHB",
+            "page": 195,
+            "srd": true,
+            "basicRules": true,
+            "reprintedAs": [
+                "Two-Weapon Fighting|XPHB"
+            ],
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "bonus"
+                }
+            ],
+            "entries": [
+                "Cuando realices la acción {@action Attack} y ataques con un arma cuerpo a cuerpo ligera que sostengas en una mano, puedes usar una acción adicional para atacar con otra arma cuerpo a cuerpo ligera que sostengas en la otra mano. No sumas tu modificador de característica al daño del ataque adicional, a menos que ese modificador sea negativo.",
+                "Si alguna de las armas tiene la propiedad «lanzable», puedes lanzarla en lugar de realizar un ataque cuerpo a cuerpo con ella."
+            ],
+            "seeAlsoAction": [
+                "Attack"
+            ]
+        },
+        {
+            "name": "Two-Weapon Fighting",
+            "source": "XPHB",
+            "page": 213,
+            "freeRules2024": true,
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "bonus"
+                }
+            ],
+            "entries": [
+                "Cuando realices la acción {@action Attack|XPHB} en tu turno y ataques con un arma ligera, puedes realizar un ataque adicional como {@variantrule Bonus Action|XPHB} más adelante en el mismo turno. Ese ataque adicional debe realizarse con un arma ligera diferente, y no se suma tu modificador de característica al daño del ataque adicional a menos que dicho modificador sea negativo. Por ejemplo, puedes atacar con una {@item Shortsword|XPHB} en una mano y una {@item Dagger|XPHB} en la otra utilizando la acción {@action Attack|XPHB} y una {@variantrule Bonus Action|XPHB}, pero no sumas tu modificador de Fuerza o Destreza a la tirada de daño de la {@variantrule Bonus Action|XPHB} a menos que ese modificador sea negativo."
+            ],
+            "seeAlsoAction": [
+                "Attack|XPHB"
+            ]
+        },
+        {
+            "name": "Use an Object",
+            "source": "PHB",
+            "page": 193,
+            "srd": true,
+            "basicRules": true,
+            "reprintedAs": [
+                "Utilize|XPHB"
+            ],
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Normalmente interactúas con un objeto mientras realizas otra acción, como cuando desenvainas una espada como parte de un ataque. Cuando un objeto requiere que realices una acción para utilizarlo, debes llevar a cabo la acción «Usar un objeto». Esta acción también resulta útil cuando deseas interactuar con más de un objeto en tu turno."
+            ]
+        },
+        {
+            "name": "Utilize",
+            "source": "XPHB",
+            "page": 377,
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Normalmente interactúas con un objeto mientras realizas otra acción, como cuando desenvainas una espada como parte de la acción {@action Attack|XPHB}. Cuando un objeto requiere una acción para su uso, realizas la acción «Utilizar»."
+            ]
+        },
+        {
+            "name": "Waking Someone",
+            "source": "XGE",
+            "page": 77,
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "entries": [
+                "Una criatura que esté durmiendo de forma natural, a diferencia de un sueño inducido mágica o químicamente, se despierta si recibe algún daño o si alguien utiliza una acción para sacudirla o darle una bofetada y despertarla. Un ruido fuerte y repentino —como un grito, un trueno o el sonido de una campana— también despierta a alguien que esté durmiendo de forma natural.",
+                "Los susurros no perturban el sueño, a menos que la puntuación de Sabiduría pasiva ({@skill Perception}) de la persona que duerme sea de 20 o más y los susurros se produzcan a menos de 3 metros de ella. Hablar a un volumen normal despierta a quien duerme si el entorno es por lo demás silencioso (sin viento, canto de pájaros, grillos, ruidos de la calle ni similares) y quien duerme tiene una puntuación de Sabiduría pasiva ({@skill Perception}) de 15 o más."
+            ]
+        }
+    ]
 }

@@ -1,98 +1,98 @@
 {
-	"spell": [
-		{
-			"name": "Freedom of the Waves",
-			"source": "TDCSR",
-			"page": 176,
-			"level": 3,
-			"school": "C",
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "feet",
-					"amount": 120
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": "a strand of wet hair"
-			},
-			"duration": [
-				{
-					"type": "instant"
-				}
-			],
-			"entries": [
-				"You conjure a deluge of seawater in a 15-foot-radius, 10-foot-tall cylinder centered on a point within range. This water takes the form of a tidal wave, a whirlpool, a waterspout, or another form of your choice. Each creature in the area must succeed on a Strength {@quickref saving throws|PHB|2|1|saving throw} against your spell save DC or take {@damage 2d8} bludgeoning damage and fall {@condition prone}. You can choose a number of creatures equal to your spellcasting modifier (minimum of 1) to automatically succeed on this {@quickref saving throws|PHB|2|1|saving throw}.",
-				"If you are within the spell's area, as part of the action you use to cast the spell, you can vanish into the deluge and teleport to an unoccupied space that you can see within the spell's area."
-			],
-			"damageInflict": [
-				"bludgeoning"
-			],
-			"conditionInflict": [
-				"prone"
-			],
-			"savingThrow": [
-				"strength"
-			],
-			"miscTags": [
-				"SGT",
-				"TP"
-			],
-			"areaTags": [
-				"MT",
-				"Y"
-			]
-		},
-		{
-			"name": "Freedom of the Winds",
-			"source": "TDCSR",
-			"page": 176,
-			"level": 5,
-			"school": "A",
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "self"
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": "a scrap of sailcloth"
-			},
-			"duration": [
-				{
-					"type": "timed",
-					"duration": {
-						"type": "minute",
-						"amount": 10
-					},
-					"concentration": true
-				}
-			],
-			"entries": [
-				"Wind wraps around your body, tugging at your hair and clothing as your feet lift off the ground. You gain a flying speed of 60 feet. Additionally, you have {@quickref Advantage and Disadvantage|PHB|2|0|advantage} on {@quickref ability checks|PHB|2|0} to avoid being {@condition grappled}, and on {@quickref saving throws|PHB|2|1} against being {@condition restrained} or {@condition paralyzed}.",
-				"When you are targeted by a spell or attack while this spell is in effect, you can use a reaction to teleport up to 60 feet to an unoccupied space you can see. If this movement takes you out of range of the triggering spell or attack, you are unaffected by it. This spell then ends when you reappear."
-			],
-			"miscTags": [
-				"ADV",
-				"SGT",
-				"TP"
-			]
-		}
-	]
+    "spell": [
+        {
+            "name": "Freedom of the Waves",
+            "source": "TDCSR",
+            "page": 176,
+            "level": 3,
+            "school": "C",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "feet",
+                    "amount": 120
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": "a strand of wet hair"
+            },
+            "duration": [
+                {
+                    "type": "instant"
+                }
+            ],
+            "entries": [
+                "Conjuras un diluvio de agua marina en un cilindro de 4,5 metros de radio y 3 metros de altura centrado en un punto dentro del alcance. Esta agua toma la forma de un maremoto, un remolino, una tromba marina u otra forma de tu elección. Cada criatura en el área debe superar una tirada de salvación de Fuerza {@quickref saving throws|PHB|2|1|saving throw} contra tu CD de salvación de hechizo o sufrir {@damage 2d8} de daño contundente y caer {@condition prone}. Puedes elegir un número de criaturas igual a tu modificador de lanzamiento de conjuros (mínimo 1) para que superen automáticamente esta {@quickref saving throws|PHB|2|1|saving throw}.",
+                "Si te encuentras dentro del área del hechizo, como parte de la acción que utilizas para lanzar el hechizo, puedes desaparecer en el diluvio y teletransportarte a un espacio desocupado que puedas ver dentro del área del hechizo."
+            ],
+            "damageInflict": [
+                "bludgeoning"
+            ],
+            "conditionInflict": [
+                "prone"
+            ],
+            "savingThrow": [
+                "strength"
+            ],
+            "miscTags": [
+                "SGT",
+                "TP"
+            ],
+            "areaTags": [
+                "MT",
+                "Y"
+            ]
+        },
+        {
+            "name": "Freedom of the Winds",
+            "source": "TDCSR",
+            "page": 176,
+            "level": 5,
+            "school": "A",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "self"
+                }
+            },
+            "components": {
+                "v": true,
+                "s": true,
+                "m": "a scrap of sailcloth"
+            },
+            "duration": [
+                {
+                    "type": "timed",
+                    "duration": {
+                        "type": "minute",
+                        "amount": 10
+                    },
+                    "concentration": true
+                }
+            ],
+            "entries": [
+                "El viento envuelve tu cuerpo, tirando de tu cabello y tu ropa mientras tus pies se elevan del suelo. Ganas una velocidad de vuelo de 60 pies. Además, tienes {@quickref Advantage and Disadvantage|PHB|2|0|advantage} en {@quickref ability checks|PHB|2|0} para evitar ser {@condition grappled}, y en {@quickref saving throws|PHB|2|1} contra ser {@condition restrained} o {@condition paralyzed}.",
+                "Cuando eres blanco de un hechizo o ataque mientras este hechizo está en efecto, puedes usar una reacción para teletransportarte hasta 60 pies a un espacio desocupado que puedas ver. Si este movimiento te saca del alcance del hechizo o ataque desencadenante, no te verás afectado por él. Este hechizo termina cuando reapareces."
+            ],
+            "miscTags": [
+                "ADV",
+                "SGT",
+                "TP"
+            ]
+        }
+    ]
 }

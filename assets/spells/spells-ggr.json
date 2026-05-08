@@ -1,41 +1,41 @@
 {
-	"spell": [
-		{
-			"name": "Encode Thoughts",
-			"source": "GGR",
-			"page": 47,
-			"level": 0,
-			"school": "E",
-			"time": [
-				{
-					"number": 1,
-					"unit": "action"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "self"
-				}
-			},
-			"components": {
-				"s": true
-			},
-			"duration": [
-				{
-					"type": "timed",
-					"duration": {
-						"type": "hour",
-						"amount": 8
-					}
-				}
-			],
-			"entries": [
-				"Putting a finger to your head, you pull a memory, an idea, or a message from your mind and transform it into a tangible string of glowing energy called a thought strand, which persists for the duration or until you cast this spell again. The thought strand appears in an unoccupied space within 5 feet of you as a Tiny, weightless, semisolid object that can be held and carried like a ribbon. It is otherwise stationary.",
-				"If you cast this spell while {@status concentration||concentrating} on a spell or an ability that allows you to read or manipulate the thoughts of others (such as {@spell detect thoughts} or {@spell modify memory}), you can transform the thoughts or memories you read, rather than your own, into a thought strand.",
-				"Casting this spell while holding a thought strand allows you to instantly receive whatever memory, idea, or message the thought strand contains. (Casting {@spell detect thoughts} on the strand has the same effect.)"
-			],
-			"hasFluffImages": true
-		}
-	]
+    "spell": [
+        {
+            "name": "Encode Thoughts",
+            "source": "GGR",
+            "page": 47,
+            "level": 0,
+            "school": "E",
+            "time": [
+                {
+                    "number": 1,
+                    "unit": "action"
+                }
+            ],
+            "range": {
+                "type": "point",
+                "distance": {
+                    "type": "self"
+                }
+            },
+            "components": {
+                "s": true
+            },
+            "duration": [
+                {
+                    "type": "timed",
+                    "duration": {
+                        "type": "hour",
+                        "amount": 8
+                    }
+                }
+            ],
+            "entries": [
+                "Poniendo un dedo en la cabeza, extraes un recuerdo, una idea o un mensaje de tu mente y lo transformas en una cadena tangible de energía brillante llamada hebra de pensamiento, que persiste durante todo el tiempo que dure el hechizo o hasta que vuelvas a lanzarlo. La hebra de pensamiento aparece en un espacio desocupado a menos de 1,5 metros de ti como un objeto diminuto, ingrávido y semisólido que se puede sostener y transportar como una cinta. Por lo demás, permanece inmóvil.",
+                "Si lanzas este hechizo mientras {@status concentration||concentrating} en un hechizo o una habilidad que te permite leer o manipular los pensamientos de otros (como {@spell detect thoughts} o {@spell modify memory}), puedes transformar los pensamientos o recuerdos que lees, en lugar de los tuyos propios, en un hilo de pensamiento.",
+                "Al lanzar este hechizo mientras sostienes un hilo de pensamiento, puedes recibir al instante cualquier recuerdo, idea o mensaje que contenga el hilo de pensamiento. (Lanzar {@spell detect thoughts} sobre el hilo tiene el mismo efecto)."
+            ],
+            "hasFluffImages": true
+        }
+    ]
 }

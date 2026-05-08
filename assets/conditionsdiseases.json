@@ -1,1504 +1,1504 @@
 {
-	"condition": [
-		{
-			"name": "Blinded",
-			"source": "PHB",
-			"page": 290,
-			"srd": true,
-			"basicRules": true,
-			"otherSources": [
-				{
-					"source": "RMR",
-					"page": 62
-				},
-				{
-					"source": "HftT",
-					"page": 48
-				}
-			],
-			"reprintedAs": [
-				"Blinded|XPHB"
-			],
-			"entries": [
-				{
-					"type": "list",
-					"items": [
-						"A blinded creature can't see and automatically fails any ability check that requires sight.",
-						"Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage."
-					]
-				}
-			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Blinded",
-			"source": "XPHB",
-			"page": 361,
-			"freeRules2024": true,
-			"entries": [
-				"While you have the Blinded condition, you experience the following effects.",
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "Can't See",
-							"entries": [
-								"You can't see and automatically fail any ability check that requires sight."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Attacks Affected",
-							"entries": [
-								"{@action Attack|XPHB} rolls against you have {@variantrule Advantage|XPHB}, and your attack rolls have {@variantrule Disadvantage|XPHB}."
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "Charmed",
-			"source": "PHB",
-			"page": 290,
-			"srd": true,
-			"basicRules": true,
-			"otherSources": [
-				{
-					"source": "RMR",
-					"page": 62
-				},
-				{
-					"source": "HftT",
-					"page": 48
-				}
-			],
-			"reprintedAs": [
-				"Charmed|XPHB"
-			],
-			"entries": [
-				{
-					"type": "list",
-					"items": [
-						"A charmed creature can't attack the charmer or target the charmer with harmful abilities or magical effects.",
-						"The charmer has advantage on any ability check to interact socially with the creature."
-					]
-				}
-			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Charmed",
-			"source": "XPHB",
-			"page": 361,
-			"freeRules2024": true,
-			"entries": [
-				"While you have the Charmed condition, you experience the following effects.",
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "Can't Harm the Charmer",
-							"entries": [
-								"You can't attack the charmer or target the charmer with damaging abilities or {@variantrule Magical Effect|XPHB|magical effects}."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Social Advantage",
-							"entries": [
-								"The charmer has {@variantrule Advantage|XPHB} on any ability check to interact with you socially."
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "Deafened",
-			"source": "PHB",
-			"page": 290,
-			"srd": true,
-			"basicRules": true,
-			"otherSources": [
-				{
-					"source": "RMR",
-					"page": 62
-				},
-				{
-					"source": "HftT",
-					"page": 48
-				}
-			],
-			"reprintedAs": [
-				"Deafened|XPHB"
-			],
-			"entries": [
-				{
-					"type": "list",
-					"items": [
-						"A deafened creature can't hear and automatically fails any ability check that requires hearing."
-					]
-				}
-			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Deafened",
-			"source": "XPHB",
-			"page": 365,
-			"freeRules2024": true,
-			"entries": [
-				"While you have the Deafened condition, you experience the following effect.",
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "Can't Hear",
-							"entries": [
-								"You can't hear and automatically fail any ability check that requires hearing."
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "Exhaustion",
-			"source": "PHB",
-			"page": 291,
-			"srd": true,
-			"basicRules": true,
-			"otherSources": [
-				{
-					"source": "RMR",
-					"page": 62
-				}
-			],
-			"reprintedAs": [
-				"Exhaustion|XPHB"
-			],
-			"entries": [
-				"Some special abilities and environmental hazards, such as starvation and the long-term effects of freezing or scorching temperatures, can lead to a special condition called exhaustion. Exhaustion is measured in six levels. An effect can give a creature one or more levels of exhaustion, as specified in the effect's description.",
-				{
-					"type": "table",
-					"colLabels": [
-						"Level",
-						"Effect"
-					],
-					"colStyles": [
-						"col-1 text-center",
-						"col-11"
-					],
-					"rows": [
-						[
-							"1",
-							"Disadvantage on ability checks"
-						],
-						[
-							"2",
-							"Speed halved"
-						],
-						[
-							"3",
-							"Disadvantage on attack rolls and saving throws"
-						],
-						[
-							"4",
-							"Hit point maximum halved"
-						],
-						[
-							"5",
-							"Speed reduced to 0"
-						],
-						[
-							"6",
-							"Death"
-						]
-					]
-				},
-				"If an already exhausted creature suffers another effect that causes exhaustion, its current level of exhaustion increases by the amount specified in the effect's description.",
-				"A creature suffers the effect of its current level of exhaustion as well as all lower levels. For example, a creature suffering level 2 exhaustion has its speed halved and has disadvantage on ability checks.",
-				"An effect that removes exhaustion reduces its level as specified in the effect's description, with all exhaustion effects ending if a creature's exhaustion level is reduced below 1.",
-				"Finishing a long rest reduces a creature's exhaustion level by 1, provided that the creature has also ingested some food and drink. Also, being raised from the dead reduces a creature's exhaustion level by 1."
-			]
-		},
-		{
-			"name": "Exhaustion",
-			"source": "XPHB",
-			"page": 365,
-			"freeRules2024": true,
-			"entries": [
-				"While you have the Exhaustion condition, you experience the following effects.",
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "Exhaustion Levels",
-							"entries": [
-								"This condition is cumulative. Each time you receive it, you gain 1 Exhaustion level. You die if your Exhaustion level is 6."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "D20 Tests Affected",
-							"entries": [
-								"When you make a D20 Test the roll is reduced by 2 times your Exhaustion level."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Speed Reduced",
-							"entries": [
-								"Your {@variantrule Speed|XPHB} is reduced by a number of feet equal to 5 times your Exhaustion level."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Removing Exhaustion Levels",
-							"entries": [
-								"Finishing a {@variantrule Long Rest|XPHB} removes 1 of your Exhaustion levels. When your Exhaustion level reaches 0, the condition ends."
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "Frightened",
-			"source": "PHB",
-			"page": 290,
-			"srd": true,
-			"basicRules": true,
-			"otherSources": [
-				{
-					"source": "RMR",
-					"page": 62
-				},
-				{
-					"source": "HftT",
-					"page": 48
-				}
-			],
-			"reprintedAs": [
-				"Frightened|XPHB"
-			],
-			"entries": [
-				{
-					"type": "list",
-					"items": [
-						"A frightened creature has disadvantage on ability checks and attack rolls while the source of its fear is within line of sight.",
-						"The creature can't willingly move closer to the source of its fear."
-					]
-				}
-			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Frightened",
-			"source": "XPHB",
-			"page": 367,
-			"freeRules2024": true,
-			"entries": [
-				"While you have the Frightened condition, you experience the following effects.",
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "Ability Checks and Attacks Affected",
-							"entries": [
-								"You have {@variantrule Disadvantage|XPHB} on ability checks and attack rolls while the source of fear is within line of sight."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Can't Approach",
-							"entries": [
-								"You can't willingly move closer to the source of fear."
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "Grappled",
-			"source": "PHB",
-			"page": 290,
-			"srd": true,
-			"basicRules": true,
-			"otherSources": [
-				{
-					"source": "RMR",
-					"page": 62
-				},
-				{
-					"source": "HftT",
-					"page": 48
-				}
-			],
-			"reprintedAs": [
-				"Grappled|XPHB"
-			],
-			"entries": [
-				{
-					"type": "list",
-					"items": [
-						"A grappled creature's speed becomes 0, and it can't benefit from any bonus to its speed.",
-						"The condition ends if the grappler is {@condition incapacitated}.",
-						"The condition also ends if an effect removes the grappled creature from the reach of the grappler or grappling effect, such as when a creature is hurled away by the {@spell thunderwave} spell."
-					]
-				}
-			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Grappled",
-			"source": "XPHB",
-			"page": 367,
-			"freeRules2024": true,
-			"entries": [
-				"While you have the Grappled condition, you experience the following effects.",
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "Speed 0",
-							"entries": [
-								"Your {@variantrule Speed|XPHB} is 0 and can't increase."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Attacks Affected",
-							"entries": [
-								"You have {@variantrule Disadvantage|XPHB} on attack rolls against any target other than the grappler."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Movable",
-							"entries": [
-								"The grappler can drag or carry you when it moves, but every foot of movement costs it 1 extra foot unless you are Tiny or two or more sizes smaller than it."
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "Incapacitated",
-			"source": "PHB",
-			"page": 290,
-			"srd": true,
-			"basicRules": true,
-			"otherSources": [
-				{
-					"source": "RMR",
-					"page": 62
-				},
-				{
-					"source": "HftT",
-					"page": 48
-				}
-			],
-			"reprintedAs": [
-				"Incapacitated|XPHB"
-			],
-			"entries": [
-				{
-					"type": "list",
-					"items": [
-						"An incapacitated creature can't take actions or reactions."
-					]
-				}
-			]
-		},
-		{
-			"name": "Incapacitated",
-			"source": "XPHB",
-			"page": 369,
-			"freeRules2024": true,
-			"entries": [
-				"While you have the Incapacitated condition, you experience the following effects.",
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "Inactive",
-							"entries": [
-								"You can't take any {@variantrule Action|XPHB|action}, {@variantrule Bonus Action|XPHB}, or {@variantrule Reaction|XPHB}."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "No Concentration",
-							"entries": [
-								"Your {@status Concentration|XPHB} is broken."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Speechless",
-							"entries": [
-								"You can't speak."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Surprised",
-							"entries": [
-								"If you're Incapacitated when you roll {@variantrule Initiative|XPHB}, you have {@variantrule Disadvantage|XPHB} on the roll."
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "Invisible",
-			"source": "PHB",
-			"page": 291,
-			"srd": true,
-			"basicRules": true,
-			"otherSources": [
-				{
-					"source": "RMR",
-					"page": 62
-				},
-				{
-					"source": "HftT",
-					"page": 48
-				}
-			],
-			"reprintedAs": [
-				"Invisible|XPHB"
-			],
-			"entries": [
-				{
-					"type": "list",
-					"items": [
-						"An invisible creature is impossible to see without the aid of magic or a special sense. For the purpose of hiding, the creature is heavily obscured. The creature's location can be detected by any noise it makes or any tracks it leaves.",
-						"Attack rolls against the creature have disadvantage, and the creature's attack rolls have advantage."
-					]
-				}
-			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Invisible",
-			"source": "XPHB",
-			"page": 370,
-			"freeRules2024": true,
-			"entries": [
-				"While you have the Invisible condition, you experience the following effects.",
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "Surprise",
-							"entries": [
-								"If you're Invisible when you roll {@variantrule Initiative|XPHB}, you have {@variantrule Advantage|XPHB} on the roll."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Concealed",
-							"entries": [
-								"You aren't affected by any effect that requires its target to be seen unless the effect's creator can somehow see you. Any equipment you are wearing or carrying is also concealed."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Attacks Affected",
-							"entries": [
-								"{@action Attack|XPHB} rolls against you have {@variantrule Disadvantage|XPHB}, and your attack rolls have {@variantrule Advantage|XPHB}. If a creature can somehow see you, you don't gain this benefit against that creature."
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "Paralyzed",
-			"source": "PHB",
-			"page": 291,
-			"srd": true,
-			"basicRules": true,
-			"otherSources": [
-				{
-					"source": "RMR",
-					"page": 62
-				},
-				{
-					"source": "HftT",
-					"page": 48
-				}
-			],
-			"reprintedAs": [
-				"Paralyzed|XPHB"
-			],
-			"entries": [
-				{
-					"type": "list",
-					"items": [
-						"A paralyzed creature is {@condition incapacitated} and can't move or speak.",
-						"The creature automatically fails Strength and Dexterity saving throws.",
-						"Attack rolls against the creature have advantage.",
-						"Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
-					]
-				}
-			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Paralyzed",
-			"source": "XPHB",
-			"page": 371,
-			"freeRules2024": true,
-			"entries": [
-				"While you have the Paralyzed condition, you experience the following effects.",
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "Incapacitated",
-							"entries": [
-								"You have the {@condition Incapacitated|XPHB} condition."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Speed 0",
-							"entries": [
-								"Your {@variantrule Speed|XPHB} is 0 and can't increase."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Saving Throws Affected",
-							"entries": [
-								"You automatically fail Strength and Dexterity {@variantrule Saving Throw|XPHB|saving throws}."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Attacks Affected",
-							"entries": [
-								"{@action Attack|XPHB} rolls against you have {@variantrule Advantage|XPHB}."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Automatic Critical Hits",
-							"entries": [
-								"Any attack roll that hits you is a {@variantrule Critical Hit|XPHB} if the attacker is within 5 feet of you."
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "Petrified",
-			"source": "PHB",
-			"page": 291,
-			"srd": true,
-			"basicRules": true,
-			"otherSources": [
-				{
-					"source": "RMR",
-					"page": 62
-				},
-				{
-					"source": "HftT",
-					"page": 48
-				}
-			],
-			"reprintedAs": [
-				"Petrified|XPHB"
-			],
-			"entries": [
-				{
-					"type": "list",
-					"items": [
-						"A petrified creature is transformed, along with any nonmagical object it is wearing or carrying, into a solid inanimate substance (usually stone). Its weight increases by a factor of ten, and it ceases aging.",
-						"The creature is {@condition incapacitated}, can't move or speak, and is unaware of its surroundings.",
-						"Attack rolls against the creature have advantage.",
-						"The creature automatically fails Strength and Dexterity saving throws.",
-						"The creature has resistance to all damage.",
-						"The creature is immune to poison and disease, although a poison or disease already in its system is suspended, not neutralized."
-					]
-				}
-			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Petrified",
-			"source": "XPHB",
-			"page": 372,
-			"freeRules2024": true,
-			"entries": [
-				"While you have the Petrified condition, you experience the following effects.",
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "Turned to Inanimate Substance",
-							"entries": [
-								"You are transformed, along with any nonmagical objects you are wearing and carrying, into a solid inanimate substance (usually stone). Your weight increases by a factor of ten, and you cease aging."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Incapacitated",
-							"entries": [
-								"You have the {@condition Incapacitated|XPHB} condition."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Speed 0",
-							"entries": [
-								"Your {@variantrule Speed|XPHB} is 0 and can't increase."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Attacks Affected",
-							"entries": [
-								"{@action Attack|XPHB} rolls against you have {@variantrule Advantage|XPHB}."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Saving Throws Affected",
-							"entries": [
-								"You automatically fail Strength and Dexterity {@variantrule Saving Throw|XPHB|saving throws}."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Resist Damage",
-							"entries": [
-								"You have {@variantrule Resistance|XPHB} to all damage."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Poison Immunity",
-							"entries": [
-								"You have {@variantrule Immunity|XPHB} to the {@condition Poisoned|XPHB} condition."
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "Poisoned",
-			"source": "PHB",
-			"page": 292,
-			"srd": true,
-			"basicRules": true,
-			"otherSources": [
-				{
-					"source": "RMR",
-					"page": 62
-				},
-				{
-					"source": "HftT",
-					"page": 48
-				}
-			],
-			"reprintedAs": [
-				"Poisoned|XPHB"
-			],
-			"entries": [
-				{
-					"type": "list",
-					"items": [
-						"A poisoned creature has disadvantage on attack rolls and ability checks."
-					]
-				}
-			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Poisoned",
-			"source": "XPHB",
-			"page": 372,
-			"freeRules2024": true,
-			"entries": [
-				"While you have the Poisoned condition, you experience the following effect.",
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "Ability Checks and Attacks Affected",
-							"entries": [
-								"You have {@variantrule Disadvantage|XPHB} on attack rolls and ability checks."
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "Prone",
-			"source": "PHB",
-			"page": 292,
-			"srd": true,
-			"basicRules": true,
-			"otherSources": [
-				{
-					"source": "RMR",
-					"page": 62
-				},
-				{
-					"source": "HftT",
-					"page": 48
-				}
-			],
-			"reprintedAs": [
-				"Prone|XPHB"
-			],
-			"entries": [
-				{
-					"type": "list",
-					"items": [
-						"A prone creature's only movement option is to crawl, unless it stands up and thereby ends the condition.",
-						"The creature has disadvantage on attack rolls.",
-						"An attack roll against the creature has advantage if the attacker is within 5 feet of the creature. Otherwise, the attack roll has disadvantage."
-					]
-				}
-			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Prone",
-			"source": "XPHB",
-			"page": 372,
-			"freeRules2024": true,
-			"entries": [
-				"While you have the Prone condition, you experience the following effects.",
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "Restricted Movement",
-							"entries": [
-								"Your only movement options are to {@variantrule Crawling|XPHB|crawl} or to spend an amount of movement equal to half your {@variantrule Speed|XPHB} (round down) to right yourself and thereby end the condition. If your {@variantrule Speed|XPHB} is 0, you can't right yourself."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Attacks Affected",
-							"entries": [
-								"You have {@variantrule Disadvantage|XPHB} on attack rolls. An attack roll against you has {@variantrule Advantage|XPHB} if the attacker is within 5 feet of you. Otherwise, that attack roll has {@variantrule Disadvantage|XPHB}."
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "Restrained",
-			"source": "PHB",
-			"page": 292,
-			"srd": true,
-			"basicRules": true,
-			"otherSources": [
-				{
-					"source": "RMR",
-					"page": 62
-				},
-				{
-					"source": "HftT",
-					"page": 48
-				}
-			],
-			"reprintedAs": [
-				"Restrained|XPHB"
-			],
-			"entries": [
-				{
-					"type": "list",
-					"items": [
-						"A restrained creature's speed becomes 0, and it can't benefit from any bonus to its speed.",
-						"Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage.",
-						"The creature has disadvantage on Dexterity saving throws."
-					]
-				}
-			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Restrained",
-			"source": "XPHB",
-			"page": 373,
-			"freeRules2024": true,
-			"entries": [
-				"While you have the Restrained condition, you experience the following effects.",
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "Speed 0",
-							"entries": [
-								"Your {@variantrule Speed|XPHB} is 0 and can't increase."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Attacks Affected",
-							"entries": [
-								"{@action Attack|XPHB} rolls against you have {@variantrule Advantage|XPHB}, and your attack rolls have {@variantrule Disadvantage|XPHB}."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Saving Throws Affected",
-							"entries": [
-								"You have {@variantrule Disadvantage|XPHB} on Dexterity {@variantrule Saving Throw|XPHB|saving throws}."
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "Stunned",
-			"source": "PHB",
-			"page": 292,
-			"srd": true,
-			"basicRules": true,
-			"otherSources": [
-				{
-					"source": "RMR",
-					"page": 62
-				},
-				{
-					"source": "HftT",
-					"page": 48
-				}
-			],
-			"reprintedAs": [
-				"Stunned|XPHB"
-			],
-			"entries": [
-				{
-					"type": "list",
-					"items": [
-						"A stunned creature is {@condition incapacitated}, can't move, and can speak only falteringly.",
-						"The creature automatically fails Strength and Dexterity saving throws.",
-						"Attack rolls against the creature have advantage."
-					]
-				}
-			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Stunned",
-			"source": "XPHB",
-			"page": 376,
-			"freeRules2024": true,
-			"entries": [
-				"While you have the Stunned condition, you experience the following effects.",
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "Incapacitated",
-							"entries": [
-								"You have the {@condition Incapacitated|XPHB} condition."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Saving Throws Affected",
-							"entries": [
-								"You automatically fail Strength and Dexterity {@variantrule Saving Throw|XPHB|saving throws}."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Attacks Affected",
-							"entries": [
-								"{@action Attack|XPHB} rolls against you have {@variantrule Advantage|XPHB}."
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "Unconscious",
-			"source": "PHB",
-			"page": 292,
-			"srd": true,
-			"basicRules": true,
-			"otherSources": [
-				{
-					"source": "RMR",
-					"page": 62
-				},
-				{
-					"source": "HftT",
-					"page": 48
-				}
-			],
-			"reprintedAs": [
-				"Unconscious|XPHB"
-			],
-			"entries": [
-				{
-					"type": "list",
-					"items": [
-						"An unconscious creature is {@condition incapacitated}, can't move or speak, and is unaware of its surroundings.",
-						"The creature drops whatever it's holding and falls {@condition prone}.",
-						"The creature automatically fails Strength and Dexterity saving throws.",
-						"Attack rolls against the creature have advantage.",
-						"Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
-					]
-				}
-			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Unconscious",
-			"source": "XPHB",
-			"page": 376,
-			"freeRules2024": true,
-			"entries": [
-				"While you have the Unconscious condition, you experience the following effects.",
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "Inert",
-							"entries": [
-								"You have the {@condition Incapacitated|XPHB} and {@condition Prone|XPHB} conditions, and you drop whatever you're holding. When this condition ends, you remain {@condition Prone|XPHB}."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Speed 0",
-							"entries": [
-								"Your {@variantrule Speed|XPHB} is 0 and can't increase."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Attacks Affected",
-							"entries": [
-								"{@action Attack|XPHB} rolls against you have {@variantrule Advantage|XPHB}."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Saving Throws Affected",
-							"entries": [
-								"You automatically fail Strength and Dexterity {@variantrule Saving Throw|XPHB|saving throws}."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Automatic Critical Hits",
-							"entries": [
-								"Any attack roll that hits you is a {@variantrule Critical Hit|XPHB} if the attacker is within 5 feet of you."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Unaware",
-							"entries": [
-								"You're unaware of your surroundings."
-							]
-						}
-					]
-				}
-			]
-		}
-	],
-	"disease": [
-		{
-			"name": "Arcane Blight",
-			"source": "IDRotF",
-			"page": 233,
-			"entries": [
-				"Any humanoid that spends 12 hours in the necropolis must succeed on a {@dc 15} Constitution saving throw or contract an arcane blight. This magical disease transforms the humanoid into a {@creature nothic}, but only after the victim experiences hallucinations and feelings of isolation and paranoia. Other symptoms include clammy skin, hair loss, and myopia (nearsightedness).",
-				"A player character infected with the arcane blight gains the following flaw: \"I don't trust anyone.\" This flaw, which supersedes any conflicting flaw, is fed by delusions that are difficult for the character to distinguish from reality. Common delusions include the belief that that allies are conspiring to steal the victim's riches or otherwise turn against the victim.",
-				"Whenever it finishes a long rest, an infected humanoid must repeat the saving throw. On a successful save, the DC for future saves against the arcane blight drops by {@dice 1d6}. If the saving throw DC drops to 0, the creature overcomes the arcane blight and becomes immune to the effect of further exposure. A creature that fails three of these saving throws transforms into a {@creature nothic} under the DM's control. Only a {@spell wish} spell or divine intervention can undo this transformation.",
-				"A {@spell greater restoration} spell or similar magic ends the infection on the target, removing the flaw and all other symptoms, but this magic doesn't protect the target against further exposure."
-			]
-		},
-		{
-			"name": "Blinding Sickness",
-			"source": "PHB",
-			"page": 227,
-			"entries": [
-				"Pain grips the creature's mind, and its eyes turn milky white. The creature has disadvantage on Wisdom checks and Wisdom saving throws and is {@condition blinded}.",
-				"{@note This disease can be inflicted with the {@spell contagion} spell.}"
-			]
-		},
-		{
-			"name": "Blue Mist Fever",
-			"source": "ToA",
-			"page": 40,
-			"entries": [
-				"A magical mist creeps through the jungles of Chult. Contact with this thin, blue, odorless mist can infect giants and humanoids with blue mist fever. A {@spell dispel magic} spell destroys the mist in a 20-foot square starting at a point chosen by the caster within the spell's range. An encounter with this mist typically covers {@dice 1d6} such areas (400-2,400 square feet).",
-				"A giant or humanoid that comes into contact with the mist must succeed on a {@dc 13} Constitution saving throw or become infected with blue mist fever. An infected creature begins seeing vivid hallucinations of blue monkeys {@dice 1d6} hours after failing the save, and the hallucinations last until the disease ends on the creature. A creature can repeat the saving throw every 24 hours, ending the effect on itself on a success."
-			]
-		},
-		{
-			"name": "Bluerot",
-			"source": "GoS",
-			"page": 234,
-			"entries": [
-				"This disease targets humanoids. While afflicted with bluerot, a victim grows grotesque blue boils on their face and back. This disease is carried by undead (including the drowned ones in Tammeraut's Fate), and victims most often acquire it through wounds caused by infected creatures. The disease's boils manifest in {@dice 1d4} hours, causing the victim's Constitution and Charisma scores to decrease by {@dice 1d4} each, to a minimum of 3. This is quickly followed by a fever and tingling in the extremities. An infected creature is vulnerable to radiant damage and gains the ability to breathe underwater.",
-				"At the end of each long rest, an infected creature makes a {@dc 12} Constitution saving throw. On a success, the victim regains 1 point of Constitution and 1 point of Charisma lost to the disease. If the infected creature regains all the points lost to the disease, it is cured. Other effects that raise the victim's ability scores do not cure the disease. On a failed saving throw, the victim takes 18 ({@damage 4d8}) necrotic damage as the boils burst and spread. A creature reduced to 0 hit points by this damage cannot regain hit points until the disease is cured, though it can be stabilized as normal."
-			]
-		},
-		{
-			"name": "Cackle Fever",
-			"source": "DMG",
-			"page": 257,
-			"srd": true,
-			"reprintedAs": [
-				"Cackle Fever|XDMG"
-			],
-			"entries": [
-				"This disease targets humanoids, although gnomes are strangely immune. While in the grips of this disease, victims frequently succumb to fits of mad laughter, giving the disease its common name and its morbid nickname: \"the shrieks.\"",
-				"Symptoms manifest {@dice 1d4} hours after infection and include fever and disorientation. The infected creature gains one level of {@condition exhaustion} that can't be removed until the disease is cured.",
-				"Any event that causes the infected creature great stress\u2014including entering combat, taking damage, experiencing fear, or having a nightmare\u2014forces the creature to make a {@dc 13} Constitution saving throw.",
-				"On a failed save, the creature takes 5 ({@dice 1d10}) psychic damage and becomes {@condition incapacitated} with mad laughter for 1 minute. The creature can repeat the saving throw at the end of each of its turns, ending the mad laughter and the {@condition incapacitated} condition on a success. Any humanoid creature that starts its turn within 10 feet of an infected creature in the throes of mad laughter must succeed on a {@dc 10} Constitution saving throw or also become infected with the disease. Once a creature succeeds on this save, it is immune to the mad laughter of that particular infected creature for 24 hours.",
-				"At the end of each long rest, an infected creature can make a {@dc 13} Constitution saving throw. On a successful save, the DC for this save and for the save to avoid an attack of mad laughter drops by {@dice 1d6}. When the saving throw DC drops to 0, the creature recovers from the disease. A creature that fails three of these saving throws gains a randomly determined form of {@variantrule Madness|DMG|indefinite madness}."
-			]
-		},
-		{
-			"name": "Cackle Fever",
-			"source": "XDMG",
-			"page": 61,
-			"type": "Magical Contagion",
-			"entries": [
-				"Cheaply made potions and elixirs are sometimes tainted by Cackle Fever, which affects Humanoids only (gnomes are strangely immune). A creature suffers the following effects {@dice 1d4} days after infection:",
-				{
-					"type": "list",
-					"style": "list-hang-notitle",
-					"items": [
-						{
-							"type": "item",
-							"name": "Fever",
-							"entry": "The creature gains 1 {@condition Exhaustion|XPHB} level, which lasts until the contagion ends on the creature."
-						},
-						{
-							"type": "item",
-							"name": "Uncontrollable Laughter",
-							"entry": "While the creature has the {@condition Exhaustion|XPHB} condition, the creature makes a {@dc 13} Constitution saving throw each time it takes damage other than Psychic damage. On a failed save, the creature takes 5 ({@damage 1d10}) Psychic damage and has the {@condition Incapacitated|XPHB} condition as it laughs uncontrollably. At the end of each of its turns, the creature repeats the save, ending the effect on itself on a success. After 1 minute, it succeeds automatically."
-						}
-					]
-				},
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "Fighting the Contagion",
-							"entries": [
-								"At the end of each Long Rest, an infected creature makes a {@dc 13} Constitution saving throw. After the creature succeeds on three of these saves, the contagion ends on it, and the creature is immune to Cackle Fever for 1 year."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Spreading the Contagion",
-							"entries": [
-								"Any Humanoid (other than a gnome) that starts its turn within a 10-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from a creature infected with Cackle Fever must succeed on a {@dc 10} Constitution saving throw or also become infected with the contagion. On a successful save, the Humanoid can't catch the contagion from that particular infected creature for the next 24 hours."
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "Filth Fever",
-			"source": "PHB",
-			"page": 227,
-			"entries": [
-				"A raging fever sweeps through the creature's body. The creature has disadvantage on Strength checks, Strength saving throws, and attack rolls that use Strength.",
-				"{@note This disease can be inflicted with the {@spell contagion} spell.}"
-			]
-		},
-		{
-			"name": "Flesh Rot",
-			"source": "PHB",
-			"page": 227,
-			"entries": [
-				"The creature's flesh decays. The creature has disadvantage on Charisma checks and vulnerability to all damage.",
-				"{@note This disease can be inflicted with the {@spell contagion} spell.}"
-			]
-		},
-		{
-			"name": "Frigid Woe",
-			"source": "EGW",
-			"page": 125,
-			"entries": [
-				"Frigid woe is a special disease developed by Aeor's mages that cannot be cured by conventional treatment or magic. The only way a creature infected with the disease can be cured is by finding and drinking the manufactured antidote, a milky liquid stored in gold vials found in Eiselcross's ruins. This disease was created to slow down the forces of the gods and get around the healing power of their clerics and angels.",
-				"The disease is transmitted by breathing in blue spores that Aeor's mages created long ago. When a creature comes into contact with these spores, it must succeed on a {@dc 11} Constitution saving throw or become infected with frigid woe. It takes {@dice 1d4} days for the symptoms to manifest in an infected creature. These symptoms include fatigue, chills, and visible blue veins that appear on the creature's body. The infected creature's speed is reduced by 5 feet as long as it remains infected. Every 10 days after symptoms appear, an infected creature must succeed on a {@dc 11} Constitution saving throw, or its speed is reduced by another 5 feet. If a creature's speed is reduced to 0 as a result of this disease, the creature dies and its body turns into a statue made of ice.",
-				"A creature can drink the antidote as an action, ending all symptoms and effects of the disease instantly."
-			]
-		},
-		{
-			"name": "Ghoul Gut",
-			"source": "OoW",
-			"page": 111,
-			"entries": [
-				"Water polluted with ghoul parts carries ghoul gut. A creature drinking this tainted water must succeed on a {@dc 12} Constitution saving throw or contract the disease. Symptoms strike when a victim starts a long rest or next becomes excited, as during combat. A victim suffers severe cramps, and their bowels make sounds like two ghouls fighting. When the symptoms first strike, the victim takes 5 ({@damage 2d4}) necrotic damage. In addition, a diseased victim regains no hit points or Hit Dice from nonmagical sources, including resting or spending Hit Dice. A victim who finishes a long rest can attempt a {@dc 12} Constitution saving throw. On a successful save, the victim shakes off the disease. Failure deals the character another 5 ({@damage 2d4}) necrotic damage.",
-				"A character who succeeds on a {@dc 15} Wisdom ({@skill Medicine}) check can also remove the disease from another creature. Doing so requires the character making the check to care for the sick individual during a long rest. The caregiver gains no benefit from that rest."
-			]
-		},
-		{
-			"name": "Grackle-Lung",
-			"source": "OotA",
-			"page": 54,
-			"entries": [
-				"The constant smog in Gracklstugh causes grackle-lung in living, breathing creatures, resulting in persistent, wracking coughs and the spewing of thick, black phlegm. Whenever a living, breathing creature finishes a long rest in Gracklstugh, it must make a {@dc 11} Constitution saving throw. On each failed save, the creature gains one level of {@condition exhaustion} as its airways become increasingly clogged. A creature that reaches level 6 {@condition exhaustion} dies, as normal.",
-				"A creature with one or more levels of {@condition exhaustion} brought on by grackle-lung must succeed on a Constitution check to take the {@action Dash} action. If the check fails, the action cannot be attempted. If the creature attempts to cast a spell with a verbal component, it must succeed on a Constitution check or be unable to complete the spell, causing the spell to fail with no effect. The DC for each check is 10 + the creature's current {@condition exhaustion} level.",
-				"If a creature's {@condition exhaustion} level drops below 1, it no longer suffers the effects of grackle-lung and becomes immune to it for the next week. Duergar and derro are inured to grackle-lung, making Constitution checks against it with advantage. Any spell or effect that cures disease also cures grackle-lung, effectively removing all levels of {@condition exhaustion} brought on by the affliction."
-			]
-		},
-		{
-			"name": "Mindfire",
-			"source": "PHB",
-			"page": 227,
-			"entries": [
-				"The creature's mind becomes feverish. The creature has disadvantage on Intelligence checks and Intelligence saving throws, and the creature behaves as if under the effects of the {@spell confusion} spell during combat.",
-				"{@note This disease can be inflicted with the {@spell contagion} spell.}"
-			]
-		},
-		{
-			"name": "Redface",
-			"source": "GoS",
-			"page": 168,
-			"entries": [
-				"The effects of redface are identical to those of {@disease sight rot} (see \"{@book Diseases|DMG|8|Diseases}\" in chapter 8 of the {@book Dungeon Master's Guide|DMG}), but it's caused by pollutants in the air rather than contaminated drinking water, making it difficult to avoid."
-			]
-		},
-		{
-			"name": "Saprophytic Plague",
-			"source": "CM",
-			"page": 253,
-			"entries": [
-				"Xanthoria's research into lichdom and her creation of a living phylactery led to the emergence of the plague spreading across the Sword Coast. Any beast or humanoid that comes within 10 feet of a creature infected by the saprophytic plague must succeed on a {@dc 20} Constitution saving throw or become infected as well. On a successful save, a creature is immune to the plague for 24 hours, and any creature that is immune to disease succeeds on the save automatically.",
-				"After a failed save, a creature experiences the first symptoms\u2014body aches, nausea, slurred speech, and uncontrollable drooling\u2014{@dice 1d4} hours later and gains 1 level of {@condition exhaustion}. Every 24 hours thereafter, the creature automatically gains another level of {@condition exhaustion}. Any creature killed by the saprophytic plague transforms into a lifeless magenta ooze.",
-				"A creature infected by the saprophytic plague for at least 24 hours behaves like a zombie and seems barely aware of its surroundings, as fungal growths sprout from its head, body, and limbs. It feels an overriding urge to be around groups of uninfected creatures so that it can spread the contagion. This is the time when infected humanoids begin speaking the word \"Xanthoria\" over and over, with no understanding of what the word means. This behavior is the result of a mycelial network of spores that forms a tenuous connection between Xanthoria and humanoids that become infected by the plague.",
-				"Foodstuffs that are exposed to the plague's spores decay or go sour within {@dice 2d12} hours, leaving behind a lurid magenta mass of oozing fungi. Eating infected food requires a saving throw as above.",
-				"Any magic that cures a disease can rid a creature of the saprophytic plague. Casting {@spell purify food and drink} destroys the infection in foodstuffs."
-			]
-		},
-		{
-			"name": "Seizure",
-			"source": "PHB",
-			"page": 227,
-			"entries": [
-				"The creature is overcome with shaking. The creature has disadvantage on Dexterity checks, Dexterity saving throws, and attack rolls that use Dexterity.",
-				"{@note This disease can be inflicted with the {@spell contagion} spell.}"
-			]
-		},
-		{
-			"name": "Sewer Plague",
-			"source": "DMG",
-			"page": 257,
-			"srd": true,
-			"reprintedAs": [
-				"Sewer Plague|XDMG"
-			],
-			"entries": [
-				"Sewer plague is a generic term for a broad category of illnesses that incubate in sewers, refuse heaps, and stagnant swamps, and which are sometimes transmitted by creatures that dwell in those areas, such as rats and otyughs.",
-				"When a humanoid creature is bitten by a creature that carries the disease, or when it comes into contact with filth or offal contaminated by the disease, the creature must succeed on a {@dc 11} Constitution saving throw or become infected.",
-				"It takes {@dice 1d4} days for sewer plague's symptoms to manifest in an infected creature. Symptoms include fatigue and cramps. The infected creature suffers one level of {@condition exhaustion}, and it regains only half the normal number of hit points from spending Hit Dice and no hit points from finishing a long rest.",
-				"At the end of each long rest, an infected creature must make a {@dc 11} Constitution saving throw. On a failed save, the character gains one level of {@condition exhaustion}.",
-				"On a successful save, the character's {@condition exhaustion} level decreases by one level. If a successful saving throw reduces the infected creature's level of {@condition exhaustion} below 1, the creature recovers from the disease."
-			]
-		},
-		{
-			"name": "Sewer Plague",
-			"source": "XDMG",
-			"page": 61,
-			"type": "Magical Contagion",
-			"entries": [
-				"Fouled potions and alchemical waste can give rise to Sewer Plague, which incubates in sewers and refuse heaps and is sometimes transmitted by creatures that dwell in such areas, including otyughs and rats. Any Humanoid that is wounded by a creature that carries the contagion or that comes into contact with contaminated filth or offal must succeed on a {@dc 11} Constitution saving throw or become infected with Sewer Plague. A creature suffers the following effects {@dice 1d4} days after infection:",
-				{
-					"type": "list",
-					"style": "list-hang-notitle",
-					"items": [
-						{
-							"type": "item",
-							"name": "Fatigue",
-							"entry": "The creature gains 1 {@condition Exhaustion|XPHB} level."
-						},
-						{
-							"type": "item",
-							"name": "Weakness",
-							"entry": "While the creature has any Exhaustion levels, it regains only half the normal number of Hit Points from spending Hit Point Dice."
-						},
-						{
-							"type": "item",
-							"name": "Restlessness",
-							"entry": "While the creature has any Exhaustion levels, finishing a Long Rest neither restores lost Hit Points nor reduces the creature's Exhaustion level."
-						}
-					]
-				},
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "Fighting the Contagion",
-							"entries": [
-								"Daily at dawn, an infected creature makes a {@dc 11} Constitution saving throw. On a failed save, the creature gains 1 {@condition Exhaustion|XPHB} level as its fatigue worsens. On a successful save, the creature's Exhaustion level decreases by 1. If the creature's Exhaustion level is reduced to 0, the contagion ends on the creature."
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "Shivering Sickness",
-			"source": "ToA",
-			"page": 40,
-			"entries": [
-				"Insects native to the jungles and marshes of Chult carry this disease, shivering sickness. The easiest protection against it is a coating of insect-repelling salve on all exposed skin (for the cost of insect repellent, see {@adventure \"Buying a Special Item\"|ToA|1|Buying a Special Item}.",
-				"A giant or humanoid that takes damage from {@creature Swarm of Insects||insect swarms} or from {@creature giant centipede||giant centipedes}, {@creature giant scorpion||giant scorpions}, or {@creature giant wasp||giant wasps} is exposed to the disease at the end of the encounter. Those who haven't applied insect repellent since their previous long rest are exposed to the disease when they finish a long rest.",
-				"A giant or humanoid exposed to the disease must succeed on a {@dc 11} Constitution saving throw or become infected. A creature with natural armor has advantage on the saving throw. It takes {@dice 2d6} hours for symptoms to manifest in an infected creature. Symptoms include blurred vision, disorientation, and a sudden drop in body temperature that causes uncontrollable shivering and chattering of the teeth.",
-				"Once symptoms begin, the infected creature regains only half the normal number of hit points from spending Hit Dice and no hit points from a long rest. The infected creature also has disadvantage on ability checks and attack rolls. At the end of a long rest, an infected creature repeats the saving throw, shaking off the disease on a successful save."
-			]
-		},
-		{
-			"name": "Sight Rot",
-			"source": "DMG",
-			"page": 257,
-			"srd": true,
-			"reprintedAs": [
-				"Sight Rot|XDMG"
-			],
-			"entries": [
-				"This painful infection causes bleeding from the eyes and eventually blinds the victim.",
-				"A beast or humanoid that drinks water tainted by sight rot must succeed on a {@dc 15} Constitution saving throw or become infected. One day after infection, the creature's vision starts to become blurry. The creature takes a -1 penalty to attack rolls and ability checks that rely on sight. At the end of each long rest after the symptoms appear, the penalty worsens by 1. When it reaches -5, the victim is {@condition blinded} until its sight is restored by magic such as {@spell lesser restoration} or {@spell heal}.",
-				"Sight rot can be cured using a rare flower called Eyebright, which grows in some swamps. Given an hour, a character who has proficiency with an {@item herbalism kit|phb} can turn the flower into one dose of ointment. Applied to the eyes before a long rest, one dose of it prevents the disease from worsening after that rest. After three doses, the ointment cures the disease entirely."
-			]
-		},
-		{
-			"name": "Sight Rot",
-			"source": "XDMG",
-			"page": 61,
-			"type": "Magical Contagion",
-			"entries": [
-				"Any Beast or Humanoid that drinks water tainted by Sight Rot must succeed on a {@dc 15} Constitution saving throw or have the {@condition Blinded|XPHB} condition until the contagion ends.",
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "Fighting the Contagion",
-							"entries": [
-								"Magic such as a {@spell Heal|XPHB} or {@spell Lesser Restoration|XPHB} spell ends the contagion immediately. A character who is proficient with an {@item Herbalism Kit|XPHB} can use it to create one dose of nonmagical ointment, which takes 1 hour. When applied to the eyes of a creature suffering from Sight Rot, the ointment suppresses the contagion on that creature for 24 hours. If the contagion is suppressed in this way for a total of 72 hours (requiring three doses and applications of the ointment), the contagion ends on the creature."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Spreading the Contagion",
-							"entries": [
-								"Any Humanoid that makes skin contact with a creature infected with Sight Rot must succeed on a {@dc 15} Constitution saving throw or also become infected with the contagion. On a successful save, the Humanoid can't catch the contagion from that particular infected creature for the next 24 hours."
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "Slimy Doom",
-			"source": "PHB",
-			"page": 227,
-			"entries": [
-				"The creature begins to bleed uncontrollably. The creature has disadvantage on Constitution checks and Constitution saving throws. In addition, whenever the creature takes damage, it is {@condition stunned} until the end of its next turn.",
-				"{@note This disease can be inflicted with the {@spell contagion} spell.}"
-			]
-		},
-		{
-			"name": "Spider Eggs",
-			"source": "WDMM",
-			"page": 47,
-			"entries": [
-				"If the party is defeated, stabilized characters awaken after {@dice 1d4} hours to find themselves cocooned in sticky webs and suspended 10 feet off the floor, with spider eggs implanted in their bodies. A cocooned character is {@condition restrained} and can use its action to try to escape by making a successful {@dc 15} Strength check.",
-				"Spider eggs implanted in a host hatch in {@dice 2d12} hours, killing the host as the baby spiders chew their way out. This infestation functions like a disease. A {@spell lesser restoration} spell or similar magic cast upon the host kills the spider eggs, ending the threat."
-			]
-		},
-		{
-			"name": "Super-Tetanus",
-			"source": "TftYP",
-			"page": 104,
-			"entries": [
-				"A creature that contracts the disease of super-tetanus is wracked with pain as its heart races and its muscles spasm hard enough to break its bones. The creature takes 11 ({@damage 2d10}) damage at the start of each of its turns. If a victim is not cured by other means, it can repeat the saving throw at the end of every minute after becoming exposed, ending the effect on itself with a successful save."
-			]
-		},
-		{
-			"name": "The Gnawing Plague",
-			"source": "VRGR",
-			"page": 153,
-			"entries": [
-				"The Gnawing Plague, also known as \"the Gnaws,\" is known in every corner of Richemulot.",
-				{
-					"type": "entries",
-					"name": "Transmission",
-					"page": 153,
-					"entries": [
-						"The Gnaws is spread when a creature is bitten by a {@creature rat}, {@creature giant rat}, {@creature swarm of rats}, or {@creature wererat} that carries the disease, or by coming into physical contact with an infected creature."
-					]
-				},
-				{
-					"type": "entries",
-					"name": "Infection",
-					"page": 153,
-					"entries": [
-						"Creatures exposed to the disease must succeed on a {@dc 10} Constitution saving throw or become infected. The DC of this saving throw can increase depending on the severity of the plague's spread (see \"{@book Cycle of the Plague|VRGR|3|Cycle of the Plague}\" below)."
-					]
-				},
-				{
-					"type": "entries",
-					"name": "Symptoms",
-					"page": 153,
-					"entries": [
-						"It takes {@dice 1d2} days for the Gnawing Plague's symptoms to manifest in an infected creature. The infected creature then gains 1 level of {@condition exhaustion}, regains only half the normal number of hit points from spending Hit Dice, and regains no hit points from finishing a long rest.",
-						"The plague's symptoms include buboes, fatigue, splotchy rashes, sweats, and shaking, particularly facial tremors. Locals liken these twitches to the sniffing of rats. Sufferers often have scraps of leather placed in their mouths to prevent their teeth from clattering, though they inevitably gnaw through these scraps."
-					]
-				},
-				{
-					"type": "entries",
-					"name": "Recovery",
-					"page": 154,
-					"entries": [
-						"At the end of each long rest, an infected creature must make a {@dc 10} Constitution saving throw. On a failed save, the creature gains 1 level of {@condition exhaustion}. On a successful save, the creature's {@condition exhaustion} level decreases by 1. If a successful saving throw reduces the infected creature's level of {@condition exhaustion} below 1, the creature recovers from the disease."
-					]
-				},
-				{
-					"type": "entries",
-					"name": "Immunity",
-					"page": 154,
-					"entries": [
-						"All forms of rats and wererats are immune to the Gnawing Plague."
-					]
-				}
-			]
-		},
-		{
-			"name": "Throat Leeches",
-			"source": "ToA",
-			"page": 40,
-			"entries": [
-				"Minuscule parasites known as throat leeches infect the water in Chult's forests, swamps, and rivers. Any giant or humanoid that swallows tainted water must succeed on a {@dc 12} Constitution saving throw or be infested with throat leeches. Immediate symptoms include throat inflammation and shortness of breath. After {@dice 1d6} hours, the infected character gains 1 level of {@condition exhaustion} that can't be removed (except as described below) until the disease is cured. At the end of each long rest, the infected creature must repeat the saving throw. On a failed save, the creature's {@condition exhaustion} increases by 1 level; on a successful save, the creature's {@condition exhaustion} decreases by 1 level. If a successful saving throw reduces the infected creature's level of {@condition exhaustion} below 1, the creature recovers from the disease.",
-				"Explorers can avoid contracting throat leeches by drinking only rainwater or water that's been boiled or magically purified."
-			]
-		}
-	],
-	"status": [
-		{
-			"name": "Concentration",
-			"source": "PHB",
-			"page": 203,
-			"srd": true,
-			"basicRules": true,
-			"reprintedAs": [
-				"Concentration|XPHB"
-			],
-			"entries": [
-				"Some spells require you to maintain {@status concentration} in order to keep their magic active. If you lose {@status concentration}, such a spell ends.",
-				"If a spell must be maintained with {@status concentration}, that fact appears in its Duration entry, and the spell specifies how long you can concentrate on it. You can end {@status concentration} at any time (no action required).",
-				"Normal activity, such as moving and attacking, doesn't interfere with {@status concentration}. The following factors can break {@status concentration}:",
-				{
-					"type": "list",
-					"items": [
-						"{@b Casting another spell that requires concentration.} You lose {@status concentration} on a spell if you cast another spell that requires {@status concentration}. You can't concentrate on two spells at once.",
-						"{@b Taking damage.} Whenever you take damage while you are {@status concentration||concentrating} on a spell, you must make a Constitution saving throw to maintain your {@status concentration}. The DC equals 10 or half the damage you take, whichever number is higher. If you take damage from multiple sources, such as an arrow and a dragon's breath, you make a separate saving throw for each source of damage.",
-						"{@b Being incapacitated or killed.} You lose {@status concentration} on a spell if you are {@condition incapacitated} or if you die."
-					]
-				},
-				"The DM might also decide that certain environmental phenomena, such as a wave crashing over you while you're on a storm-tossed ship, require you to succeed on a {@dc 10} Constitution saving throw to maintain {@status concentration} on a spell."
-			]
-		},
-		{
-			"name": "Concentration",
-			"source": "XPHB",
-			"page": 363,
-			"freeRules2024": true,
-			"entries": [
-				"Some spells and other effects require Concentration to remain active, as specified in their descriptions. If the effect's creator loses Concentration, the effect ends. If the effect has a maximum duration, the effect's description specifies how long the creator can concentrate on it: up to 1 minute, 1 hour, or some other duration. The creator can end Concentration at any time (no action required). The following factors break Concentration.",
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "Another Concentration Effect",
-							"entries": [
-								"You lose Concentration on an effect the moment you start casting a spell that requires Concentration or activate another effect that requires Concentration."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Damage",
-							"entries": [
-								"If you take damage, you must succeed on a Constitution {@variantrule Saving Throw|XPHB|saving throw} to maintain Concentration. The DC equals 10 or half the damage taken (round down), whichever number is higher, up to a maximum DC of 30."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Incapacitated or Dead",
-							"entries": [
-								"Your Concentration ends if you have the {@condition Incapacitated|XPHB} condition or you die."
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "Surprised",
-			"source": "PHB",
-			"page": 189,
-			"srd": true,
-			"basicRules": true,
-			"reprintedAs": [
-				"Surprised|XPHB"
-			],
-			"entries": [
-				"A band of adventurers sneaks up on a bandit camp, springing from the trees to attack them. A {@creature gelatinous cube} glides down a dungeon passage, unnoticed by the adventurers until the cube engulfs one of them. In these situations, one side of the battle gains surprise over the other.",
-				"The DM determines who might be surprised. If neither side tries to be stealthy, they automatically notice each other. Otherwise, the DM compares the Dexterity ({@skill Stealth}) checks of anyone hiding with the passive Wisdom ({@skill Perception}) score of each creature on the opposing side. Any character or monster that doesn't notice a threat is {@status surprised} at the start of the encounter.",
-				"If you're surprised, you can't move or take an action on your first turn of the combat, and you can't take a reaction until that turn ends. A member of a group can be {@status surprised} even if the other members aren't."
-			]
-		},
-		{
-			"name": "Surprised",
-			"source": "XPHB",
-			"page": 376,
-			"freeRules2024": true,
-			"entries": [
-				"If a creature is caught unawares by the start of combat, that creature is surprised, which causes it to have {@variantrule Disadvantage|XPHB} on its {@variantrule Initiative|XPHB} roll."
-			]
-		}
-	]
+    "condition": [
+        {
+            "name": "Blinded",
+            "source": "PHB",
+            "page": 290,
+            "srd": true,
+            "basicRules": true,
+            "otherSources": [
+                {
+                    "source": "RMR",
+                    "page": 62
+                },
+                {
+                    "source": "HftT",
+                    "page": 48
+                }
+            ],
+            "reprintedAs": [
+                "Blinded|XPHB"
+            ],
+            "entries": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Una criatura ciega no puede ver y suspende automáticamente cualquier prueba de habilidad que requiera la vista.",
+                        "Las tiradas de ataque contra la criatura tienen ventaja, y las tiradas de ataque de la criatura tienen desventaja."
+                    ]
+                }
+            ],
+            "hasFluffImages": true
+        },
+        {
+            "name": "Blinded",
+            "source": "XPHB",
+            "page": 361,
+            "freeRules2024": true,
+            "entries": [
+                "Mientras tengas la condición «Cegado», sufrirás los siguientes efectos.",
+                {
+                    "type": "entries",
+                    "entries": [
+                        {
+                            "type": "entries",
+                            "name": "Can't See",
+                            "entries": [
+                                "Si no ves, no puedes superar automáticamente ninguna prueba de habilidad que requiera la vista."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Attacks Affected",
+                            "entries": [
+                                "Las tiradas de ataque que se realicen contra ti tienen {@action Attack|XPHB}, y tus tiradas de ataque tienen {@variantrule Advantage|XPHB}."
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Charmed",
+            "source": "PHB",
+            "page": 290,
+            "srd": true,
+            "basicRules": true,
+            "otherSources": [
+                {
+                    "source": "RMR",
+                    "page": 62
+                },
+                {
+                    "source": "HftT",
+                    "page": 48
+                }
+            ],
+            "reprintedAs": [
+                "Charmed|XPHB"
+            ],
+            "entries": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Una criatura encantada no puede atacar al encantador ni dirigir hacia él habilidades dañinas o efectos mágicos.",
+                        "El encantador tiene ventaja en cualquier tirada de habilidad para interactuar socialmente con la criatura."
+                    ]
+                }
+            ],
+            "hasFluffImages": true
+        },
+        {
+            "name": "Charmed",
+            "source": "XPHB",
+            "page": 361,
+            "freeRules2024": true,
+            "entries": [
+                "Mientras tengas la condición «Encantado», sufrirás los siguientes efectos.",
+                {
+                    "type": "entries",
+                    "entries": [
+                        {
+                            "type": "entries",
+                            "name": "Can't Harm the Charmer",
+                            "entries": [
+                                "No puedes atacar al encantador ni apuntarle con habilidades que causen daño o {@variantrule Magical Effect|XPHB|magical effects}."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Social Advantage",
+                            "entries": [
+                                "El seductor tiene {@variantrule Advantage|XPHB} en cualquier tirada de habilidad para interactuar socialmente contigo."
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Deafened",
+            "source": "PHB",
+            "page": 290,
+            "srd": true,
+            "basicRules": true,
+            "otherSources": [
+                {
+                    "source": "RMR",
+                    "page": 62
+                },
+                {
+                    "source": "HftT",
+                    "page": 48
+                }
+            ],
+            "reprintedAs": [
+                "Deafened|XPHB"
+            ],
+            "entries": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Una criatura ensordecida no puede oír y suspende automáticamente cualquier prueba de habilidad que requiera el uso del oído."
+                    ]
+                }
+            ],
+            "hasFluffImages": true
+        },
+        {
+            "name": "Deafened",
+            "source": "XPHB",
+            "page": 365,
+            "freeRules2024": true,
+            "entries": [
+                "Mientras tengas la condición «Sordo», sufrirás el siguiente efecto.",
+                {
+                    "type": "entries",
+                    "entries": [
+                        {
+                            "type": "entries",
+                            "name": "Can't Hear",
+                            "entries": [
+                                "Si no oyes, suspenderás automáticamente cualquier prueba de habilidad que requiera el sentido del oído."
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Exhaustion",
+            "source": "PHB",
+            "page": 291,
+            "srd": true,
+            "basicRules": true,
+            "otherSources": [
+                {
+                    "source": "RMR",
+                    "page": 62
+                }
+            ],
+            "reprintedAs": [
+                "Exhaustion|XPHB"
+            ],
+            "entries": [
+                "Algunas habilidades especiales y peligros ambientales, como la inanición y los efectos a largo plazo de las temperaturas gélidas o abrasadoras, pueden provocar un estado especial denominado «agotamiento». El agotamiento se mide en seis niveles. Un efecto puede provocar que una criatura sufra uno o más niveles de agotamiento, tal y como se especifica en la descripción del efecto.",
+                {
+                    "type": "table",
+                    "colLabels": [
+                        "Level",
+                        "Effect"
+                    ],
+                    "colStyles": [
+                        "col-1 text-center",
+                        "col-11"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "Disadvantage on ability checks"
+                        ],
+                        [
+                            "2",
+                            "Speed halved"
+                        ],
+                        [
+                            "3",
+                            "Disadvantage on attack rolls and saving throws"
+                        ],
+                        [
+                            "4",
+                            "Hit point maximum halved"
+                        ],
+                        [
+                            "5",
+                            "Speed reduced to 0"
+                        ],
+                        [
+                            "6",
+                            "Death"
+                        ]
+                    ]
+                },
+                "Si una criatura que ya está agotada sufre otro efecto que provoque agotamiento, su nivel actual de agotamiento aumenta en la cantidad especificada en la descripción del efecto.",
+                "Una criatura sufre los efectos de su nivel actual de agotamiento, así como de todos los niveles inferiores. Por ejemplo, una criatura que sufra agotamiento de nivel 2 ve reducida su velocidad a la mitad y tiene desventaja en las tiradas de habilidad.",
+                "Un efecto que elimina el agotamiento reduce su nivel tal y como se especifica en la descripción del efecto; todos los efectos de agotamiento cesan si el nivel de agotamiento de una criatura se reduce por debajo de 1.",
+                "Al terminar un descanso largo, el nivel de agotamiento de una criatura se reduce en 1, siempre que la criatura también haya ingerido algo de comida y bebida. Además, al resucitar de entre los muertos, el nivel de agotamiento de una criatura se reduce en 1."
+            ]
+        },
+        {
+            "name": "Exhaustion",
+            "source": "XPHB",
+            "page": 365,
+            "freeRules2024": true,
+            "entries": [
+                "Mientras tengas la condición de Agotamiento, sufrirás los siguientes efectos.",
+                {
+                    "type": "entries",
+                    "entries": [
+                        {
+                            "type": "entries",
+                            "name": "Exhaustion Levels",
+                            "entries": [
+                                "Esta condición es acumulativa. Cada vez que la recibas, ganarás 1 nivel de agotamiento. Morirás si tu nivel de agotamiento alcanza el 6."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "D20 Tests Affected",
+                            "entries": [
+                                "Cuando realices una tirada de D20, el resultado se reducirá en 2 veces tu nivel de agotamiento."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Speed Reduced",
+                            "entries": [
+                                "Tu {@variantrule Speed|XPHB} se reduce en una distancia, en pies, igual a 5 veces tu nivel de agotamiento."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Removing Exhaustion Levels",
+                            "entries": [
+                                "Al completar un {@variantrule Long Rest|XPHB}, se elimina 1 de tus niveles de agotamiento. Cuando tu nivel de agotamiento llegue a 0, la condición finaliza."
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Frightened",
+            "source": "PHB",
+            "page": 290,
+            "srd": true,
+            "basicRules": true,
+            "otherSources": [
+                {
+                    "source": "RMR",
+                    "page": 62
+                },
+                {
+                    "source": "HftT",
+                    "page": 48
+                }
+            ],
+            "reprintedAs": [
+                "Frightened|XPHB"
+            ],
+            "entries": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Una criatura asustada tiene desventaja en las tiradas de habilidad y en las tiradas de ataque mientras la fuente de su miedo se encuentre dentro de su campo de visión.",
+                        "La criatura no puede acercarse voluntariamente a la fuente de su miedo."
+                    ]
+                }
+            ],
+            "hasFluffImages": true
+        },
+        {
+            "name": "Frightened",
+            "source": "XPHB",
+            "page": 367,
+            "freeRules2024": true,
+            "entries": [
+                "Mientras tengas el estado «Aterrorizado», sufrirás los siguientes efectos.",
+                {
+                    "type": "entries",
+                    "entries": [
+                        {
+                            "type": "entries",
+                            "name": "Ability Checks and Attacks Affected",
+                            "entries": [
+                                "Tienes {@variantrule Disadvantage|XPHB} en las tiradas de habilidad y de ataque mientras la fuente del miedo se encuentre dentro de tu campo de visión."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Can't Approach",
+                            "entries": [
+                                "No puedes acercarte voluntariamente a la fuente del miedo."
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Grappled",
+            "source": "PHB",
+            "page": 290,
+            "srd": true,
+            "basicRules": true,
+            "otherSources": [
+                {
+                    "source": "RMR",
+                    "page": 62
+                },
+                {
+                    "source": "HftT",
+                    "page": 48
+                }
+            ],
+            "reprintedAs": [
+                "Grappled|XPHB"
+            ],
+            "entries": [
+                {
+                    "type": "list",
+                    "items": [
+                        "La velocidad de una criatura agarrada pasa a ser 0, y no puede beneficiarse de ninguna bonificación a su velocidad.",
+                        "La condición finaliza si el luchador se encuentra {@condition incapacitated}.",
+                        "La condición también finaliza si un efecto aleja a la criatura agarrada del alcance del agarrador o del efecto de agarre, como cuando una criatura es lanzada por los aires por el hechizo {@spell thunderwave}."
+                    ]
+                }
+            ],
+            "hasFluffImages": true
+        },
+        {
+            "name": "Grappled",
+            "source": "XPHB",
+            "page": 367,
+            "freeRules2024": true,
+            "entries": [
+                "Mientras tengas la condición «Atrapado», sufrirás los siguientes efectos.",
+                {
+                    "type": "entries",
+                    "entries": [
+                        {
+                            "type": "entries",
+                            "name": "Speed 0",
+                            "entries": [
+                                "Tu {@variantrule Speed|XPHB} es 0 y no puede aumentar."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Attacks Affected",
+                            "entries": [
+                                "Tienes {@variantrule Disadvantage|XPHB} en las tiradas de ataque contra cualquier objetivo que no sea el luchador."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Movable",
+                            "entries": [
+                                "El grappler puede arrastrarte o llevarte consigo cuando se mueve, pero cada metro que recorre le cuesta 1 metro adicional, a menos que seas de tamaño «minúsculo» o que seas dos o más tamaños más pequeño que él."
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Incapacitated",
+            "source": "PHB",
+            "page": 290,
+            "srd": true,
+            "basicRules": true,
+            "otherSources": [
+                {
+                    "source": "RMR",
+                    "page": 62
+                },
+                {
+                    "source": "HftT",
+                    "page": 48
+                }
+            ],
+            "reprintedAs": [
+                "Incapacitated|XPHB"
+            ],
+            "entries": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Una criatura incapacitada no puede realizar acciones ni reacciones."
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Incapacitated",
+            "source": "XPHB",
+            "page": 369,
+            "freeRules2024": true,
+            "entries": [
+                "Mientras tengas la condición «Incapacitado», sufrirás los siguientes efectos.",
+                {
+                    "type": "entries",
+                    "entries": [
+                        {
+                            "type": "entries",
+                            "name": "Inactive",
+                            "entries": [
+                                "No puedes realizar ninguna {@variantrule Action|XPHB|action}, {@variantrule Bonus Action|XPHB} ni {@variantrule Reaction|XPHB}."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "No Concentration",
+                            "entries": [
+                                "Tu {@status Concentration|XPHB} no funciona."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Speechless",
+                            "entries": [
+                                "No puedes hablar."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Surprised",
+                            "entries": [
+                                "Si estás incapacitado cuando tiras {@variantrule Initiative|XPHB}, tienes {@variantrule Disadvantage|XPHB} en la tirada."
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Invisible",
+            "source": "PHB",
+            "page": 291,
+            "srd": true,
+            "basicRules": true,
+            "otherSources": [
+                {
+                    "source": "RMR",
+                    "page": 62
+                },
+                {
+                    "source": "HftT",
+                    "page": 48
+                }
+            ],
+            "reprintedAs": [
+                "Invisible|XPHB"
+            ],
+            "entries": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Una criatura invisible es imposible de ver sin la ayuda de la magia o de un sentido especial. A efectos de ocultarse, la criatura queda totalmente oculta. Su ubicación puede detectarse por cualquier ruido que haga o cualquier rastro que deje.",
+                        "Las tiradas de ataque contra la criatura tienen desventaja, y las tiradas de ataque de la criatura tienen ventaja."
+                    ]
+                }
+            ],
+            "hasFluffImages": true
+        },
+        {
+            "name": "Invisible",
+            "source": "XPHB",
+            "page": 370,
+            "freeRules2024": true,
+            "entries": [
+                "Mientras tengas la condición «Invisible», sufrirás los siguientes efectos.",
+                {
+                    "type": "entries",
+                    "entries": [
+                        {
+                            "type": "entries",
+                            "name": "Surprise",
+                            "entries": [
+                                "Si estás «Invisible» cuando tiras {@variantrule Initiative|XPHB}, tienes {@variantrule Advantage|XPHB} en la tirada."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Concealed",
+                            "entries": [
+                                "No te afectan los efectos que requieran que el objetivo sea visible, a menos que quien haya creado el efecto pueda verte de alguna manera. El equipo que lleves puesto o que lleves contigo también queda oculto."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Attacks Affected",
+                            "entries": [
+                                "Las tiradas de ataque que se realicen contra ti tienen {@action Attack|XPHB}, y tus tiradas de ataque tienen {@variantrule Disadvantage|XPHB}. Si una criatura puede verte de alguna manera, no obtienes esta ventaja frente a ella."
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Paralyzed",
+            "source": "PHB",
+            "page": 291,
+            "srd": true,
+            "basicRules": true,
+            "otherSources": [
+                {
+                    "source": "RMR",
+                    "page": 62
+                },
+                {
+                    "source": "HftT",
+                    "page": 48
+                }
+            ],
+            "reprintedAs": [
+                "Paralyzed|XPHB"
+            ],
+            "entries": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Una criatura paralizada se encuentra en {@condition incapacitated} y no puede moverse ni hablar.",
+                        "La criatura falla automáticamente las tiradas de salvación de Fuerza y Destreza.",
+                        "Las tiradas de ataque contra la criatura tienen ventaja.",
+                        "Cualquier ataque que alcance a la criatura se considera un golpe crítico si el atacante se encuentra a menos de 1,5 metros de ella."
+                    ]
+                }
+            ],
+            "hasFluffImages": true
+        },
+        {
+            "name": "Paralyzed",
+            "source": "XPHB",
+            "page": 371,
+            "freeRules2024": true,
+            "entries": [
+                "Mientras tengas la condición «Paralizado», sufrirás los siguientes efectos.",
+                {
+                    "type": "entries",
+                    "entries": [
+                        {
+                            "type": "entries",
+                            "name": "Incapacitated",
+                            "entries": [
+                                "Tienes la condición {@condition Incapacitated|XPHB}."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Speed 0",
+                            "entries": [
+                                "Tu {@variantrule Speed|XPHB} es 0 y no puede aumentar."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Saving Throws Affected",
+                            "entries": [
+                                "Sufrirás automáticamente un fallo en las tiradas de salvación de Fuerza y Destreza {@variantrule Saving Throw|XPHB|saving throws}."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Attacks Affected",
+                            "entries": [
+                                "Las tiradas de {@action Attack|XPHB} contra ti tienen {@variantrule Advantage|XPHB}."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Automatic Critical Hits",
+                            "entries": [
+                                "Cualquier tirada de ataque que te alcance se considera un {@variantrule Critical Hit|XPHB} si el atacante se encuentra a menos de 1,5 metros de ti."
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Petrified",
+            "source": "PHB",
+            "page": 291,
+            "srd": true,
+            "basicRules": true,
+            "otherSources": [
+                {
+                    "source": "RMR",
+                    "page": 62
+                },
+                {
+                    "source": "HftT",
+                    "page": 48
+                }
+            ],
+            "reprintedAs": [
+                "Petrified|XPHB"
+            ],
+            "entries": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Una criatura petrificada se transforma, junto con cualquier objeto no mágico que lleve puesto o en sus manos, en una sustancia sólida e inanimada (normalmente piedra). Su peso se multiplica por diez y deja de envejecer.",
+                        "La criatura está {@condition incapacitated}, no puede moverse ni hablar, y no es consciente de lo que la rodea.",
+                        "Las tiradas de ataque contra la criatura tienen ventaja.",
+                        "La criatura falla automáticamente las tiradas de salvación de Fuerza y Destreza.",
+                        "La criatura es resistente a todo tipo de daño.",
+                        "La criatura es inmune al veneno y a las enfermedades, aunque cualquier veneno o enfermedad que ya se encuentre en su organismo queda inactivo, no neutralizado."
+                    ]
+                }
+            ],
+            "hasFluffImages": true
+        },
+        {
+            "name": "Petrified",
+            "source": "XPHB",
+            "page": 372,
+            "freeRules2024": true,
+            "entries": [
+                "Mientras estés bajo el efecto de «Petrificado», sufrirás los siguientes efectos.",
+                {
+                    "type": "entries",
+                    "entries": [
+                        {
+                            "type": "entries",
+                            "name": "Turned to Inanimate Substance",
+                            "entries": [
+                                "Te transformas, junto con cualquier objeto no mágico que lleves puesto o en tu poder, en una sustancia sólida e inanimada (normalmente piedra). Tu peso se multiplica por diez y dejas de envejecer."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Incapacitated",
+                            "entries": [
+                                "Tienes la condición {@condition Incapacitated|XPHB}."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Speed 0",
+                            "entries": [
+                                "Tu {@variantrule Speed|XPHB} es 0 y no puede aumentar."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Attacks Affected",
+                            "entries": [
+                                "Las tiradas de {@action Attack|XPHB} contra ti tienen {@variantrule Advantage|XPHB}."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Saving Throws Affected",
+                            "entries": [
+                                "Sufrirás automáticamente un fallo en las tiradas de salvación de Fuerza y Destreza {@variantrule Saving Throw|XPHB|saving throws}."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Resist Damage",
+                            "entries": [
+                                "Tienes {@variantrule Resistance|XPHB} frente a todo tipo de daño."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Poison Immunity",
+                            "entries": [
+                                "Tienes {@variantrule Immunity|XPHB} a la condición {@condition Poisoned|XPHB}."
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Poisoned",
+            "source": "PHB",
+            "page": 292,
+            "srd": true,
+            "basicRules": true,
+            "otherSources": [
+                {
+                    "source": "RMR",
+                    "page": 62
+                },
+                {
+                    "source": "HftT",
+                    "page": 48
+                }
+            ],
+            "reprintedAs": [
+                "Poisoned|XPHB"
+            ],
+            "entries": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Una criatura envenenada tiene desventaja en las tiradas de ataque y en las tiradas de habilidad."
+                    ]
+                }
+            ],
+            "hasFluffImages": true
+        },
+        {
+            "name": "Poisoned",
+            "source": "XPHB",
+            "page": 372,
+            "freeRules2024": true,
+            "entries": [
+                "Mientras tengas la condición «Envenenado», sufrirás el siguiente efecto.",
+                {
+                    "type": "entries",
+                    "entries": [
+                        {
+                            "type": "entries",
+                            "name": "Ability Checks and Attacks Affected",
+                            "entries": [
+                                "Tienes {@variantrule Disadvantage|XPHB} en las tiradas de ataque y en las tiradas de habilidad."
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Prone",
+            "source": "PHB",
+            "page": 292,
+            "srd": true,
+            "basicRules": true,
+            "otherSources": [
+                {
+                    "source": "RMR",
+                    "page": 62
+                },
+                {
+                    "source": "HftT",
+                    "page": 48
+                }
+            ],
+            "reprintedAs": [
+                "Prone|XPHB"
+            ],
+            "entries": [
+                {
+                    "type": "list",
+                    "items": [
+                        "La única forma de moverse que tiene una criatura que se encuentra en el suelo es arrastrándose, a menos que se ponga de pie y, con ello, ponga fin a esa condición.",
+                        "La criatura tiene desventaja en las tiradas de ataque.",
+                        "Una tirada de ataque contra la criatura tiene ventaja si el atacante se encuentra a menos de 1,5 metros de ella. De lo contrario, la tirada de ataque tiene desventaja."
+                    ]
+                }
+            ],
+            "hasFluffImages": true
+        },
+        {
+            "name": "Prone",
+            "source": "XPHB",
+            "page": 372,
+            "freeRules2024": true,
+            "entries": [
+                "Mientras tengas la condición «Boca abajo», sufrirás los siguientes efectos.",
+                {
+                    "type": "entries",
+                    "entries": [
+                        {
+                            "type": "entries",
+                            "name": "Restricted Movement",
+                            "entries": [
+                                "Tus únicas opciones de movimiento son {@variantrule Crawling|XPHB|crawl} o gastar una cantidad de movimiento igual a la mitad de tu {@variantrule Speed|XPHB} (redondeando a la baja) para enderezarte y, de ese modo, poner fin a la condición. Si tu {@variantrule Speed|XPHB} es 0, no puedes enderezarte."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Attacks Affected",
+                            "entries": [
+                                "Tienes {@variantrule Disadvantage|XPHB} en las tiradas de ataque. Una tirada de ataque contra ti tiene {@variantrule Advantage|XPHB} si el atacante se encuentra a menos de 1,5 metros de ti. En caso contrario, esa tirada de ataque tiene {@variantrule Disadvantage|XPHB}."
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Restrained",
+            "source": "PHB",
+            "page": 292,
+            "srd": true,
+            "basicRules": true,
+            "otherSources": [
+                {
+                    "source": "RMR",
+                    "page": 62
+                },
+                {
+                    "source": "HftT",
+                    "page": 48
+                }
+            ],
+            "reprintedAs": [
+                "Restrained|XPHB"
+            ],
+            "entries": [
+                {
+                    "type": "list",
+                    "items": [
+                        "La velocidad de una criatura inmovilizada pasa a ser 0, y no puede beneficiarse de ninguna bonificación a su velocidad.",
+                        "Las tiradas de ataque contra la criatura tienen ventaja, y las tiradas de ataque de la criatura tienen desventaja.",
+                        "La criatura tiene desventaja en las tiradas de salvación de Destreza."
+                    ]
+                }
+            ],
+            "hasFluffImages": true
+        },
+        {
+            "name": "Restrained",
+            "source": "XPHB",
+            "page": 373,
+            "freeRules2024": true,
+            "entries": [
+                "Mientras tengas la condición «Restringido», sufrirás los siguientes efectos.",
+                {
+                    "type": "entries",
+                    "entries": [
+                        {
+                            "type": "entries",
+                            "name": "Speed 0",
+                            "entries": [
+                                "Tu {@variantrule Speed|XPHB} es 0 y no puede aumentar."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Attacks Affected",
+                            "entries": [
+                                "Las tiradas de ataque que se realicen contra ti tienen {@action Attack|XPHB}, y tus tiradas de ataque tienen {@variantrule Advantage|XPHB}."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Saving Throws Affected",
+                            "entries": [
+                                "Tienes {@variantrule Disadvantage|XPHB} en las tiradas de salvación de Destreza {@variantrule Saving Throw|XPHB|saving throws}."
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Stunned",
+            "source": "PHB",
+            "page": 292,
+            "srd": true,
+            "basicRules": true,
+            "otherSources": [
+                {
+                    "source": "RMR",
+                    "page": 62
+                },
+                {
+                    "source": "HftT",
+                    "page": 48
+                }
+            ],
+            "reprintedAs": [
+                "Stunned|XPHB"
+            ],
+            "entries": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Una criatura aturdida se encuentra en {@condition incapacitated} estado de incapacitación, no puede moverse y solo puede hablar con dificultad.",
+                        "La criatura falla automáticamente las tiradas de salvación de Fuerza y Destreza.",
+                        "Las tiradas de ataque contra la criatura tienen ventaja."
+                    ]
+                }
+            ],
+            "hasFluffImages": true
+        },
+        {
+            "name": "Stunned",
+            "source": "XPHB",
+            "page": 376,
+            "freeRules2024": true,
+            "entries": [
+                "Mientras estés bajo el efecto de «Aturdido», sufrirás los siguientes efectos.",
+                {
+                    "type": "entries",
+                    "entries": [
+                        {
+                            "type": "entries",
+                            "name": "Incapacitated",
+                            "entries": [
+                                "Tienes la condición {@condition Incapacitated|XPHB}."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Saving Throws Affected",
+                            "entries": [
+                                "Sufrirás automáticamente un fallo en las tiradas de salvación de Fuerza y Destreza {@variantrule Saving Throw|XPHB|saving throws}."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Attacks Affected",
+                            "entries": [
+                                "Las tiradas de {@action Attack|XPHB} contra ti tienen {@variantrule Advantage|XPHB}."
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Unconscious",
+            "source": "PHB",
+            "page": 292,
+            "srd": true,
+            "basicRules": true,
+            "otherSources": [
+                {
+                    "source": "RMR",
+                    "page": 62
+                },
+                {
+                    "source": "HftT",
+                    "page": 48
+                }
+            ],
+            "reprintedAs": [
+                "Unconscious|XPHB"
+            ],
+            "entries": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Una criatura inconsciente se encuentra en {@condition incapacitated} estado de incapacitación, no puede moverse ni hablar, y no es consciente de lo que la rodea.",
+                        "La criatura suelta lo que tenga en las manos y cae {@condition prone}.",
+                        "La criatura falla automáticamente las tiradas de salvación de Fuerza y Destreza.",
+                        "Las tiradas de ataque contra la criatura tienen ventaja.",
+                        "Cualquier ataque que alcance a la criatura se considera un golpe crítico si el atacante se encuentra a menos de 1,5 metros de ella."
+                    ]
+                }
+            ],
+            "hasFluffImages": true
+        },
+        {
+            "name": "Unconscious",
+            "source": "XPHB",
+            "page": 376,
+            "freeRules2024": true,
+            "entries": [
+                "Mientras te encuentres en estado inconsciente, experimentarás los siguientes efectos.",
+                {
+                    "type": "entries",
+                    "entries": [
+                        {
+                            "type": "entries",
+                            "name": "Inert",
+                            "entries": [
+                                "Tienes las condiciones {@condition Incapacitated|XPHB} y {@condition Prone|XPHB}, y se te cae lo que tengas en las manos. Cuando esta condición termine, seguirás {@condition Prone|XPHB}."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Speed 0",
+                            "entries": [
+                                "Tu {@variantrule Speed|XPHB} es 0 y no puede aumentar."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Attacks Affected",
+                            "entries": [
+                                "Las tiradas de {@action Attack|XPHB} contra ti tienen {@variantrule Advantage|XPHB}."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Saving Throws Affected",
+                            "entries": [
+                                "Sufrirás automáticamente un fallo en las tiradas de salvación de Fuerza y Destreza {@variantrule Saving Throw|XPHB|saving throws}."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Automatic Critical Hits",
+                            "entries": [
+                                "Cualquier tirada de ataque que te alcance se considera un {@variantrule Critical Hit|XPHB} si el atacante se encuentra a menos de 1,5 metros de ti."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Unaware",
+                            "entries": [
+                                "No te das cuenta de lo que te rodea."
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "disease": [
+        {
+            "name": "Arcane Blight",
+            "source": "IDRotF",
+            "page": 233,
+            "entries": [
+                "Cualquier humanoide que pase 12 horas en la necrópolis debe superar una tirada de salvación de Constitución {@dc 15} o contraer una plaga arcana. Esta enfermedad mágica transforma al humanoide en una {@creature nothic}, pero solo después de que la víctima sufra alucinaciones y sienta aislamiento y paranoia. Otros síntomas son la piel húmeda, la caída del cabello y la miopía.",
+                "Un personaje jugador infectado por la plaga arcana adquiere el siguiente defecto: «No confío en nadie». Este defecto, que prevalece sobre cualquier otro defecto contradictorio, se alimenta de delirios que al personaje le resulta difícil distinguir de la realidad. Entre los delirios más comunes se encuentra la creencia de que sus aliados están conspirando para robarle sus riquezas o para volverse en su contra.",
+                "Cada vez que termine un descanso largo, un humanoide infectado debe repetir la tirada de salvación. Si la tirada tiene éxito, la CD de futuras tiradas de salvación contra la plaga arcana se reduce en {@dice 1d6}. Si la CD de la tirada de salvación baja a 0, la criatura supera la plaga arcana y se vuelve inmune al efecto de una nueva exposición. Una criatura que falle tres de estas tiradas de salvación se transforma en una {@creature nothic} bajo el control del DM. Solo un hechizo {@spell wish} o una intervención divina pueden revertir esta transformación.",
+                "A {@spell greater restoration} spell or similar magic ends the infection on the target, removing the flaw and all other symptoms, but this magic doesn't protect the target against further exposure."
+            ]
+        },
+        {
+            "name": "Blinding Sickness",
+            "source": "PHB",
+            "page": 227,
+            "entries": [
+                "El dolor se apodera de la mente de la criatura y sus ojos se vuelven de un color blanco lechoso. La criatura tiene desventaja en las tiradas de Sabiduría y en las tiradas de salvación de Sabiduría, y se encuentra en {@condition blinded}.",
+                "{@note This disease can be inflicted with the {@spell contagion}.}"
+            ]
+        },
+        {
+            "name": "Blue Mist Fever",
+            "source": "ToA",
+            "page": 40,
+            "entries": [
+                "Una niebla mágica se extiende por las selvas de Chult. El contacto con esta niebla fina, azul e inodora puede contagiar a gigantes y humanoides con la fiebre de la niebla azul. Un hechizo {@spell dispel magic} destruye la niebla en un cuadrado de 6 metros, a partir de un punto elegido por el lanzador dentro del alcance del hechizo. Un encuentro con esta niebla suele abarcar {@dice 1d6} de esas áreas (entre 37 y 223 metros cuadrados).\r\n\r\nTraducción realizada con la versión gratuita del traductor DeepL.com",
+                "Un gigante o un humanoide que entre en contacto con la niebla debe superar una tirada de salvación de Constitución {@dc 13} o contraer la fiebre de la niebla azul. Una criatura infectada comienza a tener vívidas alucinaciones de monos azules {@dice 1d6} horas después de fallar la tirada de salvación, y las alucinaciones duran hasta que la enfermedad remita. Una criatura puede repetir la tirada de salvación cada 24 horas, poniendo fin al efecto sobre sí misma si la supera."
+            ]
+        },
+        {
+            "name": "Bluerot",
+            "source": "GoS",
+            "page": 234,
+            "entries": [
+                "Esta enfermedad afecta a los humanoides. Mientras padece la «podredumbre azul», a la víctima le salen grotescos forúnculos azules en la cara y la espalda. Los muertos vivientes (incluidos los ahogados de Tammeraut's Fate) son portadores de esta enfermedad, y las víctimas suelen contraerla a través de heridas causadas por criaturas infectadas. Los forúnculos de la enfermedad se manifiestan en {@dice 1d4} horas, lo que provoca que las puntuaciones de Constitución y Carisma de la víctima disminuyan en {@dice 1d4} cada una, hasta un mínimo de 3. A esto le siguen rápidamente fiebre y hormigueo en las extremidades. Una criatura infectada es vulnerable al daño radiante y adquiere la capacidad de respirar bajo el agua.",
+                "Al final de cada descanso largo, una criatura infectada realiza una tirada de salvación de Constitución {@dc 12}. Si tiene éxito, la víctima recupera 1 punto de Constitución y 1 punto de Carisma perdidos a causa de la enfermedad. Si la criatura infectada recupera todos los puntos perdidos a causa de la enfermedad, queda curada. Otros efectos que aumentan las puntuaciones de las características de la víctima no curan la enfermedad. Si falla la tirada de salvación, la víctima sufre 18 ({@damage 4d8}) puntos de daño necrótico al reventar y extenderse los forúnculos. Una criatura reducida a 0 puntos de vida por este daño no puede recuperar puntos de vida hasta que se cure la enfermedad, aunque puede estabilizarse como de costumbre."
+            ]
+        },
+        {
+            "name": "Cackle Fever",
+            "source": "DMG",
+            "page": 257,
+            "srd": true,
+            "reprintedAs": [
+                "Cackle Fever|XDMG"
+            ],
+            "entries": [
+                "Esta enfermedad afecta a los humanoides, aunque, curiosamente, los gnomos son inmunes a ella. Cuando están afectados por ella, las víctimas suelen sucumbir a ataques de risa histérica, lo que le ha valido a la enfermedad su nombre común y su morboso apodo: «los chillidos».",
+                "Los síntomas se manifiestan {@dice 1d4} horas después de la infección e incluyen fiebre y desorientación. La criatura infectada sufre un nivel de {@condition exhaustion} que no puede eliminarse hasta que se cure la enfermedad.",
+                "Cualquier situación que provoque un gran estrés a la criatura infectada —como entrar en combate, recibir daño, sentir miedo o tener una pesadilla— la obliga a realizar una tirada de salvación de Constitución con una CD de 13.",
+                "Si falla la tirada de salvación, la criatura sufre 5 puntos de daño psíquico ({@dice 1d10}) y queda {@condition incapacitated} y presa de una risa enloquecedora durante 1 minuto. La criatura puede repetir la tirada de salvación al final de cada uno de sus turnos; si tiene éxito, pone fin a la risa enloquecedora y a la condición {@condition incapacitated}. Cualquier criatura humanoide que comience su turno a menos de 3 metros de una criatura infectada en medio de una risa enloquecida debe superar una tirada de salvación de Constitución {@dc 10} o también se infectará con la enfermedad. Una vez que una criatura supera esta tirada de salvación, es inmune a la risa enloquecida de esa criatura infectada en particular durante 24 horas.",
+                "Al final de cada descanso largo, una criatura infectada puede realizar una tirada de salvación de Constitución con una CD de 13. Si la tirada tiene éxito, la CD de esta tirada y de la tirada para evitar un ataque de risa enloquecedora se reduce en {@dc 13}. Cuando la CD de la tirada de salvación llega a 0, la criatura se recupera de la enfermedad. Una criatura que falle tres de estas tiradas de salvación sufre una forma aleatoria de {@dice 1d6}."
+            ]
+        },
+        {
+            "name": "Cackle Fever",
+            "source": "XDMG",
+            "page": 61,
+            "type": "Magical Contagion",
+            "entries": [
+                "Las pociones y los elixires de baja calidad a veces están contaminados por la «fiebre de la risa», que solo afecta a los humanoides (los gnomos son, curiosamente, inmunes). Una criatura sufre los siguientes efectos {@dice 1d4} días después de la infección:",
+                {
+                    "type": "list",
+                    "style": "list-hang-notitle",
+                    "items": [
+                        {
+                            "type": "item",
+                            "name": "Fever",
+                            "entry": "The creature gains 1 {@condition Exhaustion|XPHB} level, which lasts until the contagion ends on the creature."
+                        },
+                        {
+                            "type": "item",
+                            "name": "Uncontrollable Laughter",
+                            "entry": "While the creature has the {@condition Exhaustion|XPHB} condition, the creature makes a {@dc 13} Constitution saving throw each time it takes damage other than Psychic damage. On a failed save, the creature takes 5 ({@damage 1d10}) Psychic damage and has the {@condition Incapacitated|XPHB} condition as it laughs uncontrollably. At the end of each of its turns, the creature repeats the save, ending the effect on itself on a success. After 1 minute, it succeeds automatically."
+                        }
+                    ]
+                },
+                {
+                    "type": "entries",
+                    "entries": [
+                        {
+                            "type": "entries",
+                            "name": "Fighting the Contagion",
+                            "entries": [
+                                "Al final de cada descanso largo, una criatura infectada realiza una tirada de salvación de Constitución {@dc 13}. Cuando la criatura supere tres de estas tiradas de salvación, el contagio desaparecerá y la criatura será inmune a la fiebre de la risa durante 1 año."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Spreading the Contagion",
+                            "entries": [
+                                "Cualquier humanoide (excepto los gnomos) que comience su turno dentro de un radio de 3 metros de la {@variantrule Emanation [Area of Effect]|XPHB|Emanation} procedente de una criatura infectada con la fiebre de la risa debe superar una tirada de salvación de Constitución {@dc 10} o también se infectará con el contagio. Si supera la tirada, el humanoide no podrá contraer el contagio de esa criatura infectada en particular durante las siguientes 24 horas."
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Filth Fever",
+            "source": "PHB",
+            "page": 227,
+            "entries": [
+                "Una fiebre intensa recorre el cuerpo de la criatura. La criatura tiene desventaja en las tiradas de Fuerza, en las tiradas de salvación de Fuerza y en las tiradas de ataque que utilicen la Fuerza.",
+                "{@note This disease can be inflicted with the {@spell contagion}.}"
+            ]
+        },
+        {
+            "name": "Flesh Rot",
+            "source": "PHB",
+            "page": 227,
+            "entries": [
+                "La carne de la criatura se descompone. La criatura tiene desventaja en las tiradas de Carisma y es vulnerable a todo tipo de daño.",
+                "{@note This disease can be inflicted with the {@spell contagion}.}"
+            ]
+        },
+        {
+            "name": "Frigid Woe",
+            "source": "EGW",
+            "page": 125,
+            "entries": [
+                "La «desgracia gélida» es una enfermedad especial desarrollada por los magos de Aeor que no puede curarse ni con tratamientos convencionales ni con magia. La única forma de curar a una criatura infectada por esta enfermedad es encontrar y beber el antídoto fabricado, un líquido lechoso que se conserva en frascos de oro que se encuentran en las ruinas de Eiselcross. Esta enfermedad se creó para frenar a las fuerzas de los dioses y eludir el poder curativo de sus clérigos y ángeles.",
+                "La enfermedad se transmite al inhalar las esporas azules que los magos de Aeor crearon hace mucho tiempo. Cuando una criatura entra en contacto con estas esporas, debe superar una tirada de salvación de Constitución {@dc 11} o quedará infectada con el mal gélido. Los síntomas tardan {@dice 1d4} días en manifestarse en una criatura infectada. Estos síntomas incluyen fatiga, escalofríos y venas azules visibles que aparecen en el cuerpo de la criatura. La velocidad de la criatura infectada se reduce en 1,5 metros mientras permanezca infectada. Cada 10 días tras la aparición de los síntomas, una criatura infectada debe superar una tirada de salvación de Constitución {@dc 11}, o su velocidad se reduce en otros 5 pies. Si la velocidad de una criatura se reduce a 0 como resultado de esta enfermedad, la criatura muere y su cuerpo se convierte en una estatua de hielo.",
+                "Una criatura puede beber el antídoto como acción, lo que pone fin al instante a todos los síntomas y efectos de la enfermedad."
+            ]
+        },
+        {
+            "name": "Ghoul Gut",
+            "source": "OoW",
+            "page": 111,
+            "entries": [
+                "El agua contaminada con restos de ghoul contiene intestinos de ghoul. Una criatura que beba esta agua contaminada debe superar una tirada de salvación de Constitución {@dc 12} o contraer la enfermedad. Los síntomas aparecen cuando la víctima comienza un descanso largo o se emociona, como durante un combate. La víctima sufre fuertes calambres y sus intestinos emiten sonidos como si dos ghouls estuvieran luchando. Cuando los síntomas aparecen por primera vez, la víctima recibe 5 ({@dc 12}) puntos de daño necrótico. Además, una víctima enferma no recupera puntos de vida ni dados de vida de fuentes no mágicas, incluyendo el descanso o el gasto de dados de vida. Una víctima que termine un descanso largo puede intentar una tirada de salvación de Constitución con una CD de 12. Si la tirada tiene éxito, la víctima se libra de la enfermedad. Si falla, el personaje sufre otros 5 ({@damage 2d4}) puntos de daño necrótico.",
+                "Un personaje que supere una tirada de Sabiduría ({@dc 15}) con una CD de 15 también puede curar la enfermedad de otra criatura. Para ello, el personaje que realice la tirada debe cuidar al enfermo durante un descanso largo. El cuidador no obtiene ningún beneficio de ese descanso."
+            ]
+        },
+        {
+            "name": "Grackle-Lung",
+            "source": "OotA",
+            "page": 54,
+            "entries": [
+                "La constante niebla tóxica de Gracklstugh provoca «pulmón de grackle» en las criaturas vivas, lo que da lugar a una tos persistente y desgarradora y a la expulsión de flemas espesas y negras. Cada vez que una criatura viva termine un descanso largo en Gracklstugh, deberá realizar una tirada de salvación de Constitución {@dc 11}. Por cada tirada fallida, la criatura adquiere un nivel de {@condition exhaustion}, ya que sus vías respiratorias se obstruyen cada vez más. Una criatura que alcanza el nivel 6 de {@condition exhaustion} muere, como es habitual.",
+                "Una criatura con uno o más niveles de {@condition exhaustion} provocados por «pulmón de grajo» debe superar una tirada de Constitución para realizar la {@action Dash}. Si falla la tirada, no puede intentar la acción. Si la criatura intenta lanzar un hechizo con un componente verbal, debe superar una tirada de Constitución o no podrá completar el hechizo, lo que provocará que este falle y no tenga ningún efecto. La CD de cada tirada es 10 + el nivel actual de {@condition exhaustion} de la criatura.",
+                "Si el nivel de {@condition exhaustion} de una criatura desciende por debajo de 1, deja de sufrir los efectos del «pulmón de grajo» y se vuelve inmune a él durante la semana siguiente. Los duergar y los derro son inmunes al «pulmón de grajo», por lo que realizan las tiradas de Constitución contra él con ventaja. Cualquier hechizo o efecto que cure una enfermedad también cura el «pulmón de grajo», eliminando de hecho todos los niveles de {@condition exhaustion} provocados por la afección."
+            ]
+        },
+        {
+            "name": "Mindfire",
+            "source": "PHB",
+            "page": 227,
+            "entries": [
+                "La mente de la criatura se vuelve confusa. La criatura tiene desventaja en las tiradas de Inteligencia y en las tiradas de salvación de Inteligencia, y se comporta como si estuviera bajo los efectos del hechizo {@spell confusion} durante el combate.",
+                "{@note This disease can be inflicted with the {@spell contagion}.}"
+            ]
+        },
+        {
+            "name": "Redface",
+            "source": "GoS",
+            "page": 168,
+            "entries": [
+                "Los efectos de la «cara roja» son idénticos a los de la {@disease sight rot} (véase «{@book Diseases|DMG|8|Diseases}» en el capítulo 8 de la {@book Dungeon Master's Guide|DMG}), pero se debe a los contaminantes presentes en el aire y no al agua potable contaminada, lo que hace que sea difícil de evitar."
+            ]
+        },
+        {
+            "name": "Saprophytic Plague",
+            "source": "CM",
+            "page": 253,
+            "entries": [
+                "Las investigaciones de Xanthoria sobre el estado de liche y su creación de un filacterio viviente provocaron la aparición de la plaga que se extendió por toda la Costa de la Espada. Cualquier bestia o humanoide que se acerque a menos de 3 metros de una criatura infectada por la plaga saprofítica debe superar una tirada de salvación de Constitución {@dc 20} o quedará infectado también. Si la tirada de salvación tiene éxito, la criatura es inmune a la plaga durante 24 horas, y cualquier criatura que sea inmune a las enfermedades supera la tirada de salvación automáticamente.",
+                "Tras fallar una tirada de salvación, la criatura experimenta los primeros síntomas —dolores corporales, náuseas, dificultad para hablar y babeo incontrolable— {@dice 1d4} horas después y adquiere 1 nivel de {@condition exhaustion}. A partir de entonces, cada 24 horas, la criatura adquiere automáticamente otro nivel de {@condition exhaustion}. Cualquier criatura que muera a causa de la plaga saprofítica se transforma en un limo magenta sin vida.",
+                "Una criatura infectada por la plaga saprofítica durante al menos 24 horas se comporta como un zombi y parece apenas consciente de lo que la rodea, mientras le brotan crecimientos fúngicos de la cabeza, el cuerpo y las extremidades. Siente una necesidad imperiosa de estar cerca de grupos de criaturas no infectadas para poder propagar el contagio. Es en este momento cuando los humanoides infectados comienzan a repetir una y otra vez la palabra «Xanthoria», sin comprender su significado. Este comportamiento es el resultado de una red micelial de esporas que establece una tenue conexión entre Xanthoria y los humanoides infectados por la plaga.",
+                "Los alimentos expuestos a las esporas de la plaga se pudren o se agrian en un plazo de {@dice 2d12} horas, dejando tras de sí una masa de color magenta chillón formada por hongos supurantes. Para comer alimentos infectados es necesario realizar una tirada de salvación como se ha indicado anteriormente.",
+                "Cualquier hechizo que cure una enfermedad puede librar a una criatura de la plaga saprofítica. Al lanzar el hechizo {@spell purify food and drink}, se elimina la infección de los alimentos."
+            ]
+        },
+        {
+            "name": "Seizure",
+            "source": "PHB",
+            "page": 227,
+            "entries": [
+                "La criatura no puede controlar los temblores. La criatura tiene desventaja en las tiradas de Destreza, en las tiradas de salvación de Destreza y en las tiradas de ataque que utilicen Destreza.",
+                "{@note This disease can be inflicted with the {@spell contagion}.}"
+            ]
+        },
+        {
+            "name": "Sewer Plague",
+            "source": "DMG",
+            "page": 257,
+            "srd": true,
+            "reprintedAs": [
+                "Sewer Plague|XDMG"
+            ],
+            "entries": [
+                "La «plaga de las alcantarillas» es un término genérico que designa una amplia categoría de enfermedades que se desarrollan en alcantarillas, montones de basura y pantanos estancados, y que a veces son transmitidas por criaturas que habitan en esas zonas, como ratas y otyughs.",
+                "Cuando una criatura humanoide es mordida por una criatura portadora de la enfermedad, o cuando entra en contacto con suciedad o despojos contaminados por la enfermedad, debe superar una tirada de salvación de Constitución {@dc 11} o quedará infectada.",
+                "Los síntomas de la plaga de las alcantarillas tardan {@dice 1d4} días en manifestarse en una criatura infectada. Entre los síntomas se incluyen la fatiga y los calambres. La criatura infectada sufre un nivel de {@condition exhaustion}, y solo recupera la mitad de los puntos de vida normales al gastar dados de vida, y ningún punto de vida al completar un descanso largo.",
+                "Al final de cada descanso largo, una criatura infectada debe realizar una tirada de salvación de Constitución {@dc 11}. Si falla la tirada, el personaje sufre un nivel de {@condition exhaustion}.",
+                "Si la tirada de salvación tiene éxito, el nivel de {@condition exhaustion} del personaje disminuye en un nivel. Si una tirada de salvación con éxito reduce el nivel de {@condition exhaustion} de la criatura infectada por debajo de 1, la criatura se recupera de la enfermedad."
+            ]
+        },
+        {
+            "name": "Sewer Plague",
+            "source": "XDMG",
+            "page": 61,
+            "type": "Magical Contagion",
+            "entries": [
+                "Las pociones contaminadas y los residuos alquímicos pueden provocar la plaga de las alcantarillas, que se incuba en las alcantarillas y los montones de basura y, en ocasiones, la transmiten las criaturas que habitan en esas zonas, como los otyughs y las ratas. Cualquier humanoide que resulte herido por una criatura portadora del contagio o que entre en contacto con suciedad o despojos contaminados debe superar una tirada de salvación de Constitución {@dc 11} o quedará infectado con la plaga de las alcantarillas. La criatura sufre los siguientes efectos {@dice 1d4} días después de la infección:",
+                {
+                    "type": "list",
+                    "style": "list-hang-notitle",
+                    "items": [
+                        {
+                            "type": "item",
+                            "name": "Fatigue",
+                            "entry": "The creature gains 1 {@condition Exhaustion|XPHB} level."
+                        },
+                        {
+                            "type": "item",
+                            "name": "Weakness",
+                            "entry": "While the creature has any Exhaustion levels, it regains only half the normal number of Hit Points from spending Hit Point Dice."
+                        },
+                        {
+                            "type": "item",
+                            "name": "Restlessness",
+                            "entry": "While the creature has any Exhaustion levels, finishing a Long Rest neither restores lost Hit Points nor reduces the creature's Exhaustion level."
+                        }
+                    ]
+                },
+                {
+                    "type": "entries",
+                    "entries": [
+                        {
+                            "type": "entries",
+                            "name": "Fighting the Contagion",
+                            "entries": [
+                                "Cada día, al amanecer, una criatura infectada realiza una tirada de salvación de Constitución {@dc 11}. Si falla la tirada, la criatura adquiere 1 nivel de {@condition Exhaustion|XPHB} a medida que su fatiga empeora. Si supera la tirada, el nivel de Agotamiento de la criatura se reduce en 1. Si el nivel de Agotamiento de la criatura se reduce a 0, el contagio desaparece."
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Shivering Sickness",
+            "source": "ToA",
+            "page": 40,
+            "entries": [
+                "Los insectos autóctonos de las selvas y marismas de Chult son portadores de esta enfermedad, conocida como «la enfermedad de los escalofríos». La forma más sencilla de protegerse contra ella es untarse una capa de ungüento repelente de insectos en toda la piel expuesta (para conocer el precio del repelente de insectos, véase {@adventure \"Buying a Special Item\"|ToA|1|Buying a Special Item}.",
+                "Un gigante o un humanoide que sufra daño por parte de {@creature Swarm of Insects||insect swarms} o de {@creature giant centipede||giant centipedes}, {@creature giant scorpion||giant scorpions} o {@creature giant wasp||giant wasps} queda expuesto a la enfermedad al final del encuentro. Aquellos que no se hayan aplicado repelente de insectos desde su último descanso largo quedan expuestos a la enfermedad al terminar un descanso largo.",
+                "Un gigante o un humanoide expuesto a la enfermedad debe superar una tirada de salvación de Constitución {@dc 11} o quedará infectado. Una criatura con armadura natural tiene ventaja en la tirada de salvación. Los síntomas tardan {@dice 2d6} horas en manifestarse en una criatura infectada. Los síntomas incluyen visión borrosa, desorientación y una caída repentina de la temperatura corporal que provoca temblores incontrolables y castañeteo de dientes.",
+                "Una vez que aparecen los síntomas, la criatura infectada solo recupera la mitad de los puntos de vida normales al gastar dados de vida y no recupera ningún punto de vida tras un descanso largo. Además, la criatura infectada tiene desventaja en las tiradas de habilidad y en las tiradas de ataque. Al final de un descanso largo, la criatura infectada repite la tirada de salvación y, si la supera, se libra de la enfermedad."
+            ]
+        },
+        {
+            "name": "Sight Rot",
+            "source": "DMG",
+            "page": 257,
+            "srd": true,
+            "reprintedAs": [
+                "Sight Rot|XDMG"
+            ],
+            "entries": [
+                "Esta dolorosa infección provoca sangrado ocular y, con el tiempo, deja ciega a la persona afectada.",
+                "Una bestia o un humanoide que beba agua contaminada por la podredumbre visual debe superar una tirada de salvación de Constitución {@dc 15} o quedará infectado. Un día después de la infección, la visión de la criatura comienza a volverse borrosa. La criatura sufre una penalización de -1 a las tiradas de ataque y a las tiradas de habilidad que dependan de la vista. Al final de cada descanso largo tras la aparición de los síntomas, la penalización aumenta en 1. Cuando alcanza -5, la víctima queda {@condition blinded} hasta que su vista se restaure mediante magia, como {@spell lesser restoration} o {@spell heal}.",
+                "La podredumbre ocular se puede curar con una flor poco común llamada «eyebright», que crece en algunos pantanos. En una hora, un personaje con competencia en {@item herbalism kit|phb} puede convertir la flor en una dosis de ungüento. Si se aplica en los ojos antes de un descanso largo, una dosis evita que la enfermedad empeore tras ese descanso. Tras tres dosis, el ungüento cura la enfermedad por completo."
+            ]
+        },
+        {
+            "name": "Sight Rot",
+            "source": "XDMG",
+            "page": 61,
+            "type": "Magical Contagion",
+            "entries": [
+                "Cualquier bestia o humanoide que beba agua contaminada por la «podredumbre de la vista» debe superar una tirada de salvación de Constitución {@dc 15} o sufrir la condición {@condition Blinded|XPHB} hasta que termine el contagio.",
+                {
+                    "type": "entries",
+                    "entries": [
+                        {
+                            "type": "entries",
+                            "name": "Fighting the Contagion",
+                            "entries": [
+                                "Los hechizos como {@spell Heal|XPHB} o {@spell Lesser Restoration|XPHB} detienen el contagio de inmediato. Un personaje que tenga competencia con un {@item Herbalism Kit|XPHB} puede utilizarlo para crear una dosis de ungüento no mágico, lo que lleva 1 hora. Cuando se aplica en los ojos de una criatura que sufre de Podredumbre de la vista, el ungüento suprime el contagio en esa criatura durante 24 horas. Si el contagio se suprime de esta manera durante un total de 72 horas (lo que requiere tres dosis y aplicaciones del ungüento), el contagio desaparece de la criatura."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Spreading the Contagion",
+                            "entries": [
+                                "Cualquier humanoide que entre en contacto físico con una criatura infectada con «podredumbre visual» debe superar una tirada de salvación de Constitución {@dc 15} o también se infectará con la enfermedad. Si supera la tirada, el humanoide no podrá contraer la enfermedad de esa criatura infectada en concreto durante las siguientes 24 horas."
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Slimy Doom",
+            "source": "PHB",
+            "page": 227,
+            "entries": [
+                "La criatura comienza a sangrar sin control. La criatura tiene desventaja en las tiradas de Constitución y en las tiradas de salvación de Constitución. Además, cada vez que la criatura reciba daño, queda {@condition stunned} hasta el final de su siguiente turno.",
+                "{@note This disease can be inflicted with the {@spell contagion}.}"
+            ]
+        },
+        {
+            "name": "Spider Eggs",
+            "source": "WDMM",
+            "page": 47,
+            "entries": [
+                "Si el grupo resulta derrotado, los personajes estabilizados se despiertan tras {@dice 1d4} horas y se encuentran envueltos en telas pegajosas y suspendidos a 3 metros del suelo, con huevos de araña implantados en sus cuerpos. Un personaje envuelto en una tela se encuentra en {@condition restrained} y puede usar su acción para intentar escapar realizando una tirada de Fuerza con una {@dc 15} con éxito.",
+                "Los huevos de araña implantados en un huésped eclosionan en {@dice 2d12} horas, matando al huésped mientras las arañas recién nacidas se abren paso mordiendo. Esta infestación funciona como una enfermedad. Un hechizo de {@spell lesser restoration} o un hechizo similar lanzado sobre el huésped mata los huevos de araña, poniendo fin a la amenaza."
+            ]
+        },
+        {
+            "name": "Super-Tetanus",
+            "source": "TftYP",
+            "page": 104,
+            "entries": [
+                "Una criatura que contrae la enfermedad del supertétanos sufre un dolor insoportable, ya que su corazón se acelera y sus músculos se contraen con tanta fuerza que llegan a romperle los huesos. La criatura recibe 11 puntos de daño ({@damage 2d10}) al comienzo de cada uno de sus turnos. Si la víctima no es curada por otros medios, puede repetir la tirada de salvación al final de cada minuto tras haber estado expuesta, poniendo fin al efecto sobre sí misma si la tirada tiene éxito."
+            ]
+        },
+        {
+            "name": "The Gnawing Plague",
+            "source": "VRGR",
+            "page": 153,
+            "entries": [
+                "La Plaga Devoradora, también conocida como «los Devoradores», es conocida en todos los rincones de Richemulot.",
+                {
+                    "type": "entries",
+                    "name": "Transmission",
+                    "page": 153,
+                    "entries": [
+                        "La enfermedad «Gnaws» se transmite cuando una criatura es mordida por una {@creature rat}, una {@creature giant rat}, un {@creature swarm of rats} o una {@creature wererat} portadora de la enfermedad, o bien al entrar en contacto físico con una criatura infectada."
+                    ]
+                },
+                {
+                    "type": "entries",
+                    "name": "Infection",
+                    "page": 153,
+                    "entries": [
+                        "Las criaturas expuestas a la enfermedad deben superar una tirada de salvación de Constitución con una {@dc 10} o quedarán infectadas. La CD de esta tirada de salvación puede aumentar en función de la gravedad de la propagación de la plaga (véase «{@book Cycle of the Plague|VRGR|3|Cycle of the Plague}» más abajo)."
+                    ]
+                },
+                {
+                    "type": "entries",
+                    "name": "Symptoms",
+                    "page": 153,
+                    "entries": [
+                        "Los síntomas de la Plaga Devoradora tardan {@dice 1d2} días en manifestarse en una criatura infectada. A partir de ese momento, la criatura infectada sufre 1 nivel de {@condition exhaustion}, recupera solo la mitad de los puntos de vida normales al gastar dados de vida y no recupera ningún punto de vida al completar un descanso largo.",
+                        "Los síntomas de la peste incluyen bubones, fatiga, erupciones cutáneas en forma de manchas, sudores y temblores, especialmente en la cara. Los lugareños comparan estos espasmos con el olfateo de las ratas. A los enfermos se les suelen colocar trozos de cuero en la boca para evitar que les castañeen los dientes, aunque inevitablemente acaban royéndolos."
+                    ]
+                },
+                {
+                    "type": "entries",
+                    "name": "Recovery",
+                    "page": 154,
+                    "entries": [
+                        "Al final de cada descanso largo, una criatura infectada debe realizar una tirada de salvación de Constitución {@dc 10}. Si falla la tirada, la criatura adquiere 1 nivel de {@condition exhaustion}. Si supera la tirada, el nivel de {@condition exhaustion} de la criatura se reduce en 1. Si una tirada de salvación superada reduce el nivel de {@condition exhaustion} de la criatura infectada por debajo de 1, la criatura se recupera de la enfermedad."
+                    ]
+                },
+                {
+                    "type": "entries",
+                    "name": "Immunity",
+                    "page": 154,
+                    "entries": [
+                        "Todas las formas de ratas y hombres rata son inmunes a la plaga del roer."
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Throat Leeches",
+            "source": "ToA",
+            "page": 40,
+            "entries": [
+                "Unos parásitos minúsculos conocidos como «sanguijuelas de garganta» contaminan el agua de los bosques, pantanos y ríos de Chult. Cualquier gigante o humanoide que beba agua contaminada debe superar una tirada de salvación de Constitución {@dc 12} o quedará infestado por las sanguijuelas de garganta. Los síntomas inmediatos incluyen inflamación de garganta y dificultad para respirar. Tras {@dice 1d6} horas, el personaje infectado adquiere 1 nivel de {@condition exhaustion} que no puede eliminarse (salvo como se describe a continuación) hasta que se cure la enfermedad. Al final de cada descanso largo, la criatura infectada debe repetir la tirada de salvación. Si falla la tirada de salvación, el {@condition exhaustion} de la criatura aumenta en 1 nivel; si la supera, el {@condition exhaustion} de la criatura disminuye en 1 nivel. Si una tirada de salvación superada reduce el nivel de {@condition exhaustion} de la criatura infectada por debajo de 1, la criatura se recupera de la enfermedad.",
+                "Los exploradores pueden evitar contraer la «sanguijuela de garganta» bebiendo únicamente agua de lluvia o agua que haya sido hervida o purificada por medios mágicos."
+            ]
+        }
+    ],
+    "status": [
+        {
+            "name": "Concentration",
+            "source": "PHB",
+            "page": 203,
+            "srd": true,
+            "basicRules": true,
+            "reprintedAs": [
+                "Concentration|XPHB"
+            ],
+            "entries": [
+                "Algunos hechizos requieren que mantengas {@status concentration} para que su magia siga activa. Si pierdes {@status concentration}, el hechizo se disipa.",
+                "Si un hechizo requiere {@status concentration}, esto se indica en la entrada «Duración», y el hechizo especifica cuánto tiempo puedes mantener la concentración. Puedes interrumpir la {@status concentration} en cualquier momento (sin necesidad de realizar ninguna acción).",
+                "Las acciones normales, como moverse y atacar, no interfieren con el {@status concentration}. Los siguientes factores pueden interrumpir el {@status concentration}:",
+                {
+                    "type": "list",
+                    "items": [
+                        "{@b Casting another spell that requires concentration.} Perderás la {@status concentration} en un hechizo si lanzas otro hechizo que requiera {@status concentration}. No puedes concentrarte en dos hechizos a la vez.",
+                        "{@b Taking damage.} Cada vez que recibas daño mientras estás {@status concentration||concentrating} en un hechizo, debes realizar una tirada de salvación de Constitución para mantener tu {@status concentration}. La CD es igual a 10 o a la mitad del daño recibido, el valor que sea mayor. Si recibes daño de varias fuentes, como una flecha y el aliento de un dragón, debes realizar una tirada de salvación por separado para cada fuente de daño.",
+                        "{@b Being incapacitated or killed.} Pierdes {@status concentration} en un hechizo si quedas {@condition incapacitated} o si mueres."
+                    ]
+                },
+                "El DJ también puede decidir que ciertos fenómenos ambientales, como una ola que te golpea mientras te encuentras en un barco azotado por la tormenta, te obliguen a superar una tirada de salvación de Constitución {@dc 10} para mantener la {@status concentration} en un hechizo."
+            ]
+        },
+        {
+            "name": "Concentration",
+            "source": "XPHB",
+            "page": 363,
+            "freeRules2024": true,
+            "entries": [
+                "Algunos hechizos y otros efectos requieren Concentración para mantenerse activos, tal y como se especifica en sus descripciones. Si el creador del efecto pierde la Concentración, el efecto finaliza. Si el efecto tiene una duración máxima, la descripción del efecto especifica cuánto tiempo puede concentrarse en él el creador: hasta 1 minuto, 1 hora o cualquier otra duración. El creador puede poner fin a la Concentración en cualquier momento (sin necesidad de realizar ninguna acción). Los siguientes factores interrumpen la Concentración.",
+                {
+                    "type": "entries",
+                    "entries": [
+                        {
+                            "type": "entries",
+                            "name": "Another Concentration Effect",
+                            "entries": [
+                                "Pierdes la concentración en un efecto en el momento en que empiezas a lanzar un hechizo que requiera concentración o activas otro efecto que requiera concentración."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Damage",
+                            "entries": [
+                                "Si recibes daño, debes superar una tirada de salvación de Constitución {@variantrule Saving Throw|XPHB|saving throw} para mantener la concentración. La CD es igual a 10 o a la mitad del daño recibido (redondeando a la baja), el que sea mayor, hasta una CD máxima de 30."
+                            ]
+                        },
+                        {
+                            "type": "entries",
+                            "name": "Incapacitated or Dead",
+                            "entries": [
+                                "Tu concentración se interrumpe si sufres la condición {@condition Incapacitated|XPHB} o si mueres."
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Surprised",
+            "source": "PHB",
+            "page": 189,
+            "srd": true,
+            "basicRules": true,
+            "reprintedAs": [
+                "Surprised|XPHB"
+            ],
+            "entries": [
+                "Un grupo de aventureros se acerca sigilosamente a un campamento de bandidos y, saltando desde los árboles, los ataca. Un {@creature gelatinous cube} se desliza por un pasadizo de la mazmorra, pasando desapercibido para los aventureros hasta que el cubo envuelve a uno de ellos. En estas situaciones, uno de los bandos de la batalla toma por sorpresa al otro.",
+                "El DJ decide quién puede verse sorprendido. Si ninguna de las partes intenta actuar con sigilo, se detectan automáticamente entre sí. De lo contrario, el DJ compara las tiradas de Destreza ({@skill Stealth}) de cualquiera que se esté escondiendo con la puntuación pasiva de Sabiduría ({@skill Perception}) de cada criatura del bando contrario. Cualquier personaje o monstruo que no detecte una amenaza se encuentra {@status surprised} al inicio del encuentro.",
+                "Si te ves sorprendido, no puedes moverte ni realizar ninguna acción en tu primer turno del combate, y no puedes realizar una reacción hasta que termine ese turno. Un miembro de un grupo puede estar {@status surprised} aunque los demás miembros no lo estén."
+            ]
+        },
+        {
+            "name": "Surprised",
+            "source": "XPHB",
+            "page": 376,
+            "freeRules2024": true,
+            "entries": [
+                "Si una criatura es tomada por sorpresa al inicio del combate, se considera que está sorprendida, lo que le provoca una desventaja en su tirada de iniciativa."
+            ]
+        }
+    ]
 }
