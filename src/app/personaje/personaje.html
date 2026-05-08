@@ -52,7 +52,19 @@
     @for(action of characterActions; track $index){
       <p><strong>{{action.name}}</strong></p>
       @for(entry of action.entries; track $index){
-        <p [innerHTML]="processEntry(entry)"></p>
+        @if (entry.type == 'list') {
+          @for(item of entry.items; track $index){
+            <p [innerHTML]="processEntry(item)"></p>
+          }
+        }
+        @else if (entry.name) {
+          <p>{{ entry.name }}</p>
+          @for(childEntry of entry.entries; track $index){
+            <p [innerHTML]="processEntry(childEntry)"></p>
+          }
+        } @else {
+          <p [innerHTML]="processEntry(entry)"></p>
+        }
       }
     }
     <p><strong>Bonus actions</strong></p>
@@ -78,7 +90,18 @@
             </p-accordion-header>
             <p-accordion-content>
               @for (entry of spell.entries; track $index) {
-                <p [innerHTML]="processEntry(entry)"></p>
+                @if (entry.type == 'list') {
+                  @for(item of entry.items; track $index) {
+                    <p [innerHTML]="processEntry(item)"></p>
+                  }
+                } @else if (entry.name) {
+                  <p>{{ entry.name }}</p>
+                  @for(childEntry of entry.entries; track $index) {
+                    <p [innerHTML]="processEntry(childEntry)"></p>
+                  }
+                } @else {
+                  <p [innerHTML]="processEntry(entry)"></p>
+                }
               }
             </p-accordion-content>
           </p-accordion-panel>

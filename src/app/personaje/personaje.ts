@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { PRIMENG_IMPORTS } from '../primeng.imports';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ALLOWED_SOURCES } from '../sourcesConfigService';
@@ -23,8 +24,9 @@ export class Personaje implements OnInit {
   loading = true;
   spells: Map<string, any> = new Map();
   classInfo: any;
+  private cdr = inject(ChangeDetectorRef);
 
-  characterName: string = "rym";
+  characterName: string = "";
   character: any;
   characterStats: stats = {
     strength: 0,
@@ -41,27 +43,44 @@ export class Personaje implements OnInit {
 
   constructor(
     private readonly jsonReader: JsonReader,
-    private readonly sanitizer: DomSanitizer
+    private readonly sanitizer: DomSanitizer,
+    private readonly route: ActivatedRoute
   ) {}
 
   async ngOnInit() {
+    // Obtener el nombre del personaje de la URL
+    this.route.params.subscribe(params => {
+      this.characterName = params['nombre'];
+    });
+
     try {
+      this.spells = new Map();
+
       const result = await this.jsonReader.getData('characters/' + this.characterName + '.json');
       this.character = result.data;
+      console.log("Personaje cargado: ", this.character)
       this.loadStats()
+      console.log("Stats cargadas: ", this.characterStats)
       // TODO all spells
       const spellsResult = await this.jsonReader.getData('spells/spells-phb.json')
-      for (const spell of spellsResult.spell) {
-        this.spells.set(spell.name, spell);
+      if (spellsResult?.spell && Array.isArray(spellsResult.spell)) {
+        for (const spell of spellsResult.spell) {
+          this.spells.set(spell.name, spell);
+        }
       }
+      console.log("Spells cargados")
       this.loadSpells();
+      console.log("Spells personaje cargados: ", this.characterSpells)
       // Necesito la info de su clase (class-bard.json)
       await this.loadClassData();
+      console.log("Clases personaje cargado: ", this.characterClasesData)
       this.loadActions();
+      console.log("Acciones personaje cargadas: ", this.characterActions)
     } catch(error) {
       console.log(error)
     } finally {
       this.loading = false;
+      this.cdr.detectChanges();
       console.log("loaded")
     }
   }
@@ -156,7 +175,6 @@ export class Personaje implements OnInit {
         this.characterActions.push(currentAction)
       }
     }
-    console.log(this.characterActions)
   }
 
   findActionOnClass(actionName: string) {

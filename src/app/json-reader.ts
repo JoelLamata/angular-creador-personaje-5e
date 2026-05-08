@@ -6,18 +6,17 @@ import { lastValueFrom, Observable, of, shareReplay, switchMap, take, tap } from
   providedIn: 'root',
 })
 export class JsonReader {
-  constructor(private readonly http: HttpClient) {}
-  private data: Record<string, any> = {};
+  private cache = new Map<string, any>();
 
   async getData(filename: string): Promise<any> {
-    if (this.data[filename]) {
-      return this.data[filename];
+    if (this.cache.has(filename)) {
+      return this.cache.get(filename);
     }
 
-    const result = this.http.get(`/assets/${filename}`).pipe(take(1));
-
-    this.data[filename] = result;
-    return await lastValueFrom(result);
+    const response = await fetch(`/assets/${filename}`);
+    const data = await response.json();
+    this.cache.set(filename, data);
+    return data;
   }
 
   async getPageData(path: string, page: string): Promise<any> {
