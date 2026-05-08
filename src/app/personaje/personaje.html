@@ -62,6 +62,10 @@
           @for(childEntry of entry.entries; track $index){
             <p [innerHTML]="entryProcessor.processEntry(childEntry)"></p>
           }
+        } @else if (entry.type == 'entries') {
+          @for(childEntry of entry.entries; track $index){
+            <p [innerHTML]="entryProcessor.processEntry(childEntry)"></p>
+          }
         } @else {
           <p [innerHTML]="entryProcessor.processEntry(entry)"></p>
         }
