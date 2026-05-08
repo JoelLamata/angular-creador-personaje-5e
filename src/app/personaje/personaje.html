@@ -15,35 +15,77 @@
   </p-card>
   <p-card>
     <div class="stats">
-      <div class="strength">
-        Strength
-        {{ characterStats.strength }}
-        +{{ computeModifier(characterStats.strength) }}
+      <div class="summary">
+        <div class="background"></div>
+        <div class="heading">
+          <span>STR</span>
+        </div>
+        <div class="primary">
+          <span>{{ computeModifier(characterStats.strength) }}</span>
+        </div>
+        <div class="secondary">
+          <span>{{ characterStats.strength }}</span>
+        </div>
       </div>
-      <div class="dexterity">
-        Dexterity
-        {{ characterStats.dexterity }}
-        +{{ computeModifier(characterStats.dexterity) }}
+      <div class="summary">
+        <div class="background"></div>
+        <div class="heading">
+          <span>DEX</span>
+        </div>
+        <div class="primary">
+          <span>{{ computeModifier(characterStats.dexterity) }}</span>
+        </div>
+        <div class="secondary">
+          <span>{{ characterStats.dexterity }}</span>
+        </div>
       </div>
-      <div class="constitution">
-        Constitution
-        {{ characterStats.constitution }}
-        +{{ computeModifier(characterStats.constitution) }}
+      <div class="summary">
+        <div class="background"></div>
+        <div class="heading">
+          <span>CON</span>
+        </div>
+        <div class="primary">
+          <span>{{ computeModifier(characterStats.constitution) }}</span>
+        </div>
+        <div class="secondary">
+          <span>{{ characterStats.constitution }}</span>
+        </div>
       </div>
-      <div class="intelligence">
-        Intelligence
-        {{ characterStats.intelligence }}
-        +{{ computeModifier(characterStats.intelligence) }}
+      <div class="summary">
+        <div class="background"></div>
+        <div class="heading">
+          <span>INT</span>
+        </div>
+        <div class="primary">
+          <span>{{ computeModifier(characterStats.intelligence) }}</span>
+        </div>
+        <div class="secondary">
+          <span>{{ characterStats.intelligence }}</span>
+        </div>
       </div>
-      <div class="wisdom">
-        Wisdom
-        {{ characterStats.wisdom }}
-        +{{ computeModifier(characterStats.wisdom) }}
+      <div class="summary">
+        <div class="background"></div>
+        <div class="heading">
+          <span>WIS</span>
+        </div>
+        <div class="primary">
+          <span>{{ computeModifier(characterStats.wisdom) }}</span>
+        </div>
+        <div class="secondary">
+          <span>{{ characterStats.wisdom }}</span>
+        </div>
       </div>
-      <div class="charisma">
-        Charisma
-        {{ characterStats.charisma }}
-        +{{ computeModifier(characterStats.charisma) }}
+      <div class="summary">
+        <div class="background"></div>
+        <div class="heading">
+          <span>CHA</span>
+        </div>
+        <div class="primary">
+          <span>{{ computeModifier(characterStats.charisma) }}</span>
+        </div>
+        <div class="secondary">
+          <span>{{ characterStats.charisma }}</span>
+        </div>
       </div>
     </div>
   </p-card>

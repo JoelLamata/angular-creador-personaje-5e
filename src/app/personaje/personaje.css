@@ -52,6 +52,46 @@
   align-items: center;
 }
 
+.summary {
+  position: relative;
+  text-align: center;
+}
+
+.background {
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: 1px solid #242528;
+  border-radius: 12px;
+  background-color: #fff; /* opcional, para que el fondo no sea transparente */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.heading {
+  padding-top: 8px;
+  position: relative;
+}
+
+.primary {
+  color: #242528;
+  font-size: 26px;
+  font-weight: 500;
+  position: relative;
+  /* top: -.125rem; */
+}
+
+.secondary {
+  bottom: 4px;
+  font-size: 16px;
+  font-weight: 700;
+  left: 0;
+  position: relative;
+  right: 0;
+}
+
 /* Accordion */
 .spell-header {
   display: flex;

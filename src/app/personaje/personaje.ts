@@ -121,7 +121,8 @@ export class Personaje implements OnInit {
   }
 
   computeModifier(stat: number) {
-    return Math.trunc((stat - 10) / 2)
+    let value = Math.trunc((stat - 10) / 2)
+    return value >= 0 ? "+" + value : value
   }
 
   loadSpells() {
