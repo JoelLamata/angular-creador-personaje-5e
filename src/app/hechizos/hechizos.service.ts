@@ -1,7 +1,8 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { firstValueFrom } from "rxjs";
-import { Spell, SpellRaw } from "./types";
+import { Injectable } from '@angular/core';
+import { Spell, SpellRaw } from './types';
+import { JsonReader } from '../json-reader';
+import { ALLOWED_SOURCES } from '../sourcesConfigService';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,82 +11,82 @@ export class HechizosService {
   private spells: Spell[] = [];
   private loaded = false;
   private loadingPromise?: Promise<Spell[]>;
+  private spellsSubject = new BehaviorSubject<Spell[]>([]);
+  spells$ = this.spellsSubject.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(private jsonReader: JsonReader) {
+    this.loadSpells();
+  }
 
   async loadSpells(): Promise<Spell[]> {
     if (this.loaded) return this.spells;
     if (this.loadingPromise) return this.loadingPromise;
 
-    this.loadingPromise = this.fetchAllSpells();
-    this.spells = await this.loadingPromise;
+    this.fetchAllSpells();
 
     this.loaded = true;
     return this.spells;
   }
 
-  private async fetchAllSpells(): Promise<Spell[]> {
+  private async fetchAllSpells(): Promise<void> {
     try {
-      
-      const files: object = await firstValueFrom(
-        this.http.get<object>('/assets/spells/index.json')
-      );
+      const files: string[] = await this.jsonReader.getData('spells/index.json');
 
-      const results = await Promise.allSettled(
-        Object.values(files).map((file) =>
-          firstValueFrom(this.http.get<SpellRaw[]>(`/assets/spells/${file}`))
-        )
-      );
+      const allSpells: Spell[] = [];
 
-      const spells: Spell[] = [];
-      
-      for (const result of Object.values(results)) {
-        if (result.status === 'fulfilled') {
-            for (const raw of (result.value as any).spell) {
-            spells.push(this.transformSpell(raw, raw.source as any));
-          }
+      for (const file of Object.keys(files)) {
+        try {
+          const data = await this.jsonReader.getPageData(`spells/`, file, false);
+
+          const rawSpells: SpellRaw[] = data.spell || data;
+
+          const transformed = rawSpells
+            .filter((raw) => ALLOWED_SOURCES.includes(raw.source))
+            .map((raw) => this.transformSpell(raw, file));
+
+          if (!transformed.length) continue;
+
+          allSpells.push(...transformed);
+          this.spellsSubject.next([...allSpells]);
+        } catch (err) {
+          console.warn('Error cargando archivo:', file);
         }
       }
 
-      return this.sortSpells(spells);
+      this.spellsSubject.next(this.sortSpells(allSpells));
     } catch (err) {
       console.error('Error cargando hechizos:', err);
-      return [];
+      this.spellsSubject.next([]);
     }
+  }
+
+  private formatScalingLevelDice(data: any): string {
+    if (!data || !data.scaling) return '';
+
+    const label = data.label ? ` (${data.label})` : '';
+
+    const scalingEntries = Object.entries(data.scaling)
+      .map(([level, value]) => `Nivel ${level}: ${value}`)
+      .join(', ');
+
+    return `Escalado${label}: ${scalingEntries}`;
+  }
+
+  private formatHigherLevel(raw: SpellRaw): string | undefined {
+    if (raw.level === 0 && raw.scalingLevelDice) {
+      return this.parseAndHighlight(this.formatScalingLevelDice(raw.scalingLevelDice));
     }
-    
-    private formatScalingLevelDice(data: any): string {
-        if (!data || !data.scaling) return '';
 
-        const label = data.label ? ` (${data.label})` : '';
+    if (raw.entriesHigherLevel?.length) {
+      const text =
+        'A niveles superiores: ' + raw.entriesHigherLevel.map((e) => e.entries.join(' ')).join(' ');
 
-        const scalingEntries = Object.entries(data.scaling)
-            .map(([level, value]) => `Nivel ${level}: ${value}`)
-            .join(', ');
-
-        return `Escalado${label}: ${scalingEntries}`;
+      return this.parseAndHighlight(text);
     }
 
-    private formatHigherLevel(raw: SpellRaw): string | undefined {
-        if (raw.level === 0 && raw.scalingLevelDice) {
-            return this.parseAndHighlight(
-            this.formatScalingLevelDice(raw.scalingLevelDice)
-            );
-        }
+    return undefined;
+  }
 
-        if (raw.entriesHigherLevel?.length) {
-            const text =
-            'A niveles superiores: ' +
-            raw.entriesHigherLevel
-                .map((e) => e.entries.join(' '))
-                .join(' ');
-
-            return this.parseAndHighlight(text);
-        }
-
-        return undefined;
-    }
-    
   private transformSpell(raw: SpellRaw, file: string): Spell {
     const casting_time = this.formatCastingTime(raw.time);
     const range = this.formatRange(raw.range);
@@ -93,40 +94,37 @@ export class HechizosService {
     const duration = this.formatDuration(raw.duration);
     const description = this.formatDescription(raw);
 
-      const higher_level = this.formatHigherLevel(raw);
-      let source_file = file;
-      if (/phb/i.test(file)) {
-        source_file = `PHB - ${/^xphb/i.test(file) ? 2024 : 2014}`
-      }
-
-    const spell: Spell = {
-        name_en: raw.name,
-        level: raw.level,
-        school: raw.school,
-
-        casting_time,
-        range,
-        components,
-        duration,
-
-        description,
-        higher_level,
-
-        source_file,
-
-        _search: '',
-    };
-
-    spell._search = (spell.name_en).toLowerCase();
-
-    return spell;
+    const higher_level = this.formatHigherLevel(raw);
+    let source_file = file;
+    if (/phb/i.test(file)) {
+      source_file = `PHB - ${/^xphb/i.test(file) ? 2024 : 2014}`;
     }
 
+    const spell: Spell = {
+      name_en: raw.name,
+      level: raw.level,
+      school: raw.school,
+
+      casting_time,
+      range,
+      components,
+      duration,
+
+      description,
+      higher_level,
+
+      source_file,
+
+      _search: '',
+    };
+
+    spell._search = spell.name_en.toLowerCase();
+
+    return spell;
+  }
 
   private formatCastingTime(time: any[]): string {
-    return time
-      .map((t) => `${t.number} ${this.normalizeUnit(t.unit)}`)
-      .join(' + ');
+    return time.map((t) => `${t.number} ${this.normalizeUnit(t.unit)}`).join(' + ');
   }
 
   private formatRange(range: any): string {
@@ -173,29 +171,27 @@ export class HechizosService {
         return d.type;
       })
       .join(', ');
-    }
-    
-    private parseAndHighlight(text: string): string {
-        if (!text || typeof text !== "string") return '';
-        let finalText = text;
+  }
 
-        finalText = text.replace(/\{@(scaledice|scaledamage)\s+([^}]+)\}/g, (_, tag, content) => {
-            const parts = content.split('|');
-            const last = parts[parts.length - 1].trim();
-            return `<span class="tag tag-dice">${last}</span>`;
-        });
-        
-        finalText = text.replace(/\{@(\w+) ([^}]+)\}/g, (_, tag, value) => {
-            return `<span class="tag tag-${tag}">${value}</span>`;
-        });
+  private parseAndHighlight(text: string): string {
+    if (!text || typeof text !== 'string') return '';
+    let finalText = text;
 
-        return finalText;
-    }
+    finalText = text.replace(/\{@(scaledice|scaledamage)\s+([^}]+)\}/g, (_, tag, content) => {
+      const parts = content.split('|');
+      const last = parts[parts.length - 1].trim();
+      return `<span class="tag tag-dice">${last}</span>`;
+    });
+
+    finalText = text.replace(/\{@(\w+) ([^}]+)\}/g, (_, tag, value) => {
+      return `<span class="tag tag-${tag}">${value}</span>`;
+    });
+
+    return finalText;
+  }
 
   private formatDescription(raw: SpellRaw): string {
-    return raw.entries
-        .map((e) => this.parseAndHighlight(e))
-        .join('<br><br>');
+    return raw.entries.map((e) => this.parseAndHighlight(e)).join('<br><br>');
   }
 
   private normalizeUnit(unit: string): string {
@@ -214,38 +210,10 @@ export class HechizosService {
     return map[unit] || unit;
   }
 
-
   private sortSpells(spells: Spell[]): Spell[] {
     return spells.sort((a, b) => {
       if (a.level !== b.level) return a.level - b.level;
       return a.name_en.localeCompare(b.name_en);
     });
-  }
-
-
-  async getAllSpells(): Promise<Spell[]> {
-    return this.loadSpells();
-  }
-
-  async getSpellsByLevel(level: number): Promise<Spell[]> {
-    const spells = await this.loadSpells();
-    return spells.filter((s) => s.level === level);
-  }
-
-  async getSpellByName(name: string): Promise<Spell | undefined> {
-    const spells = await this.loadSpells();
-    const q = name.toLowerCase();
-
-    return spells.find(
-      (s) =>
-        s.name_en.toLowerCase() === q || s.name_en.toLowerCase().includes(q)
-    );
-  }
-
-  async searchSpells(query: string): Promise<Spell[]> {
-    const spells = await this.loadSpells();
-    const q = query.toLowerCase();
-
-    return spells.filter((s) => s._search?.includes(q));
   }
 }

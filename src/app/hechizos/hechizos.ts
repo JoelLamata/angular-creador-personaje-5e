@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Spell } from './types';
 import { HechizosService } from './hechizos.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-hechizos',
@@ -10,70 +11,55 @@ import { HechizosService } from './hechizos.service';
   templateUrl: './hechizos.html',
   styleUrl: './hechizos.css',
 })
-export class Hechizos implements OnInit {
+export class Hechizos implements OnInit, OnDestroy {
   spells: Spell[] = [];
   filteredSpells: Spell[] = [];
 
   loading = true;
   searchQuery = '';
   selectedLevel: number | null = null;
-  showLegacy: boolean = false;
+  private sub?: Subscription;
 
-  constructor(private hechizosService: HechizosService) {}
+  constructor(
+    private hechizosService: HechizosService,
+    private cdr: ChangeDetectorRef,
+  ) {}
 
   async ngOnInit() {
-    this.spells = await this.hechizosService.getAllSpells();
-    this.filteredSpells = this.spells;
-    this.loading = false;
-    this.applyFilters();
+    this.sub = this.hechizosService.spells$.subscribe((spells) => {
+      this.spells = spells;
+      this.applyFilters();
+      this.cdr.detectChanges();
+    });
+  }
+
+  ngOnDestroy() {
+    this.sub?.unsubscribe();
   }
 
   async onSearch(query: string) {
     this.searchQuery = query;
 
-    if (!query.trim()) {
-      this.applyFilters();
-      return;
-    }
-
-    this.filteredSpells = await this.hechizosService.searchSpells(query);
-  }
-
-  async onInit() {
-    
+    this.applyFilters();
   }
 
   async filterByLevel(level: number | null) {
     this.selectedLevel = level;
 
-    if (level === null) {
-      this.filteredSpells = this.spells;
-    } else {
-      this.filteredSpells =
-        await this.hechizosService.getSpellsByLevel(level);
-    }
+    this.applyFilters();
   }
 
-  private applyFilters() {
-    let result = [...this.spells];
-    if (this.selectedLevel !== null) {
-      result = result.filter((s) => s.level === this.selectedLevel);
-    }
+  applyFilters(): void {
+    this.filteredSpells = this.spells.filter((s) => {
+      const levelAllowed = this.selectedLevel === null ? true : s.level === this.selectedLevel;
 
-    if (this.searchQuery.trim()) {
-      const q = this.searchQuery.toLowerCase();
-      result = result.filter((s) =>
-        (s._search ?? '').includes(q)
-      );
-    }
+      const search = this.searchQuery.toLowerCase().trim();
 
-    if (!this.showLegacy) {
-      result = result.filter((s) => !/2014/i.test(s.source_file))
-    }
+      const isSearched = search ? s.name_en.toLowerCase().includes(search) : true;
 
-    this.filteredSpells = result;
+      return levelAllowed && isSearched;
+    });
   }
-
 
   trackBySpell(index: number, spell: Spell) {
     return spell.name_en;
@@ -82,10 +68,5 @@ export class Hechizos implements OnInit {
   onLevelChange(event: Event) {
     const value = (event.target as HTMLSelectElement).value;
     this.filterByLevel(value ? +value : null);
-  }
-
-  toggleLegacy() {
-    this.showLegacy = !this.showLegacy;
-    this.applyFilters();
   }
 }
