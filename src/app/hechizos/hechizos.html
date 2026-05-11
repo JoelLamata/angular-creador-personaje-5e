@@ -1,1 +1,38 @@
-<p>hechizos works!</p>
+<div class="hechizos">
+
+    <input type="text" placeholder="Buscar hechizos..." (input)="onSearch($event.target.value)" />
+
+    <button (click)="toggleLegacy()">
+        {{ showLegacy ? 'Ocultar PHB 2014' : 'Mostrar PHB 2014' }}
+    </button>
+
+    <div *ngFor="let spell of filteredSpells">
+
+        <h3>{{ spell.name_en }}</h3>
+
+        <div class="spell-meta">
+            <div><b>Level</b> {{ spell.level }}</div>
+            <div><b>Casting Time</b> {{ spell.casting_time }}</div>
+            <div><b>Range</b> {{ spell.range }}</div>
+            <div><b>Components</b> {{ spell.components }}</div>
+
+            <div><b>Duration</b> {{ spell.duration }}</div>
+            <div><b>School</b> {{ spell.school }}</div>
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="spell-description" [innerHTML]="spell.description">
+            {{ spell.description }}
+        </div>
+
+        <div *ngIf="spell.higher_level" class="spell-higher" [innerHTML]="spell.higher_level">
+            {{ spell.higher_level }}
+        </div>
+
+        <div class="spell-source">
+            {{ spell.source_file }}
+        </div>
+
+    </div>
+</div>
