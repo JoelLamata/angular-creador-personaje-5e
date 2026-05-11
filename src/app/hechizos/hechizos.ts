@@ -61,10 +61,6 @@ export class Hechizos implements OnInit, OnDestroy {
     });
   }
 
-  trackBySpell(index: number, spell: Spell) {
-    return spell.name_en;
-  }
-
   onLevelChange(event: Event) {
     const value = (event.target as HTMLSelectElement).value;
     this.filterByLevel(value ? +value : null);
