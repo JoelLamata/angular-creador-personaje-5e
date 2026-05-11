@@ -2,9 +2,12 @@
 
     <input type="text" placeholder="Buscar hechizos..." (input)="onSearch($event.target.value)" />
 
-    <button (click)="toggleLegacy()">
-        {{ showLegacy ? 'Ocultar PHB 2014' : 'Mostrar PHB 2014' }}
-    </button>
+    <select (change)="onLevelChange($event)">
+        <option value="">Todos los niveles</option>
+        <option *ngFor="let n of [0,1,2,3,4,5,6,7,8,9]" [value]="n">
+            Nivel {{ n }}
+        </option>
+    </select>
 
     <div *ngFor="let spell of filteredSpells">
 
