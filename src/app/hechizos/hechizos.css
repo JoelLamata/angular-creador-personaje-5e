@@ -1,7 +1,7 @@
 .hechizos {
     max-width: 1100px;
     margin: 2rem auto;
-    padding: 2rem;
+    padding: 1.2rem;
 
     background: #f4ead7;
     background-image: radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px);
@@ -16,6 +16,16 @@
     color: #3b2b1f;
 }
 
+.hechizos>div {
+    background: #fffaf1;
+    border: 1px solid #d6c3a3;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
 
 .hechizos h3 {
     font-size: 2rem;
@@ -27,12 +37,32 @@
     letter-spacing: 0.5px;
 }
 
+@media (max-width: 480px) {
+    .hechizos h3 {
+        font-size: 1.4rem;
+    }
+}
+
+
 
 .spell-meta {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem 2rem;
-    margin-bottom: 1.5rem;
+}
+
+
+@media (max-width: 768px) {
+    .spell-meta {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 480px) {
+    .spell-meta {
+        grid-template-columns: 1fr;
+    }
 }
 
 .spell-meta div {
@@ -49,21 +79,22 @@
 
 .separator {
     border-top: 2px solid #8b5e3c;
-    margin: 1.5rem 0;
+    margin: 1rem 0;
 }
 
 
 .spell-description {
-    line-height: 1.6;
+    margin-top: 0.8rem;
     font-size: 0.95rem;
 }
 
 
 .spell-higher {
-    margin-top: 1rem;
+    margin-top: 0.8rem;
     font-style: italic;
     color: #5a3e2b;
 }
+
 
 
 .spell-source {
@@ -100,9 +131,11 @@ select {
 }
 
 .tag {
+    display: inline-block;
+    margin: 2px 2px;
+    font-size: 0.85em;
     padding: 2px 6px;
     border-radius: 4px;
-    font-size: 0.9em;
     font-weight: 500;
 }
 
@@ -126,4 +159,20 @@ select {
 .tag {
     background: #8b5e3c;
     color: #fff;
+}
+
+input,
+select,
+button {
+    margin-bottom: 0.5rem;
+}
+
+@media (max-width: 480px) {
+
+    input,
+    select,
+    button {
+        width: 100%;
+        margin-right: 0;
+    }
 }
