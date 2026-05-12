@@ -97,7 +97,7 @@ export class HechizosService {
     const higher_level = this.formatHigherLevel(raw);
     let source_file = file;
     if (/phb/i.test(file)) {
-      source_file = `PHB - ${/^xphb/i.test(file) ? 2024 : 2014}`;
+      source_file = file.split('X')[1];
     }
 
     const spell: Spell = {
