@@ -1,1 +1,50 @@
-<p>hechizos works!</p>
+<div class="hechizos">
+
+    <input type="text" placeholder="Buscar hechizos..." (input)="onSearch($event.target.value)" />
+
+    <select (change)="onLevelChange($event)">
+        <option value="">Todos los niveles</option>
+        <option *ngFor="let n of [0,1,2,3,4,5,6,7,8,9]" [value]="n">
+            {{ entryProcessor.processSpellLevel(n) }}
+        </option>
+    </select>
+
+    <div *ngFor="let spell of filteredSpells">
+
+        <h3>{{ spell.name_en }}</h3>
+
+        <div class="spell-meta">
+            <div><b>Level</b> {{ entryProcessor.processSpellLevel(spell.level) }}</div>
+            <div><b>Casting Time</b> {{ spell.casting_time }}</div>
+            <div><b>Range</b> {{ spell.range }}</div>
+            <div><b>Components</b> {{ spell.components }}</div>
+
+            <div><b>Duration</b> {{ spell.duration }}</div>
+            <div>
+                <b>School</b>
+                <span class="school-value">
+                    <img *ngIf="entryProcessor.getSchoolIconUrl(spell.school)"
+                         [src]="entryProcessor.getSchoolIconUrl(spell.school)"
+                         [alt]="entryProcessor.getSchoolName(spell.school)"
+                         class="school-icon" />
+                    {{ entryProcessor.getSchoolName(spell.school) }}
+                </span>
+            </div>
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="spell-description" [innerHTML]="spell.description">
+            {{ spell.description }}
+        </div>
+
+        <div *ngIf="spell.higher_level" class="spell-higher" [innerHTML]="spell.higher_level">
+            {{ spell.higher_level }}
+        </div>
+
+        <div class="spell-source">
+            {{ spell.source_file }}
+        </div>
+
+    </div>
+</div>
