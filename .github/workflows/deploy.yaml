@@ -1,7 +1,9 @@
 name: Page Deploy
 run-name: ${{ github.actor }} is running a deploy for pages
+
 on:
   workflow_dispatch:
+
 jobs:
   deploy:
     name: Page deploy
