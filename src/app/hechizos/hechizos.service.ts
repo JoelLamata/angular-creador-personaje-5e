@@ -35,21 +35,21 @@ export class HechizosService {
       const allSpells: Spell[] = [];
 
       for (const file of Object.keys(files)) {
-        try {
-          const data = await this.jsonReader.getPageData(`spells/`, file, false);
+        if (ALLOWED_SOURCES.includes(file)) {
+          try {
+            const data = await this.jsonReader.getPageData(`spells/`, file, false);
 
-          const rawSpells: SpellRaw[] = data.spell || data;
+            const rawSpells: SpellRaw[] = data.spell || data;
 
-          const transformed = rawSpells
-            .filter((raw) => ALLOWED_SOURCES.includes(raw.source))
-            .map((raw) => this.transformSpell(raw, file));
+            const transformed = rawSpells.map((raw) => this.transformSpell(raw, file));
 
-          if (!transformed.length) continue;
+            if (!transformed.length) continue;
 
-          allSpells.push(...transformed);
-          this.spellsSubject.next([...allSpells]);
-        } catch (err) {
-          console.warn('Error cargando archivo:', file);
+            allSpells.push(...transformed);
+            this.spellsSubject.next([...allSpells]);
+          } catch (err) {
+            console.warn('Error cargando archivo:', file);
+          }
         }
       }
 
