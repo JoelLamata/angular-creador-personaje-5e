@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Spell } from './types';
 import { HechizosService } from './hechizos.service';
+import { EntryProcessorService } from '../services/entry-processor.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -23,6 +24,7 @@ export class Hechizos implements OnInit, OnDestroy {
   constructor(
     private hechizosService: HechizosService,
     private cdr: ChangeDetectorRef,
+    public entryProcessor: EntryProcessorService,
   ) {}
 
   async ngOnInit() {
