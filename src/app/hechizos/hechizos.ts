@@ -28,6 +28,8 @@ export class Hechizos implements OnInit, OnDestroy {
   ) {}
 
   async ngOnInit() {
+    this.entryProcessor.preloadSchoolIcons();
+
     this.sub = this.hechizosService.spells$.subscribe((spells) => {
       this.spells = spells;
       this.applyFilters();

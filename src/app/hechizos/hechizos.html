@@ -20,7 +20,16 @@
             <div><b>Components</b> {{ spell.components }}</div>
 
             <div><b>Duration</b> {{ spell.duration }}</div>
-            <div><b>School</b> {{ spell.school }}</div>
+            <div>
+                <b>School</b>
+                <span class="school-value">
+                    <img *ngIf="entryProcessor.getSchoolIconUrl(spell.school)"
+                         [src]="entryProcessor.getSchoolIconUrl(spell.school)"
+                         [alt]="entryProcessor.getSchoolName(spell.school)"
+                         class="school-icon" />
+                    {{ entryProcessor.getSchoolName(spell.school) }}
+                </span>
+            </div>
         </div>
 
         <div class="separator"></div>

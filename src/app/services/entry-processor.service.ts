@@ -7,9 +7,49 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 export class EntryProcessorService {
   constructor(private sanitizer: DomSanitizer) {}
 
+  private readonly SCHOOL_NAMES: Record<string, string> = {
+    A: 'abjuration',
+    C: 'conjuration',
+    D: 'divination',
+    E: 'enchantment',
+    V: 'evocation',
+    I: 'illusion',
+    N: 'necromancy',
+    T: 'transmutation',
+  };
+
+  private readonly SCHOOL_NAMES_ES: Record<string, string> = {
+    A: 'Abjuración',
+    C: 'Conjuración',
+    D: 'Adivinación',
+    E: 'Encantamiento',
+    V: 'Evocación',
+    I: 'Ilusión',
+    N: 'Nigromancia',
+    T: 'Transmutación',
+  };
+
+  private readonly SCHOOL_ICON_BASE =
+    'https://www.dndbeyond.com/content/1-1-124-0/skins/waterdeep/images/spell-schools/35';
+
   processSpellLevel(level: number): string {
     if (level == 0) return 'Cantrip';
     return 'Level ' + level.toString();
+  }
+
+  getSchoolName(school: string): string {
+    return this.SCHOOL_NAMES_ES[school.toUpperCase()] ?? school;
+  }
+
+  getSchoolIconUrl(school: string): string {
+    const name = this.SCHOOL_NAMES[school.toUpperCase()];
+    return name ? `${this.SCHOOL_ICON_BASE}/${name}.png` : '';
+  }
+
+  preloadSchoolIcons(): void {
+    Object.values(this.SCHOOL_NAMES).forEach((name) => {
+      new Image().src = `${this.SCHOOL_ICON_BASE}/${name}.png`;
+    });
   }
 
   parseAndHighlight(text: string): string {
