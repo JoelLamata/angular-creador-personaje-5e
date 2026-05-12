@@ -11,8 +11,8 @@ export class JsonReader {
       return this.cache.get(filename);
     }
 
-    const baseUrl = typeof window !== 'undefined' ? window.location.href : 'http://localhost:4200/';
-
+    const baseUrl =
+      typeof window !== 'undefined' ? window.location.origin : 'http://localhost:4200/';
     const url = new URL(`assets/${filename}`, baseUrl).href;
     const response = await fetch(url);
     const data = await response.json();

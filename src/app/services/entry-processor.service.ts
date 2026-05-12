@@ -8,44 +8,41 @@ export class EntryProcessorService {
   constructor(private sanitizer: DomSanitizer) {}
 
   processSpellLevel(level: number): string {
-    if (level == 0) {
-      return 'Cantrip'
-    }
-    return 'Level ' + level.toString()
+    if (level == 0) return 'Cantrip';
+    return 'Level ' + level.toString();
+  }
+
+  parseAndHighlight(text: string): string {
+    if (!text || typeof text !== 'string') return '';
+
+    let result = text.replace(/\{@(scaledice|scaledamage)\s+([^}]+)\}/g, (_match, _tag, content) => {
+      const last = content.split('|').pop()!.trim();
+      return `<span class="tag tag-dice">${last}</span>`;
+    });
+
+    return result.replace(/\{@(\w+) ([^}]+)\}/g, (_match, tag, value) => {
+      return `<span class="tag tag-${tag}">${value}</span>`;
+    });
   }
 
   processEntry(entry: any): SafeHtml {
-    let html = '';
-
-    if (typeof entry === 'string') {
-      html += '<p>' + this.sanitizeHtml(entry) + '</p>';
-    } else if (entry.type === 'list') {
-      html += '<ul>';
-      for (const item of entry.items) {
-        html += '<li>' + this.sanitizeHtml(this.processEntry(item)) + '</li>';
-      }
-      html += '</ul>';
-    } else if (entry.name) {
-      html += '<strong>' + entry.name + '</strong>';
-      if (entry.entries) {
-        for (const childEntry of entry.entries) {
-          html += this.sanitizeHtml(this.processEntry(childEntry));
-        }
-      }
-    } else if (entry.type === 'entries') {
-      if (entry.entries) {
-        for (const childEntry of entry.entries) {
-          html += this.sanitizeHtml(this.processEntry(childEntry));
-        }
-      }
-    }
-
-    return this.sanitizer.bypassSecurityTrustHtml(html);
+    return this.sanitizer.bypassSecurityTrustHtml(this.entryToString(entry));
   }
 
-  private sanitizeHtml(entry: any): string {
+  private entryToString(entry: any): string {
     if (typeof entry === 'string') {
-      return entry.replace(/\{@([^ ]+) ([^}]+)\}/g, '<strong>$2</strong>');
+      return '<p>' + this.parseAndHighlight(entry) + '</p>';
+    }
+    if (entry?.type === 'list') {
+      const items = (entry.items as any[]).map((item) => `<li>${this.entryToString(item)}</li>`).join('');
+      return `<ul>${items}</ul>`;
+    }
+    if (entry?.name) {
+      const children = (entry.entries as any[] ?? []).map((e) => this.entryToString(e)).join('');
+      return `<strong>${entry.name}</strong>${children}`;
+    }
+    if (entry?.type === 'entries' && entry.entries) {
+      return (entry.entries as any[]).map((e) => this.entryToString(e)).join('');
     }
     return '';
   }

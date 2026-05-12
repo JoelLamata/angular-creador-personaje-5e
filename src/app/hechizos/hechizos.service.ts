@@ -3,6 +3,7 @@ import { Spell, SpellRaw } from './types';
 import { JsonReader } from '../json-reader';
 import { ALLOWED_SOURCES } from '../sourcesConfigService';
 import { BehaviorSubject } from 'rxjs';
+import { EntryProcessorService } from '../services/entry-processor.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,10 @@ export class HechizosService {
   private spellsSubject = new BehaviorSubject<Spell[]>([]);
   spells$ = this.spellsSubject.asObservable();
 
-  constructor(private jsonReader: JsonReader) {
+  constructor(
+    private jsonReader: JsonReader,
+    private entryProcessor: EntryProcessorService,
+  ) {
     this.loadSpells();
   }
 
@@ -74,14 +78,14 @@ export class HechizosService {
 
   private formatHigherLevel(raw: SpellRaw): string | undefined {
     if (raw.level === 0 && raw.scalingLevelDice) {
-      return this.parseAndHighlight(this.formatScalingLevelDice(raw.scalingLevelDice));
+      return this.entryProcessor.parseAndHighlight(this.formatScalingLevelDice(raw.scalingLevelDice));
     }
 
     if (raw.entriesHigherLevel?.length) {
       const text =
         'A niveles superiores: ' + raw.entriesHigherLevel.map((e) => e.entries.join(' ')).join(' ');
 
-      return this.parseAndHighlight(text);
+      return this.entryProcessor.parseAndHighlight(text);
     }
 
     return undefined;
@@ -173,25 +177,8 @@ export class HechizosService {
       .join(', ');
   }
 
-  private parseAndHighlight(text: string): string {
-    if (!text || typeof text !== 'string') return '';
-    let finalText = text;
-
-    finalText = text.replace(/\{@(scaledice|scaledamage)\s+([^}]+)\}/g, (_, tag, content) => {
-      const parts = content.split('|');
-      const last = parts[parts.length - 1].trim();
-      return `<span class="tag tag-dice">${last}</span>`;
-    });
-
-    finalText = text.replace(/\{@(\w+) ([^}]+)\}/g, (_, tag, value) => {
-      return `<span class="tag tag-${tag}">${value}</span>`;
-    });
-
-    return finalText;
-  }
-
   private formatDescription(raw: SpellRaw): string {
-    return raw.entries.map((e) => this.parseAndHighlight(e)).join('<br><br>');
+    return raw.entries.map((e) => this.entryProcessor.parseAndHighlight(e)).join('<br><br>');
   }
 
   private normalizeUnit(unit: string): string {
