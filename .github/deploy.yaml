@@ -1,0 +1,23 @@
+name: Page Deploy
+run-name: ${{ github.actor }} is running a deploy for pages
+on:
+  workflow_dispatch:
+jobs:
+  deploy:
+    name: Page deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking out to current branch
+        uses: actions/checkout@v4
+
+      - name: Setting up node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run deploy command
+        run: npm run ng -- deploy
