@@ -1,7 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PRIMENG_IMPORTS } from '../primeng.imports';
-import { DomSanitizer } from '@angular/platform-browser';
 import { ALLOWED_SOURCES } from '../sourcesConfigService';
 import { JsonReader } from '../json-reader';
 import { EntryProcessorService } from '../services/entry-processor.service';
@@ -49,7 +48,6 @@ export class Personaje implements OnInit {
 
   constructor(
     private readonly jsonReader: JsonReader,
-    private readonly sanitizer: DomSanitizer,
     private readonly route: ActivatedRoute
   ) {}
 

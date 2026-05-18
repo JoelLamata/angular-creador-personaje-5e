@@ -1,10 +1,12 @@
 import { Component, Input, inject } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
+import { AccordionModule } from 'primeng/accordion';
 import { EntryProcessorService } from '../../services/entry-processor.service';
 
 @Component({
   selector: 'app-spell',
   standalone: true,
+  imports: [AccordionModule],
   templateUrl: './spell.component.html',
   styleUrl: './spell.component.scss',
 })

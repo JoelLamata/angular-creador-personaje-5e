@@ -1,34 +1,42 @@
-<article class="spell" [class.spell--muted]="!prepared">
-  <span class="spell__icon" aria-hidden="true">
-    <svg viewBox="0 0 24 24"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Zm6 10 .9 2.6 2.6.9-2.6.9L18 21l-.9-2.6-2.6-.9 2.6-.9L18 13ZM5 14l.8 2.2L8 17l-2.2.8L5 20l-.8-2.2L2 17l2.2-.8L5 14Z" /></svg>
-  </span>
+<p-accordion styleClass="spell" [class.spell--muted]="!prepared">
+  <p-accordion-panel value="description">
+    <p-accordion-header>
+      <span class="spell__summary">
+        <span class="spell__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Zm6 10 .9 2.6 2.6.9-2.6.9L18 21l-.9-2.6-2.6-.9 2.6-.9L18 13ZM5 14l.8 2.2L8 17l-2.2.8L5 20l-.8-2.2L2 17l2.2-.8L5 14Z" /></svg>
+        </span>
 
-  <div class="spell__body">
-    <div class="spell__header">
-      <h4 class="spell__name">{{ spell?.name }}</h4>
-      <span class="spell__badge">{{ levelLabel }}</span>
-      <span class="spell__badge">{{ schoolLabel }}</span>
-    </div>
+        <span class="spell__body">
+          <span class="spell__header">
+            <span class="spell__name">{{ spell?.name }}</span>
+            <span class="spell__badge">{{ levelLabel }}</span>
+            <span class="spell__badge">{{ schoolLabel }}</span>
+          </span>
 
-    <dl class="spell__meta">
-      <div>
-        <dt>Tiempo:</dt>
-        <dd>{{ castingTime }}</dd>
-      </div>
-      <div>
-        <dt>Alcance:</dt>
-        <dd>{{ range }}</dd>
-      </div>
-      <div>
-        <dt>Componentes:</dt>
-        <dd>{{ components }}</dd>
-      </div>
-      <div>
-        <dt>Duración:</dt>
-        <dd>{{ duration }}</dd>
-      </div>
-    </dl>
+          <span class="spell__meta">
+            <span>
+              <strong>Tiempo:</strong>
+              <span>{{ castingTime }}</span>
+            </span>
+            <span>
+              <strong>Alcance:</strong>
+              <span>{{ range }}</span>
+            </span>
+            <span>
+              <strong>Componentes:</strong>
+              <span>{{ components }}</span>
+            </span>
+            <span>
+              <strong>Duración:</strong>
+              <span>{{ duration }}</span>
+            </span>
+          </span>
+        </span>
+      </span>
+    </p-accordion-header>
 
-    <div class="spell__description" [innerHTML]="descriptionHtml"></div>
-  </div>
-</article>
+    <p-accordion-content>
+      <div class="spell__description" [innerHTML]="descriptionHtml"></div>
+    </p-accordion-content>
+  </p-accordion-panel>
+</p-accordion>

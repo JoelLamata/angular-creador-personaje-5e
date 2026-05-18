@@ -1,5 +1,6 @@
 import { Component, Input, inject } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
+import { AccordionModule } from 'primeng/accordion';
 import { EntryProcessorService } from '../../services/entry-processor.service';
 
 export type PlayerActionType = 'action' | 'bonus' | 'reaction';
@@ -7,6 +8,7 @@ export type PlayerActionType = 'action' | 'bonus' | 'reaction';
 @Component({
   selector: 'app-player-action',
   standalone: true,
+  imports: [AccordionModule],
   templateUrl: './player-action.component.html',
   styleUrl: './player-action.component.scss',
 })
