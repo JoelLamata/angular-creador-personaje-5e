@@ -39,18 +39,12 @@
 
 .character-sheet__stats {
   display: grid;
-  grid-template-columns: repeat(2, minmax(var(--player-space-0), 1fr));
+  grid-template-columns: repeat(3, minmax(var(--player-space-0), 1fr));
   gap: var(--player-space-3);
 }
 
 .character-sheet__list {
   gap: var(--player-space-3);
-}
-
-@media (min-width: 40rem) {
-  .character-sheet__stats {
-    grid-template-columns: repeat(3, minmax(var(--player-space-0), 1fr));
-  }
 }
 
 @media (min-width: 64rem) {
