@@ -5,6 +5,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ALLOWED_SOURCES } from '../sourcesConfigService';
 import { JsonReader } from '../json-reader';
 import { EntryProcessorService } from '../services/entry-processor.service';
+import { PlayerBaseComponent } from '../components/player-base/player-base.component';
+import { PlayerStatsComponent } from '../components/player-stats/player-stats.component';
+import { PlayerActionComponent } from '../components/player-action/player-action.component';
+import { SpellComponent } from '../components/spell/spell.component';
 
 interface stats {
   strength: number;
@@ -16,7 +20,7 @@ interface stats {
 }
 @Component({
   selector: 'app-personaje',
-  imports: [PRIMENG_IMPORTS],
+  imports: [PRIMENG_IMPORTS, PlayerBaseComponent, PlayerStatsComponent, PlayerActionComponent, SpellComponent],
   templateUrl: './personaje.html',
   styleUrl: './personaje.css',
 })

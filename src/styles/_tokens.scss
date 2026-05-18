@@ -1,0 +1,88 @@
+:root {
+  --player-color-background: #f5f5f5;
+  --player-color-surface: #ffffff;
+  --player-color-surface-raised: #ffffff;
+  --player-color-surface-muted: #f7f7f7;
+  --player-color-text: #111827;
+  --player-color-text-muted: #4b5563;
+  --player-color-primary: #8b0000;
+  --player-color-primary-strong: #b00000;
+  --player-color-primary-soft: #fae7e7;
+  --player-color-border: rgba(17, 24, 39, 0.16);
+  --player-color-shadow: rgba(17, 24, 39, 0.14);
+  --player-color-focus: rgba(139, 0, 0, 0.28);
+
+  --player-font-body: Inter, Arial, sans-serif;
+  --player-font-heading: Cinzel, Georgia, serif;
+  --player-font-size-xs: 0.75rem;
+  --player-font-size-sm: 0.875rem;
+  --player-font-size-md: 1rem;
+  --player-font-size-lg: 1.125rem;
+  --player-font-size-xl: 1.25rem;
+  --player-font-size-2xl: 1.875rem;
+  --player-font-weight-normal: 400;
+  --player-font-weight-medium: 500;
+  --player-font-weight-semibold: 600;
+  --player-line-height-tight: 1.2;
+  --player-line-height-normal: 1.5;
+
+  --player-space-0: 0;
+  --player-space-1: 0.25rem;
+  --player-space-2: 0.5rem;
+  --player-space-3: 0.75rem;
+  --player-space-4: 1rem;
+  --player-space-5: 1.25rem;
+  --player-space-6: 1.5rem;
+  --player-space-8: 2rem;
+
+  --player-radius-sm: 0.25rem;
+  --player-radius-md: 0.5rem;
+  --player-radius-lg: 0.75rem;
+  --player-radius-pill: 999rem;
+  --player-border-width: 0.0625rem;
+  --player-border-width-strong: 0.125rem;
+  --player-card-shadow: 0 0.75rem 1.5rem var(--player-color-shadow);
+  --player-transition-fast: 160ms ease;
+
+  --player-container-max-width: 62rem;
+  --player-avatar-size: 8rem;
+  --player-icon-size: 1.125rem;
+  --player-icon-box-size: 2rem;
+  --player-stat-min-height: 6.375rem;
+  --player-metric-min-height: 4.125rem;
+}
+
+.dark {
+  --player-color-background: #171717;
+  --player-color-surface: #2a2a2a;
+  --player-color-surface-raised: #2a2a2a;
+  --player-color-surface-muted: #141414;
+  --player-color-text: #f5f5f5;
+  --player-color-text-muted: #cbd5e1;
+  --player-color-primary: #ff1744;
+  --player-color-primary-strong: #ff456a;
+  --player-color-primary-soft: rgba(255, 23, 68, 0.12);
+  --player-color-border: rgba(245, 245, 245, 0.14);
+  --player-color-shadow: rgba(0, 0, 0, 0.28);
+  --player-color-focus: rgba(255, 23, 68, 0.3);
+}
+
+body {
+  background: var(--player-color-background);
+  color: var(--player-color-text);
+  font-family: var(--player-font-body);
+}
+
+body .p-card,
+body .p-megamenu,
+body .p-accordionpanel,
+body .p-accordionheader,
+body .p-accordioncontent-content {
+  background: var(--player-color-surface);
+  color: var(--player-color-text);
+  border-color: var(--player-color-border);
+}
+
+body .p-button {
+  color: var(--player-color-primary);
+}

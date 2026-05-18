@@ -1,0 +1,46 @@
+<article class="player-base" [attr.aria-label]="displayName">
+  <div class="player-base__media">
+    @if (imageUrl) {
+      <img class="player-base__avatar" [src]="imageUrl" [alt]="displayName" />
+    } @else {
+      <div class="player-base__avatar player-base__avatar--empty" aria-hidden="true">
+        {{ displayName.slice(0, 1) }}
+      </div>
+    }
+  </div>
+
+  <div class="player-base__content">
+    <div class="player-base__identity">
+      <h2 class="player-base__name">{{ displayName }}</h2>
+      <div class="player-base__chips" aria-label="Resumen del personaje">
+        <span class="player-base__chip player-base__chip--primary">{{ displayLevel }}</span>
+        <span class="player-base__chip">{{ displayRace }}</span>
+        <span class="player-base__chip">{{ displayClass }}</span>
+      </div>
+    </div>
+
+    <div class="player-base__metrics">
+      @for (metric of metrics; track metric.label) {
+        <div class="player-base__metric">
+          <span class="player-base__metric-icon" aria-hidden="true">
+            @switch (metric.icon) {
+              @case ('heart') {
+                <svg viewBox="0 0 24 24"><path d="M20.8 4.6c-1.7-1.7-4.5-1.7-6.2 0L12 7.2 9.4 4.6a4.4 4.4 0 0 0-6.2 6.2L12 19.6l8.8-8.8c1.7-1.7 1.7-4.5 0-6.2Z" /></svg>
+              }
+              @case ('shield') {
+                <svg viewBox="0 0 24 24"><path d="M12 3 19 6v5c0 4.4-2.8 8.4-7 10-4.2-1.6-7-5.6-7-10V6l7-3Z" /></svg>
+              }
+              @default {
+                <svg viewBox="0 0 24 24"><path d="M8 19c-1.1 0-2-.9-2-2V7a2 2 0 1 1 4 0v10c0 1.1-.9 2-2 2Zm8 2c-1.1 0-2-.9-2-2V9a2 2 0 1 1 4 0v10c0 1.1-.9 2-2 2ZM8 7h4m4 2h4" /></svg>
+              }
+            }
+          </span>
+          <span class="player-base__metric-copy">
+            <span class="player-base__metric-label">{{ metric.label }}</span>
+            <strong class="player-base__metric-value">{{ metric.value }}</strong>
+          </span>
+        </div>
+      }
+    </div>
+  </div>
+</article>

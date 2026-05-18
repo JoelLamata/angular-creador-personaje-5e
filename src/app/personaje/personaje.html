@@ -1,158 +1,81 @@
 @if (loading) {
-  <p>Cargando personaje...</p>
+  <p class="character-sheet__loading">Cargando personaje...</p>
 } @else if (character) {
-  <p-card>
-    <div class="character-name">
-      <p-avatar [image]="character.decorations?.avatarUrl" class="character-avatar" size="xlarge"></p-avatar>
-      <div class="name">{{ character.name }}</div>
-      <div class="description">
-        {{ character.race.baseRaceName }}
-        <!-- hacer un for? -->
-        {{ character.classes[0].definition.name }}
-        {{ character.classes[0].level }}
+  <main class="character-sheet">
+    <app-player-base [character]="character"></app-player-base>
+
+    <section class="character-sheet__section" aria-labelledby="stats-title">
+      <h3 id="stats-title" class="character-sheet__title">Estadísticas</h3>
+      <div class="character-sheet__stats">
+        <app-player-stats label="STR" [value]="characterStats.strength" [modifier]="computeModifier(characterStats.strength)"></app-player-stats>
+        <app-player-stats label="DEX" [value]="characterStats.dexterity" [modifier]="computeModifier(characterStats.dexterity)"></app-player-stats>
+        <app-player-stats label="CON" [value]="characterStats.constitution" [modifier]="computeModifier(characterStats.constitution)"></app-player-stats>
+        <app-player-stats label="INT" [value]="characterStats.intelligence" [modifier]="computeModifier(characterStats.intelligence)"></app-player-stats>
+        <app-player-stats label="WIS" [value]="characterStats.wisdom" [modifier]="computeModifier(characterStats.wisdom)"></app-player-stats>
+        <app-player-stats label="CHA" [value]="characterStats.charisma" [modifier]="computeModifier(characterStats.charisma)"></app-player-stats>
       </div>
-    </div>
-  </p-card>
-  <p-card>
-    <div class="stats">
-      <div class="summary">
-        <div class="background"></div>
-        <div class="heading">
-          <span>STR</span>
-        </div>
-        <div class="primary">
-          <span>{{ computeModifier(characterStats.strength) }}</span>
-        </div>
-        <div class="secondary">
-          <span>{{ characterStats.strength }}</span>
-        </div>
-      </div>
-      <div class="summary">
-        <div class="background"></div>
-        <div class="heading">
-          <span>DEX</span>
-        </div>
-        <div class="primary">
-          <span>{{ computeModifier(characterStats.dexterity) }}</span>
-        </div>
-        <div class="secondary">
-          <span>{{ characterStats.dexterity }}</span>
-        </div>
-      </div>
-      <div class="summary">
-        <div class="background"></div>
-        <div class="heading">
-          <span>CON</span>
-        </div>
-        <div class="primary">
-          <span>{{ computeModifier(characterStats.constitution) }}</span>
-        </div>
-        <div class="secondary">
-          <span>{{ characterStats.constitution }}</span>
-        </div>
-      </div>
-      <div class="summary">
-        <div class="background"></div>
-        <div class="heading">
-          <span>INT</span>
-        </div>
-        <div class="primary">
-          <span>{{ computeModifier(characterStats.intelligence) }}</span>
-        </div>
-        <div class="secondary">
-          <span>{{ characterStats.intelligence }}</span>
-        </div>
-      </div>
-      <div class="summary">
-        <div class="background"></div>
-        <div class="heading">
-          <span>WIS</span>
-        </div>
-        <div class="primary">
-          <span>{{ computeModifier(characterStats.wisdom) }}</span>
-        </div>
-        <div class="secondary">
-          <span>{{ characterStats.wisdom }}</span>
-        </div>
-      </div>
-      <div class="summary">
-        <div class="background"></div>
-        <div class="heading">
-          <span>CHA</span>
-        </div>
-        <div class="primary">
-          <span>{{ computeModifier(characterStats.charisma) }}</span>
-        </div>
-        <div class="secondary">
-          <span>{{ characterStats.charisma }}</span>
-        </div>
-      </div>
-    </div>
-  </p-card>
-  <p-card>
-    <p><strong>Actions</strong></p>
-    @for(action of characterActions; track $index){
-      <p><strong>{{action.name}}</strong></p>
-      @for(entry of action.entries; track $index){
-        @if (entry.type == 'list') {
-          @for(item of entry.items; track $index){
-            <p [innerHTML]="entryProcessor.processEntry(item)"></p>
-          }
+    </section>
+
+    <section class="character-sheet__section" aria-labelledby="actions-title">
+      <h3 id="actions-title" class="character-sheet__title">Acciones</h3>
+      <div class="character-sheet__list">
+        @for(action of characterActions; track $index) {
+          <app-player-action [action]="action" type="action"></app-player-action>
         }
-        @else if (entry.name) {
-          <p>{{ entry.name }}</p>
-          @for(childEntry of entry.entries; track $index){
-            <p [innerHTML]="entryProcessor.processEntry(childEntry)"></p>
+      </div>
+    </section>
+
+    @if (character?.actions?.race?.length || character?.actions?.class?.length || character?.actions?.feat?.length) {
+      <section class="character-sheet__section" aria-labelledby="bonus-title">
+        <h3 id="bonus-title" class="character-sheet__title">Acciones adicionales</h3>
+        <div class="character-sheet__list">
+          @for(action of character.actions.race; track action.id) {
+            @if (action.activation?.activationType === 3) {
+              <app-player-action [action]="action" type="bonus"></app-player-action>
+            }
           }
-        } @else if (entry.type == 'entries') {
-          @for(childEntry of entry.entries; track $index){
-            <p [innerHTML]="entryProcessor.processEntry(childEntry)"></p>
+          @for(action of character.actions.class; track action.id) {
+            @if (action.activation?.activationType === 3) {
+              <app-player-action [action]="action" type="bonus"></app-player-action>
+            }
           }
-        } @else {
-          <p [innerHTML]="entryProcessor.processEntry(entry)"></p>
-        }
-      }
+          @for(action of character.actions.feat; track action.id) {
+            @if (action.activation?.activationType === 3) {
+              <app-player-action [action]="action" type="bonus"></app-player-action>
+            }
+          }
+        </div>
+      </section>
+
+      <section class="character-sheet__section" aria-labelledby="reactions-title">
+        <h3 id="reactions-title" class="character-sheet__title">Reacciones</h3>
+        <div class="character-sheet__list">
+          @for(action of character.actions.race; track action.id) {
+            @if (action.activation?.activationType === 4) {
+              <app-player-action [action]="action" type="reaction"></app-player-action>
+            }
+          }
+          @for(action of character.actions.class; track action.id) {
+            @if (action.activation?.activationType === 4) {
+              <app-player-action [action]="action" type="reaction"></app-player-action>
+            }
+          }
+          @for(action of character.actions.feat; track action.id) {
+            @if (action.activation?.activationType === 4) {
+              <app-player-action [action]="action" type="reaction"></app-player-action>
+            }
+          }
+        </div>
+      </section>
     }
-    <p><strong>Bonus actions</strong></p>
 
-    <p><strong>Reactions</strong></p>
-
-    <p><strong>Other</strong></p>
-
-  </p-card>
-  <p-card>
-    <div class="spells">
-      <p><strong>Spells</strong></p>
-      <p-accordion [value]="['0']" [multiple]="true">
-        @for(spell of characterSpells; track $index){
-          <p-accordion-panel [value]="$index">
-            <p-accordion-header>
-              <div class="spell-header">
-                <span class="spell-name">
-                  {{ spell.name }}
-                </span>
-                <span class="spell-level" [innerHTML]="entryProcessor.processSpellLevel(spell.level)"></span>
-              </div>
-            </p-accordion-header>
-            <p-accordion-content>
-              @for (entry of spell.entries; track $index) {
-                @if (entry.type == 'list') {
-                  @for(item of entry.items; track $index) {
-                    <p [innerHTML]="entryProcessor.processEntry(item)"></p>
-                  }
-                } @else if (entry.name) {
-                  <p>{{ entry.name }}</p>
-                  @for(childEntry of entry.entries; track $index) {
-                    <p [innerHTML]="entryProcessor.processEntry(childEntry)"></p>
-                  }
-                } @else {
-                  <p [innerHTML]="entryProcessor.processEntry(entry)"></p>
-                }
-              }
-            </p-accordion-content>
-          </p-accordion-panel>
+    <section class="character-sheet__section" aria-labelledby="spells-title">
+      <h3 id="spells-title" class="character-sheet__title">Hechizos preparados</h3>
+      <div class="character-sheet__list">
+        @for(spell of characterSpells; track $index) {
+          <app-spell [spell]="spell"></app-spell>
         }
-      </p-accordion>
-    </div>
-  </p-card>
+      </div>
+    </section>
+  </main>
 }
