@@ -36,7 +36,7 @@ export class SpellComponent {
     if (!distance) return 'N/D';
     if (distance.type === 'self') return 'Personal';
     if (distance.type === 'touch') return 'Toque';
-    if (distance.amount) return `${this.feetToMeters(distance.amount)}m`;
+    if (distance.amount) return `${distance.amount}ft`;
     return distance.type;
   }
 
@@ -74,9 +74,5 @@ export class SpellComponent {
       round: 'turno',
     };
     return units[unit] ?? unit;
-  }
-
-  private feetToMeters(feet: number): number {
-    return Math.round(feet * 0.3048);
   }
 }
