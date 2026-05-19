@@ -26,13 +26,13 @@
         <span class="player-base__metric-icon" aria-hidden="true">
           @switch (metric.icon) {
             @case ('heart') {
-              <svg viewBox="0 0 24 24"><path d="M20.8 4.6c-1.7-1.7-4.5-1.7-6.2 0L12 7.2 9.4 4.6a4.4 4.4 0 0 0-6.2 6.2L12 19.6l8.8-8.8c1.7-1.7 1.7-4.5 0-6.2Z" /></svg>
+              <span class="material-symbols-outlined">favorite</span>
             }
             @case ('shield') {
-              <svg viewBox="0 0 24 24"><path d="M12 3 19 6v5c0 4.4-2.8 8.4-7 10-4.2-1.6-7-5.6-7-10V6l7-3Z" /></svg>
+              <span class="material-symbols-outlined">shield</span>
             }
             @default {
-              <svg viewBox="0 0 24 24"><path d="M8 19c-1.1 0-2-.9-2-2V7a2 2 0 1 1 4 0v10c0 1.1-.9 2-2 2Zm8 2c-1.1 0-2-.9-2-2V9a2 2 0 1 1 4 0v10c0 1.1-.9 2-2 2ZM8 7h4m4 2h4" /></svg>
+              <span class="material-symbols-outlined">steps</span>
             }
           }
         </span>
