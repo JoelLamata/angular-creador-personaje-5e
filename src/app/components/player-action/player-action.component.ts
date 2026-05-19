@@ -3,7 +3,7 @@ import { SafeHtml } from '@angular/platform-browser';
 import { AccordionModule } from 'primeng/accordion';
 import { EntryProcessorService } from '../../services/entry-processor.service';
 
-export type PlayerActionType = 'action' | 'bonus' | 'reaction';
+export type PlayerActionType = 'action' | 'bonus' | 'reaction' | 'other';
 
 @Component({
   selector: 'app-player-action',
@@ -27,12 +27,16 @@ export class PlayerActionComponent {
   }
 
   get typeLabel(): string {
-    const labels: Record<PlayerActionType, string> = {
-      action: 'Acción',
-      bonus: 'Acción adicional',
-      reaction: 'Reacción',
-    };
-    return labels[this.type];
+    if (this.type === 'action') {
+      return 'Acción'
+    } if (this.type === 'bonus') {
+      return 'Acción adicional'
+    } if (this.type === 'reaction') {
+      return 'Reacción'
+    } if (this.type === 'other') {
+      return 'Otros'
+    }
+    return '';
   }
 
   get displayAttack(): string {

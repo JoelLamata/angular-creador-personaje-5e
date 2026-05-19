@@ -17,43 +17,48 @@
     </section>
 
     <section class="character-sheet__section" aria-labelledby="actions-title">
-      <!-- TODO acciones de inventario -->
       <h3 id="actions-title" class="character-sheet__title">Acciones</h3>
       <div class="character-sheet__list">
         @for(action of characterActions; track $index) {
-          <app-player-action [action]="action" type="action"></app-player-action>
+          @if(action.activation.activationType === ActivationType.Action) {
+            <app-player-action [action]="action" type="action"></app-player-action>
+          }
         }
       </div>
     </section>
 
-    @if (character?.actions?.race?.length || character?.actions?.class?.length || character?.actions?.feat?.length) {
-      <section class="character-sheet__section" aria-labelledby="bonus-title">
-        <h3 id="bonus-title" class="character-sheet__title">Acciones adicionales</h3>
-        <div class="character-sheet__list">
-          @for(action of characterBonusActions; track $index) {
-            <app-player-action [action]="action" type="action"></app-player-action>
+    <section class="character-sheet__section" aria-labelledby="actions-title">
+      <h3 id="actions-title" class="character-sheet__title">Acciones adicionales</h3>
+      <div class="character-sheet__list">
+        @for(action of characterActions; track $index) {
+          @if(action.activation.activationType === ActivationType.BonusAction) {
+            <app-player-action [action]="action" type="bonus"></app-player-action>
           }
-        </div>
-      </section>
+        }
+      </div>
+    </section>
 
-      <section class="character-sheet__section" aria-labelledby="reactions-title">
-        <h3 id="reactions-title" class="character-sheet__title">Reacciones</h3>
-        <div class="character-sheet__list">
-          @for(action of characterReactionActions; track $index) {
-            <app-player-action [action]="action" type="action"></app-player-action>
+    <section class="character-sheet__section" aria-labelledby="actions-title">
+      <h3 id="actions-title" class="character-sheet__title">Reacciones</h3>
+      <div class="character-sheet__list">
+        @for(action of characterActions; track $index) {
+          @if(action.activation.activationType === ActivationType.Reaction) {
+            <app-player-action [action]="action" type="reaction"></app-player-action>
           }
-        </div>
-      </section>
+        }
+      </div>
+    </section>
 
-      <section class="character-sheet__section" aria-labelledby="otros-title">
-        <h3 id="reactions-title" class="character-sheet__title">Otros</h3>
-        <div class="character-sheet__list">
-          @for(action of characterOtherActions; track $index) {
-            <app-player-action [action]="action" type="action"></app-player-action>
+        <section class="character-sheet__section" aria-labelledby="actions-title">
+      <h3 id="actions-title" class="character-sheet__title">Otros</h3>
+      <div class="character-sheet__list">
+        @for(action of characterActions; track $index) {
+          @if(action.activation.activationType === ActivationType.Other) {
+            <app-player-action [action]="action" type="other"></app-player-action>
           }
-        </div>
-      </section>
-    }
+        }
+      </div>
+    </section>
 
     <section class="character-sheet__section" aria-labelledby="spells-title">
       <h3 id="spells-title" class="character-sheet__title">Hechizos preparados</h3>

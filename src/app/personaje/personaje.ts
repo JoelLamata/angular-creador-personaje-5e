@@ -36,6 +36,7 @@ interface stats {
   styleUrl: './personaje.css',
 })
 export class Personaje implements OnInit {
+  protected readonly ActivationType = ActivationType;
   ALLOWED_SOURCES = ALLOWED_SOURCES;
   loading = true;
   spells: Map<string, any> = new Map();
@@ -59,10 +60,10 @@ export class Personaje implements OnInit {
   racesData: any;
   characterClasesData: any;
   characterRaceData: any;
-  characterActions: any;
-  characterBonusActions: any;
-  characterReactionActions: any;
-  characterOtherActions: any;
+  characterActions: any[] = [];
+  characterBonusActions: any[] = [];
+  characterReactionActions: any[] = [];
+  characterOtherActions: any[] = [];
 
   constructor(
     private readonly jsonReader: JsonReader,
@@ -83,29 +84,10 @@ export class Personaje implements OnInit {
       console.log('Personaje cargado: ', this.character);
       this.loadStats();
       console.log('Stats cargadas: ', this.characterStats);
-      // TODO all spells
-      const spellsResult = await this.jsonReader.getData('spells/spells-phb.json');
-      if (spellsResult?.spell && Array.isArray(spellsResult.spell)) {
-        for (const spell of spellsResult.spell) {
-          this.spells.set(spell.name, spell);
-        }
-      }
-      console.log('Spells cargados');
-      this.loadSpells();
-      console.log('Spells personaje cargados: ', this.characterSpells);
-      // Necesito la info de su clase (class-bard.json)
-      await this.loadClassData();
-      console.log('Clases personaje cargado: ', this.characterClasesData);
-      await this.loadRaceData();
-      console.log('Raza data cargado: ', this.characterRaceData)
       this.loadActions();
       console.log('Acciones personaje cargadas: ', this.characterActions);
-      this.loadBonusActions();
-      console.log('Acciones adicionales personaje cargadas: ', this.characterBonusActions);
-      this.loadReactionActions();
-      console.log('Reacciones personaje cargadas: ', this.characterReactionActions);
-      this.loadOtherActions();
-      console.log('Otras acciones personaje cargadas: ', this.characterOtherActions);
+      await this.loadSpells();
+      console.log('Spells personaje cargados: ', this.characterSpells);
     } catch (error) {
       console.log(error);
     } finally {
@@ -153,7 +135,15 @@ export class Personaje implements OnInit {
     return value >= 0 ? '+' + value : value;
   }
 
-  loadSpells() {
+  async loadSpells() {
+    const spellsResult = await this.jsonReader.getSpellsData();
+    if (spellsResult && Array.isArray(spellsResult)) {
+      for (const spell of spellsResult) {
+        this.spells.set(spell.name, spell);
+      }
+    }
+    console.log('Spells cargados');
+
     this.characterSpells = [];
     for (const s of this.character.spells.feat) {
       const spell = this.spells.get(s.definition.name);
@@ -174,71 +164,25 @@ export class Personaje implements OnInit {
     this.characterSpells.sort((a: any, b: any) => a.level - b.level);
   }
 
-  async loadClassData() {
-    this.characterClases = [];
-    this.characterClasesData = [];
-    for (const c of this.character.classes) {
-      this.characterClases.push(c.definition.name);
-      const result = await this.jsonReader.getPageData('class/', c.definition.name);
-      this.characterClasesData.push(result);
-    }
-  }
-
-  async loadRaceData() {
-    this.characterRace = this.character?.race?.baseRaceName || this.character?.race?.fullName;
-    if (this.racesData == null) {
-      this.racesData = await this.jsonReader.getData('races.json');
-    }
-    this.characterRaceData = this.racesData.race.filter((r: { name: string; source: string; }) => r.name === this.characterRace && ALLOWED_SOURCES.includes(r.source));
-  }
-
   loadActions(): void {
-    this.characterActions = this.getActionsByActivationType([ActivationType.Action]);
+    const actions = this.character?.actions;
+
+    this.characterActions = this.mergeActions(
+      actions?.background,
+      actions?.class,
+      actions?.feat,
+      actions?.item,
+      actions?.race
+    );
+
+    this.characterActions.sort(
+      (a, b) =>
+        (a.activation?.activationType ?? Number.MAX_SAFE_INTEGER) -
+        (b.activation?.activationType ?? Number.MAX_SAFE_INTEGER)
+    );
   }
 
-  loadBonusActions(): void {
-    this.characterBonusActions = this.getActionsByActivationType([ActivationType.BonusAction]);
-  }
-
-  loadReactionActions(): void {
-    this.characterReactionActions = this.getActionsByActivationType([ActivationType.Reaction]);
-  }
-
-  loadOtherActions() {
-    this.characterOtherActions = this.getActionsByActivationType([ActivationType.Other]);
-  }
-
-  private getActionsByActivationType(activationTypes: ActivationType[]): any[] {
-    const { race, class: cls, feat } = this.character.actions;
-    const allActions = [...race, ...cls, ...feat];
-
-    return allActions.reduce<any[]>((acc, action) => {
-      const found = this.findActionOnClass(action.name);
-      const type = action.activation?.activationType;
-
-      if (found && activationTypes.includes(type)) {
-        acc.push(found);
-      }
-
-      return acc;
-    }, []);
-  }
-
-  findActionOnClass(actionName: string) {
-    for (let clases of this.characterClasesData) {
-      for (let classFeature of clases.classFeature) {
-        if (classFeature.name == actionName && ALLOWED_SOURCES.includes(classFeature.source)) {
-          return classFeature;
-        }
-      }
-    }
-    for (let races of this.characterRaceData) {
-      for (let raceEntry of races.entries) {
-        if (raceEntry.name == actionName) {
-          return raceEntry;
-        }
-      }
-    }
-    return null;
+  private mergeActions(...actionLists: (any[] | null | undefined)[]): any[] {
+    return actionLists.flatMap(actions => actions ?? []);
   }
 }
