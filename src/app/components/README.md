@@ -44,3 +44,14 @@ Inputs:
 Inputs:
 - `spell`: objeto de hechizo del compendio.
 - `prepared`: cambia la presentación visual para hechizos preparados o atenuados.
+
+## PlayerSelectorComponent
+
+```html
+<app-player-selector characterName="Rym"></app-player-selector>
+```
+
+Inputs:
+- `characterName`: nombre del archivo JSON en `public/assets/characters`, sin extensión.
+- `imageUrl`, `name`, `level`, `race`, `characterClass`: sobrescriben los datos cargados del personaje.
+- `disabled`: desactiva la navegación visualmente y evita clicks.

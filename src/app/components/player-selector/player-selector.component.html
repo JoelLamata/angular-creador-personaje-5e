@@ -1,0 +1,36 @@
+<a
+  class="player-selector"
+  [class.player-selector--disabled]="disabled"
+  [class.player-selector--loading]="loading"
+  [routerLink]="disabled ? null : linkCommands"
+  [attr.aria-label]="'Ver ficha de ' + displayName"
+>
+  <span class="player-selector__image-wrap">
+    @if (imageUrl) {
+      <img class="player-selector__image" [src]="imageUrl" [alt]="displayName" />
+    } @else {
+      <span class="player-selector__image player-selector__image--empty">
+        {{ displayName.slice(0, 1) }}
+      </span>
+    }
+
+    @if (level !== null) {
+      <span class="player-selector__level">Nv. {{ level }}</span>
+    }
+  </span>
+
+  <span class="player-selector__content">
+    <span class="player-selector__name">{{ displayName }}</span>
+    <span class="player-selector__chips">
+      @if (race) {
+        <span class="player-selector__chip player-selector__chip--race">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 8a7 7 0 0 1 14 0" /></svg>
+          {{ race }}
+        </span>
+      }
+      @if (characterClass) {
+        <span class="player-selector__chip player-selector__chip--class">{{ characterClass }}</span>
+      }
+    </span>
+  </span>
+</a>

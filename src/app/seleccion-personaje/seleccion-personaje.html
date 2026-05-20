@@ -1,12 +1,17 @@
-<div class="seleccion-personaje">
-  <h1>Selecciona un Personaje</h1>
-  <div class="botones-container">
-    <button
-      *ngFor="let personaje of personajes"
-      (click)="seleccionarPersonaje(personaje)"
-      class="personaje-btn"
-    >
-      {{ personaje }}
-    </button>
+<main class="character-selection">
+  <header class="character-selection__header">
+    <div class="character-selection__title-row">
+      <span class="character-selection__icon" aria-hidden="true">
+        <span class="material-symbols-outlined">group</span>
+      </span>
+      <h1 class="character-selection__title">Personajes de la Campaña</h1>
+    </div>
+    <p class="character-selection__lead">Selecciona un personaje para ver su ficha completa</p>
+  </header>
+
+  <div class="character-selection__grid">
+    @for (personaje of personajes; track personaje) {
+      <app-player-selector [characterName]="personaje"></app-player-selector>
+    }
   </div>
-</div>
+</main>

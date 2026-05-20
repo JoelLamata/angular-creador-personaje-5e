@@ -50,6 +50,13 @@
   --player-icon-box-size: 2rem;
   --player-stat-min-height: 6.375rem;
   --player-metric-min-height: 4.125rem;
+  --player-selector-grid-min: 12rem;
+  --player-selector-image-aspect: 1 / 1;
+  --player-selector-card-min-height: 18rem;
+  --player-selector-hover-offset: -0.25rem;
+  --player-selector-hover-scale: 1.08;
+  --player-selector-level-offset: 0.75rem;
+  --player-disabled-opacity: 0.6;
 }
 
 .dark {
