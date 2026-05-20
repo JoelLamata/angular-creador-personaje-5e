@@ -1,3 +1,8 @@
 <div class="card">
-    <p-megaMenu [model]="items" />
+    <p-megaMenu [model]="items" class="custom-megamenu" />
+    <button class="theme-toggle" (click)="toggleTheme()" [attr.aria-label]="isDarkMode ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro'">
+        <span class="material-symbols-outlined">
+            {{ isDarkMode ? 'sunny' : 'bedtime' }}
+        </span>
+    </button>
 </div>

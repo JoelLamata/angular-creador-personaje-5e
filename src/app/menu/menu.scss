@@ -1,0 +1,96 @@
+
+:host {
+  display: block;
+  --p-megamenu-background: var(--player-color-surface-raised);
+  --p-megamenu-border-color: var(--player-color-primary);
+  --p-megamenu-border-radius: var(--player-radius-md);
+  --p-megamenu-color: var(--player-color-text);
+  --p-megamenu-gap: var(--player-space-2);
+  --p-megamenu-vertical-orientation-padding: var(--player-space-2);
+  --p-megamenu-vertical-orientation-gap: var(--player-space-2);
+  --p-megamenu-horizontal-orientation-padding: var(--player-space-2) var(--player-space-3);
+  --p-megamenu-horizontal-orientation-gap: var(--player-space-2);
+  --p-megamenu-transition-duration: var(--player-transition-fast);
+  --p-megamenu-base-item-border-radius: var(--player-radius-md);
+  --p-megamenu-base-item-padding: var(--player-space-2) var(--player-space-3);
+  --p-megamenu-item-focus-background: var(--player-color-primary);
+  --p-megamenu-item-active-background: var(--player-color-primary);
+  --p-megamenu-item-color: var(--player-color-text);
+  --p-megamenu-item-focus-color: var(--player-color-surface-raised);
+  --p-megamenu-item-active-color: var(--player-color-surface-raised);
+  --p-megamenu-item-padding: var(--player-space-2) var(--player-space-3);
+  --p-megamenu-item-border-radius: var(--player-radius-md);
+  --p-megamenu-item-gap: var(--player-space-2);
+  --p-megamenu-item-icon-color: var(--player-color-text-muted);
+  --p-megamenu-item-icon-focus-color: var(--player-color-surface-raised);
+  --p-megamenu-item-icon-active-color: var(--player-color-surface-raised);
+  --p-megamenu-overlay-padding: var(--player-space-2);
+  --p-megamenu-overlay-background: var(--player-color-surface-raised);
+  --p-megamenu-overlay-border-color: var(--player-color-primary);
+  --p-megamenu-overlay-border-radius: var(--player-radius-md);
+  --p-megamenu-overlay-color: var(--player-color-text);
+  --p-megamenu-overlay-shadow: var(--player-card-shadow); /* revisar */
+  --p-megamenu-overlay-gap: var(--player-space-2);
+  --p-megamenu-submenu-padding: var(--player-space-2);
+  --p-megamenu-submenu-gap: var(--player-space-1);
+  --p-megamenu-submenu-label-padding: var(--player-space-2) var(--player-space-3);
+  --p-megamenu-submenu-label-font-weight: var(--player-font-weight-normal);
+  --p-megamenu-submenu-label-background: transparent;
+  --p-megamenu-submenu-label-color: var(--player-color-text-muted);
+  --p-megamenu-submenu-icon-size: var(--player-icon-box-size);
+  --p-megamenu-submenu-icon-color: var(--player-color-text-muted);
+  --p-megamenu-submenu-icon-focus-color: var(--player-color-surface-raised);
+  --p-megamenu-submenu-icon-active-color: var(--player-color-surface-raised);
+  --p-megamenu-separator-border-color: var(--player-color-primary);
+  --p-megamenu-mobile-button-border-radius: var(--player-radius-md);
+  --p-megamenu-mobile-button-size: var(--player-icon-box-size);
+  --p-megamenu-mobile-button-color: var(--player-color-text-muted);
+  --p-megamenu-mobile-button-hover-color: var(--player-color-surface-raised);
+  --p-megamenu-mobile-button-hover-background: var(--player-color-primary);
+  --p-megamenu-mobile-button-focus-ring-width: 0; /* revisar */
+  --p-megamenu-mobile-button-focus-ring-style: solid; /* revisar */
+  --p-megamenu-mobile-button-focus-ring-color: var(--player-color-focus); /* revisar */
+  --p-megamenu-mobile-button-focus-ring-offset: 0; /* revisar */
+  --p-megamenu-mobile-button-focus-ring-shadow: 0 0 0 var(--player-border-width-strong) var(--player-color-focus); /* revisar */
+
+  /* Nuevos tokens --player-* usados aqui: --player-color-surface-raised, --player-color-text, --player-space-1, --player-space-2, --player-space-3, --player-card-shadow, --player-font-weight-normal, --player-icon-box-size, --player-color-focus, --player-border-width-strong. Verificados en _tokens.scss. */
+}
+
+.card {
+  position: relative;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 50%;
+  right: var(--player-space-4);
+  transform: translateY(-50%);
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  border-radius: var(--player-radius-md);
+  background-color: var(--player-color-background);
+  color: var(--player-color-text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--player-transition-fast), color var(--player-transition-fast), transform var(--player-transition-fast);
+
+  &:hover {
+    background-color: var(--player-color-primary);
+    color: var(--player-color-surface);
+    transform: translateY(-50%) scale(1.05);
+  }
+
+  &:active {
+    transform: translateY(-50%) scale(0.95);
+  }
+
+  .material-symbols-outlined {
+    font-size: 1.25rem;
+  }
+}
+
+
+
