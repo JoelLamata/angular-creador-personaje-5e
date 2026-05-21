@@ -1,9 +1,14 @@
 
 :host {
   display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   --p-megamenu-background: var(--player-color-surface-raised);
   --p-megamenu-border-color: var(--player-color-primary);
-  --p-megamenu-border-radius: var(--player-radius-md);
+  --p-megamenu-border-radius: 0px;
   --p-megamenu-color: var(--player-color-text);
   --p-megamenu-gap: var(--player-space-2);
   --p-megamenu-vertical-orientation-padding: var(--player-space-2);
@@ -11,7 +16,7 @@
   --p-megamenu-horizontal-orientation-padding: var(--player-space-2) var(--player-space-3);
   --p-megamenu-horizontal-orientation-gap: var(--player-space-2);
   --p-megamenu-transition-duration: var(--player-transition-fast);
-  --p-megamenu-base-item-border-radius: var(--player-radius-md);
+  --p-megamenu-base-item-border-radius: 0px;
   --p-megamenu-base-item-padding: var(--player-space-2) var(--player-space-3);
   --p-megamenu-item-focus-background: var(--player-color-primary);
   --p-megamenu-item-active-background: var(--player-color-primary);
@@ -19,7 +24,7 @@
   --p-megamenu-item-focus-color: var(--player-color-surface-raised);
   --p-megamenu-item-active-color: var(--player-color-surface-raised);
   --p-megamenu-item-padding: var(--player-space-2) var(--player-space-3);
-  --p-megamenu-item-border-radius: var(--player-radius-md);
+  --p-megamenu-item-border-radius: 0px;
   --p-megamenu-item-gap: var(--player-space-2);
   --p-megamenu-item-icon-color: var(--player-color-text-muted);
   --p-megamenu-item-icon-focus-color: var(--player-color-surface-raised);
@@ -27,7 +32,7 @@
   --p-megamenu-overlay-padding: var(--player-space-2);
   --p-megamenu-overlay-background: var(--player-color-surface-raised);
   --p-megamenu-overlay-border-color: var(--player-color-primary);
-  --p-megamenu-overlay-border-radius: var(--player-radius-md);
+  --p-megamenu-overlay-border-radius: 0px;
   --p-megamenu-overlay-color: var(--player-color-text);
   --p-megamenu-overlay-shadow: var(--player-card-shadow); /* revisar */
   --p-megamenu-overlay-gap: var(--player-space-2);
@@ -42,7 +47,7 @@
   --p-megamenu-submenu-icon-focus-color: var(--player-color-surface-raised);
   --p-megamenu-submenu-icon-active-color: var(--player-color-surface-raised);
   --p-megamenu-separator-border-color: var(--player-color-primary);
-  --p-megamenu-mobile-button-border-radius: var(--player-radius-md);
+  --p-megamenu-mobile-button-border-radius: 0px;
   --p-megamenu-mobile-button-size: var(--player-icon-box-size);
   --p-megamenu-mobile-button-color: var(--player-color-text-muted);
   --p-megamenu-mobile-button-hover-color: var(--player-color-surface-raised);
@@ -58,6 +63,14 @@
 
 .card {
   position: relative;
+}
+
+div.sticky {
+  position: sticky;
+  top: 0;
+  padding: 5px;
+  background-color: #cae8ca;
+  border: 2px solid #4CAF50;
 }
 
 .theme-toggle {
