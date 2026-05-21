@@ -1,0 +1,38 @@
+<p-accordion [value]="[0]" [multiple]="false" class="features-accordion">
+  <p-accordion-panel [value]="index" class="feature-panel">
+    <p-accordion-header>
+      <div class="feature-header">
+        <div class="feature-header-left">
+          <h3 class="feature-name">{{ feature.name }}</h3>
+        </div>
+        <div class="feature-header-badges">
+          <span
+            class="badge badge-class"
+            [style.background-color]="getClassColorVar()"
+            [attr.data-class]="getNormalizedClassName()"
+          >
+            {{ feature.className }}
+          </span>
+          <span class="badge badge-level">Level {{ feature.level }}</span>
+          <span class="badge badge-source">{{ feature.source }}</span>
+        </div>
+      </div>
+    </p-accordion-header>
+
+    <p-accordion-content>
+      <div class="feature-content">
+        @for (entry of feature.entries; track $index) {
+          @if (entry && typeof entry === 'object' && entry.items) {
+            <div class="entry-section">
+              @for (item of entry.items; track $index) {
+                <p class="entry-text" [innerHTML]="entryProcessor.processEntry(item)"></p>
+              }
+            </div>
+          } @else if (entry && typeof entry === 'string') {
+            <p class="entry-text" [innerHTML]="entryProcessor.processEntry(entry)"></p>
+          }
+        }
+      </div>
+    </p-accordion-content>
+  </p-accordion-panel>
+</p-accordion>

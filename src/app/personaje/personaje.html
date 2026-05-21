@@ -7,20 +7,44 @@
     <section class="character-sheet__section" aria-labelledby="stats-title">
       <h3 id="stats-title" class="character-sheet__title">Estadísticas</h3>
       <div class="character-sheet__stats">
-        <app-player-stats label="STR" [value]="characterStats.strength" [modifier]="computeModifier(characterStats.strength)"></app-player-stats>
-        <app-player-stats label="DEX" [value]="characterStats.dexterity" [modifier]="computeModifier(characterStats.dexterity)"></app-player-stats>
-        <app-player-stats label="CON" [value]="characterStats.constitution" [modifier]="computeModifier(characterStats.constitution)"></app-player-stats>
-        <app-player-stats label="INT" [value]="characterStats.intelligence" [modifier]="computeModifier(characterStats.intelligence)"></app-player-stats>
-        <app-player-stats label="WIS" [value]="characterStats.wisdom" [modifier]="computeModifier(characterStats.wisdom)"></app-player-stats>
-        <app-player-stats label="CHA" [value]="characterStats.charisma" [modifier]="computeModifier(characterStats.charisma)"></app-player-stats>
+        <app-player-stats
+          label="STR"
+          [value]="characterStats.strength"
+          [modifier]="computeModifier(characterStats.strength)"
+        ></app-player-stats>
+        <app-player-stats
+          label="DEX"
+          [value]="characterStats.dexterity"
+          [modifier]="computeModifier(characterStats.dexterity)"
+        ></app-player-stats>
+        <app-player-stats
+          label="CON"
+          [value]="characterStats.constitution"
+          [modifier]="computeModifier(characterStats.constitution)"
+        ></app-player-stats>
+        <app-player-stats
+          label="INT"
+          [value]="characterStats.intelligence"
+          [modifier]="computeModifier(characterStats.intelligence)"
+        ></app-player-stats>
+        <app-player-stats
+          label="WIS"
+          [value]="characterStats.wisdom"
+          [modifier]="computeModifier(characterStats.wisdom)"
+        ></app-player-stats>
+        <app-player-stats
+          label="CHA"
+          [value]="characterStats.charisma"
+          [modifier]="computeModifier(characterStats.charisma)"
+        ></app-player-stats>
       </div>
     </section>
 
     <section class="character-sheet__section" aria-labelledby="actions-title">
       <h3 id="actions-title" class="character-sheet__title">Acciones</h3>
       <div class="character-sheet__list">
-        @for(action of characterActions; track $index) {
-          @if(action.activation.activationType === ActivationType.Action) {
+        @for (action of characterActions; track $index) {
+          @if (action.activation.activationType === ActivationType.Action) {
             <app-player-action [action]="action" type="action"></app-player-action>
           }
         }
@@ -30,8 +54,8 @@
     <section class="character-sheet__section" aria-labelledby="actions-title">
       <h3 id="actions-title" class="character-sheet__title">Acciones adicionales</h3>
       <div class="character-sheet__list">
-        @for(action of characterActions; track $index) {
-          @if(action.activation.activationType === ActivationType.BonusAction) {
+        @for (action of characterActions; track $index) {
+          @if (action.activation.activationType === ActivationType.BonusAction) {
             <app-player-action [action]="action" type="bonus"></app-player-action>
           }
         }
@@ -41,19 +65,19 @@
     <section class="character-sheet__section" aria-labelledby="actions-title">
       <h3 id="actions-title" class="character-sheet__title">Reacciones</h3>
       <div class="character-sheet__list">
-        @for(action of characterActions; track $index) {
-          @if(action.activation.activationType === ActivationType.Reaction) {
+        @for (action of characterActions; track $index) {
+          @if (action.activation.activationType === ActivationType.Reaction) {
             <app-player-action [action]="action" type="reaction"></app-player-action>
           }
         }
       </div>
     </section>
 
-        <section class="character-sheet__section" aria-labelledby="actions-title">
+    <section class="character-sheet__section" aria-labelledby="actions-title">
       <h3 id="actions-title" class="character-sheet__title">Otros</h3>
       <div class="character-sheet__list">
-        @for(action of characterActions; track $index) {
-          @if(action.activation.activationType === ActivationType.Other) {
+        @for (action of characterActions; track $index) {
+          @if (action.activation.activationType === ActivationType.Other) {
             <app-player-action [action]="action" type="other"></app-player-action>
           }
         }
@@ -63,7 +87,7 @@
     <section class="character-sheet__section" aria-labelledby="spells-title">
       <h3 id="spells-title" class="character-sheet__title">Hechizos preparados</h3>
       <div class="character-sheet__list">
-        @for(spell of characterSpells; track $index) {
+        @for (spell of characterSpells; track $index) {
           <app-spell [spell]="spell"></app-spell>
         }
       </div>

@@ -47,4 +47,48 @@ export class JsonReader {
 
     return spells;
   }
+
+  async getAllData(path: string) {
+    const index: Record<string, string> = await this.getData(path + '/index.json');
+    const files = Object.values(index).filter(Boolean);
+    const responses = await Promise.all(
+      files.map(file =>
+        this.getData(`${path}/${file}`) as Promise<any>
+      )
+    );
+
+    return responses;
+  }
+
+  async getClassData() {
+    const cacheKey = 'class/all';
+
+    // Reutilizamos la caché para evitar cargar todos los archivos varias veces
+    if (this.cache.has(cacheKey)) {
+      return this.cache.get(cacheKey);
+    }
+
+    const responses = await this.getAllData('class');
+
+    const classFeatures = responses.flatMap(r => r.classFeature ?? []);
+    this.cache.set(cacheKey, classFeatures);
+
+    return classFeatures;
+  }
+
+  async getSubClassData() {
+    const cacheKey = 'subclass/all';
+
+    // Reutilizamos la caché para evitar cargar todos los archivos varias veces
+    if (this.cache.has(cacheKey)) {
+      return this.cache.get(cacheKey);
+    }
+
+    const responses = await this.getAllData('class');
+
+    const subclassFeature = responses.flatMap(r => r.subclassFeature ?? []);
+    this.cache.set(cacheKey, subclassFeature);
+
+    return subclassFeature;
+  }
 }

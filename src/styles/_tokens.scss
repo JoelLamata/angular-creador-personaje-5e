@@ -57,6 +57,39 @@
   --player-selector-hover-scale: 1.08;
   --player-selector-level-offset: 0.75rem;
   --player-disabled-opacity: 0.6;
+
+  /* Class Feature Colors */
+  --player-class-barbarian: #7c2d12;
+  --player-class-barbarian-light: #fed7aa;
+  --player-class-bard: #7c3aed;
+  --player-class-bard-light: #ddd6fe;
+  --player-class-cleric: #dc2626;
+  --player-class-cleric-light: #fecaca;
+  --player-class-druid: #059669;
+  --player-class-druid-light: #a7f3d0;
+  --player-class-fighter: #1e40af;
+  --player-class-fighter-light: #93c5fd;
+  --player-class-monk: #831843;
+  --player-class-monk-light: #fbcfe8;
+  --player-class-paladin: #b91c1c;
+  --player-class-paladin-light: #fecaca;
+  --player-class-ranger: #15803d;
+  --player-class-ranger-light: #bbf7d0;
+  --player-class-rogue: #1f2937;
+  --player-class-rogue-light: #d1d5db;
+  --player-class-sorcerer: #be185d;
+  --player-class-sorcerer-light: #f9a8d4;
+  --player-class-warlock: #3730a3;
+  --player-class-warlock-light: #c7d2fe;
+  --player-class-wizard: #0369a1;
+  --player-class-wizard-light: #7dd3fc;
+  --player-class-artificer: #6366f1;
+  --player-class-artificer-light: #c4b5fd;
+
+  /* Feature Header Tokens */
+  --feature-header-padding: var(--player-space-4) var(--player-space-6);
+  --feature-badge-padding: var(--player-space-1) var(--player-space-3);
+  --feature-content-padding: var(--player-space-6);
 }
 
 .dark {
@@ -72,6 +105,34 @@
   --player-color-border: rgba(245, 245, 245, 0.14);
   --player-color-shadow: rgba(0, 0, 0, 0.28);
   --player-color-focus: rgba(255, 23, 68, 0.3);
+
+  /* Dark Theme Class Colors */
+  --player-class-barbarian: #92400e;
+  --player-class-barbarian-light: #7c2d12;
+  --player-class-bard: #9333ea;
+  --player-class-bard-light: #7c3aed;
+  --player-class-cleric: #ef4444;
+  --player-class-cleric-light: #dc2626;
+  --player-class-druid: #10b981;
+  --player-class-druid-light: #059669;
+  --player-class-fighter: #3b82f6;
+  --player-class-fighter-light: #1e40af;
+  --player-class-monk: #be185d;
+  --player-class-monk-light: #831843;
+  --player-class-paladin: #f87171;
+  --player-class-paladin-light: #b91c1c;
+  --player-class-ranger: #34d399;
+  --player-class-ranger-light: #15803d;
+  --player-class-rogue: #6b7280;
+  --player-class-rogue-light: #374151;
+  --player-class-sorcerer: #ec4899;
+  --player-class-sorcerer-light: #be185d;
+  --player-class-warlock: #818cf8;
+  --player-class-warlock-light: #4f46e5;
+  --player-class-wizard: #06b6d4;
+  --player-class-wizard-light: #0369a1;
+  --player-class-artificer: #a78bfa;
+  --player-class-artificer-light: #7c3aed;
 }
 
 body {

@@ -1,6 +1,116 @@
-<div class="card-grid">
-  @for (card of classNames; track card) {
-    <p-card (click)="goTo(card)" header="{{card.toLocaleUpperCase()}}">
-    </p-card>
-  }
+<div class="clases-container">
+  <!-- Header -->
+  <div class="clases-header">
+    <div class="header-content">
+      <h1 class="header-title">Características de Clase</h1>
+      <p class="header-description">
+        Explora las características de cada clase y sus requisitos de nivel
+      </p>
+    </div>
+  </div>
+
+  <!-- Filters Section -->
+  <div class="filters-section">
+    <div class="filter-group">
+      <input
+        id="search-input"
+        type="text"
+        pInputText
+        [(ngModel)]="searchText"
+        (input)="onSearchChange()"
+        placeholder="Buscar característica..."
+        class="search-input"
+      />
+    </div>
+
+    <div class="filter-group">
+      <label for="level-select" class="filter-label">Nivel</label>
+      <select
+        id="level-select"
+        [(ngModel)]="selectedLevel"
+        (change)="onFilterChange()"
+        class="filter-select"
+      >
+        <option [ngValue]="null">Todos los niveles</option>
+        @for (level of availableLevels; track level) {
+          <option [ngValue]="level">Nivel {{ level }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="class-select" class="filter-label">Clase</label>
+      <select
+        id="class-select"
+        [(ngModel)]="selectedClass"
+        (change)="onFilterChange()"
+        class="filter-select"
+      >
+        <option [ngValue]="null">Todas las clases</option>
+        @for (clase of availableClass; track clase) {
+          <option [ngValue]="clase">{{ clase }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="class-select" class="filter-label">Origen</label>
+      <select
+        id="class-select"
+        [(ngModel)]="selectedSource"
+        (change)="onFilterChange()"
+        class="filter-select"
+      >
+        <option [ngValue]="null">Todos los origenes</option>
+        @for (source of availableSources; track source) {
+          <option [ngValue]="source">{{ source }}</option>
+        }
+      </select>
+    </div>
+
+    <button
+      *ngIf="selectedLevel !== null || searchText"
+      pButton
+      type="button"
+      label="Limpiar filtros"
+      icon="pi pi-times"
+      (click)="clearFilters()"
+      class="clear-button"
+    ></button>
+  </div>
+
+  <!-- Results Count -->
+  <div class="results-info">
+    <p class="results-text">
+      Mostrando <strong>{{ filteredClassFeatures.length }}</strong> de
+      <strong>{{ allClassFeatures.length }}</strong> características
+    </p>
+  </div>
+
+  <!-- Features Accordion -->
+  <div class="features-accordion-wrapper">
+    @if (filteredClassFeatures.length > 0) {
+      @for (
+        feature of filteredClassFeatures;
+        track feature.name + '-' + feature.level + '-' + $index
+      ) {
+        <app-class-feature-card [feature]="feature" [index]="$index"></app-class-feature-card>
+      }
+    } @else {
+      <div class="no-results">
+        <p class="no-results-title">Sin resultados</p>
+        <p class="no-results-description">
+          No se encontraron características que coincidan con los filtros seleccionados.
+        </p>
+        <button
+          pButton
+          type="button"
+          label="Mostrar todas"
+          icon="pi pi-redo"
+          (click)="clearFilters()"
+          class="reset-button"
+        ></button>
+      </div>
+    }
+  </div>
 </div>
