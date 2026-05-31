@@ -26,6 +26,7 @@ import {
   standalone: true,
 })
 export class Clases implements OnInit {
+  loading = true;
   allClassFeatures: ClassFeature[] = [];
   filteredClassFeatures: ClassFeature[] = [];
   availableLevels: number[] = [];
@@ -42,6 +43,7 @@ export class Clases implements OnInit {
   async ngOnInit(): Promise<void> {
     await this.loadAllClassFeatures();
     this.applyFilters();
+    this.cdr.detectChanges();
   }
 
   /**
@@ -49,7 +51,7 @@ export class Clases implements OnInit {
    */
   private async loadAllClassFeatures(): Promise<void> {
     try {
-      const classData = await this.jsonReader.getClassData();
+      const classData = await this.jsonReader.getClassAndSubClassData();
       console.log('Classdata: ', classData);
 
       const filteredFeatures = classData.filter((feature: any) =>
@@ -82,6 +84,8 @@ export class Clases implements OnInit {
     } catch (error) {
       console.error('Error loading class features:', error);
     } finally {
+      this.loading = false;
+      this.applyFilters();
       this.cdr.detectChanges();
       console.log('loaded');
     }

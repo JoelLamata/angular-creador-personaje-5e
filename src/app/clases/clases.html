@@ -68,6 +68,7 @@
       </select>
     </div>
 
+    <!-- TODO -->
     <button
       *ngIf="selectedLevel !== null || searchText"
       pButton
@@ -89,7 +90,9 @@
 
   <!-- Features Accordion -->
   <div class="features-accordion-wrapper">
-    @if (filteredClassFeatures.length > 0) {
+    @if (loading) {
+      <p class="character-sheet__loading">Cargando características de clase...</p>
+    } @else if (filteredClassFeatures.length > 0) {
       @for (
         feature of filteredClassFeatures;
         track feature.name + '-' + feature.level + '-' + $index

@@ -11,9 +11,7 @@ export class JsonReader {
       return this.cache.get(filename);
     }
 
-    const baseUrl = typeof document !== 'undefined'
-      ? document.baseURI
-      : 'http://localhost:4200/';
+    const baseUrl = typeof document !== 'undefined' ? document.baseURI : 'http://localhost:4200/';
     const url = new URL(`assets/${filename}`, baseUrl).href;
     const response = await fetch(url);
     const data = await response.json();
@@ -37,12 +35,10 @@ export class JsonReader {
     const index: Record<string, string> = await this.getData('spells/index.json');
     const files = Object.values(index).filter(Boolean);
     const responses = await Promise.all(
-      files.map(file =>
-        this.getData(`spells/${file}`) as Promise<any>
-      )
+      files.map((file) => this.getData(`spells/${file}`) as Promise<any>),
     );
 
-    const spells = responses.flatMap(r => r.spell ?? []);
+    const spells = responses.flatMap((r) => r.spell ?? []);
     this.cache.set(cacheKey, spells);
 
     return spells;
@@ -52,43 +48,28 @@ export class JsonReader {
     const index: Record<string, string> = await this.getData(path + '/index.json');
     const files = Object.values(index).filter(Boolean);
     const responses = await Promise.all(
-      files.map(file =>
-        this.getData(`${path}/${file}`) as Promise<any>
-      )
+      files.map((file) => this.getData(`${path}/${file}`) as Promise<any>),
     );
 
     return responses;
   }
 
-  async getClassData() {
-    const cacheKey = 'class/all';
+  async getClassAndSubClassData() {
+    const cacheKey = 'class/all-features';
 
-    // Reutilizamos la caché para evitar cargar todos los archivos varias veces
     if (this.cache.has(cacheKey)) {
       return this.cache.get(cacheKey);
     }
 
     const responses = await this.getAllData('class');
 
-    const classFeatures = responses.flatMap(r => r.classFeature ?? []);
-    this.cache.set(cacheKey, classFeatures);
+    const result = [
+      ...responses.flatMap((r) => r.classFeature ?? []),
+      ...responses.flatMap((r) => r.subclassFeature ?? []),
+    ];
 
-    return classFeatures;
-  }
+    this.cache.set(cacheKey, result);
 
-  async getSubClassData() {
-    const cacheKey = 'subclass/all';
-
-    // Reutilizamos la caché para evitar cargar todos los archivos varias veces
-    if (this.cache.has(cacheKey)) {
-      return this.cache.get(cacheKey);
-    }
-
-    const responses = await this.getAllData('class');
-
-    const subclassFeature = responses.flatMap(r => r.subclassFeature ?? []);
-    this.cache.set(cacheKey, subclassFeature);
-
-    return subclassFeature;
+    return result;
   }
 }

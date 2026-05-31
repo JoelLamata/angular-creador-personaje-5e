@@ -13,6 +13,15 @@
           >
             {{ feature.className }}
           </span>
+          @if (feature.subclassShortName != null) {
+            <span
+              class="badge badge-class"
+              [style.background-color]="getClassColorVar()"
+              [attr.data-class]="getNormalizedClassName()"
+            >
+              {{ feature.subclassShortName }}
+            </span>
+          }
           <span class="badge badge-level">Level {{ feature.level }}</span>
           <span class="badge badge-source">{{ feature.source }}</span>
         </div>

@@ -10,6 +10,7 @@ export interface ClassFeature {
   level: number;
   source: string;
   entries: any[];
+  subclassShortName?: string;
   page?: number;
   srd?: boolean;
 }
