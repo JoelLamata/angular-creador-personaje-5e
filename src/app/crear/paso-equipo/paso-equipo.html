@@ -1,0 +1,89 @@
+<h2 class="paso-title">Equipo y hechizos</h2>
+<p class="paso-help">Revisa tu equipo inicial, añade objetos y, si tu clase lanza conjuros, elige tus hechizos.</p>
+
+@if (loading) {
+  <p class="muted">Cargando...</p>
+} @else if (ficha) {
+  <div class="panel">
+    <h3 class="panel-title">Equipo inicial</h3>
+    @if (ficha.equipo.length > 0 || ficha.oro > 0) {
+      <ul>
+        @for (e of ficha.equipo; track $index) {
+          <li>{{ e }}</li>
+        }
+      </ul>
+      @if (ficha.oro > 0) {
+        <p><strong>Oro:</strong> {{ ficha.oro }} po</p>
+      }
+    } @else {
+      <p class="muted">No has elegido equipo inicial en los pasos anteriores.</p>
+    }
+
+    <div class="campo">
+      <label for="objeto">Añadir objeto</label>
+      <div class="chips">
+        <input
+          id="objeto"
+          class="input"
+          list="lista-objetos"
+          [(ngModel)]="nuevoObjeto"
+          (keydown.enter)="anadirObjeto()"
+          placeholder="Escribe o elige un objeto"
+        />
+        <datalist id="lista-objetos">
+          @for (n of nombresObjetos; track n) {
+            <option [value]="n"></option>
+          }
+        </datalist>
+        <button type="button" class="chip" (click)="anadirObjeto()">Añadir</button>
+      </div>
+    </div>
+
+    @if (extras.length > 0) {
+      <div class="chips">
+        @for (e of extras; track $index) {
+          <button type="button" class="chip chip--on" (click)="quitarObjeto($index)" [title]="'Quitar ' + e">
+            {{ e }} ✕
+          </button>
+        }
+      </div>
+    }
+  </div>
+
+  @if (ficha.lanzamiento) {
+    <div class="panel">
+      <h3 class="panel-title">Hechizos de {{ ficha.clase?.name }}</h3>
+      <p>
+        Trucos: <strong>{{ elegidos(true) }}</strong> / {{ ficha.lanzamiento.trucos }} · Hechizos:
+        <strong>{{ elegidos(false) }}</strong> / {{ ficha.lanzamiento.preparados }}
+        @if (ficha.lanzamiento.espacios) {
+          · Espacios: {{ ficha.lanzamiento.espacios }}
+        }
+      </p>
+      <input class="input" [(ngModel)]="busqueda" placeholder="Buscar hechizo..." aria-label="Buscar hechizo" />
+
+      @for (g of grupos; track g.nivel) {
+        @if (g.hechizos.length > 0) {
+          <h4 class="panel-title" style="margin-top: var(--player-space-4)">{{ g.titulo }}</h4>
+          <div class="chips">
+            @for (s of g.hechizos; track s.name) {
+              <button type="button" class="chip" [class.chip--on]="hechizos.includes(s.name)" (click)="alternar(s.name)">
+                {{ s.name }}
+              </button>
+            }
+          </div>
+        }
+      }
+      @if (disponibles.length === 0) {
+        <p class="muted">No hay hechizos disponibles para esta clase y nivel.</p>
+      }
+    </div>
+  } @else {
+    <p class="aviso">Esta clase no lanza conjuros a este nivel.</p>
+  }
+
+  <div class="btn-row">
+    <a pButton routerLink="/crear/rasgos" label="Atrás" severity="secondary" class="p-button-outlined"></a>
+    <button pButton type="button" label="Continuar al resumen" (click)="continuar()"></button>
+  </div>
+}

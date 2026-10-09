@@ -1,0 +1,31 @@
+<div class="crear">
+  <nav class="pasos" aria-label="Pasos del asistente">
+    @for (paso of pasos; track paso.ruta; let i = $index) {
+      <a [routerLink]="paso.ruta" routerLinkActive="paso--activo" class="paso">
+        <span class="paso-num">{{ i + 1 }}</span>
+        <span class="paso-label">{{ paso.etiqueta }}</span>
+      </a>
+    }
+  </nav>
+
+  <div class="crear-body">
+    <section class="crear-main">
+      <router-outlet />
+    </section>
+
+    @if (creador.borrador$ | async; as b) {
+      <aside class="resumen" aria-label="Resumen del personaje">
+        <h2 class="resumen-title">{{ b.nombre || 'Personaje sin nombre' }}</h2>
+        <dl>
+          <dt>Clase</dt>
+          <dd>{{ b.clase ? b.clase.name + ' ' + b.nivel : '—' }}@if (b.subclase) { ({{ b.subclase.shortName }}) }</dd>
+          <dt>Especie</dt>
+          <dd>{{ b.especie ? b.especie.name : '—' }}@if (b.linaje) { ({{ b.linaje }}) }</dd>
+          <dt>Trasfondo</dt>
+          <dd>{{ b.trasfondo ? b.trasfondo.name : '—' }}</dd>
+        </dl>
+        <button type="button" class="reset" (click)="nuevo()">Empezar de nuevo</button>
+      </aside>
+    }
+  </div>
+</div>

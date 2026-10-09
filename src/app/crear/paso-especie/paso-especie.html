@@ -1,0 +1,12 @@
+<h2 class="paso-title">Elige tu especie</h2>
+<p class="paso-help">Busca una especie y pulsa «Elegir» para ver sus opciones. Abre la tarjeta para leer todos sus rasgos.</p>
+<app-info-list
+  [mostrarCabecera]="false"
+  categoriaEtiqueta="Tamaño"
+  placeholder="Buscar especie..."
+  [items]="items"
+  [loading]="loading"
+  [selectable]="true"
+  [selectedId]="seleccionada"
+  (choose)="elegir($event)"
+></app-info-list>

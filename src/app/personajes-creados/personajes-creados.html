@@ -1,0 +1,37 @@
+<div class="creados">
+  <header class="creados-header">
+    <div>
+      <h1 class="titulo">Personajes creados</h1>
+      <p class="descripcion">Personajes creados con el asistente. Cualquiera puede verlos y editarlos.</p>
+    </div>
+    <button pButton type="button" label="Crear personaje" (click)="nuevo()"></button>
+  </header>
+
+  @if (!almacen.configurado) {
+    <p class="aviso">
+      Firebase no está configurado todavía. Rellena <code>src/environments/environment.ts</code> para
+      guardar y ver personajes.
+    </p>
+  } @else if (loading) {
+    <p class="muted">Cargando personajes...</p>
+  } @else if (error) {
+    <p class="aviso">{{ error }}</p>
+  } @else if (personajes.length === 0) {
+    <p class="muted">Todavía no hay personajes. ¡Crea el primero!</p>
+  } @else {
+    <div class="lista">
+      @for (p of personajes; track p.id) {
+        <article class="tarjeta">
+          <a class="tarjeta-link" [routerLink]="['/creados', p.id]">
+            <h2 class="tarjeta-nombre">{{ p.nombre || 'Sin nombre' }}</h2>
+            <p class="tarjeta-sub">{{ resumen(p) }}</p>
+            @if (p.jugador) {
+              <p class="tarjeta-sub">Jugador: {{ p.jugador }}</p>
+            }
+          </a>
+          <a class="tarjeta-editar" [routerLink]="['/editar', p.id]">Editar</a>
+        </article>
+      }
+    </div>
+  }
+</div>

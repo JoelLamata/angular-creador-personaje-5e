@@ -1,0 +1,28 @@
+.rasgo-title {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--player-space-3);
+  align-items: baseline;
+}
+
+.meta {
+  font-family: var(--player-font-body);
+  font-size: var(--player-font-size-sm);
+  font-weight: var(--player-font-weight-normal);
+  color: var(--player-color-text-muted);
+}
+
+.estado {
+  margin-left: auto;
+  padding: var(--player-space-1) var(--player-space-2);
+  font-family: var(--player-font-body);
+  font-size: var(--player-font-size-xs);
+  font-weight: var(--player-font-weight-semibold);
+  color: white;
+  background-color: #b45309;
+  border-radius: var(--player-radius-sm);
+
+  &--ok {
+    background-color: #15803d;
+  }
+}

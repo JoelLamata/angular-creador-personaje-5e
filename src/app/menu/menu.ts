@@ -20,6 +20,14 @@ export class Menu implements OnInit {
         routerLink: ['/']
       },
       {
+        label: 'Personajes creados',
+        routerLink: ['/creados']
+      },
+      {
+        label: 'Crear personaje',
+        routerLink: ['/crear']
+      },
+      {
         label: 'Clases',
         routerLink: ['/clases']
       },
@@ -34,6 +42,14 @@ export class Menu implements OnInit {
       {
         label: 'Trasfondos',
         routerLink: ['/trasfondos']
+      },
+      {
+        label: 'Dotes',
+        routerLink: ['/dotes']
+      },
+      {
+        label: 'Objetos',
+        routerLink: ['/objetos']
       }
     ];
 

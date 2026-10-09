@@ -1,0 +1,170 @@
+:host {
+  display: block;
+  width: 100%;
+  background-color: var(--player-color-background);
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: var(--player-container-max-width);
+  margin: 0 auto;
+  padding: var(--player-space-6) var(--player-space-4);
+
+  @media (min-width: 768px) {
+    padding: var(--player-space-8) var(--player-space-6);
+  }
+}
+
+.info-page-header {
+  margin-bottom: var(--player-space-8);
+  text-align: center;
+}
+
+.header-title {
+  margin: 0 0 var(--player-space-2) 0;
+  font-family: var(--player-font-heading);
+  font-size: var(--player-font-size-2xl);
+  font-weight: var(--player-font-weight-semibold);
+  line-height: var(--player-line-height-tight);
+  color: var(--player-color-text);
+}
+
+.header-description {
+  margin: 0;
+  font-family: var(--player-font-body);
+  font-size: var(--player-font-size-md);
+  color: var(--player-color-text-muted);
+}
+
+.filters-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--player-space-4);
+  margin-bottom: var(--player-space-6);
+  padding: var(--player-space-6);
+  background-color: var(--player-color-surface);
+  border: var(--player-border-width) solid var(--player-color-border);
+  border-radius: var(--player-radius-lg);
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+  }
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--player-space-2);
+  min-width: 0;
+
+  &--search {
+    flex: 1 1 100%;
+  }
+}
+
+.filter-label {
+  font-family: var(--player-font-body);
+  font-size: var(--player-font-size-sm);
+  font-weight: var(--player-font-weight-semibold);
+  color: var(--player-color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.search-input,
+.filter-select {
+  width: 100%;
+  padding: var(--player-space-3) var(--player-space-4);
+  font-family: var(--player-font-body);
+  font-size: var(--player-font-size-md);
+  color: var(--player-color-text);
+  background-color: var(--player-color-surface-muted);
+  border: var(--player-border-width-strong) solid var(--player-color-border);
+  border-radius: var(--player-radius-md);
+  transition: border-color var(--player-transition-fast), background-color var(--player-transition-fast);
+
+  &:focus {
+    outline: none;
+    background-color: var(--player-color-surface);
+    border-color: var(--player-color-primary);
+    box-shadow: 0 0 0 3px var(--player-color-focus);
+  }
+
+  &::placeholder {
+    color: var(--player-color-text-muted);
+  }
+}
+
+.filter-select {
+  cursor: pointer;
+  min-width: 200px;
+
+  option {
+    background-color: var(--player-color-surface);
+    color: var(--player-color-text);
+  }
+}
+
+.results-info {
+  margin-bottom: var(--player-space-6);
+  padding: var(--player-space-4);
+  background-color: var(--player-color-surface-muted);
+  border-radius: var(--player-radius-md);
+}
+
+.results-text {
+  margin: 0;
+  font-family: var(--player-font-body);
+  font-size: var(--player-font-size-sm);
+  color: var(--player-color-text-muted);
+
+  strong {
+    font-weight: var(--player-font-weight-semibold);
+    color: var(--player-color-text);
+  }
+}
+
+.info-items {
+  display: flex;
+  flex-direction: column;
+}
+
+.loading-text {
+  text-align: center;
+  font-family: var(--player-font-body);
+  color: var(--player-color-text-muted);
+}
+
+.more-button {
+  align-self: center;
+  margin-top: var(--player-space-4);
+}
+
+.no-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--player-space-12);
+  text-align: center;
+  background-color: var(--player-color-surface);
+  border: var(--player-border-width-strong) dashed var(--player-color-border);
+  border-radius: var(--player-radius-lg);
+}
+
+.no-results-title {
+  margin: 0 0 var(--player-space-2) 0;
+  font-family: var(--player-font-heading);
+  font-size: var(--player-font-size-lg);
+  font-weight: var(--player-font-weight-semibold);
+  color: var(--player-color-text);
+}
+
+.no-results-description {
+  margin: 0;
+  font-family: var(--player-font-body);
+  color: var(--player-color-text-muted);
+}

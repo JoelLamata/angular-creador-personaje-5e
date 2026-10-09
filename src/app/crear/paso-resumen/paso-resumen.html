@@ -1,0 +1,69 @@
+<h2 class="paso-title">Resumen del personaje</h2>
+<p class="paso-help">Pon nombre a tu personaje, revisa la ficha y guárdala para que tus amigos puedan verla.</p>
+
+<div class="panel">
+  <div class="campo">
+    <label for="nombre">Nombre</label>
+    <input id="nombre" class="input" [ngModel]="personaje.nombre" (ngModelChange)="cambiar('nombre', $event)" />
+  </div>
+  <div class="campo">
+    <label for="jugador">Jugador (opcional)</label>
+    <input id="jugador" class="input" [ngModel]="personaje.jugador" (ngModelChange)="cambiar('jugador', $event)" />
+  </div>
+  <div class="campo">
+    <label for="notas">Notas (opcional)</label>
+    <textarea id="notas" class="input" rows="3" [ngModel]="personaje.notas" (ngModelChange)="cambiar('notas', $event)"></textarea>
+  </div>
+</div>
+
+@if (loading) {
+  <p class="muted">Calculando ficha...</p>
+} @else if (ficha) {
+  <app-ficha-creada [ficha]="ficha" [personaje]="personaje"></app-ficha-creada>
+}
+
+@if (pendientes.length > 0) {
+  <div class="aviso aviso--error">
+    <strong>Faltan datos para guardar:</strong>
+    <ul>
+      @for (p of pendientes; track p.texto) {
+        <li>
+          @if (p.ruta) {
+            <a [routerLink]="p.ruta">{{ p.texto }}</a>
+          } @else {
+            {{ p.texto }}
+          }
+        </li>
+      }
+    </ul>
+  </div>
+}
+
+@if (eleccionesPendientes > 0) {
+  <p class="aviso">
+    Tienes <strong>{{ eleccionesPendientes }}</strong>
+    {{ eleccionesPendientes === 1 ? 'elección de rasgos' : 'elecciones de rasgos' }} sin completar, así que tu
+    personaje aún no obtiene esos rasgos. <a routerLink="/crear/rasgos">Completarlas</a>
+  </p>
+}
+
+@if (!almacen.configurado) {
+  <p class="aviso aviso--error">
+    Firebase no está configurado todavía: puedes completar el asistente, pero no guardar. Rellena
+    <code>src/environments/environment.ts</code>.
+  </p>
+}
+@if (error) {
+  <p class="aviso aviso--error">{{ error }}</p>
+}
+
+<div class="btn-row">
+  <a pButton routerLink="/crear/equipo" label="Atrás" severity="secondary" class="p-button-outlined"></a>
+  <button
+    pButton
+    type="button"
+    [label]="guardando ? 'Guardando...' : personaje.id ? 'Guardar cambios' : 'Guardar personaje'"
+    [disabled]="pendientes.length > 0 || guardando || !almacen.configurado"
+    (click)="guardar()"
+  ></button>
+</div>

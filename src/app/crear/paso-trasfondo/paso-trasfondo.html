@@ -1,0 +1,84 @@
+<h2 class="paso-title">Elige tu trasfondo</h2>
+<p class="paso-help">El trasfondo aporta bonificaciones de característica, una dote de origen, competencias y equipo.</p>
+
+<app-info-list
+  [mostrarCabecera]="false"
+  placeholder="Buscar trasfondo..."
+  [items]="items"
+  [loading]="loading"
+  [selectable]="true"
+  [selectedId]="seleccionado"
+  (choose)="elegir($event)"
+></app-info-list>
+
+@if (trasfondo) {
+  <div class="panel" style="margin-top: var(--player-space-6)">
+    <h3 class="panel-title">Opciones de {{ trasfondo.name }}</h3>
+
+    @if (dotes.length > 0) {
+      <p><strong>Dote de origen:</strong> {{ dotes.join(', ') }}</p>
+    }
+
+    @if (doteDuplicada) {
+      <p class="aviso aviso--error">
+        Tu especie ya te dio la dote {{ doteDuplicada }}. No puedes tomarla dos veces:
+        <a routerLink="/crear/especie">cambia la dote de la especie</a> o elige otro trasfondo.
+      </p>
+    }
+
+    @if (opcionesBono.length > 0) {
+      <div class="campo">
+        <label>Bonificaciones de característica</label>
+        <div class="chips">
+          @for (op of opcionesBono; track $index) {
+            <button type="button" class="chip" [class.chip--on]="opcionBono === $index" (click)="cambiarOpcion($index)">
+              {{ op.pesos.join(' / ') }}
+            </button>
+          }
+        </div>
+      </div>
+      @for (peso of opcionesBono[opcionBono].pesos; track $index) {
+        <div class="campo">
+          <label [for]="'bono' + $index">+{{ peso }} a</label>
+          <select
+            [id]="'bono' + $index"
+            class="select"
+            [ngModel]="asignaciones[$index]"
+            (ngModelChange)="asignar($index, $event)"
+          >
+            <option [ngValue]="null">Elige una característica</option>
+            @for (k of disponibles($index); track k) {
+              <option [ngValue]="k">{{ nombres[k] }}</option>
+            }
+          </select>
+        </div>
+      }
+    }
+
+    @if (opcionesEquipo.length > 0) {
+      <div class="campo">
+        <label>Equipo inicial</label>
+        <div class="chips">
+          @for (op of opcionesEquipo; track op.letra) {
+            <button
+              type="button"
+              class="chip"
+              [class.chip--on]="equipo === op.letra"
+              (click)="equipo = op.letra; guardar()"
+            >
+              {{ op.letra }}: {{ textoOpcion(op) }}
+            </button>
+          }
+        </div>
+      </div>
+    }
+  </div>
+
+  <div class="btn-row">
+    <a pButton routerLink="/crear/especie" label="Atrás" severity="secondary" class="p-button-outlined"></a>
+    <button pButton type="button" label="Continuar" [disabled]="!completo" (click)="continuar()"></button>
+  </div>
+  @if (!completo) {
+    <p class="aviso">Reparte las bonificaciones y elige el equipo para continuar.</p>
+  }
+}

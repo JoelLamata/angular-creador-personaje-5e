@@ -1,0 +1,15 @@
+rules_version = '2';
+
+// Reglas de Firestore para el creador de personajes.
+// Cualquiera con el enlace puede leer, crear y editar personajes (uso entre amigos, sin
+// cuentas). Limita el tamaño de cada documento y borrado solo se permite sobre documentos
+// existentes. Si la web se hace pública, añade Firebase Authentication y restringe estas reglas.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /personajes/{personajeId} {
+      allow read: if true;
+      allow create, update: if request.resource.size() < 50 * 1024;
+      allow delete: if true;
+    }
+  }
+}

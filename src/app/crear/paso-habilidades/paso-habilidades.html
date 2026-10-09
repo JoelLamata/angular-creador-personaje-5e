@@ -1,0 +1,108 @@
+<h2 class="paso-title">Puntuaciones de característica</h2>
+<p class="paso-help">
+  Elige cómo obtener tus puntuaciones. Las bonificaciones de tu trasfondo se suman automáticamente.
+</p>
+
+<div class="panel">
+  <div class="chips">
+    <button type="button" class="chip" [class.chip--on]="metodo === 'estandar'" (click)="cambiarMetodo('estandar')">
+      Conjunto estándar (15, 14, 13, 12, 10, 8)
+    </button>
+    <button type="button" class="chip" [class.chip--on]="metodo === 'compra'" (click)="cambiarMetodo('compra')">
+      Compra de puntos
+    </button>
+    <button type="button" class="chip" [class.chip--on]="metodo === 'manual'" (click)="cambiarMetodo('manual')">
+      Manual / tirada 4d6
+    </button>
+  </div>
+
+  @if (metodo === 'compra') {
+    <p class="aviso">Puntos gastados: <strong>{{ coste }}</strong> / {{ puntosCompra }} (cada característica entre 8 y 15).</p>
+  }
+  @if (metodo === 'manual') {
+    <button type="button" class="chip" (click)="tirar()">🎲 Tirar 4d6 (descartando el menor) seis veces</button>
+  }
+</div>
+
+<div class="stats">
+  @for (k of claves; track k) {
+    <div class="stat">
+      <span class="stat-name">{{ nombres[k] }}</span>
+
+      @switch (metodo) {
+        @case ('estandar') {
+          <select class="select" [ngModel]="base[k]" (ngModelChange)="asignarEstandar(k, $event)" [attr.aria-label]="nombres[k]">
+            <option [ngValue]="null">—</option>
+            @for (v of disponiblesEstandar(k); track v) {
+              <option [ngValue]="v">{{ v }}</option>
+            }
+          </select>
+        }
+        @case ('compra') {
+          <div class="compra">
+            <button type="button" class="chip" (click)="cambiarCompra(k, -1)" [disabled]="(base[k] ?? 8) <= 8" aria-label="Bajar">−</button>
+            <span class="compra-valor">{{ base[k] }}</span>
+            <button type="button" class="chip" (click)="cambiarCompra(k, 1)" [disabled]="!puedeSubir(k)" aria-label="Subir">+</button>
+          </div>
+        }
+        @default {
+          <input
+            class="input"
+            [class.input--invalido]="!valorValido(k)"
+            type="number"
+            step="1"
+            [ngModel]="base[k]"
+            (ngModelChange)="cambiarManual(k, $event)"
+            [attr.aria-label]="nombres[k]"
+            [attr.aria-invalid]="!valorValido(k)"
+          />
+          @if (!valorValido(k)) {
+            <span class="error-campo" role="alert">Entre 3 y 20</span>
+          }
+        }
+      }
+
+      <span class="stat-bono muted">Trasfondo {{ bonos[k] ? '+' + bonos[k] : '+0' }}</span>
+      <span class="stat-total">
+        {{ total(k) ?? '—' }}
+        @if (total(k) !== null) {
+          <small>({{ fmt(mod(total(k)!)) }})</small>
+        }
+      </span>
+    </div>
+  }
+</div>
+
+<div class="panel">
+  <h3 class="panel-title">Idiomas</h3>
+  <p class="muted">Conoces Common y dos idiomas más de tu elección. Marca los que tendrá tu personaje.</p>
+  <div class="chips">
+    @for (l of idiomasPosibles; track l.name) {
+      <button
+        type="button"
+        class="chip"
+        [class.chip--on]="idiomas.includes(l.name)"
+        [disabled]="l.name === 'Common'"
+        (click)="alternarIdioma(l.name)"
+        [title]="l.tipo"
+      >
+        {{ l.name }}
+      </button>
+    }
+  </div>
+  <p class="muted">Seleccionados: {{ idiomas.length }}</p>
+</div>
+
+<div class="btn-row">
+  <a pButton routerLink="/crear/trasfondo" label="Atrás" severity="secondary" class="p-button-outlined"></a>
+  <button pButton type="button" label="Continuar" [disabled]="!completo" (click)="continuar()"></button>
+</div>
+@if (!completo) {
+  <p class="aviso" [class.aviso--error]="hayValorInvalido">
+    @if (hayValorInvalido) {
+      Corrige las puntuaciones marcadas en rojo: deben ser números enteros entre 3 y 20.
+    } @else {
+      Asigna las seis puntuaciones para continuar.
+    }
+  </p>
+}

@@ -1,0 +1,162 @@
+<article class="ficha">
+  <header class="ficha-header">
+    <h2 class="ficha-nombre">{{ personaje.nombre || 'Personaje sin nombre' }}</h2>
+    <p class="ficha-sub">{{ subtitulo }}</p>
+    @if (personaje.jugador) {
+      <p class="ficha-sub">Jugador: {{ personaje.jugador }}</p>
+    }
+  </header>
+
+  <section class="vitales" aria-label="Valores principales">
+    <div class="vital"><span>PG</span><strong>{{ ficha.pg }}</strong></div>
+    <div class="vital"><span>CA</span><strong>{{ ficha.ca }}</strong></div>
+    <div class="vital"><span>Velocidad</span><strong>{{ ficha.velocidad }} ft.</strong></div>
+    <div class="vital"><span>Iniciativa</span><strong>{{ fmt(ficha.iniciativa) }}</strong></div>
+    <div class="vital"><span>Competencia</span><strong>+{{ ficha.bonusCompetencia }}</strong></div>
+    <div class="vital"><span>Dado de golpe</span><strong>{{ personaje.nivel }}d{{ ficha.dadoGolpe }}</strong></div>
+  </section>
+
+  <section class="stats" aria-label="Características">
+    @for (k of claves; track k) {
+      <div class="stat">
+        <span class="stat-name">{{ cortos[k] }}</span>
+        <strong class="stat-mod">{{ fmt(ficha.mods[k]) }}</strong>
+        <span class="stat-val">{{ ficha.puntuaciones[k] }}</span>
+      </div>
+    }
+  </section>
+
+  <div class="columnas">
+    <section class="bloque">
+      <h3>Salvaciones</h3>
+      <ul class="lista-mod">
+        @for (s of ficha.salvaciones; track s.clave) {
+          <li [class.competente]="s.competente">
+            <span class="punto">{{ s.competente ? '●' : '○' }}</span> {{ fmt(s.mod) }} {{ cortos[s.clave] }}
+          </li>
+        }
+      </ul>
+    </section>
+
+    <section class="bloque">
+      <h3>Habilidades</h3>
+      <ul class="lista-mod">
+        @for (h of ficha.habilidades; track h.nombre) {
+          <li [class.competente]="h.competente">
+            <span class="punto" [title]="h.experto ? 'Expertise' : h.competente ? 'Competente' : ''">{{
+              h.experto ? '◆' : h.competente ? '●' : '○'
+            }}</span>
+            {{ fmt(h.mod) }} {{ h.nombre }}
+            <small>({{ cortos[h.caracteristica] }})</small>
+          </li>
+        }
+      </ul>
+    </section>
+
+    <section class="bloque">
+      <h3>Otros datos</h3>
+      @if (tamano) {
+        <p><strong>Tamaño:</strong> {{ tamano }}</p>
+      }
+      @if (ficha.armaduras.length) {
+        <p><strong>Armaduras:</strong> {{ ficha.armaduras.join(', ') }}</p>
+      }
+      @if (ficha.armas.length) {
+        <p><strong>Armas:</strong> {{ ficha.armas.join(', ') }}</p>
+      }
+      @if (ficha.herramientas.length) {
+        <p><strong>Herramientas:</strong> {{ ficha.herramientas.join(', ') }}</p>
+      }
+      @if (ficha.idiomas.length) {
+        <p><strong>Idiomas:</strong> {{ ficha.idiomas.join(', ') }}</p>
+      }
+      @if (ficha.dotes.length) {
+        <p><strong>Dotes:</strong> {{ ficha.dotes.join(', ') }}</p>
+      }
+    </section>
+  </div>
+
+  @if (ficha.elecciones.length || ficha.pendientes.length) {
+    <section class="bloque">
+      <h3>Elecciones de rasgos</h3>
+      <ul class="lista-elecciones">
+        @for (e of ficha.elecciones; track e.titulo + e.nivel + $index) {
+          <li>
+            <strong>{{ e.titulo }}</strong>
+            <small>({{ e.nivel > 0 ? 'nivel ' + e.nivel + ' · ' : '' }}{{ e.origen }})</small>:
+            {{ e.valores.join(', ') }}
+          </li>
+        }
+        @for (e of ficha.pendientes; track e.clave) {
+          <li class="pendiente">
+            <strong>{{ e.titulo }}</strong>
+            @if (e.nivel > 0) {
+              <small>(nivel {{ e.nivel }})</small>
+            }
+            : sin elegir
+          </li>
+        }
+      </ul>
+    </section>
+  }
+
+  @if (ficha.lanzamiento) {
+    <section class="bloque">
+      <h3>Lanzamiento de conjuros</h3>
+      <p>
+        Característica: {{ ficha.lanzamiento.habilidad ? cortos[ficha.lanzamiento.habilidad] : '—' }}
+        @if (ficha.lanzamiento.habilidad) {
+          · CD {{ 8 + ficha.bonusCompetencia + ficha.mods[ficha.lanzamiento.habilidad] }}
+          · Ataque {{ fmt(ficha.bonusCompetencia + ficha.mods[ficha.lanzamiento.habilidad]) }}
+        }
+        @if (ficha.lanzamiento.espacios) {
+          · Espacios: {{ ficha.lanzamiento.espacios }}
+        }
+      </p>
+      @if (personaje.hechizos.length) {
+        <p>{{ personaje.hechizos.join(', ') }}</p>
+      } @else {
+        <p class="muted">Sin hechizos elegidos.</p>
+      }
+    </section>
+  }
+
+  @if (ficha.hechizosDotes.length) {
+    <section class="bloque">
+      <h3>Hechizos de dotes</h3>
+      <ul class="lista-elecciones">
+        @for (h of ficha.hechizosDotes; track h.nombre + h.origen) {
+          <li>
+            {{ h.nombre }} <small>({{ h.origen }})</small>
+          </li>
+        }
+      </ul>
+    </section>
+  }
+
+  <section class="bloque">
+    <h3>Equipo</h3>
+    @if (ficha.equipo.length) {
+      <p>{{ ficha.equipo.join(', ') }}</p>
+    } @else {
+      <p class="muted">Sin equipo.</p>
+    }
+    @if (ficha.oro) {
+      <p><strong>Oro:</strong> {{ ficha.oro }} po</p>
+    }
+  </section>
+
+  @if (personaje.notas) {
+    <section class="bloque">
+      <h3>Notas</h3>
+      <p class="notas">{{ personaje.notas }}</p>
+    </section>
+  }
+
+  <section>
+    <h3 class="rasgos-title">Rasgos</h3>
+    @for (r of rasgos; track r.id) {
+      <app-info-card [item]="r"></app-info-card>
+    }
+  </section>
+</article>

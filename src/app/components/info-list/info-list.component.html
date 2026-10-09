@@ -1,0 +1,86 @@
+<div class="info-container">
+  @if (mostrarCabecera) {
+    <div class="info-page-header">
+      <h1 class="header-title">{{ titulo }}</h1>
+      @if (descripcion) {
+        <p class="header-description">{{ descripcion }}</p>
+      }
+    </div>
+  }
+
+  <div class="filters-section">
+    <div class="filter-group filter-group--search">
+      <input
+        type="text"
+        pInputText
+        [(ngModel)]="searchText"
+        (input)="applyFilters()"
+        [placeholder]="placeholder"
+        class="search-input"
+        aria-label="Buscar"
+      />
+    </div>
+
+    @if (categories.length > 0) {
+      <div class="filter-group">
+        <label class="filter-label" for="categoria">{{ categoriaEtiqueta }}</label>
+        <select
+          id="categoria"
+          [(ngModel)]="selectedCategory"
+          (change)="applyFilters()"
+          class="filter-select"
+        >
+          <option [ngValue]="null">Todas</option>
+          @for (c of categories; track c) {
+            <option [ngValue]="c">{{ c }}</option>
+          }
+        </select>
+      </div>
+    }
+
+    @if (sources.length > 1) {
+      <div class="filter-group">
+        <label class="filter-label" for="origen">Origen</label>
+        <select id="origen" [(ngModel)]="selectedSource" (change)="applyFilters()" class="filter-select">
+          <option [ngValue]="null">Todos</option>
+          @for (s of sources; track s) {
+            <option [ngValue]="s">{{ s }}</option>
+          }
+        </select>
+      </div>
+    }
+
+    @if (hasFilters) {
+      <button pButton type="button" label="Limpiar filtros" (click)="clearFilters()" class="clear-button"></button>
+    }
+  </div>
+
+  <div class="results-info">
+    <p class="results-text">
+      Mostrando <strong>{{ filtered.length }}</strong> de <strong>{{ items.length }}</strong>
+    </p>
+  </div>
+
+  <div class="info-items">
+    @if (loading) {
+      <p class="loading-text">Cargando...</p>
+    } @else if (filtered.length > 0) {
+      @for (item of filtered.slice(0, visibleCount); track item.id) {
+        <app-info-card
+          [item]="item"
+          [selectable]="selectable"
+          [selected]="selectedId === item.id || selectedIds.includes(item.id)"
+          (choose)="choose.emit($event)"
+        ></app-info-card>
+      }
+      @if (filtered.length > visibleCount) {
+        <button pButton type="button" label="Mostrar más" (click)="showMore()" class="more-button"></button>
+      }
+    } @else {
+      <div class="no-results">
+        <p class="no-results-title">Sin resultados</p>
+        <p class="no-results-description">No hay elementos que coincidan con los filtros.</p>
+      </div>
+    }
+  </div>
+</div>

@@ -1,6 +1,7 @@
 import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AccordionModule } from 'primeng/accordion';
+import { SafeHtml } from '@angular/platform-browser';
 import { EntryProcessorService } from '../../services/entry-processor.service';
 
 export interface ClassFeature {
@@ -27,6 +28,15 @@ export class ClassFeatureCardComponent {
   @Input() index: number = 0;
 
   protected entryProcessor = inject(EntryProcessorService);
+  private html: SafeHtml | null = null;
+
+  /** HTML de las entradas, calculado una sola vez por tarjeta. */
+  protected get content(): SafeHtml {
+    if (!this.html) {
+      this.html = this.entryProcessor.processEntries(this.feature.entries);
+    }
+    return this.html;
+  }
 
   /**
    * Returns the CSS variable name for the class color

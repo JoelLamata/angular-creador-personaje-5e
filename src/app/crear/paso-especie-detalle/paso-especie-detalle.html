@@ -1,0 +1,91 @@
+@if (loading) {
+  <p class="muted">Cargando especie...</p>
+} @else if (!especie || !item) {
+  <p class="aviso aviso--error">No se encontró la especie. <a routerLink="/crear/especie">Volver a las especies</a></p>
+} @else {
+  <h2 class="paso-title">{{ especie.name }}</h2>
+  <p class="paso-help">{{ item.summary }} · Fuente {{ especie.source }}</p>
+
+  <div class="panel">
+    <h3 class="panel-title">Opciones</h3>
+
+    @if (opcionesLinaje.length > 0) {
+      <div class="campo">
+        <label for="linaje">Linaje / subespecie</label>
+        <select id="linaje" class="select" [(ngModel)]="linaje">
+          <option [ngValue]="null">Elige una opción</option>
+          @for (l of opcionesLinaje; track l) {
+            <option [ngValue]="l">{{ l }}</option>
+          }
+        </select>
+      </div>
+    }
+
+    @if (tamanos.length > 1) {
+      <div class="campo">
+        <label for="tamano">Tamaño</label>
+        <select id="tamano" class="select" [(ngModel)]="tamano">
+          <option [ngValue]="null">Elige un tamaño</option>
+          @for (t of tamanos; track t.clave) {
+            <option [ngValue]="t.clave">{{ t.nombre }}</option>
+          }
+        </select>
+      </div>
+    }
+
+    @if (cuantasHabilidades > 0) {
+      <div class="campo">
+        <label>Habilidades: elige {{ cuantasHabilidades }} ({{ habilidades.length }}/{{ cuantasHabilidades }})</label>
+        <div class="chips">
+          @for (h of habilidadesPosibles; track h) {
+            <button
+              type="button"
+              class="chip"
+              [class.chip--on]="habilidades.includes(h)"
+              [disabled]="!habilidades.includes(h) && habilidades.length >= cuantasHabilidades"
+              (click)="alternarHabilidad(h)"
+            >
+              {{ h }}
+            </button>
+          }
+        </div>
+      </div>
+    }
+
+    @if (dotesPosibles.length > 0) {
+      <div class="campo">
+        <label for="dote">Dote que concede la especie</label>
+        <select id="dote" class="select" [ngModel]="dote" (ngModelChange)="cambiarDote($event)">
+          <option [ngValue]="null">Elige una dote</option>
+          @for (d of dotesPosibles; track d) {
+            <option [ngValue]="d">{{ d }}</option>
+          }
+        </select>
+        @if (descripcionDote) {
+          <div class="descripcion">
+            <strong>{{ dote }}</strong>
+            <div [innerHTML]="descripcionDote"></div>
+          </div>
+        }
+        @if (doteConElecciones) {
+          <p class="aviso">Esta dote te pedirá elegir más cosas en el paso «Rasgos».</p>
+        }
+      </div>
+    }
+
+    @if (opcionesLinaje.length === 0 && tamanos.length <= 1 && cuantasHabilidades === 0 && dotesPosibles.length === 0) {
+      <p class="muted">Esta especie no tiene opciones que elegir.</p>
+    }
+  </div>
+
+  <h3 class="panel-title">Rasgos</h3>
+  <app-info-card [item]="item"></app-info-card>
+
+  <div class="btn-row">
+    <a pButton routerLink="/crear/especie" label="Volver" severity="secondary" class="p-button-outlined"></a>
+    <button pButton type="button" label="Confirmar especie y continuar" [disabled]="!completo" (click)="confirmar()"></button>
+  </div>
+  @if (!completo) {
+    <p class="aviso">Completa las opciones de arriba para continuar.</p>
+  }
+}

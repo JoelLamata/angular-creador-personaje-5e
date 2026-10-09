@@ -9,6 +9,11 @@
         </option>
     </select>
 
+    <select (change)="onClassChange($event)" aria-label="Filtrar por clase">
+        <option value="">Todas las clases</option>
+        <option *ngFor="let c of classNames" [value]="c">{{ c }}</option>
+    </select>
+
     <div *ngFor="let spell of filteredSpells">
 
         <h3>{{ spell.name_en }}</h3>

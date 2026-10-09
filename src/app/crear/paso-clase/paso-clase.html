@@ -1,0 +1,22 @@
+<h2 class="paso-title">Elige tu clase</h2>
+<p class="paso-help">La clase define tus dados de golpe, competencias y rasgos. Podrás elegir el nivel y la subclase en el siguiente paso.</p>
+
+@if (loading) {
+  <p class="muted">Cargando clases...</p>
+} @else {
+  <div class="grid">
+    @for (c of clases; track c.name) {
+      <a
+        class="clase-card"
+        [routerLink]="['/crear/clase', c.name]"
+        [class.clase-card--on]="(creador.borrador$ | async)?.clase?.name === c.name"
+        [style.border-top-color]="color(c)"
+      >
+        <span class="clase-name">{{ c.name }}</span>
+        <span class="clase-meta">d{{ c.hitDie }} · {{ c.source }}</span>
+        <span class="clase-meta">Principal: {{ principal(c) || '—' }}</span>
+        <span class="clase-meta">Salvaciones: {{ salvaciones(c) }}</span>
+      </a>
+    }
+  </div>
+}

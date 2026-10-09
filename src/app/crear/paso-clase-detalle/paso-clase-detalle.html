@@ -1,0 +1,132 @@
+@if (loading) {
+  <p class="muted">Cargando clase...</p>
+} @else if (!clase) {
+  <p class="aviso aviso--error">No se encontró la clase. <a routerLink="/crear/clase">Volver a las clases</a></p>
+} @else {
+  <h2 class="paso-title">{{ clase.name }}</h2>
+  <p class="paso-help">
+    Dado de golpe d{{ clase.hitDie }} · Salvaciones {{ salvaciones }} · Fuente {{ clase.source }}
+  </p>
+
+  <div class="panel">
+    <div class="fila">
+      <div class="campo">
+        <label for="nivel">Nivel (1–20)</label>
+        <input
+          id="nivel"
+          class="input"
+          type="number"
+          min="1"
+          max="20"
+          [ngModel]="nivel"
+          (ngModelChange)="cambiarNivel($event)"
+        />
+        <span class="muted">Bonificador de competencia +{{ bonusCompetencia }}</span>
+      </div>
+
+      @if (clase.subclasses.length > 0) {
+        <div class="campo">
+          <label for="subclase">{{ clase.subclassTitle }}</label>
+          <select id="subclase" class="select" [(ngModel)]="subclaseId" [disabled]="!puedeElegirSubclase">
+            <option [ngValue]="null">
+              {{ puedeElegirSubclase ? 'Sin subclase' : 'Se elige a nivel ' + clase.subclassLevel }}
+            </option>
+            @for (s of clase.subclasses; track s.name + s.source) {
+              <option [ngValue]="s.name + '|' + s.source">{{ s.name }} ({{ s.source }})</option>
+            }
+          </select>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3 class="panel-title">Competencias</h3>
+    <p><strong>Armaduras:</strong> {{ competencias('armor') || '—' }}</p>
+    <p><strong>Armas:</strong> {{ competencias('weapons') || '—' }}</p>
+    @if (competencias('tools')) {
+      <p><strong>Herramientas:</strong> {{ competencias('tools') }}</p>
+    }
+
+    @if (eleccion) {
+      <h3 class="panel-title">
+        Habilidades: elige {{ eleccion.count }} ({{ habilidades.length }}/{{ eleccion.count }})
+      </h3>
+      <div class="chips">
+        @for (h of habilidadesPosibles; track h) {
+          <button
+            type="button"
+            class="chip"
+            [class.chip--on]="habilidades.includes(h)"
+            [disabled]="!habilidades.includes(h) && habilidades.length >= eleccion.count"
+            (click)="alternarHabilidad(h)"
+          >
+            {{ h }}
+          </button>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="panel">
+    <h3 class="panel-title">Equipo inicial</h3>
+    @if (opcionesEquipo.length > 0) {
+      <div class="opciones">
+        @for (op of opcionesEquipo; track op.letra) {
+          <label class="opcion" [class.opcion--on]="equipo === op.letra">
+            <input type="radio" name="equipo" [value]="op.letra" [(ngModel)]="equipo" />
+            <span>
+              <strong>Opción {{ op.letra }}:</strong> {{ textoOpcion(op) }}
+            </span>
+          </label>
+        }
+      </div>
+    } @else if (textoEquipo.length > 0) {
+      <ul>
+        @for (t of textoEquipo; track t) {
+          <li>{{ t }}</li>
+        }
+      </ul>
+      <p class="muted">Esta clase usa las reglas clásicas: añade el equipo a mano en el paso «Equipo y hechizos».</p>
+    } @else {
+      <p class="muted">Sin equipo inicial definido.</p>
+    }
+  </div>
+
+  <div class="panel">
+    <h3 class="panel-title">Tabla de la clase</h3>
+    <div class="tabla-wrap">
+      <table class="tabla">
+        <thead>
+          <tr>
+            @for (c of tabla.cabecera; track $index) {
+              <th>{{ c }}</th>
+            }
+          </tr>
+        </thead>
+        <tbody>
+          @for (fila of tabla.filas; track $index) {
+            <tr [class.tabla-sel]="$index + 1 === nivel">
+              @for (celda of fila; track $index) {
+                <td>{{ celda }}</td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h3 class="panel-title">Rasgos hasta el nivel {{ nivel }}</h3>
+  @for (r of rasgos; track r.id) {
+    <app-info-card [item]="r"></app-info-card>
+  }
+
+  <div class="btn-row">
+    <a pButton routerLink="/crear/clase" label="Volver" severity="secondary" class="p-button-outlined"></a>
+    <button pButton type="button" label="Confirmar clase y continuar" [disabled]="!completo" (click)="confirmar()"></button>
+  </div>
+  @if (!completo) {
+    <p class="aviso">Elige las habilidades y una opción de equipo para continuar.</p>
+  }
+}

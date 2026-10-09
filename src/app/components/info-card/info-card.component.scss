@@ -1,0 +1,147 @@
+/* Mismo estilo de acordeón que `player-action`, sin icono y con las etiquetas y el botón del creador. */
+:host {
+  display: block;
+  margin-bottom: var(--player-space-3);
+  --p-accordion-panel-border-width: var(--player-border-width);
+  --p-accordion-panel-border-color: var(--player-color-border);
+  --p-accordion-header-border-width: var(--player-space-0);
+  --p-accordion-header-border-color: transparent;
+  --p-accordion-header-border-radius: var(--player-radius-md);
+  --p-accordion-header-last-bottom-border-radius: var(--player-radius-md);
+  --p-accordion-header-last-active-bottom-border-radius: var(--player-radius-md);
+  --p-accordion-header-background: var(--player-color-surface-raised);
+  --p-accordion-header-hover-background: var(--player-color-surface-raised);
+  --p-accordion-header-active-background: var(--player-color-surface-raised);
+  --p-accordion-header-active-hover-background: var(--player-color-surface-raised);
+  --p-accordion-header-color: var(--player-color-text);
+  --p-accordion-header-hover-color: var(--player-color-text);
+  --p-accordion-header-active-color: var(--player-color-text);
+  --p-accordion-header-padding: var(--player-space-4);
+  --p-accordion-header-font-weight: var(--player-font-weight-normal);
+  --p-accordion-content-border-width: var(--player-space-0);
+  --p-accordion-content-border-color: transparent;
+  --p-accordion-content-background: var(--player-color-surface-raised);
+  --p-accordion-content-color: var(--player-color-text-muted);
+  --p-accordion-content-padding: var(--player-space-0) var(--player-space-4) var(--player-space-4);
+}
+
+.info-accordion.is-selected ::ng-deep .p-accordionpanel {
+  border-color: var(--player-color-primary);
+  box-shadow: 0 0 0 2px var(--player-color-focus);
+}
+
+.info-summary {
+  display: flex;
+  align-items: center;
+  gap: var(--player-space-3);
+  width: 100%;
+  min-width: var(--player-space-0);
+}
+
+.info-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: var(--player-space-0);
+}
+
+.info-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--player-space-2);
+}
+
+.info-name {
+  display: inline-flex;
+  font-family: var(--player-font-heading);
+  font-size: var(--player-font-size-md);
+  font-weight: var(--player-font-weight-semibold);
+}
+
+.info-details {
+  margin-top: var(--player-space-2);
+  font-size: var(--player-font-size-sm);
+  color: var(--player-color-text-muted);
+}
+
+.badge {
+  padding: var(--player-space-1) var(--player-space-2);
+  border-radius: var(--player-radius-sm);
+  font-size: var(--player-font-size-xs);
+  line-height: var(--player-line-height-tight);
+  white-space: nowrap;
+}
+
+.badge-source {
+  color: var(--player-color-text-muted);
+  background: var(--player-color-surface-muted);
+}
+
+.badge-tag {
+  color: white;
+  font-weight: var(--player-font-weight-semibold);
+  background-color: var(--player-color-primary);
+}
+
+.choose-button {
+  flex: 0 0 auto;
+  padding: var(--player-space-2) var(--player-space-4);
+  border: var(--player-border-width-strong) solid var(--player-color-primary);
+  border-radius: var(--player-radius-md);
+  background-color: transparent;
+  color: var(--player-color-primary);
+  font-family: var(--player-font-body);
+  font-size: var(--player-font-size-sm);
+  font-weight: var(--player-font-weight-semibold);
+  cursor: pointer;
+  transition: background-color var(--player-transition-fast), color var(--player-transition-fast);
+
+  &:hover,
+  &--selected {
+    background-color: var(--player-color-primary);
+    color: white;
+  }
+}
+
+.info-content {
+  font-size: var(--player-font-size-sm);
+  line-height: var(--player-line-height-normal);
+  color: var(--player-color-text-muted);
+
+  ::ng-deep {
+    p {
+      margin: 0 0 var(--player-space-3);
+
+      &:last-child {
+        margin-bottom: var(--player-space-0);
+      }
+    }
+
+    strong {
+      font-weight: var(--player-font-weight-semibold);
+      color: var(--player-color-text);
+    }
+
+    ul,
+    ol {
+      margin: var(--player-space-2) 0 var(--player-space-3) var(--player-space-6);
+      padding: 0;
+
+      li {
+        margin-bottom: var(--player-space-2);
+      }
+    }
+
+    .tag-spell,
+    .tag-item,
+    .tag-condition,
+    .tag-skill,
+    .tag-variantrule,
+    .tag-feat,
+    .tag-action {
+      font-weight: var(--player-font-weight-semibold);
+      color: var(--player-color-primary);
+    }
+  }
+}

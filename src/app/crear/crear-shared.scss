@@ -1,0 +1,154 @@
+/* Estilos comunes de los pasos del asistente de creación. */
+:host {
+  display: block;
+  font-family: var(--player-font-body);
+  color: var(--player-color-text);
+}
+
+.paso-title {
+  margin: 0 0 var(--player-space-2);
+  font-family: var(--player-font-heading);
+  font-size: var(--player-font-size-xl);
+  font-weight: var(--player-font-weight-semibold);
+  color: var(--player-color-text);
+}
+
+.paso-help {
+  margin: 0 0 var(--player-space-6);
+  color: var(--player-color-text-muted);
+}
+
+.panel {
+  margin-bottom: var(--player-space-6);
+  padding: var(--player-space-5);
+  background-color: var(--player-color-surface);
+  border: var(--player-border-width) solid var(--player-color-border);
+  border-radius: var(--player-radius-lg);
+}
+
+.panel-title {
+  margin: 0 0 var(--player-space-3);
+  font-family: var(--player-font-heading);
+  font-size: var(--player-font-size-lg);
+  font-weight: var(--player-font-weight-semibold);
+}
+
+.grid {
+  display: grid;
+  gap: var(--player-space-3);
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--player-space-2);
+  margin-bottom: var(--player-space-4);
+
+  label {
+    font-size: var(--player-font-size-sm);
+    font-weight: var(--player-font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}
+
+.input,
+.select {
+  width: 100%;
+  padding: var(--player-space-3) var(--player-space-4);
+  font-family: var(--player-font-body);
+  font-size: var(--player-font-size-md);
+  color: var(--player-color-text);
+  background-color: var(--player-color-surface-muted);
+  border: var(--player-border-width-strong) solid var(--player-color-border);
+  border-radius: var(--player-radius-md);
+
+  &:focus {
+    outline: none;
+    border-color: var(--player-color-primary);
+    box-shadow: 0 0 0 3px var(--player-color-focus);
+  }
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--player-space-2);
+}
+
+.chip {
+  padding: var(--player-space-2) var(--player-space-3);
+  font-family: var(--player-font-body);
+  font-size: var(--player-font-size-sm);
+  color: var(--player-color-text);
+  background-color: var(--player-color-surface-muted);
+  border: var(--player-border-width-strong) solid var(--player-color-border);
+  border-radius: var(--player-radius-md);
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    border-color: var(--player-color-primary);
+  }
+
+  &--on {
+    color: white;
+    background-color: var(--player-color-primary);
+    border-color: var(--player-color-primary);
+  }
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--player-space-3);
+  justify-content: space-between;
+  margin-top: var(--player-space-6);
+}
+
+.aviso {
+  margin: var(--player-space-3) 0;
+  padding: var(--player-space-3) var(--player-space-4);
+  color: var(--player-color-text);
+  background-color: var(--player-color-surface-muted);
+  border-left: 4px solid var(--player-color-primary);
+  border-radius: var(--player-radius-md);
+
+  &--error {
+    border-left-color: #c0392b;
+  }
+}
+
+.muted {
+  color: var(--player-color-text-muted);
+}
+
+/* Texto de un rasgo, dote u opción elegida (HTML generado desde las entradas 5etools). */
+.descripcion {
+  margin-top: var(--player-space-4);
+  padding: var(--player-space-3) var(--player-space-4);
+  font-size: var(--player-font-size-sm);
+  line-height: var(--player-line-height-normal);
+  background-color: var(--player-color-surface-muted);
+  border-radius: var(--player-radius-md);
+
+  ::ng-deep {
+    p {
+      margin: var(--player-space-2) 0;
+    }
+
+    strong {
+      font-weight: var(--player-font-weight-semibold);
+    }
+
+    ul {
+      margin: var(--player-space-2) 0 var(--player-space-2) var(--player-space-5);
+      padding: 0;
+    }
+  }
+}

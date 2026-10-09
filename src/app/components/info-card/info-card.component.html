@@ -1,0 +1,43 @@
+<p-accordion
+  [value]="open ? 0 : null"
+  (valueChange)="onValueChange($event)"
+  class="info-accordion"
+  [class.is-selected]="selected"
+>
+  <p-accordion-panel [value]="0">
+    <p-accordion-header>
+      <span class="info-summary">
+        <span class="info-body">
+          <span class="info-header">
+            <span class="info-name">{{ item.name }}</span>
+            @for (badge of item.badges ?? []; track badge) {
+              <span class="badge badge-tag">{{ badge }}</span>
+            }
+            <span class="badge badge-source">{{ item.source }}</span>
+          </span>
+
+          @if (item.summary) {
+            <span class="info-details">{{ item.summary }}</span>
+          }
+        </span>
+
+        @if (selectable) {
+          <button
+            type="button"
+            class="choose-button"
+            [class.choose-button--selected]="selected"
+            (click)="onChoose($event)"
+          >
+            {{ selected ? 'Elegido' : 'Elegir' }}
+          </button>
+        }
+      </span>
+    </p-accordion-header>
+
+    <p-accordion-content>
+      @if (open) {
+        <div class="info-content" [innerHTML]="content"></div>
+      }
+    </p-accordion-content>
+  </p-accordion-panel>
+</p-accordion>

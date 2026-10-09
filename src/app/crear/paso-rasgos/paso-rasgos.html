@@ -1,0 +1,227 @@
+<h2 class="paso-title">Rasgos de clase</h2>
+<p class="paso-help">
+  Algunos rasgos de tu clase y subclase te piden que elijas: habilidades con Expertise, estilos de combate,
+  invocaciones, mejoras de característica... Hasta que los elijas, tu personaje no obtiene esos rasgos.
+</p>
+
+@if (loading) {
+  <p class="muted">Cargando rasgos...</p>
+} @else if (!ficha?.clase) {
+  <p class="aviso aviso--error">Primero elige una clase. <a routerLink="/crear/clase">Ir a las clases</a></p>
+} @else if (paneles.length === 0) {
+  <p class="aviso">
+    {{ ficha?.clase?.name }} de nivel {{ nivel }} no tiene elecciones de rasgos. Puedes continuar.
+  </p>
+} @else {
+  @if (pendientes > 0) {
+    <p class="aviso aviso--error">
+      Te {{ pendientes === 1 ? 'falta' : 'faltan' }} <strong>{{ pendientes }}</strong>
+      {{ pendientes === 1 ? 'elección' : 'elecciones' }} por completar.
+    </p>
+  } @else {
+    <p class="aviso">Has completado todas las elecciones de tus rasgos.</p>
+  }
+
+  @for (p of paneles; track p.def.clave) {
+    <section class="panel">
+      <h3 class="panel-title rasgo-title">
+        <span>{{ p.def.titulo }}</span>
+        <span class="meta">
+          @if (p.def.nivel > 0) {
+            Nivel {{ p.def.nivel }} ·
+          }
+          {{ p.def.origen.replace('|', ' · ') }}
+        </span>
+        <span class="estado" [class.estado--ok]="completa(p)">
+          {{ completa(p) ? '✓ Completo' : 'Pendiente' }}
+        </span>
+      </h3>
+
+      @if (esChips(p)) {
+        <p class="muted">
+          @switch (p.def.tipo) {
+            @case ('experiencia') {
+              Elige {{ p.def.cantidad }} {{ p.def.cantidad === 1 ? 'habilidad' : 'habilidades' }} en
+              {{ p.def.cantidad === 1 ? 'la que' : 'las que' }} seas competente: tu bonificador de competencia se
+              sumará dos veces.
+            }
+            @case ('competencias') {
+              Elige {{ p.def.cantidad }} {{ p.def.cantidad === 1 ? 'habilidad' : 'habilidades' }} nuevas en
+              {{ p.def.cantidad === 1 ? 'la que' : 'las que' }} ser competente.
+            }
+            @case ('herramientas') {
+              Elige {{ p.def.cantidad }} {{ p.def.cantidad === 1 ? 'herramienta' : 'herramientas' }}.
+            }
+            @case ('habilidadesHerramientas') {
+              Elige {{ p.def.cantidad }} entre habilidades y herramientas.
+            }
+            @default {
+              Elige {{ p.def.cantidad }} {{ p.def.cantidad === 1 ? 'idioma' : 'idiomas' }}.
+            }
+          }
+          ({{ valores(p).length }}/{{ p.def.cantidad }})
+        </p>
+        @if (p.posibles.length === 0) {
+          <p class="aviso aviso--error">No hay opciones disponibles todavía.</p>
+        }
+        <div class="chips">
+          @for (h of p.posibles; track h) {
+            <button
+              type="button"
+              class="chip"
+              [class.chip--on]="valores(p).includes(h)"
+              [disabled]="!valores(p).includes(h) && p.def.cantidad > 1 && valores(p).length >= p.def.cantidad"
+              (click)="alternar(p, h)"
+            >
+              {{ titulo(h) }}
+            </button>
+          }
+        </div>
+      }
+
+      @switch (p.def.tipo) {
+        @case ('opcion') {
+          <p class="muted">Elige {{ p.def.cantidad === 1 ? 'una opción' : p.def.cantidad + ' opciones' }}.</p>
+          <div class="chips">
+            @for (o of p.def.opciones ?? []; track o.valor) {
+              <button
+                type="button"
+                class="chip"
+                [class.chip--on]="valores(p).includes(o.valor)"
+                [disabled]="!valores(p).includes(o.valor) && p.def.cantidad > 1 && valores(p).length >= p.def.cantidad"
+                (click)="alternar(p, o.valor)"
+              >
+                {{ o.valor }}
+              </button>
+            }
+          </div>
+          @for (o of opcionElegida(p); track o.valor) {
+            @if (o.descripcion?.length) {
+              <div class="descripcion">
+                <strong>{{ o.valor }}</strong>
+                <div [innerHTML]="p.htmlOpciones[o.valor]"></div>
+              </div>
+            }
+          }
+        }
+
+        @case ('dote') {
+          @if (valores(p)[0]) {
+            <p>
+              <strong>{{ valores(p)[0] }}</strong>
+              <button type="button" class="chip" (click)="abrir(p, !p.abierto)">
+                {{ p.abierto ? 'Cerrar lista' : 'Cambiar' }}
+              </button>
+            </p>
+
+            @if (alternativas(p).length > 1) {
+              <div class="campo">
+                <label>Cómo repartes la mejora</label>
+                <div class="chips">
+                  @for (alt of alternativas(p); track $index) {
+                    <button
+                      type="button"
+                      class="chip"
+                      [class.chip--on]="alternativaElegida(p) === $index"
+                      (click)="elegirAlternativa(p, $index)"
+                    >
+                      {{ textoAlternativa(alt) }}
+                    </button>
+                  }
+                </div>
+              </div>
+            } @else if (alternativas(p).length === 1) {
+              <p class="muted">{{ textoAlternativa(alternativas(p)[0]) }}</p>
+            }
+
+            @for (i of posicionesMejora(p); track i) {
+              <div class="campo">
+                <label [for]="p.def.clave + i">Característica {{ i + 1 }}</label>
+                <select
+                  [id]="p.def.clave + i"
+                  class="select"
+                  [ngModel]="caracteristicaElegida(p, i)"
+                  (ngModelChange)="elegirCaracteristica(p, i, $event)"
+                >
+                  <option value="">Elige una característica</option>
+                  @for (k of caracteristicasPosibles(p, i); track k) {
+                    <option [value]="k">{{ nombresCaracteristicas[k] }}</option>
+                  }
+                </select>
+              </div>
+            }
+          } @else {
+            <p>
+              <span class="muted">Todavía no has elegido ninguna dote.</span>
+              <button type="button" class="chip" (click)="abrir(p, !p.abierto)">
+                {{ p.abierto ? 'Cerrar lista' : 'Elegir dote' }}
+              </button>
+            </p>
+          }
+
+          @if (p.abierto) {
+            <app-info-list
+              [mostrarCabecera]="false"
+              placeholder="Buscar dote..."
+              categoriaEtiqueta="Tipo"
+              [items]="p.items"
+              [selectable]="true"
+              [selectedId]="idDote(p)"
+              (choose)="elegirDote(p, $event)"
+            ></app-info-list>
+          }
+        }
+
+        @case ('rasgoOpcional') {
+          <ng-container *ngTemplateOutlet="lista; context: { p: p, vacio: 'No hay opciones disponibles en las fuentes activas.' }"></ng-container>
+        }
+
+        @case ('hechizos') {
+          <ng-container *ngTemplateOutlet="lista; context: { p: p, vacio: 'No hay hechizos disponibles con estos requisitos.' }"></ng-container>
+        }
+
+        @case ('maestria') {
+          <ng-container *ngTemplateOutlet="lista; context: { p: p, vacio: 'No hay armas disponibles.' }"></ng-container>
+        }
+      }
+    </section>
+  }
+}
+
+<ng-template #lista let-p="p" let-vacio="vacio">
+  <p class="muted">Elige {{ p.def.cantidad }} ({{ valores(p).length }}/{{ p.def.cantidad }}).</p>
+  @if (valores(p).length > 0) {
+    <div class="chips">
+      @for (v of valores(p); track v) {
+        <button type="button" class="chip chip--on" (click)="alternar(p, v)" [title]="'Quitar ' + v">{{ v }} ✕</button>
+      }
+    </div>
+  }
+  @if (p.aviso) {
+    <p class="aviso aviso--error">{{ p.aviso }}</p>
+  }
+  @if (p.items.length === 0) {
+    <p class="aviso">{{ vacio }}</p>
+  } @else {
+    <p>
+      <button type="button" class="chip" (click)="abrir(p, !p.abierto)">
+        {{ p.abierto ? 'Cerrar lista' : valores(p).length ? 'Cambiar elección' : 'Elegir de la lista' }}
+      </button>
+    </p>
+    @if (p.abierto) {
+      <app-info-list
+        [mostrarCabecera]="false"
+        placeholder="Buscar..."
+        [items]="p.items"
+        [selectable]="true"
+        [selectedIds]="idsElegidos(p)"
+        (choose)="elegirDeLista(p, $event)"
+      ></app-info-list>
+    }
+  }
+</ng-template>
+
+<div class="btn-row">
+  <a pButton routerLink="/crear/habilidades" label="Atrás" severity="secondary" class="p-button-outlined"></a>
+  <button pButton type="button" label="Continuar" (click)="continuar()"></button>
+</div>

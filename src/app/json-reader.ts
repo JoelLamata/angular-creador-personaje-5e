@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { inlineSubclassRefs, parseSubclassFeatureKey, resolveCopies } from './utils/dnd-resolver';
 
 @Injectable({
   providedIn: 'root',
@@ -63,10 +64,38 @@ export class JsonReader {
 
     const responses = await this.getAllData('class');
 
-    const result = [
-      ...responses.flatMap((r) => r.classFeature ?? []),
-      ...responses.flatMap((r) => r.subclassFeature ?? []),
-    ];
+    const result = responses.flatMap((r) => {
+      const classFeatures = resolveCopies<any>(
+        r.classFeature ?? [],
+        (b, c) => b.name === c.name && b.source === c.source && b.className === c.className,
+      );
+      const subclassFeatures = resolveCopies<any>(
+        r.subclassFeature ?? [],
+        (b, c) =>
+          b.name === c.name &&
+          b.source === c.source &&
+          b.className === c.className &&
+          b.classSource === c.classSource &&
+          b.subclassShortName === c.subclassShortName &&
+          b.subclassSource === c.subclassSource,
+      );
+      const lookup = (key: string) => {
+        const k = parseSubclassFeatureKey(key);
+        return subclassFeatures.find(
+          (f) =>
+            f.name === k.name &&
+            f.className === k.className &&
+            f.subclassShortName === k.subclassShortName &&
+            f.subclassSource === k.subclassSource &&
+            f.level === k.level,
+        );
+      };
+      const inlined = subclassFeatures.map((f) => ({
+        ...f,
+        entries: inlineSubclassRefs(f.entries, lookup, new Set<string>()),
+      }));
+      return [...classFeatures, ...inlined];
+    });
 
     this.cache.set(cacheKey, result);
 

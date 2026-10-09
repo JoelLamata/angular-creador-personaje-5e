@@ -10,3 +10,30 @@ body {
   min-height: 100%;
   margin: var(--player-space-0);
 }
+
+/* Tablas generadas por EntryProcessorService (innerHTML, fuera del encapsulado) */
+.entries-table {
+  width: 100%;
+  margin: var(--player-space-3) 0;
+  border-collapse: collapse;
+  font-family: var(--player-font-body);
+  font-size: var(--player-font-size-sm);
+  color: var(--player-color-text);
+
+  caption {
+    margin-bottom: var(--player-space-2);
+    font-weight: var(--player-font-weight-semibold);
+    text-align: left;
+  }
+
+  th,
+  td {
+    padding: var(--player-space-2) var(--player-space-3);
+    text-align: left;
+    border: var(--player-border-width) solid var(--player-color-border);
+  }
+
+  th {
+    background-color: var(--player-color-surface-muted);
+  }
+}
