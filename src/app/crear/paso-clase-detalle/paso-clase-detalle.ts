@@ -90,6 +90,11 @@ export class PasoClaseDetalle implements OnInit, OnDestroy {
     return this.eleccion?.from ?? SKILLS;
   }
 
+  /** Las habilidades se guardan en minúsculas y se muestran capitalizadas. */
+  protected titulo(clave: string): string {
+    return titleCase(clave);
+  }
+
   protected get subclase(): SubclassInfo | null {
     return this.clase?.subclasses.find((s) => `${s.name}|${s.source}` === this.subclaseId) ?? null;
   }

@@ -1,5 +1,5 @@
 import { InfoItem } from '../components/info-card/info-card.component';
-import { DndEntry, ItemData, RaceInfo } from '../models/dnd-data';
+import { DndEntry, ItemData, RaceInfo, SpellData } from '../models/dnd-data';
 import { DndDataService } from '../services/dnd-data.service';
 import { nombresSeleccionables } from './dotes';
 import { formatSizes, formatSpeed, stripTags, titleCase } from './dnd-text';
@@ -168,6 +168,19 @@ export function rasgoOpcionalToInfoItem(o: DndEntry): InfoItem {
     summary: prereq ? `Prerequisite: ${prereq}` : '',
     entries: o.entries ?? [],
     data: o,
+  };
+}
+
+/** `escuela` es el nombre ya traducido de la escuela (ver `EntryProcessorService.getSchoolName`). */
+export function hechizoToInfoItem(s: SpellData, escuela: string): InfoItem {
+  const nivel = s.level === 0 ? 'Cantrip' : `Level ${s.level}`;
+  return {
+    id: itemId(s),
+    name: s.name,
+    source: s.source,
+    category: nivel,
+    summary: `${nivel} · ${escuela}${s['meta']?.ritual ? ' · Ritual' : ''}`,
+    entries: [...(s.entries ?? []), ...(s['entriesHigherLevel'] ?? [])],
   };
 }
 

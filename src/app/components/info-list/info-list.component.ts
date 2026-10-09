@@ -30,6 +30,8 @@ export class InfoListComponent implements OnChanges {
   @Input() selectedId: string | null = null;
   /** Para listas de selección múltiple. */
   @Input() selectedIds: string[] = [];
+  /** Elementos que no se pueden elegir ahora mismo (p. ej. al llegar al máximo). */
+  @Input() disabledIds: string[] = [];
   @Output() choose = new EventEmitter<InfoItem>();
 
   searchText = '';

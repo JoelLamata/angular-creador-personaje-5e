@@ -82,6 +82,7 @@
           [items]="hechizosItems"
           [selectable]="true"
           [selectedIds]="idsElegidos"
+          [disabledIds]="idsBloqueados"
           (choose)="elegirHechizo($event)"
         ></app-info-list>
       } @else {

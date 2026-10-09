@@ -1,24 +1,48 @@
-.clase-card {
+.clases {
   display: flex;
   flex-direction: column;
-  gap: var(--player-space-1);
-  padding: var(--player-space-4);
+  gap: var(--player-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Una fila por clase, siempre con tres líneas: nombre, dado y principal, salvaciones. */
+.clase-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    'head chevron'
+    'info chevron';
+  gap: var(--player-space-2) var(--player-space-3);
+  align-items: center;
+  min-height: 3.5rem;
+  padding: var(--player-space-3) var(--player-space-4);
   color: var(--player-color-text);
   text-decoration: none;
   background-color: var(--player-color-surface);
   border: var(--player-border-width) solid var(--player-color-border);
-  border-top: 5px solid var(--player-color-primary);
-  border-radius: var(--player-radius-lg);
+  border-left: 5px solid var(--player-color-primary);
+  border-radius: var(--player-radius-md);
   transition: box-shadow var(--player-transition-fast);
 
   &:hover,
-  &--on {
+  &:focus-visible {
     box-shadow: 0 0 0 2px var(--player-color-focus);
   }
 
   &--on {
+    background-color: var(--player-color-primary-soft);
     outline: 2px solid var(--player-color-primary);
   }
+}
+
+.clase-head {
+  grid-area: head;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--player-space-2);
+  align-items: baseline;
 }
 
 .clase-name {
@@ -27,7 +51,39 @@
   font-weight: var(--player-font-weight-semibold);
 }
 
-.clase-meta {
+.clase-source {
+  font-size: var(--player-font-size-xs);
+  color: var(--player-color-text-muted);
+}
+
+.clase-info {
+  grid-area: info;
+  display: flex;
+  flex-direction: column;
+  gap: var(--player-space-1);
   font-size: var(--player-font-size-sm);
+}
+
+.clase-linea {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--player-space-1) var(--player-space-4);
+}
+
+.clase-dato {
+  white-space: nowrap;
+}
+
+.clase-etiqueta {
+  margin-right: var(--player-space-1);
+  font-size: var(--player-font-size-xs);
+  color: var(--player-color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.clase-chevron {
+  grid-area: chevron;
+  font-size: var(--player-font-size-xl);
   color: var(--player-color-text-muted);
 }

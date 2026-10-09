@@ -97,10 +97,15 @@
   cursor: pointer;
   transition: background-color var(--player-transition-fast), color var(--player-transition-fast);
 
-  &:hover,
+  &:hover:not(:disabled),
   &--selected {
     background-color: var(--player-color-primary);
     color: white;
+  }
+
+  &:disabled {
+    opacity: var(--player-disabled-opacity);
+    cursor: not-allowed;
   }
 }
 

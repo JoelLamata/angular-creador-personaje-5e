@@ -55,6 +55,8 @@ All rules data is static 5etools-format JSON in `public/assets/` (classes and sp
 
 ### UI conventions
 
+- The app is meant to be used on phones and tablets. Lay out for narrow screens first (single column, full-width touch targets, nothing that depends on hover) and widen with `min-width` media queries.
+
 - PrimeNG modules are shared through `PRIMENG_IMPORTS` in `primeng.imports.ts`.
 - Theme tokens are CSS variables in `src/styles/_tokens.scss`; dark mode is the `.dark` class on an ancestor.
 - Production builds fail if any component stylesheet exceeds 8 kB (`angular.json` budgets).

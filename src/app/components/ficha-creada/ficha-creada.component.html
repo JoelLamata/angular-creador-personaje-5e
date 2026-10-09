@@ -70,9 +70,6 @@
       @if (ficha.idiomas.length) {
         <p><strong>Idiomas:</strong> {{ ficha.idiomas.join(', ') }}</p>
       }
-      @if (ficha.dotes.length) {
-        <p><strong>Dotes:</strong> {{ ficha.dotes.join(', ') }}</p>
-      }
     </section>
   </div>
 
@@ -113,24 +110,36 @@
           · Espacios: {{ ficha.lanzamiento.espacios }}
         }
       </p>
-      @if (personaje.hechizos.length) {
-        <p>{{ personaje.hechizos.join(', ') }}</p>
-      } @else {
+      @if (!hechizos.length) {
         <p class="muted">Sin hechizos elegidos.</p>
       }
     </section>
   }
 
-  @if (ficha.hechizosDotes.length) {
-    <section class="bloque">
-      <h3>Hechizos de dotes</h3>
-      <ul class="lista-elecciones">
-        @for (h of ficha.hechizosDotes; track h.nombre + h.origen) {
-          <li>
-            {{ h.nombre }} <small>({{ h.origen }})</small>
-          </li>
-        }
-      </ul>
+  @if (hechizos.length) {
+    <section>
+      <h3 class="seccion-title">Hechizos</h3>
+      @for (h of hechizos; track $index) {
+        <app-info-card [item]="h"></app-info-card>
+      }
+    </section>
+  }
+
+  @if (hechizosDotes.length) {
+    <section>
+      <h3 class="seccion-title">Hechizos de dotes</h3>
+      @for (h of hechizosDotes; track $index) {
+        <app-info-card [item]="h"></app-info-card>
+      }
+    </section>
+  }
+
+  @if (dotes.length) {
+    <section>
+      <h3 class="seccion-title">Dotes</h3>
+      @for (d of dotes; track $index) {
+        <app-info-card [item]="d"></app-info-card>
+      }
     </section>
   }
 
@@ -154,7 +163,7 @@
   }
 
   <section>
-    <h3 class="rasgos-title">Rasgos</h3>
+    <h3 class="seccion-title">Rasgos</h3>
     @for (r of rasgos; track r.id) {
       <app-info-card [item]="r"></app-info-card>
     }

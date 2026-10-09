@@ -35,9 +35,11 @@ export class PasoClase implements OnInit {
 
   protected principal(c: ClassInfo): string {
     const prim: any[] = c.def['primaryAbility'] ?? [];
-    return prim
+    const texto = prim
       .map((p) => Object.keys(p).map((k) => ABILITY_SHORT[k as AbilityKey] ?? k).join(' + '))
       .join(' o ');
+    // Las clases en formato 2014 (Artificer) no traen `primaryAbility`: se usa la de lanzamiento.
+    return texto || (ABILITY_SHORT[c.def['spellcastingAbility'] as AbilityKey] ?? '');
   }
 
   protected salvaciones(c: ClassInfo): string {

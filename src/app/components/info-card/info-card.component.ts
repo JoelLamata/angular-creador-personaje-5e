@@ -30,6 +30,8 @@ export class InfoCardComponent {
   @Input({ required: true }) item!: InfoItem;
   @Input() selectable = false;
   @Input() selected = false;
+  /** Impide elegir el elemento (p. ej. al llegar al máximo); uno ya elegido siempre se puede quitar. */
+  @Input() disabled = false;
   @Output() choose = new EventEmitter<InfoItem>();
 
   protected entryProcessor = inject(EntryProcessorService);

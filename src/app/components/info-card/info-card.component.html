@@ -13,7 +13,9 @@
             @for (badge of item.badges ?? []; track badge) {
               <span class="badge badge-tag">{{ badge }}</span>
             }
-            <span class="badge badge-source">{{ item.source }}</span>
+            @if (item.source) {
+              <span class="badge badge-source">{{ item.source }}</span>
+            }
           </span>
 
           @if (item.summary) {
@@ -26,6 +28,7 @@
             type="button"
             class="choose-button"
             [class.choose-button--selected]="selected"
+            [disabled]="disabled && !selected"
             (click)="onChoose($event)"
           >
             {{ selected ? 'Elegido' : 'Elegir' }}
