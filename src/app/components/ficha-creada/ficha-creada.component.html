@@ -43,9 +43,19 @@
       <ul class="lista-mod">
         @for (h of ficha.habilidades; track h.nombre) {
           <li [class.competente]="h.competente">
-            <span class="punto" [title]="h.experto ? 'Expertise' : h.competente ? 'Competente' : ''">{{
-              h.experto ? '◆' : h.competente ? '●' : '○'
-            }}</span>
+            <span
+              class="punto"
+              [title]="
+                h.experto
+                  ? 'Expertise'
+                  : h.competente
+                    ? 'Competente'
+                    : h.mediaCompetencia
+                      ? 'Mitad de competencia (Jack of All Trades)'
+                      : ''
+              "
+              >{{ h.experto ? '◆' : h.competente ? '●' : h.mediaCompetencia ? '◐' : '○' }}</span
+            >
             {{ fmt(h.mod) }} {{ h.nombre }}
             <small>({{ cortos[h.caracteristica] }})</small>
           </li>

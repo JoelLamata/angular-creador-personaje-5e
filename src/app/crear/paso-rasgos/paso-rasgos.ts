@@ -20,7 +20,12 @@ import {
   filtrarEleccionesVigentes,
 } from '../../utils/elecciones';
 import { ABILITY_NAMES, AbilityKey, SKILLS, titleCase } from '../../utils/dnd-text';
-import { dotesToInfoItems, nivelRequerido, rasgoOpcionalToInfoItem } from '../../utils/info-items';
+import {
+  dotesToInfoItems,
+  hechizoToInfoItem,
+  nivelRequerido,
+  rasgoOpcionalToInfoItem,
+} from '../../utils/info-items';
 import { ContextoRequisitos, cumpleRequisitos, nombresSeleccionables, resolverDote } from '../../utils/dotes';
 
 interface PanelEleccion {
@@ -167,13 +172,7 @@ export class PasoRasgos implements OnInit {
               (!filtro.escuelas?.length || filtro.escuelas.includes(s.school)) &&
               (!filtro.ritual || s['meta']?.ritual),
           )
-          .map((s) => ({
-            id: `${s.name}|${s.source}`,
-            name: s.name,
-            source: s.source,
-            summary: `${s.level === 0 ? 'Cantrip' : 'Level ' + s.level} · ${this.entryProcessor.getSchoolName(s.school)}`,
-            entries: s.entries ?? [],
-          }));
+          .map((s) => hechizoToInfoItem(s, this.entryProcessor.getSchoolName(s.school)));
         break;
       }
       case 'dote': {

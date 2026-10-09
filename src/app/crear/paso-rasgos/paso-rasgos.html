@@ -211,7 +211,9 @@
     @if (p.abierto) {
       <app-info-list
         [mostrarCabecera]="false"
-        placeholder="Buscar..."
+        [placeholder]="p.def.tipo === 'hechizos' ? 'Buscar hechizo...' : 'Buscar...'"
+        [categoriaEtiqueta]="p.def.tipo === 'hechizos' ? 'Niveles' : 'Categoría'"
+        [categoriaMultiple]="p.def.tipo === 'hechizos'"
         [items]="p.items"
         [selectable]="true"
         [selectedIds]="idsElegidos(p)"

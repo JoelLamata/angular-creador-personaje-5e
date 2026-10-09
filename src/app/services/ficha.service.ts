@@ -45,6 +45,8 @@ export interface FichaHabilidad {
   competente: boolean;
   /** Expertise: el bonificador de competencia se suma dos veces. */
   experto: boolean;
+  /** Jack of All Trades: suma la mitad del bonificador de competencia a una habilidad sin competencia. */
+  mediaCompetencia: boolean;
 }
 
 /** Elección ya resuelta, lista para mostrar en la ficha. */
@@ -185,21 +187,33 @@ export class FichaService {
       ...habilidadesMixtas,
     ]);
     const expertos = new Set<string>(deTipo('experiencia'));
+
+    const rasgosClase = (clase?.features ?? []).filter((f) => f.level <= p.nivel);
+    const rasgosSubclase = (subclase?.features ?? []).filter((f) => f.level <= p.nivel);
+
+    // Jack of All Trades: la mitad del bonificador (hacia abajo) en las pruebas sin competencia.
+    const mitadCompetencia = [...rasgosClase, ...rasgosSubclase].some((r) => r.name === 'Jack of All Trades')
+      ? Math.floor(bonusCompetencia / 2)
+      : 0;
+
     const habilidades: FichaHabilidad[] = SKILLS.map((nombre) => {
       const caracteristica = SKILL_ABILITY[nombre];
       const competente = competentes.has(nombre) || expertos.has(nombre);
       const experto = expertos.has(nombre);
+      const mediaCompetencia = !competente && mitadCompetencia > 0;
       return {
         nombre: titleCase(nombre),
         caracteristica,
         competente,
         experto,
-        mod: mods[caracteristica] + (competente ? bonusCompetencia : 0) + (experto ? bonusCompetencia : 0),
+        mediaCompetencia,
+        mod:
+          mods[caracteristica] +
+          (competente ? bonusCompetencia : 0) +
+          (experto ? bonusCompetencia : 0) +
+          (mediaCompetencia ? mitadCompetencia : 0),
       };
     });
-
-    const rasgosClase = (clase?.features ?? []).filter((f) => f.level <= p.nivel);
-    const rasgosSubclase = (subclase?.features ?? []).filter((f) => f.level <= p.nivel);
 
     const dotes = [
       ...(trasfondo ? dotesDeTrasfondo(trasfondo) : []),
