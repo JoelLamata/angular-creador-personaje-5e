@@ -20,7 +20,8 @@ import {
   filtrarEleccionesVigentes,
 } from '../../utils/elecciones';
 import { ABILITY_NAMES, AbilityKey, SKILLS, titleCase } from '../../utils/dnd-text';
-import { featToInfoItem, nivelRequerido, rasgoOpcionalToInfoItem } from '../../utils/info-items';
+import { dotesToInfoItems, nivelRequerido, rasgoOpcionalToInfoItem } from '../../utils/info-items';
+import { ContextoRequisitos, cumpleRequisitos, nombresSeleccionables, resolverDote } from '../../utils/dotes';
 
 interface PanelEleccion {
   def: EleccionDef;
@@ -177,16 +178,24 @@ export class PasoRasgos implements OnInit {
       }
       case 'dote': {
         const tomadas = new Set(ficha.dotes);
-        const nivel = this.creador.borrador.nivel;
+        const contexto: ContextoRequisitos = {
+          nivel: this.creador.borrador.nivel,
+          puntuaciones: ficha.puntuaciones,
+          lanzaConjuros: !!ficha.lanzamiento,
+          armaduras: ficha.armaduras,
+          rasgos: [...ficha.rasgosClase, ...ficha.rasgosSubclase].map((r) => r.name),
+        };
+        // Una dote no se toma dos veces salvo que sea repetible; cada variante cuenta como una dote.
         panel.items = this.dotes
-          .filter(
-            (d) =>
-              (def.categorias ?? []).includes(d['category']) &&
-              nivelRequerido(d['prerequisite']) <= nivel &&
-              this.cumpleCaracteristicas(d, ficha) &&
-              (propios[0] === d.name || d['repeatable'] || !tomadas.has(d.name)),
-          )
-          .map(featToInfoItem);
+          .filter((d) => (def.categorias ?? []).includes(d['category']) && cumpleRequisitos(d, contexto))
+          .flatMap((d) =>
+            dotesToInfoItems(d).filter(
+              (i) =>
+                propios[0] === i.name ||
+                (d['repeatable'] && nombresSeleccionables(d).length === 1) ||
+                !tomadas.has(i.name),
+            ),
+          );
         break;
       }
       case 'rasgoOpcional': {
@@ -210,18 +219,6 @@ export class PasoRasgos implements OnInit {
     return panel;
   }
 
-  /** ¿Cumple las características mínimas que pide una dote? */
-  private cumpleCaracteristicas(feat: DndEntry, ficha: Ficha): boolean {
-    const grupos: any[] = feat['prerequisite'] ?? [];
-    const conCaracteristicas = grupos.filter((g) => g.ability);
-    if (conCaracteristicas.length === 0) return true;
-    return conCaracteristicas.some((g) =>
-      (g.ability as Record<string, number>[]).every((a) =>
-        Object.entries(a).every(([k, min]) => (ficha.puntuaciones[k as AbilityKey] ?? 0) >= min),
-      ),
-    );
-  }
-
   private valoresDeOtras(def: EleccionDef, tipo: EleccionDef['tipo']): string[] {
     return (this.ficha?.definiciones ?? [])
       .filter((d) => d.tipo === tipo && d.clave !== def.clave)
@@ -237,7 +234,7 @@ export class PasoRasgos implements OnInit {
   protected completa(p: PanelEleccion): boolean {
     const v = this.valores(p);
     if (p.def.tipo === 'dote') {
-      return doteCompleta(this.dotes.find((d) => d.name === v[0]), v);
+      return doteCompleta(resolverDote(this.dotes, v[0] ?? '')?.feat, v);
     }
     return eleccionCompleta(p.def, v);
   }
@@ -332,7 +329,7 @@ export class PasoRasgos implements OnInit {
   }
 
   protected dote(p: PanelEleccion): DndEntry | undefined {
-    return this.dotes.find((d) => d.name === this.valores(p)[0]);
+    return resolverDote(this.dotes, this.valores(p)[0] ?? '')?.feat;
   }
 
   protected alternativas(p: PanelEleccion): AlternativaMejora[] {

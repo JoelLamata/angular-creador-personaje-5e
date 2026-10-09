@@ -1,6 +1,7 @@
 import { InfoItem } from '../components/info-card/info-card.component';
 import { DndEntry, ItemData, RaceInfo } from '../models/dnd-data';
 import { DndDataService } from '../services/dnd-data.service';
+import { nombresSeleccionables } from './dotes';
 import { formatSizes, formatSpeed, stripTags, titleCase } from './dnd-text';
 
 export const FEAT_CATEGORIES: Record<string, string> = {
@@ -85,6 +86,14 @@ export function backgroundToInfoItem(bg: DndEntry): InfoItem {
     entries: bg.entries ?? [],
     data: bg,
   };
+}
+
+/** Una tarjeta por dote, o una por variante (Magic Initiate (Cleric), (Druid) y (Wizard)). */
+export function dotesToInfoItems(feat: DndEntry): InfoItem[] {
+  const base = featToInfoItem(feat);
+  const nombres = nombresSeleccionables(feat);
+  if (nombres.length === 1) return [base];
+  return nombres.map((nombre) => ({ ...base, id: `${nombre}|${feat.source}`, name: nombre }));
 }
 
 export function prerequisiteText(prereq: any[] | undefined): string {

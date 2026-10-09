@@ -4,7 +4,14 @@ import { TestBed } from '@angular/core/testing';
 import { JsonReader } from '../json-reader';
 import { DndDataService } from '../services/dnd-data.service';
 import { DndEntry } from '../models/dnd-data';
-import { eleccionesDeDote, nombresSeleccionables, resolverDote, variantesDote } from './dotes';
+import {
+  ContextoRequisitos,
+  cumpleRequisitos,
+  eleccionesDeDote,
+  nombresSeleccionables,
+  resolverDote,
+  variantesDote,
+} from './dotes';
 
 class LectorDeDisco {
   async getData(nombre: string) {
@@ -103,5 +110,51 @@ describe('dotes (datos reales)', () => {
     const b = eleccionesDeDote(r.feat, r.variante, 'trasfondo', 'Trasfondo').map((d) => d.clave);
     expect(new Set(a).size).toBe(a.length);
     expect(a.filter((k) => b.includes(k))).toEqual([]);
+  });
+
+  describe('requisitos', () => {
+    const contexto = (extra: Partial<ContextoRequisitos> = {}): ContextoRequisitos => ({
+      nivel: 4,
+      puntuaciones: { str: 10, dex: 10, con: 10, int: 10, wis: 10, cha: 10 },
+      lanzaConjuros: false,
+      armaduras: [],
+      rasgos: [],
+      ...extra,
+    });
+    const cumple = (nombre: string, extra?: Partial<ContextoRequisitos>) =>
+      cumpleRequisitos(dote(nombre).feat, contexto(extra));
+
+    it('las dotes de origen no piden nada', () => {
+      expect(cumple('Alert', { nivel: 1 })).toBe(true);
+      expect(cumple('Magic Initiate (Cleric)', { nivel: 1 })).toBe(true);
+    });
+
+    it('las dotes generales piden nivel 4', () => {
+      expect(cumple('Ability Score Improvement', { nivel: 3 })).toBe(false);
+      expect(cumple('Ability Score Improvement', { nivel: 4 })).toBe(true);
+    });
+
+    it('un estilo de combate pide el rasgo Fighting Style', () => {
+      expect(cumple('Defense')).toBe(false);
+      expect(cumple('Defense', { rasgos: ['Fighting Style'] })).toBe(true);
+    });
+
+    it('comprueba características mínimas aceptando cualquiera de las alternativas', () => {
+      expect(cumple('Athlete')).toBe(false);
+      expect(cumple('Athlete', { puntuaciones: { str: 13, dex: 10, con: 10, int: 10, wis: 10, cha: 10 } })).toBe(true);
+      expect(cumple('Athlete', { puntuaciones: { str: 10, dex: 14, con: 10, int: 10, wis: 10, cha: 10 } })).toBe(true);
+    });
+
+    it('comprueba lanzamiento de conjuros y competencia con armadura', () => {
+      expect(cumple('War Caster')).toBe(false);
+      expect(cumple('War Caster', { lanzaConjuros: true })).toBe(true);
+      expect(cumple('Heavily Armored')).toBe(false);
+      expect(cumple('Heavily Armored', { armaduras: ['Light', 'Medium'] })).toBe(true);
+    });
+
+    it('los dones épicos piden nivel 19', () => {
+      expect(cumple('Boon of Fate', { nivel: 18 })).toBe(false);
+      expect(cumple('Boon of Fate', { nivel: 19 })).toBe(true);
+    });
   });
 });

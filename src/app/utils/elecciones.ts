@@ -180,6 +180,16 @@ function columnaTabla(clase: ClassInfo, etiqueta: string, nivel: number): number
   return 0;
 }
 
+/**
+ * Dotes que se pueden tomar con Ability Score Improvement: la propia mejora y las demás dotes
+ * generales, las de origen y los dones épicos (con sus requisitos de nivel), y los estilos de
+ * combate si la clase tiene ese rasgo.
+ */
+export function categoriasMejora(clase: ClassInfo): string[] {
+  const tieneEstilo = ((clase.def['featProgression'] ?? []) as any[]).some((p) => p.name === 'Fighting Style');
+  return ['G', 'O', 'EB', ...(tieneEstilo ? ['FS'] : [])];
+}
+
 /** Todas las elecciones que corresponden a una clase, subclase y nivel. */
 export function calcularElecciones(
   clase: ClassInfo,
@@ -233,7 +243,7 @@ export function calcularElecciones(
         nivel: rasgo.level,
         tipo: 'dote',
         cantidad: 1,
-        categorias: ['G'],
+        categorias: categoriasMejora(clase),
         descripcion: rasgo.entries,
       });
       continue;

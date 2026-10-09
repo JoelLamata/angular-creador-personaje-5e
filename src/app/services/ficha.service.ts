@@ -145,7 +145,7 @@ export class FichaService {
     ) as Record<AbilityKey, number>;
     for (const k of ABILITY_KEYS) puntuaciones[k] = Math.min(20, puntuaciones[k]);
     for (const { valores } of dotesElegidas) {
-      const feat = dotesData.find((d) => d.name === valores[0]);
+      const feat = resolverDote(dotesData, valores[0])?.feat;
       for (const m of mejorasDeDote(feat, valores)) {
         puntuaciones[m.clave] = Math.min(m.max, puntuaciones[m.clave] + m.incremento);
       }
@@ -158,7 +158,7 @@ export class FichaService {
     // Resilient: la competencia en la salvación es la de la característica que mejora la dote.
     const salvacionesDotes = dotesElegidas
       .filter((d) =>
-        (dotesData.find((f) => f.name === d.valores[0])?.['savingThrowProficiencies'] ?? []).some(
+        (resolverDote(dotesData, d.valores[0])?.feat['savingThrowProficiencies'] ?? []).some(
           (s: any) => s.choose,
         ),
       )
@@ -222,7 +222,7 @@ export class FichaService {
     const pendientes = definiciones.filter((d) => {
       const valores = respuestas[d.clave];
       if (d.tipo === 'dote') {
-        return !doteCompleta(dotesData.find((f) => f.name === valores?.[0]), valores);
+        return !doteCompleta(resolverDote(dotesData, valores?.[0] ?? '')?.feat, valores);
       }
       return !eleccionCompleta(d, valores);
     });
@@ -297,7 +297,7 @@ export class FichaService {
     if (def.tipo === 'dote') {
       const nombre = valores[0];
       const mejora = mejorasDeDote(
-        dotes.find((d) => d.name === nombre),
+        resolverDote(dotes, nombre)?.feat,
         valores,
       )
         .map((m) => `${ABILITY_SHORT[m.clave]} +${m.incremento}`)

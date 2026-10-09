@@ -196,3 +196,45 @@ export function eleccionesDeDote(
 
   return out;
 }
+
+/* ------------------------------------------------------------ Requisitos */
+
+/** Lo que hace falta saber del personaje para comprobar los requisitos de una dote. */
+export interface ContextoRequisitos {
+  nivel: number;
+  puntuaciones: Record<string, number>;
+  /** ¿Tiene el rasgo de lanzamiento de conjuros (Spellcasting o Pact Magic) de su clase? */
+  lanzaConjuros: boolean;
+  /** Competencias con armadura en inglés y con inicial mayúscula: `Light`, `Medium`, `Heavy`, `Shield`. */
+  armaduras: string[];
+  /** Nombres de los rasgos de clase que tiene (p. ej. `Fighting Style`). */
+  rasgos: string[];
+}
+
+/**
+ * ¿Cumple el personaje los requisitos de la dote? Solo se descarta lo que se puede comprobar con
+ * seguridad (nivel, características, lanzamiento de conjuros, armaduras y rasgos de clase); un
+ * requisito que no se entiende no impide elegir la dote. Se necesita cumplir uno de los grupos.
+ */
+export function cumpleRequisitos(feat: DndEntry, ctx: ContextoRequisitos): boolean {
+  const grupos: any[] = feat['prerequisite'] ?? [];
+  if (grupos.length === 0) return true;
+
+  return grupos.some((g) => {
+    if (g.level !== undefined) {
+      const minimo = typeof g.level === 'object' ? g.level.level : g.level;
+      if (ctx.nivel < minimo) return false;
+    }
+    for (const a of (g.ability ?? []) as Record<string, number>[]) {
+      if (!Object.entries(a).every(([k, min]) => (ctx.puntuaciones[k] ?? 0) >= min)) return false;
+    }
+    if ((g.spellcasting || g.spellcasting2020) && !ctx.lanzaConjuros) return false;
+    for (const p of (g.proficiency ?? []) as { armor?: string }[]) {
+      if (p.armor && !ctx.armaduras.includes(titleCase(p.armor))) return false;
+    }
+    for (const rasgo of (g.feature ?? []) as string[]) {
+      if (!ctx.rasgos.includes(rasgo)) return false;
+    }
+    return true;
+  });
+}

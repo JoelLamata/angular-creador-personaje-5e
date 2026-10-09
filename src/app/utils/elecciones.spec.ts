@@ -62,6 +62,21 @@ describe('elecciones de rasgos (datos reales)', () => {
     expect(resumen('Fighter', 4)).toContain('Ability Score Improvement@4:dotex1');
   });
 
+  it('la mejora de característica admite dotes generales, de origen y dones épicos', () => {
+    const asi = (clase: string) =>
+      elecciones(clase, 4).find((e) => e.titulo === 'Ability Score Improvement')!.categorias;
+    expect(asi('Wizard')).toEqual(['G', 'O', 'EB']);
+  });
+
+  it('los estilos de combate también valen con la mejora, solo si la clase tiene ese rasgo', () => {
+    const asi = (clase: string) =>
+      elecciones(clase, 4).find((e) => e.titulo === 'Ability Score Improvement')!.categorias;
+    expect(asi('Fighter')).toContain('FS');
+    expect(asi('Paladin')).toContain('FS');
+    expect(asi('Paladin')).not.toContain('FS:P');
+    expect(asi('Bard')).not.toContain('FS');
+  });
+
   it('Rogue: Expertise a nivel 1 y 6, y maestría solo con armas sutiles', () => {
     const e = elecciones('Rogue', 6);
     expect(e.filter((x) => x.tipo === 'experiencia').map((x) => x.nivel)).toEqual([1, 6]);
