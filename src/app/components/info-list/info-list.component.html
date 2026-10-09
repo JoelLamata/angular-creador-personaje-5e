@@ -87,6 +87,7 @@
           [item]="item"
           [selectable]="selectable"
           [selected]="selectedId === item.id || selectedIds.includes(item.id)"
+          [disabled]="disabledIds.includes(item.id)"
           (choose)="choose.emit($event)"
         ></app-info-card>
       }

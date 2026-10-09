@@ -132,10 +132,21 @@ export class PasoHabilidades implements OnInit {
 
   protected alternarIdioma(nombre: string): void {
     if (nombre === 'Common') return;
-    this.idiomas = this.idiomas.includes(nombre)
-      ? this.idiomas.filter((i) => i !== nombre)
-      : [...this.idiomas, nombre];
+    if (this.idiomas.includes(nombre)) {
+      this.idiomas = this.idiomas.filter((i) => i !== nombre);
+    } else if (this.idiomasElegidos < this.maxIdiomas) {
+      this.idiomas = [...this.idiomas, nombre];
+    } else {
+      return;
+    }
     this.guardar();
+  }
+
+  /** Idiomas a elegir además de Common (reglas 2024). */
+  protected readonly maxIdiomas = 2;
+
+  protected get idiomasElegidos(): number {
+    return this.idiomas.filter((i) => i !== 'Common').length;
   }
 
   protected get completo(): boolean {

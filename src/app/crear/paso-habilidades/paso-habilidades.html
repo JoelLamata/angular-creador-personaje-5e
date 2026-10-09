@@ -82,7 +82,7 @@
         type="button"
         class="chip"
         [class.chip--on]="idiomas.includes(l.name)"
-        [disabled]="l.name === 'Common'"
+        [disabled]="l.name === 'Common' || (!idiomas.includes(l.name) && idiomasElegidos >= maxIdiomas)"
         (click)="alternarIdioma(l.name)"
         [title]="l.tipo"
       >
@@ -90,7 +90,12 @@
       </button>
     }
   </div>
-  <p class="muted">Seleccionados: {{ idiomas.length }}</p>
+  <p class="muted" [class.excede]="idiomasElegidos > maxIdiomas">
+    Elegidos: {{ idiomasElegidos }} / {{ maxIdiomas }} (además de Common)
+  </p>
+  @if (idiomasElegidos > maxIdiomas) {
+    <p class="aviso aviso--error">Tienes más idiomas de los permitidos. Quita {{ idiomasElegidos - maxIdiomas }}.</p>
+  }
 </div>
 
 <div class="btn-row">

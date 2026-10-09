@@ -61,7 +61,7 @@
             [disabled]="!habilidades.includes(h) && habilidades.length >= eleccion.count"
             (click)="alternarHabilidad(h)"
           >
-            {{ h }}
+            {{ titulo(h) }}
           </button>
         }
       </div>
@@ -117,10 +117,12 @@
     </div>
   </div>
 
-  <h3 class="panel-title">Rasgos hasta el nivel {{ nivel }}</h3>
-  @for (r of rasgos; track r.id) {
-    <app-info-card [item]="r"></app-info-card>
-  }
+  <div class="panel">
+    <h3 class="panel-title">Rasgos hasta el nivel {{ nivel }}</h3>
+    @for (r of rasgos; track r.id) {
+      <app-info-card [item]="r"></app-info-card>
+    }
+  </div>
 
   <div class="btn-row">
     <a pButton routerLink="/crear/clase" label="Volver" severity="secondary" class="p-button-outlined"></a>

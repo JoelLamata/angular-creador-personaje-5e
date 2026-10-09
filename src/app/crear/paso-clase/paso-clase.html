@@ -4,19 +4,32 @@
 @if (loading) {
   <p class="muted">Cargando clases...</p>
 } @else {
-  <div class="grid">
+  <ul class="clases">
     @for (c of clases; track c.name) {
-      <a
-        class="clase-card"
-        [routerLink]="['/crear/clase', c.name]"
-        [class.clase-card--on]="(creador.borrador$ | async)?.clase?.name === c.name"
-        [style.border-top-color]="color(c)"
-      >
-        <span class="clase-name">{{ c.name }}</span>
-        <span class="clase-meta">d{{ c.hitDie }} · {{ c.source }}</span>
-        <span class="clase-meta">Principal: {{ principal(c) || '—' }}</span>
-        <span class="clase-meta">Salvaciones: {{ salvaciones(c) }}</span>
-      </a>
+      <li>
+        <a
+          class="clase-row"
+          [routerLink]="['/crear/clase', c.name]"
+          [class.clase-row--on]="(creador.borrador$ | async)?.clase?.name === c.name"
+          [attr.aria-current]="(creador.borrador$ | async)?.clase?.name === c.name ? 'true' : null"
+          [style.border-left-color]="color(c)"
+        >
+          <span class="clase-head">
+            <span class="clase-name">{{ c.name }}</span>
+            <span class="clase-source">{{ c.source }}</span>
+          </span>
+          <span class="clase-info">
+            <span class="clase-linea">
+              <span class="clase-dato"><span class="clase-etiqueta">Dado</span> d{{ c.hitDie }}</span>
+              <span class="clase-dato"><span class="clase-etiqueta">Principal</span> {{ principal(c) || '—' }}</span>
+            </span>
+            <span class="clase-linea">
+              <span class="clase-dato"><span class="clase-etiqueta">Salvaciones</span> {{ salvaciones(c) }}</span>
+            </span>
+          </span>
+          <span class="clase-chevron" aria-hidden="true">›</span>
+        </a>
+      </li>
     }
-  </div>
+  </ul>
 }

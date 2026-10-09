@@ -9,6 +9,7 @@ import { SpellData } from '../../models/dnd-data';
 import { InfoListComponent } from '../../components/info-list/info-list.component';
 import { InfoItem } from '../../components/info-card/info-card.component';
 import { EntryProcessorService } from '../../services/entry-processor.service';
+import { hechizoToInfoItem } from '../../utils/info-items';
 
 /** Paso 7: equipo adicional y hechizos. */
 @Component({
@@ -61,20 +62,22 @@ export class PasoEquipo implements OnInit {
   }
 
   private aItem(s: SpellData): InfoItem {
-    const ritual = s['meta']?.ritual ? ' · Ritual' : '';
-    const nivel = s.level === 0 ? 'Cantrip' : `Level ${s.level}`;
-    return {
-      id: `${s.name}|${s.source}`,
-      name: s.name,
-      source: s.source,
-      category: nivel,
-      summary: `${nivel} · ${this.entryProcessor.getSchoolName(s.school)}${ritual}`,
-      entries: [...(s.entries ?? []), ...(s['entriesHigherLevel'] ?? [])],
-    };
+    return hechizoToInfoItem(s, this.entryProcessor.getSchoolName(s.school));
   }
 
   protected get idsElegidos(): string[] {
     return this.hechizosItems.filter((i) => this.hechizos.includes(i.name)).map((i) => i.id);
+  }
+
+  /** Hechizos sin elegir cuyo cupo (trucos o hechizos) ya está completo: no se pueden marcar. */
+  protected get idsBloqueados(): string[] {
+    const l = this.ficha?.lanzamiento;
+    const trucosLlenos = this.elegidos(true) >= (l?.trucos ?? 0);
+    const hechizosLlenos = this.elegidos(false) >= (l?.preparados ?? 0);
+    if (!trucosLlenos && !hechizosLlenos) return [];
+    return this.disponibles
+      .filter((s) => !this.hechizos.includes(s.name) && (s.level === 0 ? trucosLlenos : hechizosLlenos))
+      .map((s) => `${s.name}|${s.source}`);
   }
 
   protected get excedeTrucos(): boolean {
@@ -98,12 +101,17 @@ export class PasoEquipo implements OnInit {
     this.guardar();
   }
 
-  /** Marca o desmarca un hechizo desde la lista; avisa al pasarse del máximo pero no lo impide. */
+  /** Marca o desmarca un hechizo desde la lista; no deja pasar del máximo de trucos ni de hechizos. */
   protected elegirHechizo(item: InfoItem): void {
-    this.alternar(item.name);
-    if (this.excedeTrucos || this.excedeHechizos) {
-      this.aviso = 'Has elegido más hechizos de los que permite tu nivel. Quita alguno si no los necesitas.';
+    if (!this.hechizos.includes(item.name)) {
+      const truco = this.disponibles.find((s) => s.name === item.name)?.level === 0;
+      const maximo = (truco ? this.ficha?.lanzamiento?.trucos : this.ficha?.lanzamiento?.preparados) ?? 0;
+      if (this.elegidos(truco) >= maximo) {
+        this.aviso = `Ya has elegido ${maximo} ${truco ? 'trucos' : 'hechizos'}. Quita alguno antes de elegir otro.`;
+        return;
+      }
     }
+    this.alternar(item.name);
   }
 
   protected anadirObjeto(): void {
