@@ -168,3 +168,30 @@
   font-family: var(--player-font-body);
   color: var(--player-color-text-muted);
 }
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--player-space-2);
+}
+
+.chip {
+  padding: var(--player-space-2) var(--player-space-3);
+  font-family: var(--player-font-body);
+  font-size: var(--player-font-size-sm);
+  color: var(--player-color-text);
+  background-color: var(--player-color-surface-muted);
+  border: var(--player-border-width-strong) solid var(--player-color-border);
+  border-radius: var(--player-radius-md);
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--player-color-primary);
+  }
+
+  &--on {
+    color: white;
+    background-color: var(--player-color-primary);
+    border-color: var(--player-color-primary);
+  }
+}

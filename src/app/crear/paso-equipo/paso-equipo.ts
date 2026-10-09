@@ -6,17 +6,14 @@ import { CreadorService } from '../../services/creador.service';
 import { DndDataService } from '../../services/dnd-data.service';
 import { Ficha, FichaService } from '../../services/ficha.service';
 import { SpellData } from '../../models/dnd-data';
-
-interface GrupoHechizos {
-  nivel: number;
-  titulo: string;
-  hechizos: SpellData[];
-}
+import { InfoListComponent } from '../../components/info-list/info-list.component';
+import { InfoItem } from '../../components/info-card/info-card.component';
+import { EntryProcessorService } from '../../services/entry-processor.service';
 
 /** Paso 7: equipo adicional y hechizos. */
 @Component({
   selector: 'app-paso-equipo',
-  imports: [FormsModule, RouterLink, ButtonModule],
+  imports: [FormsModule, RouterLink, ButtonModule, InfoListComponent],
   templateUrl: './paso-equipo.html',
   styleUrls: ['../crear-shared.scss'],
 })
@@ -26,7 +23,10 @@ export class PasoEquipo implements OnInit {
   hechizos: string[] = [];
   extras: string[] = [];
   nuevoObjeto = '';
-  busqueda = '';
+  /** Hechizos de la clase para el nivel actual, en el formato de la lista de selección. */
+  hechizosItems: InfoItem[] = [];
+  /** Aviso cuando se intenta elegir más hechizos de los permitidos. */
+  aviso = '';
   nombresObjetos: string[] = [];
   disponibles: SpellData[] = [];
 
@@ -35,6 +35,7 @@ export class PasoEquipo implements OnInit {
   private readonly fichas = inject(FichaService);
   private readonly router = inject(Router);
   private readonly cdr = inject(ChangeDetectorRef);
+  private readonly entryProcessor = inject(EntryProcessorService);
 
   async ngOnInit(): Promise<void> {
     const b = this.creador.borrador;
@@ -48,6 +49,7 @@ export class PasoEquipo implements OnInit {
       if (clase && this.ficha.lanzamiento) {
         const max = this.ficha.lanzamiento.nivelMaximo;
         this.disponibles = (await this.data.getHechizosDeClase(clase.name)).filter((s) => s.level <= max);
+        this.hechizosItems = this.disponibles.map((s) => this.aItem(s));
       }
     } catch (error) {
       console.error('Error preparando el equipo:', error);
@@ -58,16 +60,29 @@ export class PasoEquipo implements OnInit {
     }
   }
 
-  protected get grupos(): GrupoHechizos[] {
-    const texto = this.busqueda.trim().toLowerCase();
-    const niveles = [...new Set(this.disponibles.map((s) => s.level))].sort((a, b) => a - b);
-    return niveles.map((nivel) => ({
-      nivel,
-      titulo: nivel === 0 ? 'Trucos' : `Nivel ${nivel}`,
-      hechizos: this.disponibles.filter(
-        (s) => s.level === nivel && (!texto || s.name.toLowerCase().includes(texto)),
-      ),
-    }));
+  private aItem(s: SpellData): InfoItem {
+    const ritual = s['meta']?.ritual ? ' · Ritual' : '';
+    const nivel = s.level === 0 ? 'Cantrip' : `Level ${s.level}`;
+    return {
+      id: `${s.name}|${s.source}`,
+      name: s.name,
+      source: s.source,
+      category: nivel,
+      summary: `${nivel} · ${this.entryProcessor.getSchoolName(s.school)}${ritual}`,
+      entries: [...(s.entries ?? []), ...(s['entriesHigherLevel'] ?? [])],
+    };
+  }
+
+  protected get idsElegidos(): string[] {
+    return this.hechizosItems.filter((i) => this.hechizos.includes(i.name)).map((i) => i.id);
+  }
+
+  protected get excedeTrucos(): boolean {
+    return this.elegidos(true) > (this.ficha?.lanzamiento?.trucos ?? 0);
+  }
+
+  protected get excedeHechizos(): boolean {
+    return this.elegidos(false) > (this.ficha?.lanzamiento?.preparados ?? 0);
   }
 
   protected elegidos(nivel0: boolean): number {
@@ -79,7 +94,16 @@ export class PasoEquipo implements OnInit {
     this.hechizos = this.hechizos.includes(nombre)
       ? this.hechizos.filter((h) => h !== nombre)
       : [...this.hechizos, nombre];
+    this.aviso = '';
     this.guardar();
+  }
+
+  /** Marca o desmarca un hechizo desde la lista; avisa al pasarse del máximo pero no lo impide. */
+  protected elegirHechizo(item: InfoItem): void {
+    this.alternar(item.name);
+    if (this.excedeTrucos || this.excedeHechizos) {
+      this.aviso = 'Has elegido más hechizos de los que permite tu nivel. Quita alguno si no los necesitas.';
+    }
   }
 
   protected anadirObjeto(): void {

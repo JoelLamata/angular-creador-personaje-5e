@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
@@ -21,6 +21,8 @@ export class InfoListComponent implements OnChanges {
   @Input() items: InfoItem[] = [];
   @Input() loading = false;
   @Input() categoriaEtiqueta = 'Categoría';
+  /** Permite marcar varias categorías a la vez (se muestran como botones en lugar de un desplegable). */
+  @Input() categoriaMultiple = false;
   @Input() placeholder = 'Buscar...';
   /** Muestra la cabecera (se oculta cuando la lista va dentro del asistente). */
   @Input() mostrarCabecera = true;
@@ -32,17 +34,28 @@ export class InfoListComponent implements OnChanges {
 
   searchText = '';
   selectedCategory: string | null = null;
+  selectedCategories: string[] = [];
   selectedSource: string | null = null;
   categories: string[] = [];
   sources: string[] = [];
   filtered: InfoItem[] = [];
   visibleCount = PAGE_SIZE;
 
-  ngOnChanges(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+    // Cambiar la selección no debe reiniciar los filtros ni la paginación de la lista.
+    if (!changes['items']) return;
     this.categories = [...new Set(this.items.map((i) => i.category).filter((c): c is string => !!c))].sort(
-      (a, b) => a.localeCompare(b),
+      (a, b) => a.localeCompare(b, undefined, { numeric: true }),
     );
     this.sources = [...new Set(this.items.map((i) => i.source))].sort((a, b) => a.localeCompare(b));
+    this.selectedCategories = this.selectedCategories.filter((c) => this.categories.includes(c));
+    this.applyFilters();
+  }
+
+  toggleCategory(categoria: string): void {
+    this.selectedCategories = this.selectedCategories.includes(categoria)
+      ? this.selectedCategories.filter((c) => c !== categoria)
+      : [...this.selectedCategories, categoria];
     this.applyFilters();
   }
 
@@ -51,6 +64,7 @@ export class InfoListComponent implements OnChanges {
     this.filtered = this.items.filter(
       (i) =>
         (!this.selectedCategory || i.category === this.selectedCategory) &&
+        (this.selectedCategories.length === 0 || this.selectedCategories.includes(i.category ?? '')) &&
         (!this.selectedSource || i.source === this.selectedSource) &&
         (!text || i.name.toLowerCase().includes(text)),
     );
@@ -60,6 +74,7 @@ export class InfoListComponent implements OnChanges {
   clearFilters(): void {
     this.searchText = '';
     this.selectedCategory = null;
+    this.selectedCategories = [];
     this.selectedSource = null;
     this.applyFilters();
   }
@@ -69,6 +84,11 @@ export class InfoListComponent implements OnChanges {
   }
 
   get hasFilters(): boolean {
-    return !!(this.searchText || this.selectedCategory || this.selectedSource);
+    return !!(
+      this.searchText ||
+      this.selectedCategory ||
+      this.selectedCategories.length ||
+      this.selectedSource
+    );
   }
 }

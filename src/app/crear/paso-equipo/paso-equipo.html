@@ -54,27 +54,37 @@
     <div class="panel">
       <h3 class="panel-title">Hechizos de {{ ficha.clase?.name }}</h3>
       <p>
-        Trucos: <strong>{{ elegidos(true) }}</strong> / {{ ficha.lanzamiento.trucos }} · Hechizos:
-        <strong>{{ elegidos(false) }}</strong> / {{ ficha.lanzamiento.preparados }}
+        Trucos: <strong [class.excede]="excedeTrucos">{{ elegidos(true) }}</strong> / {{ ficha.lanzamiento.trucos }} ·
+        Hechizos: <strong [class.excede]="excedeHechizos">{{ elegidos(false) }}</strong> /
+        {{ ficha.lanzamiento.preparados }}
         @if (ficha.lanzamiento.espacios) {
           · Espacios: {{ ficha.lanzamiento.espacios }}
         }
       </p>
-      <input class="input" [(ngModel)]="busqueda" placeholder="Buscar hechizo..." aria-label="Buscar hechizo" />
 
-      @for (g of grupos; track g.nivel) {
-        @if (g.hechizos.length > 0) {
-          <h4 class="panel-title" style="margin-top: var(--player-space-4)">{{ g.titulo }}</h4>
-          <div class="chips">
-            @for (s of g.hechizos; track s.name) {
-              <button type="button" class="chip" [class.chip--on]="hechizos.includes(s.name)" (click)="alternar(s.name)">
-                {{ s.name }}
-              </button>
-            }
-          </div>
-        }
+      @if (hechizos.length > 0) {
+        <div class="chips">
+          @for (h of hechizos; track h) {
+            <button type="button" class="chip chip--on" (click)="alternar(h)" [title]="'Quitar ' + h">{{ h }} ✕</button>
+          }
+        </div>
       }
-      @if (disponibles.length === 0) {
+      @if (aviso) {
+        <p class="aviso aviso--error">{{ aviso }}</p>
+      }
+
+      @if (hechizosItems.length > 0) {
+        <app-info-list
+          [mostrarCabecera]="false"
+          placeholder="Buscar hechizo..."
+          categoriaEtiqueta="Niveles"
+          [categoriaMultiple]="true"
+          [items]="hechizosItems"
+          [selectable]="true"
+          [selectedIds]="idsElegidos"
+          (choose)="elegirHechizo($event)"
+        ></app-info-list>
+      } @else {
         <p class="muted">No hay hechizos disponibles para esta clase y nivel.</p>
       }
     </div>

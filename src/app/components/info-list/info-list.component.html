@@ -21,7 +21,24 @@
       />
     </div>
 
-    @if (categories.length > 0) {
+    @if (categories.length > 0 && categoriaMultiple) {
+      <div class="filter-group filter-group--search">
+        <span class="filter-label" id="niveles-label">{{ categoriaEtiqueta }}</span>
+        <div class="chips" role="group" aria-labelledby="niveles-label">
+          @for (c of categories; track c) {
+            <button
+              type="button"
+              class="chip"
+              [class.chip--on]="selectedCategories.includes(c)"
+              [attr.aria-pressed]="selectedCategories.includes(c)"
+              (click)="toggleCategory(c)"
+            >
+              {{ c }}
+            </button>
+          }
+        </div>
+      </div>
+    } @else if (categories.length > 0) {
       <div class="filter-group">
         <label class="filter-label" for="categoria">{{ categoriaEtiqueta }}</label>
         <select
