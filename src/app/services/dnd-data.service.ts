@@ -413,6 +413,24 @@ export class DndDataService {
     return spells.filter((s) => names.has(s.name));
   }
 
+  // -------------------------------------------------------- Acciones y reglas
+
+  /** Acciones estándar del juego (Attack, Dash, Dodge...). */
+  getAcciones(): Promise<DndEntry[]> {
+    return this.memo('acciones', async () => {
+      const data = await this.jsonReader.getData('actions.json');
+      return ((data.action ?? []) as DndEntry[]).filter(isAllowed);
+    });
+  }
+
+  /** Reglas variantes y del glosario (Unarmed Strike...). */
+  getReglas(): Promise<DndEntry[]> {
+    return this.memo('reglas', async () => {
+      const data = await this.jsonReader.getData('variantrules.json');
+      return ((data.variantrule ?? []) as DndEntry[]).filter(isAllowed);
+    });
+  }
+
   // --------------------------------------------------------------- Varios
 
   getHabilidades(): Promise<DndEntry[]> {

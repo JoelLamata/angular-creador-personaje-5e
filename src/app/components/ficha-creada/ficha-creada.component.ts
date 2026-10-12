@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, Input, OnChanges, inject } from '@angular/core';
 import { InfoCardComponent, InfoItem } from '../info-card/info-card.component';
+import { AccionesService, GrupoAccion } from '../../services/acciones.service';
 import { DndDataService } from '../../services/dnd-data.service';
 import { EntryProcessorService } from '../../services/entry-processor.service';
 import { Ficha } from '../../services/ficha.service';
@@ -15,7 +16,7 @@ import {
   unirEquipo,
 } from '../../utils/ficha-vista';
 
-type Pestana = 'resumen' | 'habilidades' | 'hechizos' | 'equipo' | 'rasgos' | 'mas';
+type Pestana = 'resumen' | 'habilidades' | 'acciones' | 'hechizos' | 'equipo' | 'rasgos' | 'mas';
 
 /** Objeto del equipo: siempre con su nombre y cantidad, y con descripción si existe en los datos. */
 export interface ObjetoEquipo {
@@ -56,10 +57,13 @@ export class FichaCreadaComponent implements OnChanges {
   /** Espacios de conjuro gastados por nivel; se guardan solo en este dispositivo. */
   protected casillas: Record<number, boolean[]> = {};
   protected equipo: ObjetoEquipo[] = [];
+  /** Qué puede hacer el personaje en su turno: acción, acción adicional, reacción y otros. */
+  protected acciones: GrupoAccion[] = [];
   protected cargando = true;
 
   private readonly data = inject(DndDataService);
   private readonly entryProcessor = inject(EntryProcessorService);
+  private readonly accionesService = inject(AccionesService);
   private readonly cdr = inject(ChangeDetectorRef);
   private carga = 0;
   /** Nivel de cada hechizo por tarjeta y si mejora con espacios superiores, para poder agruparlas. */
@@ -123,13 +127,20 @@ export class FichaCreadaComponent implements OnChanges {
 
     let spells: Awaited<ReturnType<DndDataService['getHechizos']>> = [];
     let objetos: ItemData[] = [];
+    let acciones: GrupoAccion[] = [];
     try {
-      [spells, objetos] = await Promise.all([this.data.getHechizos(), this.data.getObjetos()]);
+      [spells, objetos, acciones] = await Promise.all([
+        this.data.getHechizos(),
+        this.data.getObjetos(),
+        this.accionesService.construir(this.ficha, this.personaje),
+      ]);
     } catch (error) {
-      console.error('Error cargando hechizos y objetos de la ficha:', error);
+      console.error('Error cargando hechizos, objetos y acciones de la ficha:', error);
     }
     // Si la ficha cambió mientras se cargaba, esta respuesta ya no vale.
     if (carga !== this.carga) return;
+
+    this.acciones = acciones;
 
     // Hechizos de la clase (sin etiqueta) y de dotes (con el origen como etiqueta), todos juntos.
     this.niveles = new Map();
@@ -189,9 +200,10 @@ export class FichaCreadaComponent implements OnChanges {
     return [
       { id: 'resumen', etiqueta: 'Resumen' },
       { id: 'habilidades', etiqueta: 'Habilidades' },
+      { id: 'acciones', etiqueta: 'Acciones' },
       ...(lanza ? [{ id: 'hechizos' as const, etiqueta: 'Hechizos' }] : []),
-      { id: 'equipo', etiqueta: 'Equipo' },
       { id: 'rasgos', etiqueta: 'Rasgos' },
+      { id: 'equipo', etiqueta: 'Equipo' },
       { id: 'mas', etiqueta: 'Más' },
     ];
   }

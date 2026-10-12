@@ -102,6 +102,28 @@
     </section>
   }
 
+  <!-- ================================================================== Acciones -->
+  @if (activa === 'acciones') {
+    <section class="panel" id="ficha-panel-acciones" role="tabpanel" aria-labelledby="ficha-tab-acciones">
+      @if (cargando) {
+        <p class="muted">Cargando acciones...</p>
+      } @else {
+        @for (g of acciones; track g.id) {
+          <div class="nivel-cabecera">
+            <h3 class="nivel-title">
+              {{ g.titulo }} <span class="contador">{{ g.items.length }}</span>
+            </h3>
+          </div>
+          @for (a of g.items; track a.id) {
+            <app-info-card [item]="a"></app-info-card>
+          } @empty {
+            <p class="muted">Nada por ahora.</p>
+          }
+        }
+      }
+    </section>
+  }
+
   <!-- =================================================================== Hechizos -->
   @if (activa === 'hechizos') {
     <section class="panel" id="ficha-panel-hechizos" role="tabpanel" aria-labelledby="ficha-tab-hechizos">
