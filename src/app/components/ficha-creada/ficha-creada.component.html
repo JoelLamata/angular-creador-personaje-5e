@@ -7,42 +7,61 @@
     }
   </header>
 
-  <section class="vitales" aria-label="Valores principales">
-    <div class="vital"><span>PG</span><strong>{{ ficha.pg }}</strong></div>
-    <div class="vital"><span>CA</span><strong>{{ ficha.ca }}</strong></div>
-    <div class="vital"><span>Velocidad</span><strong>{{ ficha.velocidad }} ft.</strong></div>
-    <div class="vital"><span>Iniciativa</span><strong>{{ fmt(ficha.iniciativa) }}</strong></div>
-    <div class="vital"><span>Competencia</span><strong>+{{ ficha.bonusCompetencia }}</strong></div>
-    <div class="vital"><span>Dado de golpe</span><strong>{{ personaje.nivel }}d{{ ficha.dadoGolpe }}</strong></div>
-  </section>
-
-  <section class="stats" aria-label="Características">
-    @for (k of claves; track k) {
-      <div class="stat">
-        <span class="stat-name">{{ cortos[k] }}</span>
-        <strong class="stat-mod">{{ fmt(ficha.mods[k]) }}</strong>
-        <span class="stat-val">{{ ficha.puntuaciones[k] }}</span>
-      </div>
+  <div class="pestanas" role="tablist" aria-label="Secciones de la ficha" (keydown)="teclaPestana($event)">
+    @for (p of pestanas; track p.id) {
+      <button
+        type="button"
+        role="tab"
+        class="pestana"
+        [id]="'ficha-tab-' + p.id"
+        [attr.aria-selected]="activa === p.id"
+        [attr.aria-controls]="'ficha-panel-' + p.id"
+        [attr.tabindex]="activa === p.id ? 0 : -1"
+        [class.pestana--activa]="activa === p.id"
+        (click)="elegirPestana(p.id, $any($event.currentTarget))"
+      >
+        {{ p.etiqueta }}
+      </button>
     }
-  </section>
+  </div>
 
-  <div class="columnas">
-    <section class="bloque">
-      <h3>Salvaciones</h3>
-      <ul class="lista-mod">
-        @for (s of ficha.salvaciones; track s.clave) {
-          <li [class.competente]="s.competente">
-            <span class="punto">{{ s.competente ? '●' : '○' }}</span> {{ fmt(s.mod) }} {{ cortos[s.clave] }}
-          </li>
+  <!-- ===================================================================== Resumen -->
+  @if (activa === 'resumen') {
+    <section class="panel" id="ficha-panel-resumen" role="tabpanel" aria-labelledby="ficha-tab-resumen">
+      <div class="vitales" aria-label="Valores principales">
+        <div class="vital"><span>PG</span><strong>{{ ficha.pg }}</strong></div>
+        <div class="vital"><span>CA</span><strong>{{ ficha.ca }}</strong></div>
+        <div class="vital"><span>Velocidad</span><strong>{{ ficha.velocidad }} ft.</strong></div>
+        <div class="vital"><span>Iniciativa</span><strong>{{ fmt(ficha.iniciativa) }}</strong></div>
+        <div class="vital"><span>Competencia</span><strong>+{{ ficha.bonusCompetencia }}</strong></div>
+        <div class="vital"><span>Dado de golpe</span><strong>{{ personaje.nivel }}d{{ ficha.dadoGolpe }}</strong></div>
+      </div>
+
+      <div class="stats" aria-label="Características y salvaciones">
+        @for (k of claves; track k) {
+          <div class="stat">
+            <span class="stat-name">{{ cortos[k] }}</span>
+            <strong class="stat-mod">{{ fmt(ficha.mods[k]) }}</strong>
+            <span class="stat-val">{{ ficha.puntuaciones[k] }}</span>
+            <span
+              class="stat-salv"
+              [class.stat-salv--on]="salvacion(k).competente"
+              [title]="salvacion(k).competente ? 'Competente en la salvación' : 'Sin competencia en la salvación'"
+            >
+              Salv. {{ fmt(salvacion(k).mod) }} {{ salvacion(k).competente ? '●' : '○' }}
+            </span>
+          </div>
         }
-      </ul>
+      </div>
     </section>
+  }
 
-    <section class="bloque">
-      <h3>Habilidades</h3>
-      <ul class="lista-mod">
+  <!-- ================================================================= Habilidades -->
+  @if (activa === 'habilidades') {
+    <section class="panel" id="ficha-panel-habilidades" role="tabpanel" aria-labelledby="ficha-tab-habilidades">
+      <ul class="habilidades">
         @for (h of ficha.habilidades; track h.nombre) {
-          <li [class.competente]="h.competente">
+          <li class="habilidad" [class.habilidad--on]="h.competente">
             <span
               class="punto"
               [title]="
@@ -52,130 +71,128 @@
                     ? 'Competente'
                     : h.mediaCompetencia
                       ? 'Mitad de competencia (Jack of All Trades)'
-                      : ''
+                      : 'Sin competencia'
               "
               >{{ h.experto ? '◆' : h.competente ? '●' : h.mediaCompetencia ? '◐' : '○' }}</span
             >
-            {{ fmt(h.mod) }} {{ h.nombre }}
-            <small>({{ cortos[h.caracteristica] }})</small>
+            <span class="habilidad-nombre">
+              {{ h.nombre }} <small>{{ cortos[h.caracteristica] }}</small>
+            </span>
+            <strong class="habilidad-mod">{{ fmt(h.mod) }}</strong>
           </li>
         }
       </ul>
-    </section>
-
-    <section class="bloque">
-      <h3>Otros datos</h3>
-      @if (tamano) {
-        <p><strong>Tamaño:</strong> {{ tamano }}</p>
-      }
-      @if (ficha.armaduras.length) {
-        <p><strong>Armaduras:</strong> {{ ficha.armaduras.join(', ') }}</p>
-      }
-      @if (ficha.armas.length) {
-        <p><strong>Armas:</strong> {{ ficha.armas.join(', ') }}</p>
-      }
-      @if (ficha.herramientas.length) {
-        <p><strong>Herramientas:</strong> {{ ficha.herramientas.join(', ') }}</p>
-      }
-      @if (ficha.idiomas.length) {
-        <p><strong>Idiomas:</strong> {{ ficha.idiomas.join(', ') }}</p>
-      }
-    </section>
-  </div>
-
-  @if (ficha.elecciones.length || ficha.pendientes.length) {
-    <section class="bloque">
-      <h3>Elecciones de rasgos</h3>
-      <ul class="lista-elecciones">
-        @for (e of ficha.elecciones; track e.titulo + e.nivel + $index) {
-          <li>
-            <strong>{{ e.titulo }}</strong>
-            <small>({{ e.nivel > 0 ? 'nivel ' + e.nivel + ' · ' : '' }}{{ e.origen }})</small>:
-            {{ e.valores.join(', ') }}
-          </li>
-        }
-        @for (e of ficha.pendientes; track e.clave) {
-          <li class="pendiente">
-            <strong>{{ e.titulo }}</strong>
-            @if (e.nivel > 0) {
-              <small>(nivel {{ e.nivel }})</small>
-            }
-            : sin elegir
-          </li>
-        }
-      </ul>
+      <p class="leyenda">{{ leyenda.join(' · ') }}</p>
     </section>
   }
 
-  @if (ficha.lanzamiento) {
-    <section class="bloque">
-      <h3>Lanzamiento de conjuros</h3>
-      <p>
-        Característica: {{ ficha.lanzamiento.habilidad ? cortos[ficha.lanzamiento.habilidad] : '—' }}
-        @if (ficha.lanzamiento.habilidad) {
-          · CD {{ 8 + ficha.bonusCompetencia + ficha.mods[ficha.lanzamiento.habilidad] }}
-          · Ataque {{ fmt(ficha.bonusCompetencia + ficha.mods[ficha.lanzamiento.habilidad]) }}
+  <!-- =================================================================== Hechizos -->
+  @if (activa === 'hechizos') {
+    <section class="panel" id="ficha-panel-hechizos" role="tabpanel" aria-labelledby="ficha-tab-hechizos">
+      @if (ficha.lanzamiento) {
+        <div class="conjuros">
+          @if (ficha.lanzamiento.habilidad) {
+            <div class="vital"><span>Característica</span><strong>{{ cortos[ficha.lanzamiento.habilidad] }}</strong></div>
+            <div class="vital"><span>CD</span><strong>{{ cd }}</strong></div>
+            <div class="vital"><span>Ataque</span><strong>{{ fmt(ataqueConjuro ?? 0) }}</strong></div>
+          }
+        </div>
+        @if (espacios.length) {
+          <div class="espacios" aria-label="Espacios de conjuro">
+            <span class="espacios-titulo">Espacios</span>
+            @for (e of espacios; track e.nivel) {
+              <span class="espacio">Nivel {{ e.nivel }} <strong>×{{ e.cantidad }}</strong></span>
+            }
+          </div>
         }
-        @if (ficha.lanzamiento.espacios) {
-          · Espacios: {{ ficha.lanzamiento.espacios }}
+      }
+
+      @if (cargando) {
+        <p class="muted">Cargando hechizos...</p>
+      } @else if (hechizosPorNivel.length) {
+        @for (g of hechizosPorNivel; track g.titulo) {
+          <h3 class="nivel-title">
+            {{ g.titulo }} <span class="contador">{{ g.items.length }}</span>
+          </h3>
+          @for (h of g.items; track h.id) {
+            <app-info-card [item]="h"></app-info-card>
+          }
         }
-      </p>
-      @if (!hechizos.length) {
+      } @else {
         <p class="muted">Sin hechizos elegidos.</p>
       }
     </section>
   }
 
-  @if (hechizos.length) {
-    <section>
-      <h3 class="seccion-title">Hechizos</h3>
-      @for (h of hechizos; track $index) {
-        <app-info-card [item]="h"></app-info-card>
+  <!-- ====================================================================== Equipo -->
+  @if (activa === 'equipo') {
+    <section class="panel" id="ficha-panel-equipo" role="tabpanel" aria-labelledby="ficha-tab-equipo">
+      <div class="oro" [attr.aria-label]="ficha.oro + ' piezas de oro'">
+        <svg class="moneda" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="10.5" fill="#f5c542" stroke="#b8860b" stroke-width="1.5" />
+          <circle cx="12" cy="12" r="7" fill="none" stroke="#b8860b" stroke-width="1.2" />
+          <path d="M8.5 9.5a4.5 4.5 0 0 1 3.5-2" fill="none" stroke="#fff6d6" stroke-width="1.4" stroke-linecap="round" />
+        </svg>
+        <strong class="oro-cantidad">{{ ficha.oro }}</strong>
+        <span class="oro-unidad">po</span>
+      </div>
+
+      @if (cargando) {
+        <p class="muted">Cargando equipo...</p>
+      } @else if (equipo.length) {
+        @for (o of equipo; track o.item.id) {
+          @if (o.descripcion) {
+            <app-info-card [item]="o.item"></app-info-card>
+          } @else {
+            <div class="objeto">
+              <span class="objeto-nombre">{{ o.item.name }}</span>
+              @for (b of o.item.badges ?? []; track b) {
+                <span class="objeto-cantidad">{{ b }}</span>
+              }
+              @if (o.item.summary) {
+                <span class="objeto-detalle">{{ o.item.summary }}</span>
+              }
+            </div>
+          }
+        }
+      } @else {
+        <p class="muted">Sin equipo.</p>
       }
     </section>
   }
 
-  @if (hechizosDotes.length) {
-    <section>
-      <h3 class="seccion-title">Hechizos de dotes</h3>
-      @for (h of hechizosDotes; track $index) {
-        <app-info-card [item]="h"></app-info-card>
+  <!-- ====================================================================== Rasgos -->
+  @if (activa === 'rasgos') {
+    <section class="panel" id="ficha-panel-rasgos" role="tabpanel" aria-labelledby="ficha-tab-rasgos">
+      @for (r of rasgos; track r.id) {
+        <app-info-card [item]="r"></app-info-card>
+      } @empty {
+        <p class="muted">Todavía no hay rasgos: elige una clase.</p>
       }
     </section>
   }
 
-  @if (dotes.length) {
-    <section>
-      <h3 class="seccion-title">Dotes</h3>
-      @for (d of dotes; track $index) {
-        <app-info-card [item]="d"></app-info-card>
-      }
+  <!-- ======================================================================== Más -->
+  @if (activa === 'mas') {
+    <section class="panel" id="ficha-panel-mas" role="tabpanel" aria-labelledby="ficha-tab-mas">
+      <dl class="datos">
+        @if (tamano) {
+          <dt>Tamaño</dt>
+          <dd>{{ tamano }}</dd>
+        }
+        <dt>Armaduras</dt>
+        <dd>{{ ficha.armaduras.length ? ficha.armaduras.join(', ') : '—' }}</dd>
+        <dt>Armas</dt>
+        <dd>{{ ficha.armas.length ? ficha.armas.join(', ') : '—' }}</dd>
+        <dt>Herramientas</dt>
+        <dd>{{ ficha.herramientas.length ? ficha.herramientas.join(', ') : '—' }}</dd>
+        <dt>Idiomas</dt>
+        <dd>{{ ficha.idiomas.length ? ficha.idiomas.join(', ') : '—' }}</dd>
+        @if (personaje.notas) {
+          <dt>Notas</dt>
+          <dd class="notas">{{ personaje.notas }}</dd>
+        }
+      </dl>
     </section>
   }
-
-  <section class="bloque">
-    <h3>Equipo</h3>
-    @if (ficha.equipo.length) {
-      <p>{{ ficha.equipo.join(', ') }}</p>
-    } @else {
-      <p class="muted">Sin equipo.</p>
-    }
-    @if (ficha.oro) {
-      <p><strong>Oro:</strong> {{ ficha.oro }} po</p>
-    }
-  </section>
-
-  @if (personaje.notas) {
-    <section class="bloque">
-      <h3>Notas</h3>
-      <p class="notas">{{ personaje.notas }}</p>
-    </section>
-  }
-
-  <section>
-    <h3 class="seccion-title">Rasgos</h3>
-    @for (r of rasgos; track r.id) {
-      <app-info-card [item]="r"></app-info-card>
-    }
-  </section>
 </article>

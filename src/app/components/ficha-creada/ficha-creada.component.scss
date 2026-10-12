@@ -4,8 +4,13 @@
   color: var(--player-color-text);
 }
 
+.muted {
+  color: var(--player-color-text-muted);
+}
+
+/* ------------------------------------------------------------------ Cabecera */
 .ficha-header {
-  margin-bottom: var(--player-space-4);
+  margin-bottom: var(--player-space-3);
 }
 
 .ficha-nombre {
@@ -20,26 +25,69 @@
   color: var(--player-color-text-muted);
 }
 
+/* ------------------------------------------------------------------ Pestañas */
+/* Pegada bajo el menú fijo (3rem). Se desplaza en horizontal si no caben todas. */
+.pestanas {
+  position: sticky;
+  top: 3rem;
+  z-index: 5;
+  display: flex;
+  gap: var(--player-space-1);
+  margin: 0 0 var(--player-space-4);
+  overflow-x: auto;
+  scrollbar-width: none;
+  background-color: var(--player-color-background);
+  border-bottom: var(--player-border-width) solid var(--player-color-border);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.pestana {
+  flex: 0 0 auto;
+  padding: var(--player-space-3);
+  font-family: var(--player-font-body);
+  font-size: var(--player-font-size-sm);
+  font-weight: var(--player-font-weight-semibold);
+  color: var(--player-color-text-muted);
+  white-space: nowrap;
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+
+  @media (min-width: 48rem) {
+    padding: var(--player-space-3) var(--player-space-4);
+    font-size: var(--player-font-size-md);
+  }
+
+  &:hover {
+    color: var(--player-color-text);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--player-color-primary);
+    outline-offset: -2px;
+  }
+
+  &--activa {
+    color: var(--player-color-primary);
+    border-bottom-color: var(--player-color-primary);
+  }
+}
+
+/* ------------------------------------------------ Resumen: estado y características */
 .vitales,
-.stats {
+.stats,
+.conjuros {
   display: grid;
   gap: var(--player-space-3);
   margin-bottom: var(--player-space-4);
 }
 
-/* Seis casillas en cada bloque: las columnas son siempre divisores de 6 para que no quede una fila coja. */
-.vitales {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-
-  @media (min-width: 30rem) {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  @media (min-width: 48rem) {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-  }
-}
-
+/* Seis casillas en cada bloque: columnas siempre divisores de 6 para que no quede una fila coja. */
+.vitales,
 .stats {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 
@@ -48,13 +96,14 @@
   }
 }
 
-.vital,
-.stat,
-.bloque {
-  padding: var(--player-space-3) var(--player-space-4);
-  background-color: var(--player-color-surface);
-  border: var(--player-border-width) solid var(--player-color-border);
-  border-radius: var(--player-radius-lg);
+.conjuros {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  /* «Característica» es larga para una casilla de móvil: sin separación entre letras. */
+  .vital span {
+    letter-spacing: 0;
+    overflow-wrap: anywhere;
+  }
 }
 
 .vital,
@@ -63,8 +112,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-inline: var(--player-space-2);
+  padding: var(--player-space-3) var(--player-space-2);
   text-align: center;
+  background-color: var(--player-color-surface);
+  border: var(--player-border-width) solid var(--player-color-border);
+  border-radius: var(--player-radius-lg);
 
   span {
     font-size: var(--player-font-size-xs);
@@ -85,81 +137,201 @@
 
 .stat-val {
   padding: 0 var(--player-space-3);
-  font-size: var(--player-font-size-sm) !important;
   background-color: var(--player-color-surface-muted);
   border-radius: var(--player-radius-md);
 }
 
-.columnas {
-  display: grid;
-  gap: var(--player-space-4);
-  margin-bottom: var(--player-space-4);
+/* Salvación dentro de la tarjeta de cada característica. */
+.stat .stat-salv {
+  margin-top: var(--player-space-2);
+  padding-top: var(--player-space-2);
+  width: 100%;
+  font-size: var(--player-font-size-sm);
+  text-transform: none;
+  letter-spacing: 0;
+  border-top: var(--player-border-width) solid var(--player-color-border);
 
-  @media (min-width: 768px) {
-    grid-template-columns: repeat(3, 1fr);
+  &--on {
+    font-weight: var(--player-font-weight-semibold);
+    color: var(--player-color-primary);
   }
 }
 
-.bloque {
-  margin-bottom: var(--player-space-4);
-
-  h3 {
-    margin: 0 0 var(--player-space-2);
-    font-family: var(--player-font-heading);
-    font-size: var(--player-font-size-lg);
-  }
-
-  p {
-    margin: 0 0 var(--player-space-2);
-  }
-}
-
-.lista-mod {
+/* ---------------------------------------------------------------- Habilidades */
+.habilidades {
   padding: 0;
   margin: 0;
   list-style: none;
 
-  li {
-    font-size: var(--player-font-size-sm);
-    line-height: 1.7;
+  @media (min-width: 48rem) {
+    columns: 2;
+    column-gap: var(--player-space-6);
   }
+}
+
+.habilidad {
+  display: flex;
+  gap: var(--player-space-3);
+  align-items: baseline;
+  padding: var(--player-space-2) var(--player-space-1);
+  border-bottom: var(--player-border-width) solid var(--player-color-border);
+  break-inside: avoid;
+
+  &--on {
+    font-weight: var(--player-font-weight-semibold);
+  }
+}
+
+.punto {
+  flex: 0 0 1.25rem;
+  text-align: center;
+  color: var(--player-color-primary);
+}
+
+.habilidad-nombre {
+  flex: 1;
 
   small {
+    margin-left: var(--player-space-1);
+    font-size: var(--player-font-size-xs);
+    font-weight: var(--player-font-weight-normal);
     color: var(--player-color-text-muted);
   }
 }
 
-.lista-elecciones {
-  padding-left: var(--player-space-5);
-  margin: 0;
-
-  li {
-    margin-bottom: var(--player-space-1);
-  }
-
-  small {
-    color: var(--player-color-text-muted);
-  }
-
-  .pendiente {
-    color: #b45309;
-  }
+.habilidad-mod {
+  min-width: 2.5rem;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
 }
 
-.competente {
-  font-weight: var(--player-font-weight-semibold);
+.leyenda {
+  margin: var(--player-space-4) 0 0;
+  font-size: var(--player-font-size-sm);
+  color: var(--player-color-text-muted);
 }
 
-.notas {
-  white-space: pre-wrap;
+/* ------------------------------------------------------------------- Hechizos */
+.espacios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--player-space-2);
+  align-items: center;
+  margin-bottom: var(--player-space-4);
 }
 
-.seccion-title {
-  margin: var(--player-space-4) 0 var(--player-space-2);
+.espacios-titulo {
+  font-size: var(--player-font-size-xs);
+  color: var(--player-color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.espacio {
+  padding: var(--player-space-1) var(--player-space-3);
+  font-size: var(--player-font-size-sm);
+  background-color: var(--player-color-surface-muted);
+  border: var(--player-border-width) solid var(--player-color-border);
+  border-radius: 999px;
+}
+
+.nivel-title {
+  margin: var(--player-space-5) 0 var(--player-space-2);
   font-family: var(--player-font-heading);
   font-size: var(--player-font-size-lg);
 }
 
-.muted {
+.contador {
+  margin-left: var(--player-space-2);
+  font-family: var(--player-font-body);
+  font-size: var(--player-font-size-sm);
+  font-weight: var(--player-font-weight-normal);
   color: var(--player-color-text-muted);
+}
+
+/* --------------------------------------------------------------------- Equipo */
+.oro {
+  display: inline-flex;
+  gap: var(--player-space-2);
+  align-items: center;
+  margin-bottom: var(--player-space-4);
+  padding: var(--player-space-2) var(--player-space-4);
+  background-color: var(--player-color-surface);
+  border: var(--player-border-width) solid var(--player-color-border);
+  border-radius: 999px;
+}
+
+.moneda {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.oro-cantidad {
+  font-family: var(--player-font-heading);
+  font-size: var(--player-font-size-xl);
+}
+
+.oro-unidad {
+  color: var(--player-color-text-muted);
+}
+
+/* Objeto sin descripción: fila fija con el mismo aspecto que las tarjetas. */
+.objeto {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--player-space-2);
+  align-items: baseline;
+  margin-bottom: var(--player-space-3);
+  padding: var(--player-space-4);
+  background-color: var(--player-color-surface-raised);
+  border: var(--player-border-width) solid var(--player-color-border);
+  border-radius: var(--player-radius-lg);
+}
+
+.objeto-nombre {
+  font-family: var(--player-font-heading);
+  font-weight: var(--player-font-weight-semibold);
+}
+
+.objeto-cantidad {
+  padding: var(--player-space-1) var(--player-space-2);
+  font-size: var(--player-font-size-xs);
+  font-weight: var(--player-font-weight-semibold);
+  color: white;
+  background-color: var(--player-color-primary);
+  border-radius: var(--player-radius-sm);
+}
+
+.objeto-detalle {
+  flex-basis: 100%;
+  font-size: var(--player-font-size-sm);
+  color: var(--player-color-text-muted);
+}
+
+/* ------------------------------------------------------------------------ Más */
+.datos {
+  display: grid;
+  gap: var(--player-space-1) var(--player-space-4);
+  margin: 0;
+
+  @media (min-width: 30rem) {
+    grid-template-columns: max-content 1fr;
+  }
+
+  dt {
+    margin-top: var(--player-space-3);
+    font-weight: var(--player-font-weight-semibold);
+
+    @media (min-width: 30rem) {
+      margin-top: 0;
+    }
+  }
+
+  dd {
+    margin: 0 0 var(--player-space-2);
+  }
+}
+
+.notas {
+  white-space: pre-wrap;
 }
