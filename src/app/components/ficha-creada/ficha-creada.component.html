@@ -29,30 +29,46 @@
   @if (activa === 'resumen') {
     <section class="panel" id="ficha-panel-resumen" role="tabpanel" aria-labelledby="ficha-tab-resumen">
       <div class="vitales" aria-label="Valores principales">
-        <div class="vital"><span>PG</span><strong>{{ ficha.pg }}</strong></div>
-        <div class="vital"><span>CA</span><strong>{{ ficha.ca }}</strong></div>
-        <div class="vital"><span>Velocidad</span><strong>{{ ficha.velocidad }} ft.</strong></div>
         <div class="vital"><span>Iniciativa</span><strong>{{ fmt(ficha.iniciativa) }}</strong></div>
-        <div class="vital"><span>Competencia</span><strong>+{{ ficha.bonusCompetencia }}</strong></div>
-        <div class="vital"><span>Dado de golpe</span><strong>{{ personaje.nivel }}d{{ ficha.dadoGolpe }}</strong></div>
+        <div class="vital vital--forma vital--escudo">
+          <svg class="forma" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            <path d="M5 6 Q27 8 50 2 Q73 8 95 6 L95 50 C95 74 73 90 50 98 C27 90 5 74 5 50 Z" />
+          </svg>
+          <span>CA</span><strong>{{ ficha.ca }}</strong>
+        </div>
+        <div class="vital vital--forma vital--corazon">
+          <svg class="forma" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            <path d="M50 94 C22 72 4 54 4 33 C4 17 16 6 30 6 C40 6 47 11 50 19 C53 11 60 6 70 6 C84 6 96 17 96 33 C96 54 78 72 50 94 Z" />
+          </svg>
+          <span>PG</span><strong>{{ ficha.pg }}</strong>
+        </div>
+        <div class="vital"><span>Velocidad</span><strong>{{ ficha.velocidad }} ft.</strong></div>
       </div>
 
-      <div class="stats" aria-label="Características y salvaciones">
+      <div class="stats" aria-label="Características">
         @for (k of claves; track k) {
           <div class="stat">
             <span class="stat-name">{{ cortos[k] }}</span>
             <strong class="stat-mod">{{ fmt(ficha.mods[k]) }}</strong>
             <span class="stat-val">{{ ficha.puntuaciones[k] }}</span>
-            <span
-              class="stat-salv"
-              [class.stat-salv--on]="salvacion(k).competente"
-              [title]="salvacion(k).competente ? 'Competente en la salvación' : 'Sin competencia en la salvación'"
-            >
-              Salv. {{ fmt(salvacion(k).mod) }} {{ salvacion(k).competente ? '●' : '○' }}
-            </span>
           </div>
         }
       </div>
+
+      <section class="salvaciones" aria-labelledby="salvaciones-titulo">
+        <h3 id="salvaciones-titulo" class="salvaciones-titulo">Salvaciones</h3>
+        <div class="salvaciones-lista">
+          @for (k of claves; track k) {
+            <div
+              class="salv"
+              [class.salv--on]="salvacion(k).competente"
+              [title]="salvacion(k).competente ? 'Competente en la salvación' : 'Sin competencia en la salvación'"
+            >
+              {{ cortos[k] }} {{ fmt(salvacion(k).mod) }} {{ salvacion(k).competente ? '●' : '○' }}
+            </div>
+          }
+        </div>
+      </section>
     </section>
   }
 
