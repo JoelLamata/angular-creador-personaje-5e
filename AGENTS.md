@@ -15,7 +15,7 @@ npm run watch             # development build in watch mode
 npm test                  # unit tests (Vitest via @angular/build:unit-test, jsdom)
 npx ng test --no-watch    # single run
 npx ng test --include src/app/utils/reglas.spec.ts   # one spec file
-npx ng deploy             # publish to GitHub Pages (angular-cli-ghpages)
+npx ng deploy             # publish to GitHub Pages (angular-cli-ghpages); base href /angular-creador-personaje-5e/ is set in angular.json
 ```
 
 There is no lint target. Formatting is Prettier, configured in `package.json` (100 columns, single quotes, Angular parser for HTML).
