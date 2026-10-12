@@ -57,6 +57,10 @@
   font-family: var(--player-font-heading);
   font-size: var(--player-font-size-md);
   font-weight: var(--player-font-weight-semibold);
+
+  &--mejora {
+    color: var(--player-color-upcast);
+  }
 }
 
 .info-details {

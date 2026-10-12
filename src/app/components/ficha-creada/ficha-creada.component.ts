@@ -9,8 +9,8 @@ import { ABILITY_KEYS, ABILITY_SHORT, AbilityKey, formatModifier, formatSizes } 
 import { hechizoToInfoItem, itemToInfoItem } from '../../utils/info-items';
 import {
   EspacioConjuro,
-  GrupoNivel,
-  agruparPorNivel,
+  agruparConEspacios,
+  normalizarCasillas,
   parsearEspacios,
   unirEquipo,
 } from '../../utils/ficha-vista';
@@ -23,6 +23,14 @@ export interface ObjetoEquipo {
   cantidad: number;
   /** Si tiene texto que desplegar (los objetos sin descripción se muestran como una fila fija). */
   descripcion: boolean;
+}
+
+/** Grupo de hechizos de un nivel, con las casillas de espacios de conjuro de ese nivel. */
+export interface GrupoHechizos {
+  nivel: number | null;
+  titulo: string;
+  espacios: number;
+  items: InfoItem[];
 }
 
 /** Ficha de solo lectura de un personaje creado (resumen del asistente y página del personaje). */
@@ -43,8 +51,10 @@ export class FichaCreadaComponent implements OnChanges {
 
   protected pestana: Pestana = 'resumen';
   protected rasgos: InfoItem[] = [];
-  /** Hechizos de la clase y de dotes juntos, por nivel. */
-  protected hechizosPorNivel: GrupoNivel<InfoItem>[] = [];
+  /** Hechizos de la clase y de dotes juntos, por nivel (los que mejoran se repiten en niveles superiores). */
+  protected hechizosPorNivel: GrupoHechizos[] = [];
+  /** Espacios de conjuro gastados por nivel; se guardan solo en este dispositivo. */
+  protected casillas: Record<number, boolean[]> = {};
   protected equipo: ObjetoEquipo[] = [];
   protected cargando = true;
 
@@ -52,8 +62,8 @@ export class FichaCreadaComponent implements OnChanges {
   private readonly entryProcessor = inject(EntryProcessorService);
   private readonly cdr = inject(ChangeDetectorRef);
   private carga = 0;
-  /** Nivel de cada hechizo por tarjeta, para poder agruparlas. */
-  private niveles = new Map<string, number | null>();
+  /** Nivel de cada hechizo por tarjeta y si mejora con espacios superiores, para poder agruparlas. */
+  private niveles = new Map<string, { nivel: number | null; mejorable: boolean }>();
 
   ngOnChanges(): void {
     const aItem = (f: { name: string; level: number; source: string; entries?: any[] }, extra?: string): InfoItem => ({
@@ -68,7 +78,34 @@ export class FichaCreadaComponent implements OnChanges {
       ...this.ficha.rasgosClase.map((f) => aItem(f)),
       ...this.ficha.rasgosSubclase.map((f) => aItem(f, sub)),
     ].sort((a, b) => this.nivelDe(a) - this.nivelDe(b));
+    this.cargarCasillas();
     void this.cargarTarjetas();
+  }
+
+  // ------------------------------------------------------- Espacios de conjuro
+
+  private get claveCasillas(): string {
+    return `ficha-espacios-gastados:${this.personaje.id ?? 'borrador'}`;
+  }
+
+  /** Lee del dispositivo qué espacios están gastados; sin almacenamiento (o con datos rotos) todos libres. */
+  private cargarCasillas(): void {
+    let guardado: Record<string, unknown> = {};
+    try {
+      guardado = JSON.parse(localStorage.getItem(this.claveCasillas) ?? '{}') ?? {};
+    } catch {
+      guardado = {};
+    }
+    this.casillas = Object.fromEntries(this.espacios.map((e) => [e.nivel, normalizarCasillas(guardado[e.nivel], e.cantidad)]));
+  }
+
+  protected marcarEspacio(nivel: number, indice: number, gastado: boolean): void {
+    this.casillas[nivel][indice] = gastado;
+    try {
+      localStorage.setItem(this.claveCasillas, JSON.stringify(this.casillas));
+    } catch {
+      // Sin almacenamiento disponible las casillas siguen marcadas hasta cambiar de ficha.
+    }
   }
 
   /** Busca el texto de cada hechizo y objeto; mientras carga (o si falla) se muestran solo los nombres. */
@@ -100,17 +137,27 @@ export class FichaCreadaComponent implements OnChanges {
       const s = spells.find((x) => x.name === nombre);
       const base = s ? hechizoToInfoItem(s, this.entryProcessor.getSchoolName(s.school)) : sinDatos(nombre);
       const item: InfoItem = { ...base, id: `${base.id}|${origen ?? 'clase'}`, badges: origen ? [origen] : undefined };
-      this.niveles.set(item.id, s ? s.level : null);
+      this.niveles.set(item.id, {
+        nivel: s ? s.level : null,
+        mejorable: !!s && s.level > 0 && ((s['entriesHigherLevel'] as unknown[] | undefined)?.length ?? 0) > 0,
+      });
       return item;
     };
-    this.hechizosPorNivel = agruparPorNivel(
+    this.hechizosPorNivel = agruparConEspacios(
       [
         ...this.personaje.hechizos.map((n) => hechizo(n)),
         ...this.ficha.hechizosDotes.map((h) => hechizo(h.nombre, h.origen)),
       ],
-      (i) => this.niveles.get(i.id) ?? null,
+      (i) => this.niveles.get(i.id)!,
       (i) => i.name,
-    );
+      this.espacios,
+    ).map((g) => ({
+      nivel: g.nivel,
+      titulo: g.titulo,
+      espacios: g.espacios,
+      // La copia en un nivel superior lleva otra id (cada tarjeta se despliega por separado).
+      items: g.items.map((x) => (x.mejora ? { ...x.item, id: `${x.item.id}|nivel${g.nivel}`, mejora: true } : x.item)),
+    }));
 
     // Equipo: se busca cada objeto por nombre, prefiriendo la edición 2024.
     const buscar = (nombre: string) =>

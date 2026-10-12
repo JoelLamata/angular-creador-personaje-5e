@@ -74,3 +74,63 @@ export function parsearEspacios(texto: string | undefined): EspacioConjuro[] {
     .filter((m): m is RegExpExecArray => !!m)
     .map((m) => ({ cantidad: Number(m[1]), nivel: Number(m[2]) }));
 }
+
+/** Nivel de un hechizo y si gana efecto al lanzarlo con un espacio de nivel superior. */
+export interface InfoNivelHechizo {
+  nivel: number | null;
+  mejorable: boolean;
+}
+
+export interface GrupoEspacios<T> {
+  nivel: number | null;
+  titulo: string;
+  /** Espacios de conjuro de este nivel (0 si no tiene o es un truco). */
+  espacios: number;
+  /** `mejora` indica un hechizo de nivel inferior que aquí se lanza con un espacio superior. */
+  items: { item: T; mejora: boolean }[];
+}
+
+/**
+ * Agrupa los hechizos por nivel e incluye un grupo por cada nivel con espacios, aunque no tenga
+ * hechizos propios. Un hechizo que mejora con espacios superiores se repite (con `mejora`) en cada
+ * nivel superior con espacios. Los trucos no usan espacios y nunca se repiten.
+ */
+export function agruparConEspacios<T>(
+  items: T[],
+  infoDe: (item: T) => InfoNivelHechizo,
+  nombreDe: (item: T) => string,
+  espacios: EspacioConjuro[],
+): GrupoEspacios<T>[] {
+  const huecos = new Map(espacios.filter((e) => e.cantidad > 0).map((e) => [e.nivel, e.cantidad]));
+  const niveles = new Set<number | null>(huecos.keys());
+  for (const item of items) niveles.add(infoDe(item).nivel);
+
+  return [...niveles]
+    .sort((a, b) => (a ?? Infinity) - (b ?? Infinity))
+    .map((nivel) => {
+      const propios = items
+        .filter((i) => infoDe(i).nivel === nivel)
+        .map((item) => ({ item, mejora: false }));
+      const mejorados =
+        nivel === null || nivel < 1 || !huecos.has(nivel)
+          ? []
+          : items
+              .filter((i) => {
+                const info = infoDe(i);
+                return info.mejorable && info.nivel !== null && info.nivel >= 1 && info.nivel < nivel;
+              })
+              .map((item) => ({ item, mejora: true }));
+      return {
+        nivel,
+        titulo: nivel === null ? 'Otros' : nivel === 0 ? 'Cantrip' : `Level ${nivel}`,
+        espacios: nivel === null ? 0 : (huecos.get(nivel) ?? 0),
+        items: [...propios, ...mejorados].sort((x, y) => nombreDe(x.item).localeCompare(nombreDe(y.item))),
+      };
+    });
+}
+
+/** Casillas de espacios gastados guardadas, ajustadas a la cantidad actual de espacios del nivel. */
+export function normalizarCasillas(guardado: unknown, cantidad: number): boolean[] {
+  const previo = Array.isArray(guardado) ? guardado : [];
+  return Array.from({ length: Math.max(0, cantidad) }, (_, i) => previo[i] === true);
+}

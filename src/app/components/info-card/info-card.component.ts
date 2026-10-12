@@ -14,6 +14,8 @@ export interface InfoItem {
   /** Valor del filtro de categoría. */
   category?: string;
   badges?: string[];
+  /** Resalta el nombre con otro color (p. ej. un hechizo lanzado con un espacio de nivel superior). */
+  mejora?: boolean;
   entries: any[];
   /** Datos propios de cada página (para las acciones del asistente). */
   data?: any;

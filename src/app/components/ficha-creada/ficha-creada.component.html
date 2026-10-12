@@ -108,28 +108,34 @@
       @if (ficha.lanzamiento) {
         <div class="conjuros">
           @if (ficha.lanzamiento.habilidad) {
-            <div class="vital"><span>Característica</span><strong>{{ cortos[ficha.lanzamiento.habilidad] }}</strong></div>
+            <div class="vital"><span>Modificador</span><strong>{{ fmt(ficha.mods[ficha.lanzamiento.habilidad]) }}</strong></div>
             <div class="vital"><span>CD</span><strong>{{ cd }}</strong></div>
             <div class="vital"><span>Ataque</span><strong>{{ fmt(ataqueConjuro ?? 0) }}</strong></div>
           }
         </div>
-        @if (espacios.length) {
-          <div class="espacios" aria-label="Espacios de conjuro">
-            <span class="espacios-titulo">Espacios</span>
-            @for (e of espacios; track e.nivel) {
-              <span class="espacio">Nivel {{ e.nivel }} <strong>×{{ e.cantidad }}</strong></span>
-            }
-          </div>
-        }
       }
 
       @if (cargando) {
         <p class="muted">Cargando hechizos...</p>
       } @else if (hechizosPorNivel.length) {
         @for (g of hechizosPorNivel; track g.titulo) {
-          <h3 class="nivel-title">
-            {{ g.titulo }} <span class="contador">{{ g.items.length }}</span>
-          </h3>
+          <div class="nivel-cabecera">
+            <h3 class="nivel-title">
+              {{ g.titulo }}
+            </h3>
+            @if (g.espacios) {
+              <span class="casillas" role="group" [attr.aria-label]="'Espacios de conjuro de nivel ' + g.nivel + ' gastados'">
+                @for (gastado of casillas[g.nivel!]; track $index) {
+                  <input
+                    type="checkbox"
+                    [checked]="gastado"
+                    [attr.aria-label]="'Espacio ' + ($index + 1) + ' de ' + g.espacios + ', gastado'"
+                    (change)="marcarEspacio(g.nivel!, $index, $any($event.target).checked)"
+                  />
+                }
+              </span>
+            }
+          </div>
           @for (h of g.items; track h.id) {
             <app-info-card [item]="h"></app-info-card>
           }

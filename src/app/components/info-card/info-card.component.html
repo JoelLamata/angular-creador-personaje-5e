@@ -9,7 +9,7 @@
       <span class="info-summary">
         <span class="info-body">
           <span class="info-header">
-            <span class="info-name">{{ item.name }}</span>
+            <span class="info-name" [class.info-name--mejora]="item.mejora">{{ item.name }}</span>
             @for (badge of item.badges ?? []; track badge) {
               <span class="badge badge-tag">{{ badge }}</span>
             }
