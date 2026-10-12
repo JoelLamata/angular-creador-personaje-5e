@@ -92,7 +92,7 @@ describe('AccionesService (datos reales)', () => {
     const daga = grupos[0].items.find((i) => i.name === 'Dagger')!;
     expect(daga).toBeDefined();
     // Destreza 14 (+2) + competencia (+2, el Wizard domina las armas simples); el arma es sutil.
-    expect(daga.summary).toContain('Ataque +4');
+    expect(daga.valor).toBe('+4');
     expect(daga.summary).toContain('1d4+2 piercing');
     expect(grupos[1].items.map((i) => i.name)).toContain('Two-Weapon Fighting');
   });
@@ -101,7 +101,7 @@ describe('AccionesService (datos reales)', () => {
     const p = personaje('Wizard', 1, { equipoExtra: ['Greataxe'] });
     const f = await fichas.construir(p);
     const hacha = (await servicio.construir(f, p))[0].items.find((i) => i.name === 'Greataxe')!;
-    expect(hacha.summary).toContain('Ataque +0');
+    expect(hacha.valor).toBe('+0');
   });
 
   it('la maestría de arma solo se muestra a quien la tiene y marca las armas elegidas', async () => {
@@ -124,9 +124,10 @@ describe('AccionesService (datos reales)', () => {
     const f = await fichas.construir(p);
     const items = (await servicio.construir(f, p))[0].items;
     // Fuerza 16 (+3), competencia +2.
-    expect(items.find((i) => i.name === 'Unarmed Strike')!.summary).toBe('Ataque +5 · Daño 4 bludgeoning');
-    expect(items.find((i) => i.name === 'Grapple')!.summary).toBe('CD 13');
-    expect(items.find((i) => i.name === 'Shove')!.summary).toBe('CD 13');
+    const golpe = items.find((i) => i.name === 'Unarmed Strike')!;
+    expect([golpe.valor, golpe.summary]).toEqual(['+5', 'Daño 4 bludgeoning']);
+    expect(items.find((i) => i.name === 'Grapple')!.valor).toBe('CD 13');
+    expect(items.find((i) => i.name === 'Shove')!.valor).toBe('CD 13');
   });
 
   it('los rasgos de especie con nivel mínimo solo aparecen al alcanzarlo', async () => {
@@ -144,6 +145,26 @@ describe('AccionesService (datos reales)', () => {
     expect(a['otros']).toContain('Beguiling Magic');
     expect(a['adicional']).not.toContain('College of Glamour');
     expect(a['otros']).not.toContain('College of Glamour');
+  });
+
+  it('reparte cada categoría en ataques, rasgos y acciones básicas', async () => {
+    const p = personaje('Barbarian', 1);
+    const [accion, adicional, reaccion, otros] = await servicio.construir(await fichas.construir(p), p);
+    expect(accion.ataques.map((i) => i.name)).toEqual(expect.arrayContaining(['Unarmed Strike', 'Grapple', 'Shove']));
+    expect(accion.basicas.map((i) => i.name)).toEqual(expect.arrayContaining(['Attack', 'Dash', 'Dodge']));
+    expect(adicional.rasgos.map((i) => i.name)).toContain('Rage');
+    expect(reaccion.basicas.map((i) => i.name)).toEqual(['Opportunity Attack']);
+    expect(otros.basicas.map((i) => i.name)).toContain('Interact with an Object');
+    expect(accion.items).toHaveLength(accion.ataques.length + accion.rasgos.length + accion.basicas.length);
+  });
+
+  it('cada rasgo trae la frase que lo activa como resumen', async () => {
+    const p = personaje('Barbarian', 1);
+    const adicional = (await servicio.construir(await fichas.construir(p), p))[1];
+    const rage = adicional.rasgos.find((i) => i.name === 'Rage')!;
+    expect(rage.summary).toContain('Bonus Action');
+    expect(rage.summary!.length).toBeLessThanOrEqual(151);
+    expect(rage.badges).toEqual(['Barbarian']);
   });
 
   it('un Dragonborn tiene Breath Weapon como acción', async () => {

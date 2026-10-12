@@ -23,6 +23,10 @@
           }
         </span>
 
+        @if (item.valor) {
+          <span class="info-valor">{{ item.valor }}</span>
+        }
+
         @if (selectable) {
           <button
             type="button"

@@ -1,0 +1,110 @@
+<!-- Marcador del turno (lo ya gastado se tacha) y descansos. -->
+<section class="bloque" aria-labelledby="acciones-turno">
+  <div class="cabecera">
+    <h3 id="acciones-turno" class="titulo">Turno</h3>
+    <span class="nota">Movimiento {{ velocidad }} ft.</span>
+    <button type="button" class="enlace" (click)="nuevoTurno()">Nuevo turno</button>
+  </div>
+  <div class="turno" role="group" aria-label="Acciones gastadas en este turno">
+    @for (t of turno; track t.id) {
+      <button
+        type="button"
+        class="gasto"
+        [class.gasto--usado]="gastado[t.id]"
+        [attr.aria-pressed]="gastado[t.id]"
+        (click)="alternarGasto(t.id)"
+      >
+        {{ t.etiqueta }}
+      </button>
+    }
+  </div>
+  <div class="descansos">
+    <button type="button" class="boton" (click)="descansar('corto')">Descanso corto</button>
+    <button type="button" class="boton boton--principal" (click)="descansar('largo')">Descanso largo</button>
+  </div>
+  @if (conjuros) {
+    <p class="nota">El descanso largo también recupera los espacios de conjuro.</p>
+  }
+</section>
+
+<!-- Filtro por tipo de acción: sin ninguno marcado se ven todos. -->
+<div class="categorias" role="group" aria-label="Filtrar por tipo de acción">
+  @for (g of grupos; track g.id) {
+    <button
+      type="button"
+      class="categoria"
+      [class.categoria--activa]="seleccion.has(g.id)"
+      [attr.aria-pressed]="seleccion.has(g.id)"
+      (click)="alternarCategoria(g.id)"
+    >
+      {{ g.titulo }}
+    </button>
+  }
+</div>
+
+@for (g of visibles; track g.id) {
+  <h3 class="categoria-titulo">{{ g.titulo }}</h3>
+
+  <!-- Recursos que se usan en esta categoría. -->
+  @if (recursosDe(g).length) {
+    <section class="bloque" [attr.aria-label]="'Recursos de ' + g.titulo">
+      @for (r of recursosDe(g); track r.id) {
+        <div class="recurso">
+          <span class="recurso-nombre">
+            {{ r.nombre }}
+            <small class="nota">{{ etiquetaRecarga(r) }}</small>
+          </span>
+          @if (r.tipo === 'usos') {
+            <span class="casillas" role="group" [attr.aria-label]="r.nombre + ': usos gastados'">
+              @for (u of casillas(r); track $index) {
+                <input
+                  type="checkbox"
+                  [checked]="u"
+                  [attr.aria-label]="'Uso ' + ($index + 1) + ' de ' + r.max + ' gastado'"
+                  (change)="marcarUso(r, $index, $any($event.target).checked)"
+                />
+              }
+            </span>
+          } @else {
+            <span class="puntos" role="group" [attr.aria-label]="r.nombre">
+              <button type="button" class="paso" aria-label="Gastar un punto" [disabled]="quedan(r) <= 0" (click)="moverPuntos(r, -1)">−</button>
+              <strong class="puntos-valor">{{ quedan(r) }} / {{ r.max }}</strong>
+              <button type="button" class="paso" aria-label="Recuperar un punto" [disabled]="quedan(r) >= r.max" (click)="moverPuntos(r, 1)">+</button>
+            </span>
+          }
+        </div>
+      }
+    </section>
+  }
+
+  @if (g.ataques.length) {
+    <h4 class="seccion">Ataques</h4>
+    @for (a of g.ataques; track a.id) {
+      <app-info-card [item]="a"></app-info-card>
+    }
+  }
+
+  @if (g.rasgos.length) {
+    <h4 class="seccion">Rasgos</h4>
+    @for (a of g.rasgos; track a.id) {
+      <app-info-card [item]="a"></app-info-card>
+    }
+  }
+
+  @if (g.basicas.length) {
+    <button
+      type="button"
+      class="desplegable"
+      [attr.aria-expanded]="basicasAbiertas(g)"
+      (click)="alternarBasicas(g)"
+    >
+      Acciones básicas <span class="cuenta">{{ g.basicas.length }}</span>
+      <span class="flecha" aria-hidden="true">{{ basicasAbiertas(g) ? '▲' : '▼' }}</span>
+    </button>
+    @if (basicasAbiertas(g)) {
+      @for (a of g.basicas; track a.id) {
+        <app-info-card [item]="a"></app-info-card>
+      }
+    }
+  }
+}

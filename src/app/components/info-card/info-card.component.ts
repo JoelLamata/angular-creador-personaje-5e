@@ -14,6 +14,8 @@ export interface InfoItem {
   /** Valor del filtro de categoría. */
   category?: string;
   badges?: string[];
+  /** Número destacado a la derecha del nombre (el bonificador de un ataque, una CD...). */
+  valor?: string;
   /** Resalta el nombre con otro color (p. ej. un hechizo lanzado con un espacio de nivel superior). */
   mejora?: boolean;
   entries: any[];

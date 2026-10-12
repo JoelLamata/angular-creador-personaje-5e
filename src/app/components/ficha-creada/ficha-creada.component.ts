@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, Input, OnChanges, inject } from '@angular/core';
+import { AccionesFichaComponent } from '../acciones-ficha/acciones-ficha.component';
 import { InfoCardComponent, InfoItem } from '../info-card/info-card.component';
 import { AccionesService, GrupoAccion } from '../../services/acciones.service';
 import { DndDataService } from '../../services/dnd-data.service';
@@ -8,6 +9,7 @@ import { PersonajeCreado } from '../../models/personaje.model';
 import { ItemData } from '../../models/dnd-data';
 import { ABILITY_KEYS, ABILITY_SHORT, AbilityKey, formatModifier, formatSizes } from '../../utils/dnd-text';
 import { hechizoToInfoItem, itemToInfoItem } from '../../utils/info-items';
+import { Recurso, recursosDe } from '../../utils/recursos';
 import {
   EspacioConjuro,
   agruparConEspacios,
@@ -38,7 +40,7 @@ export interface GrupoHechizos {
 @Component({
   selector: 'app-ficha-creada',
   standalone: true,
-  imports: [InfoCardComponent],
+  imports: [InfoCardComponent, AccionesFichaComponent],
   templateUrl: './ficha-creada.component.html',
   styleUrl: './ficha-creada.component.scss',
 })
@@ -59,6 +61,8 @@ export class FichaCreadaComponent implements OnChanges {
   protected equipo: ObjetoEquipo[] = [];
   /** Qué puede hacer el personaje en su turno: acción, acción adicional, reacción y otros. */
   protected acciones: GrupoAccion[] = [];
+  /** Recursos con usos limitados de la clase (furias, inspiración, puntos...). */
+  protected recursos: Recurso[] = [];
   protected cargando = true;
 
   private readonly data = inject(DndDataService);
@@ -82,6 +86,7 @@ export class FichaCreadaComponent implements OnChanges {
       ...this.ficha.rasgosClase.map((f) => aItem(f)),
       ...this.ficha.rasgosSubclase.map((f) => aItem(f, sub)),
     ].sort((a, b) => this.nivelDe(a) - this.nivelDe(b));
+    this.recursos = recursosDe(this.ficha.clase, this.ficha.subclase, this.personaje.nivel, this.ficha.mods);
     this.cargarCasillas();
     void this.cargarTarjetas();
   }
@@ -105,11 +110,23 @@ export class FichaCreadaComponent implements OnChanges {
 
   protected marcarEspacio(nivel: number, indice: number, gastado: boolean): void {
     this.casillas[nivel][indice] = gastado;
+    this.guardarCasillas();
+  }
+
+  private guardarCasillas(): void {
     try {
       localStorage.setItem(this.claveCasillas, JSON.stringify(this.casillas));
     } catch {
       // Sin almacenamiento disponible las casillas siguen marcadas hasta cambiar de ficha.
     }
+  }
+
+  /** Descanso largo: todos los espacios de conjuro. Corto: solo la magia de pacto (Warlock). */
+  protected descansar(tipo: 'corto' | 'largo'): void {
+    if (tipo === 'corto' && this.ficha.clase?.name !== 'Warlock') return;
+    this.casillas = Object.fromEntries(Object.entries(this.casillas).map(([nivel, c]) => [nivel, c.map(() => false)]));
+    this.guardarCasillas();
+    this.cdr.markForCheck();
   }
 
   /** Busca el texto de cada hechizo y objeto; mientras carga (o si falla) se muestran solo los nombres. */

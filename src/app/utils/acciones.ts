@@ -98,17 +98,44 @@ const EXCEPCIONES: Record<string, Activacion[]> = {
   'Spreading Spores': ['adicional'],
 };
 
+export interface AnalisisRasgo {
+  /** Clases de activación, en el orden acción, adicional, reacción, otros. Vacío = rasgo pasivo. */
+  activaciones: Activacion[];
+  /** Frase del texto que explica cada activación (la primera que la cumple). */
+  frases: Partial<Record<Activacion, string>>;
+}
+
 /**
- * Clases de activación de un rasgo según su texto, en el orden acción, adicional, reacción, otros.
- * Se mira frase a frase: un rasgo puede aparecer en varias (p. ej. se activa como acción adicional
- * y recupera usos sin acción). Un rasgo pasivo devuelve una lista vacía.
+ * Clases de activación de un rasgo según su texto. Se mira frase a frase: un rasgo puede aparecer
+ * en varias (p. ej. se activa como acción adicional y recupera usos sin acción).
  */
+export function analizarRasgo(nombre: string, entries: unknown): AnalisisRasgo {
+  const frases = textoPlano(entries)
+    .split(/(?<=[.!?:])\s+|\n+/)
+    .map((f) => f.trim())
+    .filter(Boolean);
+  const encontradas: Partial<Record<Activacion, string>> = {};
+  for (const a of Object.keys(PATRONES) as Activacion[]) {
+    const frase = frases.find((f) => PATRONES[a].some((patron) => patron.test(f)));
+    if (frase) encontradas[a] = frase;
+  }
+  if (nombre in EXCEPCIONES) {
+    // Con la clase fijada a mano no hay frase propia: se enseña la primera del rasgo.
+    const activaciones = EXCEPCIONES[nombre];
+    return { activaciones, frases: Object.fromEntries(activaciones.map((a) => [a, encontradas[a] ?? frases[0] ?? ''])) };
+  }
+  return { activaciones: (Object.keys(encontradas) as Activacion[]), frases: encontradas };
+}
+
 export function activacionesDe(nombre: string, entries: unknown): Activacion[] {
-  if (nombre in EXCEPCIONES) return EXCEPCIONES[nombre];
-  const frases = textoPlano(entries).split(/(?<=[.!?:])\s+|\n+/);
-  return (Object.keys(PATRONES) as Activacion[]).filter((a) =>
-    frases.some((frase) => PATRONES[a].some((patron) => patron.test(frase))),
-  );
+  return analizarRasgo(nombre, entries).activaciones;
+}
+
+/** Recorta una frase a un largo cómodo para una línea de resumen, sin cortar palabras. */
+export function resumirFrase(frase: string, maximo = 150): string {
+  if (frase.length <= maximo) return frase;
+  const corte = frase.lastIndexOf(' ', maximo);
+  return `${frase.slice(0, corte > 40 ? corte : maximo).replace(/[,;:\s]+$/, '')}…`;
 }
 
 /**

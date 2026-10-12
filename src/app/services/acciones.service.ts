@@ -5,7 +5,7 @@ import { PersonajeCreado } from '../models/personaje.model';
 import {
   ACTIVACIONES,
   Activacion,
-  activacionesDe,
+  analizarRasgo,
   ataqueArma,
   esArma,
   esCuerpoACuerpo,
@@ -14,6 +14,7 @@ import {
   nivelMinimoDeTexto,
   nombresPropiedades,
   quitarSubrasgos,
+  resumirFrase,
   tipoOpcional,
 } from '../utils/acciones';
 import { formatModifier } from '../utils/dnd-text';
@@ -25,7 +26,20 @@ import { Ficha } from './ficha.service';
 export interface GrupoAccion {
   id: Activacion;
   titulo: string;
+  /** Ataques con las armas (y sin ellas): lo que más se consulta en combate. */
+  ataques: InfoItem[];
+  /** Rasgos de clase, subclase, especie, dotes y opciones que se activan de esta forma. */
+  rasgos: InfoItem[];
+  /** Acciones que puede hacer cualquiera (Dash, Dodge, Opportunity Attack...). */
+  basicas: InfoItem[];
+  /** Todo junto: ataques, rasgos y básicas. */
   items: InfoItem[];
+}
+
+interface Partes {
+  ataques: InfoItem[];
+  rasgos: InfoItem[];
+  basicas: InfoItem[];
 }
 
 /** Rasgo del personaje del que puede salir una acción, venga de donde venga. */
@@ -61,7 +75,8 @@ export class AccionesService {
       this.data.getReglas(),
       this.data.getDotes(),
     ]);
-    const grupos: Record<Activacion, InfoItem[]> = { accion: [], adicional: [], reaccion: [], otros: [] };
+    const partes = (): Partes => ({ ataques: [], rasgos: [], basicas: [] });
+    const grupos: Record<Activacion, Partes> = { accion: partes(), adicional: partes(), reaccion: partes(), otros: partes() };
 
     const lanza = !!ficha.lanzamiento || p.hechizos.length > 0 || ficha.hechizosDotes.length > 0;
     const buscarObjeto = (nombre: string) =>
@@ -75,39 +90,47 @@ export class AccionesService {
     // ---- Acciones estándar (datos de actions.json) ------------------------------
     const estandar = (nombre: string): InfoItem | null => {
       const a = acciones.find((x) => x.name === nombre && x.source === 'XPHB');
-      return a ? { id: `general|${nombre}`, name: a.name, source: a.source, badges: ['General'], entries: a.entries ?? [] } : null;
+      return a ? { id: `general|${nombre}`, name: a.name, source: '', entries: a.entries ?? [] } : null;
     };
-    const poner = (act: Activacion, item: InfoItem | null) => item && grupos[act].push(item);
+    const basica = (act: Activacion, item: InfoItem | null) => item && grupos[act].basicas.push(item);
 
-    poner('accion', estandar('Attack'));
-    this.ataques(ficha, p, armas, reglas, grupos.accion);
+    basica('accion', estandar('Attack'));
+    this.ataques(ficha, p, armas, reglas, grupos.accion.ataques);
     for (const nombre of ACCIONES_BASE) {
       if (nombre === 'Magic' && !lanza) continue;
-      poner('accion', estandar(nombre));
+      basica('accion', estandar(nombre));
     }
-    if (tieneEscudo) poner('accion', estandar('Don or Doff a Shield'));
-    if (ligeras >= 2) poner('adicional', estandar('Two-Weapon Fighting'));
-    poner('reaccion', estandar('Opportunity Attack'));
-    poner('otros', { id: 'general|Interact', name: 'Interact with an Object', source: '', badges: ['General'], entries: [INTERACTUAR] });
-    if (lanza) poner('otros', estandar('End Concentration'));
+    if (tieneEscudo) basica('accion', estandar('Don or Doff a Shield'));
+    if (ligeras >= 2) basica('adicional', estandar('Two-Weapon Fighting'));
+    basica('reaccion', estandar('Opportunity Attack'));
+    basica('otros', { id: 'general|Interact', name: 'Interact with an Object', source: '', entries: [INTERACTUAR] });
+    if (lanza) basica('otros', estandar('End Concentration'));
 
     // ---- Rasgos del personaje ---------------------------------------------------
     const unicos = new Map<string, InfoItem>();
     for (const c of await this.candidatos(ficha, p, dotes)) {
-      for (const act of activacionesDe(c.nombre, c.entries)) {
+      const { activaciones, frases } = analizarRasgo(c.nombre, c.entries);
+      for (const act of activaciones) {
         // El mismo rasgo mejora de nivel (Action Surge) o se repite en dos usos: gana el último.
         unicos.set(`${act}|${c.origen}|${c.nombre}`, {
           id: `${act}|${c.origen}|${c.nombre}`,
           name: c.nombre,
           source: c.source,
+          // La frase que lo activa, para entenderlo sin desplegar la tarjeta.
+          summary: resumirFrase(frases[act] ?? ''),
           badges: [c.origen],
           entries: c.entries,
         });
       }
     }
-    for (const [clave, item] of unicos) grupos[clave.split('|')[0] as Activacion].push(item);
+    for (const [clave, item] of unicos) grupos[clave.split('|')[0] as Activacion].rasgos.push(item);
 
-    return ACTIVACIONES.map((a) => ({ id: a.id, titulo: a.titulo, items: grupos[a.id] }));
+    return ACTIVACIONES.map((a) => ({
+      id: a.id,
+      titulo: a.titulo,
+      ...grupos[a.id],
+      items: [...grupos[a.id].ataques, ...grupos[a.id].rasgos, ...grupos[a.id].basicas],
+    }));
   }
 
   // ----------------------------------------------------------------- Ataques
@@ -137,7 +160,8 @@ export class AccionesService {
         id: `accion|arma|${nombre}`,
         name: nombre,
         source: '',
-        summary: `Ataque ${formatModifier(a.ataque)} · Daño ${dano}${a.danoVersatil ? ` (${a.danoVersatil} a dos manos)` : ''}`,
+        valor: formatModifier(a.ataque),
+        summary: `Daño ${dano}${a.danoVersatil ? ` (${a.danoVersatil} a dos manos)` : ''}`,
         badges: [
           ...(cantidad > 1 ? [`×${cantidad}`] : []),
           ...(maestria && tieneMaestrias && maestrias.has(nombre.toLowerCase()) ? [`Mastery: ${maestria}`] : []),
@@ -166,15 +190,15 @@ export class AccionesService {
       {
         id: 'accion|golpe',
         name: 'Unarmed Strike',
-        source: golpe.source,
-        summary: `Ataque ${formatModifier(fuerza + ficha.bonusCompetencia)} · Daño ${Math.max(0, 1 + fuerza)} bludgeoning`,
-        badges: ['General'],
+        source: '',
+        valor: formatModifier(fuerza + ficha.bonusCompetencia),
+        summary: `Daño ${Math.max(0, 1 + fuerza)} bludgeoning`,
         entries: [...textos.slice(0, 1), ...[opcion('Damage')].filter(Boolean)],
       },
       ...(['Grapple', 'Shove'] as const).flatMap((nombre) => {
         const e = opcion(nombre);
         return e
-          ? [{ id: `accion|${nombre}`, name: nombre, source: golpe.source, summary: `CD ${cd}`, badges: ['General'], entries: [e] }]
+          ? [{ id: `accion|${nombre}`, name: nombre, source: '', valor: `CD ${cd}`, summary: 'Salvación de Fuerza o Destreza del objetivo', entries: [e] }]
           : [];
       }),
     );

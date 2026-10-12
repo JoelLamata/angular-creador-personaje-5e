@@ -108,18 +108,14 @@
       @if (cargando) {
         <p class="muted">Cargando acciones...</p>
       } @else {
-        @for (g of acciones; track g.id) {
-          <div class="nivel-cabecera">
-            <h3 class="nivel-title">
-              {{ g.titulo }} <span class="contador">{{ g.items.length }}</span>
-            </h3>
-          </div>
-          @for (a of g.items; track a.id) {
-            <app-info-card [item]="a"></app-info-card>
-          } @empty {
-            <p class="muted">Nada por ahora.</p>
-          }
-        }
+        <app-acciones-ficha
+          [grupos]="acciones"
+          [recursos]="recursos"
+          [almacen]="personaje.id ?? 'borrador'"
+          [velocidad]="ficha.velocidad"
+          [conjuros]="!!ficha.lanzamiento"
+          (descanso)="descansar($event)"
+        ></app-acciones-ficha>
       }
     </section>
   }

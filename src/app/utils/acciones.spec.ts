@@ -2,11 +2,13 @@ import { ItemData } from '../models/dnd-data';
 import { puntuacionesVacias } from '../models/personaje.model';
 import {
   activacionesDe,
+  analizarRasgo,
   ataqueArma,
   caracteristicaArma,
   competenteConArma,
   nivelMinimoDeTexto,
   quitarSubrasgos,
+  resumirFrase,
   textoPlano,
   tipoOpcional,
 } from './acciones';
@@ -157,6 +159,34 @@ describe('acciones', () => {
         'Texto de la cabecera.',
         { type: 'entries', name: 'Opciones', entries: ['otro texto'] },
       ]);
+    });
+  });
+
+  describe('analizarRasgo y resumirFrase', () => {
+    it('devuelve la frase que explica cada activación', () => {
+      const a = analizarRasgo('Font of Magic', ['Gastas puntos (sin necesidad de realizar ninguna acción).', 'Como Bonus Action, cambias puntos por un espacio.']);
+      expect(a.activaciones).toEqual(['adicional', 'otros']);
+      expect(a.frases.adicional).toBe('Como Bonus Action, cambias puntos por un espacio.');
+      expect(a.frases.otros).toContain('sin necesidad de realizar ninguna acción');
+    });
+
+    it('con una excepción usa la primera frase del rasgo', () => {
+      const a = analizarRasgo('Action Surge', ['En tu turno, puedes realizar una acción adicional.', 'Otra frase.']);
+      expect(a.activaciones).toEqual(['otros']);
+      expect(a.frases.otros).toBe('En tu turno, puedes realizar una acción adicional.');
+    });
+
+    it('un rasgo pasivo no tiene activaciones ni frases', () => {
+      expect(analizarRasgo('Darkvision', ['Ves en la oscuridad.'])).toEqual({ activaciones: [], frases: {} });
+    });
+
+    it('recorta las frases largas sin cortar palabras', () => {
+      expect(resumirFrase('corta')).toBe('corta');
+      const larga = 'palabra '.repeat(30).trim();
+      const r = resumirFrase(larga, 50);
+      expect(r.endsWith('…')).toBe(true);
+      expect(r.length).toBeLessThanOrEqual(51);
+      expect(r.endsWith('palabra…')).toBe(true);
     });
   });
 

@@ -63,6 +63,15 @@
   }
 }
 
+.info-valor {
+  flex: 0 0 auto;
+  margin-right: var(--player-space-2);
+  font-family: var(--player-font-heading);
+  font-size: var(--player-font-size-xl);
+  font-weight: var(--player-font-weight-semibold);
+  color: var(--player-color-primary);
+}
+
 .info-details {
   margin-top: var(--player-space-2);
   font-size: var(--player-font-size-sm);
