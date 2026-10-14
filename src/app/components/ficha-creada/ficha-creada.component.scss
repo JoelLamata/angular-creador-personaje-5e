@@ -10,7 +10,14 @@
 
 /* ------------------------------------------------------------------ Cabecera */
 .ficha-header {
+  display: flex;
+  gap: var(--player-space-3);
+  align-items: center;
   margin-bottom: var(--player-space-3);
+}
+
+.ficha-titulo {
+  min-width: 0;
 }
 
 .ficha-nombre {

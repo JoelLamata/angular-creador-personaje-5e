@@ -1,0 +1,98 @@
+:host {
+  display: block;
+  flex: 0 0 auto;
+}
+
+.foto {
+  --lado: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--player-space-1);
+  align-items: center;
+  width: var(--lado);
+
+  &--pequena {
+    --lado: 3.5rem;
+  }
+}
+
+@media (min-width: 48rem) {
+  .foto:not(.foto--pequena) {
+    --lado: 6rem;
+  }
+}
+
+/* Siempre cuadrada: el lado manda y la imagen se recorta (object-fit) sin deformarse. */
+.marco {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--lado);
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  overflow: hidden;
+  color: var(--player-color-text-muted);
+  background-color: var(--player-color-surface-muted);
+  border: var(--player-border-width) solid var(--player-color-border);
+  border-radius: var(--player-radius-md);
+
+  &--editable {
+    cursor: pointer;
+
+    &:hover:not(:disabled),
+    &:focus-visible {
+      border-color: var(--player-color-primary);
+    }
+
+    &:disabled {
+      cursor: progress;
+      opacity: var(--player-disabled-opacity);
+    }
+  }
+}
+
+.imagen {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.inicial {
+  font-family: var(--player-font-heading);
+  font-size: calc(var(--lado) * 0.45);
+  font-weight: var(--player-font-weight-semibold);
+}
+
+/* Lápiz en la esquina: indica que se puede cambiar (sin depender del cursor, para el móvil). */
+.editar {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 0 var(--player-space-1);
+  font-size: var(--player-font-size-sm);
+  line-height: 1.4;
+  color: white;
+  background-color: var(--player-color-primary);
+  border-top-left-radius: var(--player-radius-sm);
+}
+
+.quitar {
+  padding: 0;
+  font: inherit;
+  font-size: var(--player-font-size-xs);
+  color: var(--player-color-text-muted);
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.error {
+  margin: 0;
+  max-width: 12rem;
+  font-size: var(--player-font-size-xs);
+  text-align: center;
+  color: var(--player-color-primary);
+}

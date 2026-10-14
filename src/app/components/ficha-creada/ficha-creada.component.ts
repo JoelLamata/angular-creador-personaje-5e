@@ -1,5 +1,6 @@
-import { ChangeDetectorRef, Component, Input, OnChanges, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, Output, inject } from '@angular/core';
 import { AccionesFichaComponent } from '../acciones-ficha/acciones-ficha.component';
+import { FotoPersonajeComponent } from '../foto-personaje/foto-personaje.component';
 import { InfoCardComponent, InfoItem } from '../info-card/info-card.component';
 import { AccionesService, GrupoAccion } from '../../services/acciones.service';
 import { DndDataService } from '../../services/dnd-data.service';
@@ -9,7 +10,7 @@ import { PersonajeCreado } from '../../models/personaje.model';
 import { ItemData } from '../../models/dnd-data';
 import { ABILITY_KEYS, ABILITY_SHORT, AbilityKey, formatModifier, formatSizes } from '../../utils/dnd-text';
 import { hechizoToInfoItem, itemToInfoItem } from '../../utils/info-items';
-import { Recurso, recursosDe } from '../../utils/recursos';
+import { Recurso, descansarGuardado, recursosDe } from '../../utils/recursos';
 import {
   EspacioConjuro,
   agruparConEspacios,
@@ -40,13 +41,17 @@ export interface GrupoHechizos {
 @Component({
   selector: 'app-ficha-creada',
   standalone: true,
-  imports: [InfoCardComponent, AccionesFichaComponent],
+  imports: [InfoCardComponent, AccionesFichaComponent, FotoPersonajeComponent],
   templateUrl: './ficha-creada.component.html',
   styleUrl: './ficha-creada.component.scss',
 })
 export class FichaCreadaComponent implements OnChanges {
   @Input({ required: true }) ficha!: Ficha;
   @Input({ required: true }) personaje!: PersonajeCreado;
+  /** Permite cambiar la foto de perfil pulsando sobre ella. */
+  @Input() editable = false;
+  /** Foto nueva (data URL) o `null` si se quita; quien usa la ficha decide dónde guardarla. */
+  @Output() fotoCambiada = new EventEmitter<string | null>();
 
   protected readonly claves = ABILITY_KEYS;
   protected readonly cortos = ABILITY_SHORT;
@@ -63,6 +68,8 @@ export class FichaCreadaComponent implements OnChanges {
   protected acciones: GrupoAccion[] = [];
   /** Recursos con usos limitados de la clase (furias, inspiración, puntos...). */
   protected recursos: Recurso[] = [];
+  /** Sube con cada descanso para que la pestaña de acciones recargue lo guardado. */
+  protected reinicio = 0;
   protected cargando = true;
 
   private readonly data = inject(DndDataService);
@@ -121,11 +128,18 @@ export class FichaCreadaComponent implements OnChanges {
     }
   }
 
-  /** Descanso largo: todos los espacios de conjuro. Corto: solo la magia de pacto (Warlock). */
-  protected descansar(tipo: 'corto' | 'largo'): void {
-    if (tipo === 'corto' && this.ficha.clase?.name !== 'Warlock') return;
-    this.casillas = Object.fromEntries(Object.entries(this.casillas).map(([nivel, c]) => [nivel, c.map(() => false)]));
-    this.guardarCasillas();
+  /**
+   * Descanso: recupera los recursos guardados y los espacios de conjuro (el largo todos; el corto,
+   * solo los del Warlock) y empieza turno nuevo. Lo llama la página de la ficha, con la pestaña de
+   * acciones abierta o no.
+   */
+  descansar(tipo: 'corto' | 'largo'): void {
+    descansarGuardado(this.personaje.id ?? 'borrador', this.recursos, tipo);
+    if (tipo === 'largo' || this.ficha.clase?.name === 'Warlock') {
+      this.casillas = Object.fromEntries(Object.entries(this.casillas).map(([nivel, c]) => [nivel, c.map(() => false)]));
+      this.guardarCasillas();
+    }
+    this.reinicio++;
     this.cdr.markForCheck();
   }
 

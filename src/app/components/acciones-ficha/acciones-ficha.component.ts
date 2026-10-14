@@ -1,21 +1,16 @@
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { GrupoAccion } from '../../services/acciones.service';
 import { Activacion } from '../../utils/acciones';
-import {
-  EstadoRecursos,
-  Recurso,
-  descansar,
-  disponibles,
-  normalizarEstado,
-} from '../../utils/recursos';
+import { EstadoRecursos, Recurso, disponibles, guardarEstado, leerEstado } from '../../utils/recursos';
 import { InfoCardComponent } from '../info-card/info-card.component';
 
 type GastoTurno = 'accion' | 'adicional' | 'reaccion' | 'objeto';
 
 /**
  * Pestaña "Acciones" de la ficha: lo que el personaje puede hacer en su turno, con un marcador de
- * lo ya gastado, los recursos con usos limitados y los descansos. Lo marcado de los recursos se
- * guarda solo en este dispositivo; el marcador de turno se reinicia al salir.
+ * lo ya gastado y los recursos con usos limitados. Lo marcado de los recursos se guarda solo en
+ * este dispositivo; el marcador de turno se reinicia al salir. Los descansos los hace la ficha
+ * (botón de la hoguera) y esta pestaña solo recarga lo guardado cuando cambia `reinicio`.
  */
 @Component({
   selector: 'app-acciones-ficha',
@@ -30,10 +25,8 @@ export class AccionesFichaComponent implements OnChanges {
   /** Identifica al personaje en el almacenamiento del dispositivo. */
   @Input() almacen = 'borrador';
   @Input() velocidad = 30;
-  /** El personaje lanza hechizos: el descanso largo recupera también sus espacios. */
-  @Input() conjuros = false;
-  /** Se emite al descansar para que la ficha recupere también los espacios de conjuro. */
-  @Output() descanso = new EventEmitter<'corto' | 'largo'>();
+  /** Sube cada vez que la ficha hace un descanso: hay que recargar lo guardado y empezar turno nuevo. */
+  @Input() reinicio = 0;
 
   protected readonly turno: { id: GastoTurno; etiqueta: string }[] = [
     { id: 'accion', etiqueta: 'Action' },
@@ -48,26 +41,13 @@ export class AccionesFichaComponent implements OnChanges {
   /** Acciones básicas desplegadas por categoría; sin elegir, solo se abren si no hay otra cosa. */
   private basicas: Partial<Record<Activacion, boolean>> = {};
 
-  ngOnChanges(): void {
-    let guardado: unknown = {};
-    try {
-      guardado = JSON.parse(localStorage.getItem(this.clave) ?? '{}');
-    } catch {
-      guardado = {};
-    }
-    this.estado = normalizarEstado(guardado, this.recursos);
-  }
-
-  private get clave(): string {
-    return `ficha-recursos-gastados:${this.almacen}`;
+  ngOnChanges(cambios: SimpleChanges): void {
+    this.estado = leerEstado(this.almacen, this.recursos);
+    if (cambios['reinicio'] && !cambios['reinicio'].firstChange) this.nuevoTurno();
   }
 
   private guardar(): void {
-    try {
-      localStorage.setItem(this.clave, JSON.stringify(this.estado));
-    } catch {
-      // Sin almacenamiento disponible lo marcado dura hasta salir de la ficha.
-    }
+    guardarEstado(this.almacen, this.estado);
   }
 
   // ------------------------------------------------------------------ Turno
@@ -101,17 +81,6 @@ export class AccionesFichaComponent implements OnChanges {
     const gastados = Math.min(r.max, Math.max(0, Number(this.estado[r.id] ?? 0) - delta));
     this.estado = { ...this.estado, [r.id]: gastados };
     this.guardar();
-  }
-
-  protected etiquetaRecarga(r: Recurso): string {
-    return r.corto === 'todos' ? 'corto o largo' : r.corto === 'uno' ? 'largo · 1 en corto' : 'largo';
-  }
-
-  protected descansar(tipo: 'corto' | 'largo'): void {
-    this.estado = descansar(this.recursos, this.estado, tipo);
-    this.guardar();
-    this.nuevoTurno();
-    this.descanso.emit(tipo);
   }
 
   // ------------------------------------------------------------ Categorías

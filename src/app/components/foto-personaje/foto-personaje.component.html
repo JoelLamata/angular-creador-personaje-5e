@@ -1,0 +1,33 @@
+<div class="foto" [class.foto--pequena]="pequena">
+  @if (editable) {
+    <button
+      type="button"
+      class="marco marco--editable"
+      [disabled]="procesando"
+      [attr.aria-label]="foto ? 'Cambiar la foto del personaje' : 'Añadir una foto al personaje'"
+      (click)="archivo.click()"
+    >
+      @if (foto) {
+        <img class="imagen" [src]="foto" alt="" />
+      } @else {
+        <span class="inicial">{{ inicial }}</span>
+      }
+      <span class="editar" aria-hidden="true">{{ procesando ? '…' : '✎' }}</span>
+    </button>
+    <input #archivo type="file" accept="image/*" hidden (change)="elegir(archivo)" />
+    @if (foto) {
+      <button type="button" class="quitar" (click)="quitar()">Quitar</button>
+    }
+    @if (error) {
+      <p class="error" role="alert">{{ error }}</p>
+    }
+  } @else {
+    <div class="marco">
+      @if (foto) {
+        <img class="imagen" [src]="foto" [alt]="'Foto de ' + (nombre || 'el personaje')" />
+      } @else {
+        <span class="inicial">{{ inicial }}</span>
+      }
+    </div>
+  }
+</div>

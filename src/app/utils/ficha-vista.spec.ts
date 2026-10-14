@@ -5,6 +5,7 @@ import {
   parsearEspacios,
   separarCantidad,
   unirEquipo,
+  unirLista,
 } from './ficha-vista';
 
 describe('ficha-vista', () => {
@@ -136,6 +137,15 @@ describe('ficha-vista', () => {
       expect(normalizarCasillas('x', 2)).toEqual([false, false]);
       expect(normalizarCasillas(undefined, 0)).toEqual([]);
       expect(normalizarCasillas(['si', 1], 2)).toEqual([false, false]);
+    });
+  });
+
+  describe('unirLista', () => {
+    it('une con comas y una "y" final', () => {
+      expect(unirLista([])).toBe('');
+      expect(unirLista(['Rage'])).toBe('Rage');
+      expect(unirLista(['Rage', 'Second Wind'])).toBe('Rage y Second Wind');
+      expect(unirLista(['A', 'B', 'C'])).toBe('A, B y C');
     });
   });
 });

@@ -139,3 +139,31 @@ export function descansar(recursos: Recurso[], estado: EstadoRecursos, tipo: 'co
   }
   return nuevo;
 }
+
+// ---------------------------------------------------------------- Almacenamiento
+
+/** Lo gastado se guarda solo en este dispositivo, por personaje (o `borrador` si aún no está guardado). */
+const claveAlmacen = (almacen: string) => `ficha-recursos-gastados:${almacen}`;
+
+export function leerEstado(almacen: string, recursos: Recurso[]): EstadoRecursos {
+  let guardado: unknown = {};
+  try {
+    guardado = JSON.parse(localStorage.getItem(claveAlmacen(almacen)) ?? '{}');
+  } catch {
+    guardado = {};
+  }
+  return normalizarEstado(guardado, recursos);
+}
+
+export function guardarEstado(almacen: string, estado: EstadoRecursos): void {
+  try {
+    localStorage.setItem(claveAlmacen(almacen), JSON.stringify(estado));
+  } catch {
+    // Sin almacenamiento disponible lo marcado dura hasta salir de la ficha.
+  }
+}
+
+/** Aplica un descanso a lo guardado, sin necesidad de que la pestaña de acciones esté abierta. */
+export function descansarGuardado(almacen: string, recursos: Recurso[], tipo: 'corto' | 'largo'): void {
+  guardarEstado(almacen, descansar(recursos, leerEstado(almacen, recursos), tipo));
+}

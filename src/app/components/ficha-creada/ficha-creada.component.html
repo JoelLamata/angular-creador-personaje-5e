@@ -1,10 +1,18 @@
 <article class="ficha">
   <header class="ficha-header">
-    <h2 class="ficha-nombre">{{ personaje.nombre || 'Personaje sin nombre' }}</h2>
-    <p class="ficha-sub">{{ subtitulo }}</p>
-    @if (personaje.jugador) {
-      <p class="ficha-sub">Jugador: {{ personaje.jugador }}</p>
-    }
+    <app-foto-personaje
+      [foto]="personaje.foto"
+      [nombre]="personaje.nombre"
+      [editable]="editable"
+      (cambio)="fotoCambiada.emit($event)"
+    ></app-foto-personaje>
+    <div class="ficha-titulo">
+      <h2 class="ficha-nombre">{{ personaje.nombre || 'Personaje sin nombre' }}</h2>
+      <p class="ficha-sub">{{ subtitulo }}</p>
+      @if (personaje.jugador) {
+        <p class="ficha-sub">Jugador: {{ personaje.jugador }}</p>
+      }
+    </div>
   </header>
 
   <div class="pestanas" role="tablist" aria-label="Secciones de la ficha" (keydown)="teclaPestana($event)">
@@ -113,8 +121,7 @@
           [recursos]="recursos"
           [almacen]="personaje.id ?? 'borrador'"
           [velocidad]="ficha.velocidad"
-          [conjuros]="!!ficha.lanzamiento"
-          (descanso)="descansar($event)"
+          [reinicio]="reinicio"
         ></app-acciones-ficha>
       }
     </section>

@@ -137,29 +137,6 @@
   }
 }
 
-.descansos {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--player-space-2);
-  margin: var(--player-space-3) 0 var(--player-space-1);
-}
-
-.boton {
-  min-height: 2.5rem;
-  font-family: var(--player-font-body);
-  font-weight: var(--player-font-weight-semibold);
-  color: var(--player-color-primary);
-  cursor: pointer;
-  background-color: transparent;
-  border: var(--player-border-width-strong) solid var(--player-color-primary);
-  border-radius: var(--player-radius-md);
-
-  &--principal {
-    color: white;
-    background-color: var(--player-color-primary);
-  }
-}
-
 /* ---------------------------------------------------------------- Categorías */
 .categorias {
   display: grid;

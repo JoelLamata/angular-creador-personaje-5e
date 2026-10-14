@@ -1,4 +1,4 @@
-<!-- Marcador del turno (lo ya gastado se tacha) y descansos. -->
+<!-- Marcador del turno: lo ya gastado se tacha; "Nuevo turno" lo reinicia. -->
 <section class="bloque" aria-labelledby="acciones-turno">
   <div class="cabecera">
     <h3 id="acciones-turno" class="titulo">Turno</h3>
@@ -18,13 +18,6 @@
       </button>
     }
   </div>
-  <div class="descansos">
-    <button type="button" class="boton" (click)="descansar('corto')">Descanso corto</button>
-    <button type="button" class="boton boton--principal" (click)="descansar('largo')">Descanso largo</button>
-  </div>
-  @if (conjuros) {
-    <p class="nota">El descanso largo también recupera los espacios de conjuro.</p>
-  }
 </section>
 
 <!-- Filtro por tipo de acción: sin ninguno marcado se ven todos. -->
@@ -50,10 +43,7 @@
     <section class="bloque" [attr.aria-label]="'Recursos de ' + g.titulo">
       @for (r of recursosDe(g); track r.id) {
         <div class="recurso">
-          <span class="recurso-nombre">
-            {{ r.nombre }}
-            <small class="nota">{{ etiquetaRecarga(r) }}</small>
-          </span>
+          <span class="recurso-nombre">{{ r.nombre }}</span>
           @if (r.tipo === 'usos') {
             <span class="casillas" role="group" [attr.aria-label]="r.nombre + ': usos gastados'">
               @for (u of casillas(r); track $index) {

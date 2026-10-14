@@ -5,7 +5,16 @@ import { JsonReader } from '../json-reader';
 import { ClassInfo } from '../models/dnd-data';
 import { puntuacionesVacias } from '../models/personaje.model';
 import { DndDataService } from '../services/dnd-data.service';
-import { Recurso, descansar, disponibles, normalizarEstado, recursosDe } from './recursos';
+import {
+  Recurso,
+  descansar,
+  descansarGuardado,
+  disponibles,
+  guardarEstado,
+  leerEstado,
+  normalizarEstado,
+  recursosDe,
+} from './recursos';
 
 class LectorDeDisco {
   async getData(nombre: string) {
@@ -125,6 +134,39 @@ describe('recursos', () => {
     it('un descanso corto sin usos gastados no cambia nada', () => {
       const libre = normalizarEstado(undefined, todos);
       expect(descansar(todos, libre, 'corto')).toEqual(libre);
+    });
+  });
+
+  describe('almacenamiento del dispositivo', () => {
+    const usos: Recurso = { id: 'Rage', nombre: 'Rage', tipo: 'usos', max: 3, corto: 'uno', categoria: 'adicional' };
+    const puntos: Recurso = { id: 'Focus', nombre: 'Focus', tipo: 'puntos', max: 5, corto: 'todos', categoria: 'adicional' };
+    beforeEach(() => localStorage.clear());
+
+    it('sin nada guardado todo está disponible', () => {
+      expect(leerEstado('a', [usos, puntos])).toEqual({ Rage: [false, false, false], Focus: 0 });
+    });
+
+    it('lo guardado se recupera y cada personaje tiene lo suyo', () => {
+      guardarEstado('a', { Rage: [true, false, false], Focus: 2 });
+      expect(leerEstado('a', [usos, puntos])).toEqual({ Rage: [true, false, false], Focus: 2 });
+      expect(leerEstado('b', [usos, puntos])).toEqual({ Rage: [false, false, false], Focus: 0 });
+    });
+
+    it('un descanso largo sobre lo guardado lo deja todo disponible', () => {
+      guardarEstado('a', { Rage: [true, true, true], Focus: 4 });
+      descansarGuardado('a', [usos, puntos], 'largo');
+      expect(leerEstado('a', [usos, puntos])).toEqual({ Rage: [false, false, false], Focus: 0 });
+    });
+
+    it('un descanso corto sobre lo guardado recupera según cada recurso', () => {
+      guardarEstado('a', { Rage: [true, true, true], Focus: 4 });
+      descansarGuardado('a', [usos, puntos], 'corto');
+      expect(leerEstado('a', [usos, puntos])).toEqual({ Rage: [true, true, false], Focus: 0 });
+    });
+
+    it('un valor guardado roto no impide leer', () => {
+      localStorage.setItem('ficha-recursos-gastados:a', '{no es json');
+      expect(leerEstado('a', [usos])).toEqual({ Rage: [false, false, false] });
     });
   });
 });

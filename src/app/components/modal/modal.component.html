@@ -1,0 +1,29 @@
+<dialog
+  #dialogo
+  class="modal"
+  [attr.aria-labelledby]="idTitulo"
+  (cancel)="alCancelar($event)"
+  (click)="clicFuera($event)"
+>
+  <div class="contenido">
+    <h2 class="titulo" [id]="idTitulo">{{ titulo }}</h2>
+    <div class="cuerpo">
+      <ng-content></ng-content>
+    </div>
+    <div class="acciones">
+      @for (o of opciones; track o.id) {
+        <button
+          type="button"
+          class="boton"
+          [class.boton--principal]="o.tipo === 'principal'"
+          [class.boton--peligro]="o.tipo === 'peligro'"
+          [disabled]="ocupado"
+          (click)="elegir.emit(o.id)"
+        >
+          {{ o.etiqueta }}
+        </button>
+      }
+      <button type="button" class="boton boton--cancelar" [disabled]="ocupado" (click)="cerrar.emit()">Cancelar</button>
+    </div>
+  </div>
+</dialog>

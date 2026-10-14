@@ -7,6 +7,10 @@
     <button pButton type="button" label="Crear personaje" (click)="nuevo()"></button>
   </header>
 
+  @if (errorBorrado) {
+    <p class="aviso" role="alert">{{ errorBorrado }}</p>
+  }
+
   @if (!almacen.configurado) {
     <p class="aviso">
       Firebase no está configurado todavía. Rellena <code>src/environments/environment.ts</code> para
@@ -22,16 +26,49 @@
     <div class="lista">
       @for (p of personajes; track p.id) {
         <article class="tarjeta">
-          <a class="tarjeta-link" [routerLink]="['/creados', p.id]">
-            <h2 class="tarjeta-nombre">{{ p.nombre || 'Sin nombre' }}</h2>
-            <p class="tarjeta-sub">{{ resumen(p) }}</p>
-            @if (p.jugador) {
-              <p class="tarjeta-sub">Jugador: {{ p.jugador }}</p>
-            }
-          </a>
+          <div class="tarjeta-fila">
+            <a class="tarjeta-link" [routerLink]="['/creados', p.id]">
+              <app-foto-personaje [foto]="p.foto" [nombre]="p.nombre" [pequena]="true"></app-foto-personaje>
+              <div class="tarjeta-texto">
+                <h2 class="tarjeta-nombre">{{ p.nombre || 'Sin nombre' }}</h2>
+                <p class="tarjeta-sub">{{ resumen(p) }}</p>
+                @if (p.jugador) {
+                  <p class="tarjeta-sub">Jugador: {{ p.jugador }}</p>
+                }
+              </div>
+            </a>
+            <button
+              type="button"
+              class="tarjeta-borrar"
+              [attr.aria-label]="'Borrar a ' + (p.nombre || 'este personaje')"
+              title="Borrar"
+              (click)="pedirBorrado(p)"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path
+                  fill="currentColor"
+                  d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+                />
+              </svg>
+            </button>
+          </div>
           <a class="tarjeta-editar" [routerLink]="['/editar', p.id]">Editar</a>
         </article>
       }
     </div>
   }
+
+  <app-modal
+    titulo="Borrar personaje"
+    [abierto]="!!aBorrar"
+    [opciones]="opcionesBorrado"
+    [ocupado]="borrando"
+    (elegir)="borrar()"
+    (cerrar)="cancelarBorrado()"
+  >
+    <p>
+      ¿Seguro que quieres borrar a <strong>{{ aBorrar?.nombre || 'este personaje' }}</strong>? Se borra para
+      siempre y no se puede deshacer.
+    </p>
+  </app-modal>
 </div>

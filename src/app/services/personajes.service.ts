@@ -66,6 +66,18 @@ export class PersonajesService {
     return ref.id;
   }
 
+  /**
+   * Cambia solo algunos campos de un personaje ya guardado. Así un cambio pequeño (la foto) no
+   * pisa lo que otra persona haya editado a la vez en el resto del personaje.
+   */
+  async actualizar(id: string, campos: Partial<PersonajeCreado>): Promise<void> {
+    const db = await this.db();
+    const { doc, updateDoc } = await import('firebase/firestore');
+    // JSON elimina los `undefined`, que Firestore rechaza; `null` se conserva.
+    const limpio = JSON.parse(JSON.stringify({ ...campos, actualizadoEn: Date.now() }));
+    await updateDoc(doc(db, environment.coleccion, id), limpio);
+  }
+
   async borrar(id: string): Promise<void> {
     const db = await this.db();
     const { doc, deleteDoc } = await import('firebase/firestore');

@@ -12,6 +12,8 @@ export interface Referencia {
 export interface PersonajeCreado {
   id?: string;
   nombre: string;
+  /** Foto de perfil cuadrada y pequeña, como data URL (JPEG); `null` si no tiene. */
+  foto: string | null;
   /** Nombre del jugador (opcional, solo informativo). */
   jugador: string;
   clase: Referencia | null;
@@ -56,6 +58,7 @@ export function puntuacionesVacias(valor = 8): Puntuaciones {
 export function personajeNuevo(): PersonajeCreado {
   return {
     nombre: '',
+    foto: null,
     jugador: '',
     clase: null,
     nivel: 1,

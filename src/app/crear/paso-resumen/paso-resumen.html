@@ -19,7 +19,7 @@
 @if (loading) {
   <p class="muted">Calculando ficha...</p>
 } @else if (ficha) {
-  <app-ficha-creada [ficha]="ficha" [personaje]="personaje"></app-ficha-creada>
+  <app-ficha-creada [ficha]="ficha" [personaje]="personaje" [editable]="true" (fotoCambiada)="cambiarFoto($event)"></app-ficha-creada>
 }
 
 @if (pendientes.length > 0) {

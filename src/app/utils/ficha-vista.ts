@@ -134,3 +134,9 @@ export function normalizarCasillas(guardado: unknown, cantidad: number): boolean
   const previo = Array.isArray(guardado) ? guardado : [];
   return Array.from({ length: Math.max(0, cantidad) }, (_, i) => previo[i] === true);
 }
+
+/** `['A']` -> `A`; `['A', 'B', 'C']` -> `A, B y C`. */
+export function unirLista(nombres: string[]): string {
+  if (nombres.length <= 1) return nombres.join('');
+  return `${nombres.slice(0, -1).join(', ')} y ${nombres[nombres.length - 1]}`;
+}

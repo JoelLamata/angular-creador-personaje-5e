@@ -51,6 +51,11 @@ export class PasoResumen implements OnInit {
     this.personaje = this.creador.borrador;
   }
 
+  protected cambiarFoto(foto: string | null): void {
+    this.creador.actualizar({ foto });
+    this.personaje = this.creador.borrador;
+  }
+
   /** Pasos que todavía faltan por completar. */
   protected get pendientes(): { texto: string; ruta: string }[] {
     const p = this.personaje;
