@@ -17,6 +17,7 @@
 }
 
 .ficha-titulo {
+  flex: 1;
   min-width: 0;
 }
 
@@ -29,7 +30,12 @@
 
 .ficha-sub {
   margin: var(--player-space-1) 0 0;
+  font-size: var(--player-font-size-sm);
   color: var(--player-color-text-muted);
+
+  @media (min-width: 48rem) {
+    font-size: var(--player-font-size-md);
+  }
 }
 
 /* ------------------------------------------------------------------ Pestañas */
@@ -93,9 +99,9 @@
   margin-bottom: var(--player-space-4);
 }
 
-/* Cuatro valores principales siempre en una fila, también en móvil. */
+/* Tres valores principales (iniciativa, CA y velocidad) siempre en una fila, también en móvil. */
 .vitales {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--player-space-2);
 
   .vital {
@@ -366,14 +372,6 @@
     cursor: pointer;
     accent-color: var(--player-color-primary);
   }
-}
-
-.contador {
-  margin-left: var(--player-space-2);
-  font-family: var(--player-font-body);
-  font-size: var(--player-font-size-sm);
-  font-weight: var(--player-font-weight-normal);
-  color: var(--player-color-text-muted);
 }
 
 /* --------------------------------------------------------------------- Equipo */

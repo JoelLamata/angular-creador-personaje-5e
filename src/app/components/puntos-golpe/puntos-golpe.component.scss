@@ -1,0 +1,118 @@
+:host {
+  display: block;
+  flex: 0 0 auto;
+}
+
+/* Corazón: la forma es un SVG de fondo y el texto va encima. */
+.corazon {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 4.25rem;
+  height: 4.25rem;
+  padding: var(--player-space-2) 0 var(--player-space-3);
+  font-family: var(--player-font-body);
+  color: var(--player-color-text);
+  cursor: pointer;
+  background: none;
+  border: none;
+
+  .forma {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+
+    path {
+      /* Cuanto más daño (--dano, de 0 a 1), más rojo: de la superficie al color principal. */
+      fill: color-mix(in srgb, var(--player-color-primary) calc(var(--dano, 0) * 100%), var(--player-color-surface));
+      stroke: var(--player-color-border);
+      stroke-width: 2;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+  }
+
+  &:hover .forma path,
+  &:focus-visible .forma path {
+    stroke: var(--player-color-primary);
+  }
+
+  /* A 0 puntos o menos el borde se marca; con casi todo el daño el texto pasa a blanco para leerse. */
+  &--caido .forma path {
+    stroke: var(--player-color-primary);
+    stroke-width: 3;
+  }
+
+  &--critico {
+    color: white;
+
+    .etiqueta,
+    .max {
+      color: inherit;
+    }
+  }
+}
+
+.etiqueta,
+.valor {
+  position: relative;
+}
+
+.etiqueta {
+  font-size: var(--player-font-size-xs);
+  color: var(--player-color-text-muted);
+  text-transform: uppercase;
+}
+
+.valor {
+  font-family: var(--player-font-heading);
+  font-size: var(--player-font-size-lg);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.max {
+  font-size: var(--player-font-size-sm);
+  color: var(--player-color-text-muted);
+}
+
+/* ---------------------------------------------------------------- Modal */
+.actual {
+  font-size: var(--player-font-size-md);
+  color: var(--player-color-text);
+}
+
+.campo {
+  display: block;
+  margin-bottom: var(--player-space-1);
+  font-size: var(--player-font-size-sm);
+  font-weight: var(--player-font-weight-semibold);
+  color: var(--player-color-text);
+}
+
+.entrada {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: var(--player-space-2) var(--player-space-3);
+  font-family: var(--player-font-body);
+  font-size: var(--player-font-size-lg);
+  color: var(--player-color-text);
+  background-color: var(--player-color-surface);
+  border: var(--player-border-width-strong) solid var(--player-color-border);
+  border-radius: var(--player-radius-md);
+
+  &:focus {
+    outline: none;
+    border-color: var(--player-color-primary);
+  }
+}
+
+.aviso {
+  margin: var(--player-space-2) 0 0;
+  font-size: var(--player-font-size-sm);
+  color: var(--player-color-primary);
+}

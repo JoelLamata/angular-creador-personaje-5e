@@ -1,0 +1,41 @@
+<button
+  type="button"
+  class="corazon"
+  [class.corazon--critico]="proporcion >= 0.55"
+  [class.corazon--caido]="actual <= 0"
+  [style.--dano]="proporcion"
+  [attr.aria-label]="'Puntos de golpe: ' + actual + ' de ' + max + '. Pulsa para cambiarlos'"
+  (click)="abrir()"
+>
+  <svg class="forma" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <path d="M50 94 C22 72 4 54 4 33 C4 17 16 6 30 6 C40 6 47 11 50 19 C53 11 60 6 70 6 C84 6 96 17 96 33 C96 54 78 72 50 94 Z" />
+  </svg>
+  <span class="etiqueta">PG</span>
+  <strong class="valor">{{ actual }}<span class="max">/{{ max }}</span></strong>
+</button>
+
+<app-modal
+  titulo="Puntos de golpe"
+  [abierto]="abierto"
+  [opciones]="opciones"
+  (elegir)="elegir($event)"
+  (cerrar)="cerrar()"
+>
+  <p class="actual">
+    Vida actual: <strong>{{ actual }} / {{ max }}</strong>
+  </p>
+  <label class="campo" for="pg-cantidad">Cuántos puntos pierde o recupera</label>
+  <input
+    id="pg-cantidad"
+    class="entrada"
+    type="number"
+    inputmode="numeric"
+    min="1"
+    placeholder="Cantidad"
+    [value]="cantidad"
+    (input)="cantidad = $any($event.target).value; aviso = ''"
+  />
+  @if (aviso) {
+    <p class="aviso" role="alert">{{ aviso }}</p>
+  }
+</app-modal>

@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, Output, inject } from '@angular/core';
 import { AccionesFichaComponent } from '../acciones-ficha/acciones-ficha.component';
 import { FotoPersonajeComponent } from '../foto-personaje/foto-personaje.component';
+import { PuntosGolpeComponent } from '../puntos-golpe/puntos-golpe.component';
 import { InfoCardComponent, InfoItem } from '../info-card/info-card.component';
 import { AccionesService, GrupoAccion } from '../../services/acciones.service';
 import { DndDataService } from '../../services/dnd-data.service';
@@ -41,7 +42,7 @@ export interface GrupoHechizos {
 @Component({
   selector: 'app-ficha-creada',
   standalone: true,
-  imports: [InfoCardComponent, AccionesFichaComponent, FotoPersonajeComponent],
+  imports: [InfoCardComponent, AccionesFichaComponent, FotoPersonajeComponent, PuntosGolpeComponent],
   templateUrl: './ficha-creada.component.html',
   styleUrl: './ficha-creada.component.scss',
 })
@@ -279,11 +280,18 @@ export class FichaCreadaComponent implements OnChanges {
     return this.ficha.salvaciones.find((s) => s.clave === clave)!;
   }
 
-  protected get subtitulo(): string {
+  /** "Bard nv 7 (Eloquence)" */
+  protected get lineaClase(): string {
     const p = this.personaje;
-    const clase = p.clase ? `${p.clase.name} ${p.nivel}${p.subclase ? ' (' + p.subclase.shortName + ')' : ''}` : 'Sin clase';
+    if (!p.clase) return 'Sin clase';
+    return `${p.clase.name} nv ${p.nivel}${p.subclase ? ` (${p.subclase.shortName})` : ''}`;
+  }
+
+  /** "Human · Scribe" */
+  protected get lineaOrigen(): string {
+    const p = this.personaje;
     const especie = p.especie ? p.especie.name + (p.linaje ? ` (${p.linaje})` : '') : 'Sin especie';
-    return `${clase} · ${especie} · ${p.trasfondo?.name ?? 'Sin trasfondo'}`;
+    return `${especie} · ${p.trasfondo?.name ?? 'Sin trasfondo'}`;
   }
 
   protected get tamano(): string {
